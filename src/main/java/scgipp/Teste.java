@@ -15,6 +15,8 @@ public class Teste {
             user.permissions.add(LOGIN);
             user.permissions.add(USER_ADD);
             user.permissions.add(USER_REMOVE);
+            user.permissions.remove(USER_ADD);
+            user.permissions.print();
         } catch (AuthenticationException e) {
             e.printStackTrace();
         }
