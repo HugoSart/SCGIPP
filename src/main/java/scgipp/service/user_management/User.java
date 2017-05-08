@@ -1,23 +1,32 @@
 package scgipp.service.user_management;
 
 import org.jetbrains.annotations.Contract;
-import javax.naming.AuthenticationException;
 
+import javax.naming.AuthenticationException;
+import javax.persistence.*;
+
+@Entity
 public class User {
 
-    Long id;
-    String login;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    private final UserController userController;
+    @Column(nullable = false, unique = true)
+    private String login;
 
-    public final Permissions permissions;
+    @Column(nullable = false)
+    private String password;
 
-    User() {
+    @Transient private final UserController userController;
+    @Transient public  final Permissions permissions;
+
+    public User() {
         userController = new UserController();
         permissions = new Permissions();
     }
 
-    User(Long id, String login) {
+    public User(Long id, String login) {
         this();
         this.id = id;
         this.login = login;
@@ -31,6 +40,10 @@ public class User {
         if (user == null) throw new AuthenticationException("Failed to authenticate \"" + login + "\".");
 
         return user;
+    }
+
+    public String toString() {
+        return "id = " + id + ", login = " + login + ";";
     }
 
 
