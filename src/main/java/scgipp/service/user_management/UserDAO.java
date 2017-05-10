@@ -57,8 +57,19 @@ public class UserDAO extends DataAccess<User> {
     }
 
     @Override
-    public void update(Integer id) {
-
+    public void update(User user) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        try{
+            transaction = session.beginTransaction();
+            session.update(user);
+            transaction.commit();
+        }catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
     }
 
     @Override

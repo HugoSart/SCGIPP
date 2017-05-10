@@ -1,7 +1,5 @@
 package scgipp.data.hibernate;
 
-import com.mysql.fabric.xmlrpc.base.Data;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -29,7 +27,7 @@ public abstract class DataAccess<T> {
 
     public abstract Integer add(T object) throws ExceptionInInitializerError;
     public abstract void remove(Integer id) throws ExceptionInInitializerError;
-    public abstract void update(Integer id) throws ExceptionInInitializerError;
+    public abstract void update(T object) throws ExceptionInInitializerError;
     public abstract T get(Integer id) throws ExceptionInInitializerError;
     public abstract List<T> list() throws ExceptionInInitializerError;
 

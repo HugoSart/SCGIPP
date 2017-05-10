@@ -25,8 +25,6 @@ public class User {
     //@Transient private final UserManager userManager;
     // </editor-fold>
 
-    // <editor-fold desc="Constructors{...}">
-
     public User() {
 
     }
