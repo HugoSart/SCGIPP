@@ -13,7 +13,7 @@
     <facet type="jpa" name="JPA">
       <configuration>
         <setting name="validation-enabled" value="true" />
-        <setting name="provider-name" value="" />
+        <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="Entities" />
         </datasource-mapping>
@@ -42,5 +42,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="org.kordamp.ikonli:ikonli-javafx:1.9.0" level="application" />
+    <orderEntry type="library" name="org.kordamp.ikonli:ikonli-metrizeicons-pack:1.9.0" level="application" />
   </component>
 </module>

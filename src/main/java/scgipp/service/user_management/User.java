@@ -29,19 +29,19 @@ public class User {
         permissions = new Permissions(userType);
     }
 
-    public User(String login, String password) {
+    protected User(String login, String password) {
         this();
         setLogin(login);
         setPassword(password);
     }
 
-    public User(String login, String password, Permissions.UserType userType) {
+    protected User(String login, String password, Permissions.UserType userType) {
         this(userType);
         setLogin(login);
         setPassword(password);
     }
 
-    private void setId(Integer id) {
+    void setId(Integer id) {
         this.id = id;
     }
 
@@ -49,7 +49,7 @@ public class User {
         return id;
     }
 
-    public void setLogin(String login) {
+    void setLogin(String login) {
         this.login = login;
     }
 
@@ -57,7 +57,7 @@ public class User {
         return login;
     }
 
-    public void setPassword(String password) {
+    void setPassword(String password) {
         this.password = password;
     }
 
@@ -65,7 +65,7 @@ public class User {
         return password;
     }
 
-    public void setPermissions(Permissions permissions) {
+    void setPermissions(Permissions permissions) {
         this.permissions = permissions;
     }
 

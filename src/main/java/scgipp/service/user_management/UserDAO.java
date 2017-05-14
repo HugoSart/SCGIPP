@@ -99,7 +99,7 @@ class UserDAO extends DataAccess<User> {
 
         try{
             transaction = session.beginTransaction();
-            user = (User)session.get(User.class, id);
+            user = session.get(User.class, id);
             transaction.commit();
         }catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
@@ -134,7 +134,7 @@ class UserDAO extends DataAccess<User> {
 
         try{
             transaction = session.beginTransaction();
-            user = (User)session.load(User.class, id);
+            user = session.load(User.class, id);
             transaction.commit();
         }catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
