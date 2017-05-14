@@ -5,13 +5,12 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import scgipp.data.hibernate.DataAccess;
 
-import java.util.Iterator;
 import java.util.List;
 
 /**
  * Created by hsart on 10/05/17.
  */
-public class UserDAO extends DataAccess<User> {
+class UserDAO extends DataAccess<User> {
 
     public UserDAO() {
         super();
@@ -28,7 +27,7 @@ public class UserDAO extends DataAccess<User> {
             transaction = session.beginTransaction();
             userId = (Integer)session.save(user);
             transaction.commit();
-        }catch (HibernateException e) {
+        } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }finally {
@@ -39,7 +38,8 @@ public class UserDAO extends DataAccess<User> {
     }
 
     @Override
-    public void remove(Integer id) {
+    public void remove(Integer id) throws ExceptionInInitializerError {
+
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
@@ -56,8 +56,26 @@ public class UserDAO extends DataAccess<User> {
         }
     }
 
+    public void remove(String login) throws ExceptionInInitializerError {
+
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            User user = (User)session.createQuery("FROM User WHERE login = " + login).getSingleResult();
+            session.delete(user);
+            transaction.commit();
+        }catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+    }
+
     @Override
-    public void update(User user) {
+    public void update(User user) throws ExceptionInInitializerError {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
         try{
@@ -105,6 +123,27 @@ public class UserDAO extends DataAccess<User> {
 
         return user;
 
+    }
+
+    @Override
+    public User load(Integer id) throws ExceptionInInitializerError {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+
+        User user = null;
+
+        try{
+            transaction = session.beginTransaction();
+            user = (User)session.load(User.class, id);
+            transaction.commit();
+        }catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+
+        return user;
     }
 
     @Override

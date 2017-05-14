@@ -1,13 +1,21 @@
 package scgipp.service.user_management;
 
+import org.hibernate.collection.internal.PersistentSet;
+
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static scgipp.service.user_management.Permissions.Permission.*;
 
+@Embeddable
 public class Permissions {
 
-    private List<Permission> permissions = new ArrayList<Permission>();
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.ORDINAL)
+    private Set<Permission> permissions = new HashSet<Permission>();
 
     public enum Permission {
         LOGIN,
@@ -18,9 +26,9 @@ public class Permissions {
         ADM, SELLER
     }
 
-    Permissions() {}
+    protected Permissions() {}
 
-    Permissions(UserType ut) {
+    protected Permissions(UserType ut) {
 
         switch (ut) {
             case ADM:
@@ -30,7 +38,7 @@ public class Permissions {
                 add(USER_UPDATE);
                 break;
             case SELLER:
-
+                add(LOGIN);
                 break;
             default:
 

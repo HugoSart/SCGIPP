@@ -1,52 +1,47 @@
 package scgipp.service.user_management;
 
+import org.hibernate.Session;
+import org.hibernate.annotations.Type;
+import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 import org.jetbrains.annotations.Contract;
 
 import javax.naming.AuthenticationException;
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "USER")
 public class User {
 
-    //<editor-fold desc="Atributes{...}">
+    @Id @GeneratedValue
+    private Integer id;
 
-    @Id
-    @GeneratedValue private Integer id;
+    private String login;
+    private String password;
 
-    @Column(nullable = false, unique = true) private String login;
-    @Column(nullable = false)                private String password;
+    @Embedded
+    public Permissions permissions;
 
-    //@Transient public final Permissions permissions;
-
-    //</editor-fold>
-
-    // <editor-fold desc="Objects References{...}">
-    //@Transient private final UserManager userManager;
-    // </editor-fold>
-
-    public User() {
-
+    protected User() {
+        permissions = new Permissions();
     }
 
-    public User(Integer id, String login) {
-        this();
-        this.id = id;
-        this.login = login;
-
+    protected User(Permissions.UserType userType) {
+        permissions = new Permissions(userType);
     }
 
     public User(String login, String password) {
         this();
-        this.login = login;
-        this.password = password;
+        setLogin(login);
+        setPassword(password);
     }
 
-    // </editor-fold>
+    public User(String login, String password, Permissions.UserType userType) {
+        this(userType);
+        setLogin(login);
+        setPassword(password);
+    }
 
-    // <editor-fold desc="Setters and Getters{...}">
-
-    public void setId(Integer id) {
+    private void setId(Integer id) {
         this.id = id;
     }
 
@@ -70,11 +65,12 @@ public class User {
         return password;
     }
 
-    // </editor-fold>
+    public void setPermissions(Permissions permissions) {
+        this.permissions = permissions;
+    }
 
-    @Contract(pure = true)
-    public static User newInstance(String login, String password) throws AuthenticationException {
-        return null;
+    public Permissions getPermissions() {
+        return permissions;
     }
 
     public String toString() {
