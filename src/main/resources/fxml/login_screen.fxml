@@ -4,34 +4,25 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="522.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.LoginScreenController">
+<AnchorPane fx:id="mainPane" prefHeight="363.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.LoginScreenController">
    <children>
-      <ImageView fitHeight="158.0" fitWidth="494.0" layoutX="55.0" layoutY="14.0" style="-fx-image: url('file:src/main/resources/img/ti_logo.png');">
+      <ImageView fitHeight="100.0" fitWidth="388.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <image>
-            <Image url="@../img/enter.png" />
+            <Image url="@../img/jvc_logo.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="116.0" layoutY="200.0" prefHeight="260.0" prefWidth="369.0" style="-fx-background-color: rgb(255, 166, 77, 0.9);">
+      <AnchorPane layoutX="-14.0" layoutY="94.0" maxHeight="269.0" maxWidth="382.0" minHeight="269.0" minWidth="382.0" prefHeight="269.0" prefWidth="382.0" style="-fx-background-color: rgb(1,41,110, 0.0);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="94.0">
          <children>
-            <TextField fx:id="tfUser" layoutX="99.0" layoutY="68.0" promptText="Usuário" />
-            <PasswordField fx:id="tfPassword" layoutX="99.0" layoutY="108.0" promptText="Senha" />
-            <Label layoutX="136.0" layoutY="25.0" text="Autenticaçao" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <Button fx:id="btLogin" layoutX="99.0" layoutY="178.0" mnemonicParsing="false" onAction="#btLoginActionHandler" prefHeight="44.0" prefWidth="171.0" text="Entrar" />
+            <TextField fx:id="tfUser" layoutX="109.0" layoutY="67.0" prefHeight="25.0" prefWidth="171.0" />
+            <PasswordField fx:id="tfPassword" layoutX="109.0" layoutY="128.0" prefHeight="25.0" prefWidth="171.0" />
+            <Button fx:id="btLogin" layoutX="144.0" layoutY="196.0" mnemonicParsing="false" onAction="#btLoginActionHandler" prefHeight="25.0" prefWidth="101.0" text="Entrar" />
+            <Label layoutX="174.0" layoutY="48.0" text="Usuário" />
+            <Label layoutX="178.0" layoutY="109.0" text="Senha" />
          </children>
-         <effect>
-            <DropShadow blurType="ONE_PASS_BOX" height="29.59" radius="16.0025" width="36.42" />
-         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>

@@ -3,6 +3,8 @@ package scgipp.service.user_management;
 import scgipp.data.encryption.Encryptor;
 import scgipp.system.log.Log;
 
+import java.util.List;
+
 public class UserManager {
 
     private UserDAO userDAO = new UserDAO();
@@ -58,6 +60,10 @@ public class UserManager {
         }
 
         return null;
+    }
+
+    public List<User> getAll() {
+        return userDAO.list();
     }
 
 }

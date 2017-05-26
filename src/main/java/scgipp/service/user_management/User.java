@@ -1,5 +1,6 @@
 package scgipp.service.user_management;
 
+import javafx.beans.property.SimpleStringProperty;
 import org.hibernate.Session;
 import org.hibernate.annotations.Type;
 import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
@@ -75,6 +76,10 @@ public class User {
 
     public String toString() {
         return "id = " + id + ", login = " + login + ";\n";
+    }
+
+    public SimpleStringProperty getLoginProperty() {
+        return new SimpleStringProperty(login);
     }
 
 }

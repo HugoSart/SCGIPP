@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.UserManager;
+import scgipp.ui.MainScreenController;
 
 public class Teste extends Application {
 
@@ -23,9 +24,10 @@ public class Teste extends Application {
         loader.setLocation(getClass().getResource("/fxml/login_screen.fxml"));
 
         Parent root = loader.load();
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("SCGIPP");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }
