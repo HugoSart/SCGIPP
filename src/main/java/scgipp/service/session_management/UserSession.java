@@ -1,5 +1,6 @@
 package scgipp.service.session_management;
 
+import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
 
@@ -32,6 +33,10 @@ public class UserSession {
 
         if (user == null) {
             throw new AuthenticationException("Authentication problem. Session init aborted.");
+        }
+
+        if (!user.getPermissions().check(Permissions.Permission.LOGIN)) {
+            throw new AuthenticationException("Este usuário não tem permissão para entrar.");
         }
 
         instance = new UserSession(user);

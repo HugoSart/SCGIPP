@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.session_management.UserSession;
 
+import javax.security.sasl.AuthenticationException;
+
 public class LoginController {
 
     @FXML Button btLogin;
@@ -34,7 +36,7 @@ public class LoginController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erro");
             alert.setHeaderText("Falha na autenticação");
-            alert.setContentText("Verifique se o usuario e senha estão corretos.");
+            alert.setContentText(e.getMessage());
 
             alert.showAndWait();
 
