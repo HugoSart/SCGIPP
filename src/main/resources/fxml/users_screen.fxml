@@ -9,24 +9,24 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.UsersScreenController">
+<AnchorPane fx:id="mainPane" prefHeight="440.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.user.UsersController">
    <children>
-      <ToolBar prefHeight="40.0" prefWidth="600.0">
+      <ToolBar prefHeight="40.0" prefWidth="845.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <Button mnemonicParsing="false" text="Adicionar" />
+          <Button fx:id="btAdd" mnemonicParsing="false" onAction="#btAddActionHandler" text="Adicionar" />
             <Button mnemonicParsing="false" text="Remover" />
+            <Button fx:id="btClose" mnemonicParsing="false" onAction="#btCloseActionHandler" text="Fechar" />
         </items>
       </ToolBar>
-      <TableView layoutY="101.0" prefHeight="299.0" prefWidth="600.0">
+      <TableView fx:id="tvUsers" layoutY="101.0" prefHeight="459.0" prefWidth="871.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
         <columns>
-          <TableColumn prefWidth="103.0" text="Id" />
-          <TableColumn prefWidth="148.0" text="Usuário" />
-            <TableColumn prefWidth="242.0" text="Senha criptografada" />
+          <TableColumn fx:id="tcId" prefWidth="122.0" text="Id" />
+          <TableColumn fx:id="tcUser" prefWidth="324.0" text="Usuário" />
+            <TableColumn fx:id="tcPassword" minWidth="0.0" prefWidth="398.0" text="Senha criptografada" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="60.0" mnemonicParsing="false" text="Procurar" />
-      <TextField layoutX="176.0" layoutY="60.0" prefHeight="25.0" prefWidth="401.0" />
+      <TextField layoutX="176.0" layoutY="60.0" prefHeight="25.0" prefWidth="678.0" />
       <SplitMenuButton layoutX="82.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Por id">
         <items>
           <MenuItem mnemonicParsing="false" text="Action 1" />

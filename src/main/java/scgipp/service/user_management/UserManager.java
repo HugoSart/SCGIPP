@@ -11,22 +11,28 @@ public class UserManager {
 
     public UserManager() {}
 
-    public void register(String login, String password) {
+    public User register(String login, String password) {
+        User user = new User(login, Encryptor.encrypt(password));
         try {
-            userDAO.add(new User(login, Encryptor.encrypt(password)));
+            userDAO.add(user);
         } catch (ExceptionInInitializerError e) {
             e.printStackTrace();
         }
         Log.show(Log.Type.INFO, "User \"" + login + "\" successufly registred.");
+
+        return user;
     }
 
-    public void register(String login, String password, Permissions.UserType userType) {
+    public User register(String login, String password, Permissions.UserType userType) {
+        User user = new User(login, Encryptor.encrypt(password), userType);
         try {
-            userDAO.add(new User(login, Encryptor.encrypt(password), userType));
+            userDAO.add(user);
         } catch (ExceptionInInitializerError e) {
             e.printStackTrace();
         }
         Log.show(Log.Type.INFO, "User \"" + login + "\" successufly registred.");
+
+        return user;
     }
 
     public void remove(String login) {
@@ -36,6 +42,10 @@ public class UserManager {
             e.printStackTrace();
         }
         Log.show(Log.Type.INFO, "User \"" + login + "\" removed.");
+    }
+
+    public void update(User user) {
+        userDAO.update(user);
     }
 
     public User authenticate(String login, String password) {

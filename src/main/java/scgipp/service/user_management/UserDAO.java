@@ -23,14 +23,14 @@ class UserDAO extends DataAccess<User> {
         Transaction transaction = null;
         Integer userId = null;
 
-        try{
+        try {
             transaction = session.beginTransaction();
             userId = (Integer)session.save(user);
             transaction.commit();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
 

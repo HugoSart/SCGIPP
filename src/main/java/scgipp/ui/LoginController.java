@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.session_management.UserSession;
 
-public class LoginScreenController {
+public class LoginController {
 
     @FXML Button btLogin;
     @FXML TextField tfUser;

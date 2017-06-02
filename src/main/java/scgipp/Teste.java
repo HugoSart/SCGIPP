@@ -8,12 +8,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.UserManager;
-import scgipp.ui.MainScreenController;
 
 public class Teste extends Application {
 
     public static void main(String[] args) {
-        addTestData();
+        //addTestData();
         launch(args);
     }
 
@@ -34,8 +33,7 @@ public class Teste extends Application {
 
     public static void addTestData() {
         UserManager userManager = new UserManager();
-        userManager.register("admin", "admin", Permissions.UserType.ADM);
-        userManager.register("hsart", "123", Permissions.UserType.SELLER);
+        System.out.println(userManager.register("admin", "admin", Permissions.UserType.ADM).getPermissions().check(Permissions.Permission.LOGIN));
     }
 
 }

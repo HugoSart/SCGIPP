@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 
-public class MainScreenController {
+public class MainController {
 
     @FXML Button btUsers;
 

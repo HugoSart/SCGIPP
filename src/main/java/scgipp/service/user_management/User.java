@@ -1,5 +1,6 @@
 package scgipp.service.user_management;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import org.hibernate.Session;
 import org.hibernate.annotations.Type;
@@ -16,21 +17,24 @@ public class User {
     @Id @GeneratedValue
     private Integer id;
 
+    @Column(unique = true)
     private String login;
+
     private String password;
 
     @Embedded
     public Permissions permissions;
 
     protected User() {
-        permissions = new Permissions();
+        System.out.println("@2211");
     }
 
     protected User(Permissions.UserType userType) {
+        System.out.println("@22");
         permissions = new Permissions(userType);
     }
 
-    protected User(String login, String password) {
+    public User(String login, String password) {
         this();
         setLogin(login);
         setPassword(password);
@@ -38,6 +42,7 @@ public class User {
 
     protected User(String login, String password, Permissions.UserType userType) {
         this(userType);
+        System.out.println("@232");
         setLogin(login);
         setPassword(password);
     }
@@ -78,8 +83,16 @@ public class User {
         return "id = " + id + ", login = " + login + ";\n";
     }
 
-    public SimpleStringProperty getLoginProperty() {
+    public SimpleIntegerProperty idProperty() {
+        return new SimpleIntegerProperty(id);
+    }
+
+    public SimpleStringProperty loginProperty() {
         return new SimpleStringProperty(login);
+    }
+
+    public SimpleStringProperty passwordProperty() {
+        return new SimpleStringProperty(password);
     }
 
 }

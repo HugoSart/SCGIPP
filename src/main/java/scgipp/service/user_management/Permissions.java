@@ -15,32 +15,36 @@ public class Permissions {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.ORDINAL)
-    private Set<Permission> permissions = new HashSet<Permission>();
+    private Set<Permission> permissions = new HashSet<>();
 
     public enum Permission {
         LOGIN,
-        USER_ADD, USER_REMOVE, USER_UPDATE
+        USER_ADD, USER_REMOVE, USER_UPDATE,
+        CLIENT_ADD, CLIENT_REMOVE, CLIENT_UPDATE
     }
 
     public enum UserType {
-        ADM, SELLER
+        ADM, SELLER, TEST
     }
 
     protected Permissions() {}
 
     protected Permissions(UserType ut) {
-
         switch (ut) {
             case ADM:
-                add(LOGIN);
-                add(USER_ADD);
-                add(USER_REMOVE);
-                add(USER_UPDATE);
+
+                for (Permission p : values())
+                    add(p);
+
                 break;
             case SELLER:
                 add(LOGIN);
+                add(CLIENT_ADD);
+                add(CLIENT_REMOVE);
+                add(CLIENT_UPDATE);
                 break;
             default:
+                add(LOGIN);
 
         }
 
@@ -53,6 +57,8 @@ public class Permissions {
         else
             permissions.add(permission);
         return true;
+
+
 
     }
 
@@ -78,6 +84,10 @@ public class Permissions {
 
         System.out.println();
 
+    }
+
+    public Set<Permission> toSet() {
+        return permissions;
     }
 
 }
