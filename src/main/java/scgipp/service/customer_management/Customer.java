@@ -1,129 +1,130 @@
 package scgipp.service.customer_management;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
+import javax.persistence.*;
+import java.util.Calendar;
+import java.util.List;
 
 @Entity
-public abstract class Customer {
-    @Column(unique = true, nullable = false, updatable = false)
-    private int id;
+public class Customer  {
+
+    @Id
+    @GeneratedValue
+    private Integer id;
+
     @Column(nullable = false)
-    private String cep;
-    @Column(unique = true, nullable = false)
-    private String email;
-    @Column(unique = true, nullable =  false)
-    private String telephone;
+    private Type type;
+
     @Column(nullable = false)
-    private final Adress adress = new Adress();
+    private String name;
 
-    private Customer(){}
+    @Column(unique = true)
+    private String cpf;
 
-    public abstract Customer createCustomer();
-    public abstract boolean deleteCustomer();
+    private Calendar date;
 
-    public void setAdress(String street, String number, String neighborhood){
-        adress.setStreet(street);
-        adress.setNumber(number);
-        adress.setNeighborhood(neighborhood);
+    @ElementCollection
+    public List<String> phones;
+
+    @ElementCollection
+    public List<Adress> adresses;
+
+    public enum Type {
+        LEGAL("Jurídica"), PHYSICAL("Física");
+
+        String name;
+
+        Type(String name) {
+            this.name = name;
+        }
+
+        public SimpleStringProperty nameProperty() {
+            return new SimpleStringProperty(name);
+        }
+
     }
 
-    public void setAdress(String street, String number, String neighborhood, String tip){
-        adress.setStreet(street);
-        adress.setNumber(number);
-        adress.setNeighborhood(neighborhood);
-        adress.setTip(tip);
+    public Customer() {}
+
+    public Customer(Type type, String name, String cpf, Calendar date) {
+        this.type = type;
+        this.name = name;
+        this.cpf = cpf;
+        this.date = date;
     }
 
-    public Adress getAdress(){
-        return adress;
-    }
-
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public int getId(){
+    public Integer getId() {
         return id;
     }
 
-    public void setCep(String cep){
-        this.cep = cep;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getCep(){
-        return cep;
+    public Type getType() {
+        return type;
     }
 
-    public void setEmail(String email){
-        this.email = email;
+    public void setType(Type type) {
+        this.type = type;
     }
 
-    public String getEmail(){
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setTelephone(String telephone){
-        this.telephone = telephone;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTelephone(){
-        return telephone;
-    }
-}
-
-class Adress {
-    @Column(nullable = false)
-    private String street;
-    @Column(nullable = false)
-    private String number;
-    @Column(nullable = false)
-    private String neighborhood;
-    private String tip;
-
-    Adress(){}
-
-    Adress(String street, String number, String neighborhood){
-        this.street = street;
-        this.number = number;
-        this.neighborhood = neighborhood;
+    public String getCpf() {
+        return cpf;
     }
 
-    Adress(String street, String number, String neighborhood, String tip){
-        this.street = street;
-        this.number = number;
-        this.neighborhood = neighborhood;
-        this.tip = tip;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    void setStreet(String street){
-        this.street = street;
+    public List<String> getPhones() {
+        return phones;
     }
 
-    String getStreet(){
-        return street;
+    public void addPhone(String phone) {
+        phones.add(phone);
     }
 
-    void setNumber(String number){
-        this.number = number;
+    public List<Adress> getAdresses() {
+        return adresses;
     }
 
-    String getNumber(){
-        return number;
+    public void addAdress(Adress adress) {
+        adresses.add(adress);
     }
 
-    void setNeighborhood(String neighborhood){
-        this.neighborhood = neighborhood;
+    public Calendar getDate() {
+        return date;
     }
 
-    String getNeighborhood(){
-        return neighborhood;
+    public void setDate(Calendar date) {
+        this.date = date;
     }
 
-    void setTip(String tip){
-        this.tip = tip;
+    public SimpleIntegerProperty idProperty() {
+        return new SimpleIntegerProperty(id);
     }
 
-    String getTip(){
-        return tip;
+    public SimpleStringProperty typeProperty() {
+        return type.nameProperty();
     }
+
+    public SimpleStringProperty cpfProperty() {
+        return new SimpleStringProperty(cpf);
+    }
+
+    public SimpleStringProperty dateProperty() {
+        return new SimpleStringProperty(date.toString());
+    }
+
 }

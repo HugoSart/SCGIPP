@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainPane" prefHeight="193.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.user.add.AddUserController">
+<AnchorPane fx:id="mainPane" prefHeight="193.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.main.user.add.AddUserUIController">
    <children>
       <AnchorPane layoutY="185.0" prefHeight="51.0" prefWidth="254.0" style="-fx-background-color: rgb(0,0,0,0.05);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>

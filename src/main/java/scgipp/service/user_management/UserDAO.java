@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by hsart on 10/05/17.
  */
-class UserDAO extends DataAccess<User> {
+public class UserDAO extends DataAccess<User> {
 
     public UserDAO() {
         super();
@@ -27,6 +27,7 @@ class UserDAO extends DataAccess<User> {
             transaction = session.beginTransaction();
             userId = (Integer)session.save(user);
             transaction.commit();
+            session.close();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
@@ -43,68 +44,70 @@ class UserDAO extends DataAccess<User> {
         Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
-        try{
+        try {
             transaction = session.beginTransaction();
             User user = session.get(User.class, id);
             session.delete(user);
             transaction.commit();
+            session.close();
         }catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
     }
 
     public void remove(String login) throws ExceptionInInitializerError {
 
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
+        Integer id = null;
 
-        try{
-            transaction = session.beginTransaction();
-            User user = (User)session.createQuery("FROM User WHERE login = " + login).getSingleResult();
-            session.delete(user);
-            transaction.commit();
-        }catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-        }finally {
-            session.close();
+        for (User user : list()) {
+            if (user.getLogin().equals(login)) {
+                id = user.getId();
+                break;
+            }
         }
+
+        remove(id);
+
     }
 
     @Override
     public void update(User user) throws ExceptionInInitializerError {
-        Session session = sessionFactory.openSession();
         Transaction transaction = null;
-        try{
+        Session session = sessionFactory.openSession();
+        try  {
             transaction = session.beginTransaction();
+            System.out.println(user.getPassword());
             session.update(user);
             transaction.commit();
-        }catch (HibernateException e) {
+            session.close();
+        } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
+
+        System.out.println(get(user.getId()).getPassword());
     }
 
     @Override
     public User get(Integer id) throws ExceptionInInitializerError {
-        Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
         User user = null;
-
-        try{
+        Session session = sessionFactory.openSession();
+        try {
             transaction = session.beginTransaction();
             user = session.get(User.class, id);
             transaction.commit();
-        }catch (HibernateException e) {
+            session.close();
+        } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
 
@@ -127,19 +130,19 @@ class UserDAO extends DataAccess<User> {
 
     @Override
     public User load(Integer id) throws ExceptionInInitializerError {
-        Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
         User user = null;
-
-        try{
+        Session session = sessionFactory.openSession();
+        try  {
             transaction = session.beginTransaction();
             user = session.load(User.class, id);
             transaction.commit();
-        }catch (HibernateException e) {
+            session.close();
+        } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
 
@@ -149,19 +152,19 @@ class UserDAO extends DataAccess<User> {
     @Override
     public List<User> list() throws ExceptionInInitializerError {
 
-        Session session = sessionFactory.openSession();
         Transaction transaction = null;
 
         List users = null;
-
-        try{
+        Session session = sessionFactory.openSession();
+        try  {
             transaction = session.beginTransaction();
             users = session.createQuery("FROM User").list();
             transaction.commit();
-        }catch (HibernateException e) {
+            session.close();
+        } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        }finally {
+        } finally {
             session.close();
         }
 

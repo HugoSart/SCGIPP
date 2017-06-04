@@ -1,0 +1,22 @@
+package scgipp.ui.main.user.edit.permissions;
+
+import javafx.fxml.FXMLLoader;
+import scgipp.service.user_management.User;
+import scgipp.ui.UIManager;
+
+public class UserPermissionsUIManager extends UIManager {
+
+    private User user;
+
+    public UserPermissionsUIManager(User user) {
+        super("/fxml/users_edit_permissions.fxml");
+        this.user = user;
+    }
+
+    @Override
+    public void initializeData(FXMLLoader loader) {
+        UserPermissionsUIController userPermissionsUIController = loader.getController();
+        userPermissionsUIController.initData(user);
+    }
+
+}

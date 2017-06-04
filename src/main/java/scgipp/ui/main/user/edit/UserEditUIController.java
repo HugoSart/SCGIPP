@@ -1,5 +1,6 @@
-package scgipp.ui.user.edit;
+package scgipp.ui.main.user.edit;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,17 +13,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
-import scgipp.ui.user.edit.permissions.EditPermissionsManager;
-import sun.reflect.generics.tree.Tree;
+import scgipp.ui.main.user.edit.permissions.UserPermissionsUIManager;
+import scgipp.ui.main.user.edit.properties.UserPropertiesUIManager;
 
 import java.net.URL;
-import java.security.Security;
 import java.util.ResourceBundle;
 
 /**
  * Created by hugo_ on 01/06/2017.
  */
-public class EditUsersController implements Initializable {
+public class UserEditUIController implements Initializable {
 
     @FXML TreeView<String> treeOptions;
     @FXML Pane contentPane;
@@ -39,11 +39,15 @@ public class EditUsersController implements Initializable {
         initTreeOptions();
     }
 
+    public void btOkActionHandler(ActionEvent event) {
+        ((Node)event.getSource()).getScene().getWindow().hide();
+    }
+
     private void initTreeOptions() {
         TreeItem<String> root = new TreeItem<>(user.getLogin());
             TreeItem<String> properties = new TreeItem<>("Propriedades");
-                TreeItem<String> info = new TreeItem<>("Informações");
-                TreeItem<String> security = new TreeItem<>("Segurança");
+                //TreeItem<String> info = new TreeItem<>("Informações");
+                //TreeItem<String> security = new TreeItem<>("Segurança");
             TreeItem<String> permissions = new TreeItem<>("Permissões");
                 for (Permissions.Permission p : user.getPermissions().toSet()) {
                     TreeItem<String> i = new TreeItem<>(p.name());
@@ -52,8 +56,8 @@ public class EditUsersController implements Initializable {
             TreeItem<String> history = new TreeItem<>("Histórico");
 
         root.getChildren().add(properties);
-            properties.getChildren().add(info);
-            properties.getChildren().add(security);
+            //properties.getChildren().add(info);
+            //properties.getChildren().add(security);
         root.getChildren().add(permissions);
         root.getChildren().add(history);
 
@@ -74,10 +78,17 @@ public class EditUsersController implements Initializable {
                 String name = (String) ((TreeItem)treeOptions.getSelectionModel().getSelectedItem()).getValue();
 
                 switch (name) {
+                    case "Propriedades":
+
+                        UserPropertiesUIManager userPropertiesUIManager = new UserPropertiesUIManager(user);
+                        userPropertiesUIManager.loadOnPane(contentPane);
+                        System.out.println("dsadss");
+
+                        break;
                     case "Permissões":
 
-                        EditPermissionsManager editPermissionsManager = new EditPermissionsManager();
-                        editPermissionsManager.loadOnPane(contentPane, user);
+                        UserPermissionsUIManager userPermissionsUIManager = new UserPermissionsUIManager(user);
+                        userPermissionsUIManager.loadOnPane(contentPane);
 
                         break;
                 }

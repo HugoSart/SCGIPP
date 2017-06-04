@@ -9,12 +9,12 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainPane" prefHeight="440.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.user.UsersController">
+<AnchorPane fx:id="mainPane" prefHeight="440.0" prefWidth="879.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.main.user.UsersUIController">
    <children>
       <ToolBar prefHeight="40.0" prefWidth="845.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <Button fx:id="btAdd" mnemonicParsing="false" onAction="#btAddActionHandler" text="Adicionar" />
-            <Button mnemonicParsing="false" text="Remover" />
+            <Button fx:id="btRemove" mnemonicParsing="false" onAction="#btRemoveActionHandler" text="Remover" />
             <Button fx:id="btClose" mnemonicParsing="false" onAction="#btCloseActionHandler" text="Fechar" />
         </items>
       </ToolBar>

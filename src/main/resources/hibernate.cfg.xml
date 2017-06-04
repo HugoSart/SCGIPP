@@ -11,12 +11,14 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">49162231</property>
 
-        <property name="hibernate.hbm2ddl.auto">update</property>
-        
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+        <property name="hibernate.connection.pool_size">5</property>
+        <property name="hibernate.c3p0.idle_test_period">1000</property>
 
         <!-- List of XML mapping files -->
         <mapping class="scgipp.service.user_management.User"/>
-        <mapping class="scgipp.service.user_management.Permissions"/>
+        <mapping class="scgipp.service.customer_management.Customer"/>
 
     </session-factory>
 </hibernate-configuration>

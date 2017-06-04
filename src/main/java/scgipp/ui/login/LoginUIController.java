@@ -1,4 +1,4 @@
-package scgipp.ui;
+package scgipp.ui.login;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,10 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.session_management.UserSession;
+import scgipp.ui.main.MainUIManager;
 
-import javax.security.sasl.AuthenticationException;
-
-public class LoginController {
+public class LoginUIController {
 
     @FXML Button btLogin;
     @FXML TextField tfUser;
@@ -56,16 +55,11 @@ public class LoginController {
 
     private void openMainStage() throws Exception {
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/main_screen.fxml"));
-        Parent root = loader.load();
+        MainUIManager mainUIManager = new MainUIManager();
 
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.DECORATED);
+        Stage stage = mainUIManager.newStage();
         stage.setTitle("SCGIPP");
         stage.setMaximized(true);
-        stage.setScene(new Scene(root));
-
         mainPane.getScene().getWindow().hide();
 
         stage.show();

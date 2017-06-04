@@ -1,4 +1,4 @@
-package scgipp.ui.user;
+package scgipp.ui.main.user;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,18 +8,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.hibernate.Session;
+import scgipp.service.session_management.UserSession;
+import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
-import scgipp.ui.user.add.AddUserManager;
-import scgipp.ui.user.edit.EditUserManager;
+import scgipp.ui.main.user.add.AddUserUIManager;
+import scgipp.ui.main.user.edit.UserEditUIManager;
 
 import java.io.IOException;
 import java.net.URL;
+import java.security.Security;
 import java.util.ResourceBundle;
 
-public class UsersController implements Initializable {
+public class UsersUIController implements Initializable {
 
     @FXML private AnchorPane mainPane;
+
+    @FXML private Button btAdd;
+    @FXML private Button btRemove;
 
     @FXML private TableView<User> tvUsers;
     @FXML private TableColumn<User, Integer> tcId;
@@ -27,13 +34,15 @@ public class UsersController implements Initializable {
     @FXML private TableColumn<User, String> tcPassword;
 
     private UserManager userManager;
-    private EditUserManager editUserManager;
+    private UserEditUIManager userEditUIManager;
     private ObservableList<User> observableList;
 
     public void initialize(URL location, ResourceBundle resources) {
 
+        initViews();
+
         userManager = new UserManager();
-        editUserManager = new EditUserManager();
+        userEditUIManager = new UserEditUIManager();
         observableList = FXCollections.observableList(userManager.getAll());
 
         tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -47,7 +56,7 @@ public class UsersController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     User rowData = row.getItem();
-                    editUserManager.newWindow(rowData);
+                    userEditUIManager.newWindow(rowData);
                 }
             });
             return row ;
@@ -60,12 +69,17 @@ public class UsersController implements Initializable {
     }
 
     public void btAddActionHandler(ActionEvent event) throws IOException {
-        AddUserManager manajer = new AddUserManager();
+        AddUserUIManager manajer = new AddUserUIManager();
         manajer.newWindow();
     }
 
-    public void updateTable() {
+    public void btRemoveActionHandler(ActionEvent event) {
+        (new UserManager()).remove(tvUsers.getSelectionModel().getSelectedItem());
+    }
 
+    public void initViews() {
+        btAdd.setManaged(UserSession.getUser().getPermissions().check(Permissions.Permission.USER_ADD));
+        btRemove.setManaged(UserSession.getUser().getPermissions().check(Permissions.Permission.USER_REMOVE));
     }
 
 }

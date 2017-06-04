@@ -1,27 +1,22 @@
-package scgipp.ui.user.edit.permissions;
+package scgipp.ui.main.user.edit.permissions;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TreeView;
-import javafx.scene.control.cell.CheckBoxListCell;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
 
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
 /**
  * Created by hugo_ on 01/06/2017.
  */
-public class EditPermissionsController implements Initializable {
+public class UserPermissionsUIController implements Initializable {
 
     @FXML private ListView<CheckBox> listPermissions;
 

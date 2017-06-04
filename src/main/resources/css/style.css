@@ -1,0 +1,7 @@
+.menu-button {
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: stretch;
+    -fx-pref-width:  64;
+    -fx-pref-height: 64;
+    -fx-background-color: transparent;
+}

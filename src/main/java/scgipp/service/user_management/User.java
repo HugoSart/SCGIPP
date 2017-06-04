@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.annotations.Type;
 import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
 import org.jetbrains.annotations.Contract;
+import scgipp.data.encryption.Encryptor;
 
 import javax.naming.AuthenticationException;
 import javax.persistence.*;
@@ -26,11 +27,10 @@ public class User {
     public Permissions permissions;
 
     protected User() {
-        System.out.println("@2211");
+
     }
 
     protected User(Permissions.UserType userType) {
-        System.out.println("@22");
         permissions = new Permissions(userType);
     }
 
@@ -40,9 +40,8 @@ public class User {
         setPassword(password);
     }
 
-    protected User(String login, String password, Permissions.UserType userType) {
+    public User(String login, String password, Permissions.UserType userType) {
         this(userType);
-        System.out.println("@232");
         setLogin(login);
         setPassword(password);
     }
@@ -63,7 +62,7 @@ public class User {
         return login;
     }
 
-    void setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 

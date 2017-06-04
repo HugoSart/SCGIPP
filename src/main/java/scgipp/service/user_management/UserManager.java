@@ -30,7 +30,8 @@ public class UserManager {
         } catch (ExceptionInInitializerError e) {
             e.printStackTrace();
         }
-        Log.show(Log.Type.INFO, "User \"" + login + "\" successufly registred.");
+        Log.show(Log.Type.INFO, "User \"" + login + "\" - \"" + password + "\" successufly registred.");
+        System.out.println(Encryptor.encrypt(password));
 
         return user;
     }
@@ -42,6 +43,10 @@ public class UserManager {
             e.printStackTrace();
         }
         Log.show(Log.Type.INFO, "User \"" + login + "\" removed.");
+    }
+
+    public void remove(User user) {
+        remove(user.getLogin());
     }
 
     public void update(User user) {
@@ -59,6 +64,8 @@ public class UserManager {
                 Log.show(Log.Type.INFO,"Authentication Failed", "User not found.");
                 return null;
             }
+
+            System.out.println("up: " + user.getPassword() + "\n dp: " + password);
 
             if (user.getPassword().equals(Encryptor.encrypt(password))) {
                 Log.show(Log.Type.INFO, "Authentication Successfuly Done!");

@@ -1,30 +1,27 @@
-package scgipp.ui.user.edit;
+package scgipp.ui.main.user.add;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import scgipp.service.user_management.User;
 
 import java.io.IOException;
 
-public class EditUserManager {
+public class AddUserUIManager {
 
-    public static final String WINDOW_TITLE = "Usuário";
+    public static final String WINDOW_TITLE = "Novo usuário";
 
-    public Stage newWindow(User user) {
+    public Stage newWindow() {
+
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/users_edit.fxml"));
+        loader.setLocation(getClass().getResource("/fxml/users_add_screen.fxml"));
 
         Stage stage = null;
 
         try {
 
             Parent root = loader.load();
-
-            EditUsersController controller = loader.getController();
-            controller.initData(user);
 
             stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);

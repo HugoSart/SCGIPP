@@ -1,5 +1,6 @@
 package scgipp.service.session_management;
 
+import scgipp.data.encryption.Encryptor;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
@@ -31,6 +32,9 @@ public class UserSession {
         UserManager userManager = new UserManager();
         User user = userManager.authenticate(login, password);
 
+        System.out.println(password);
+        System.out.println(Encryptor.encrypt(password));
+
         if (user == null) {
             throw new AuthenticationException("Authentication problem. Session init aborted.");
         }
@@ -43,6 +47,14 @@ public class UserSession {
 
         return instance;
 
+    }
+
+    public static User getUser() {
+        return instance.user;
+    }
+
+    public static void close() {
+        instance = null;
     }
 
 }
