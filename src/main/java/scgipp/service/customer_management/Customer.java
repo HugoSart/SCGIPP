@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,16 +22,17 @@ public class Customer  {
     @Column(nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String cpf;
 
-    private Calendar date;
+    @Column(nullable = false)
+    private LocalDate date;
 
     @ElementCollection
-    public List<String> phones;
+    public List<String> phones = new ArrayList<>();
 
     @ElementCollection
-    public List<Adress> adresses;
+    public List<Adress> adresses = new ArrayList<>();
 
     public enum Type {
         LEGAL("Jurídica"), PHYSICAL("Física");
@@ -48,7 +51,7 @@ public class Customer  {
 
     public Customer() {}
 
-    public Customer(Type type, String name, String cpf, Calendar date) {
+    public Customer(Type type, String name, String cpf, LocalDate date) {
         this.type = type;
         this.name = name;
         this.cpf = cpf;
@@ -103,11 +106,11 @@ public class Customer  {
         adresses.add(adress);
     }
 
-    public Calendar getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

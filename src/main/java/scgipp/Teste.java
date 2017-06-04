@@ -17,7 +17,7 @@ import java.util.Calendar;
 public class Teste extends Application {
 
     public static void main(String[] args) {
-        addTestData();
+        //addTestData();
         launch(args);
     }
 
@@ -35,11 +35,6 @@ public class Teste extends Application {
     public static void addTestData() {
         UserManager userManager = new UserManager();
         System.out.println(userManager.register("admin", "admin", Permissions.UserType.ADM).getPermissions().check(Permissions.Permission.LOGIN));
-        CustomerManager customerManager = new CustomerManager();
-        customerManager.register(new Customer(Customer.Type.PHYSICAL, "José Serra", "114.032.079-33", Calendar.getInstance()));
-        customerManager.register(new Customer(Customer.Type.PHYSICAL, "Luís Serra", "114.032.079-22", Calendar.getInstance()));
-        customerManager.register(new Customer(Customer.Type.PHYSICAL, "Eu Serra", "114.032.079-11", Calendar.getInstance()));
-
     }
 
 }

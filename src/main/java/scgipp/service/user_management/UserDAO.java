@@ -90,7 +90,6 @@ public class UserDAO extends DataAccess<User> {
             session.close();
         }
 
-        System.out.println(get(user.getId()).getPassword());
     }
 
     @Override
