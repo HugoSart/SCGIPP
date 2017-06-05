@@ -46,6 +46,7 @@ public class TransportadoraManager {
         }
         catch (ExceptionInInitializerError error) {
             error.printStackTrace();
+            Log.show(Log.Type.INFO, "Transportadora \"" + n + "\" registred fail.");
         }
         Log.show(Log.Type.INFO, "Transportadora \"" + n + "\" successufly registred.");
 
@@ -117,7 +118,6 @@ public class TransportadoraManager {
                 Log.show(Log.Type.INFO,"Authentication Failed", "Transportadora not found.");
                 return transp;
             }
-            Log.show(Log.Type.INFO,"Authentication Failed", "Transportadora not found.");
             Log.show(Log.Type.INFO, "Authentication Successfuly Done!");
             System.out.println("up: " + transp.getName() + "\n Id: " + transp.getId());
             return transp;

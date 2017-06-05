@@ -6,21 +6,28 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.customer_management.CustomerManager;
+import scgipp.service.transportadora_management.Transportadora;
+import scgipp.service.transportadora_management.TransportadoraManager;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.*;
 import scgipp.service.user_management.UserManager;
 import scgipp.ui.login.LoginUIManager;
-
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Teste extends Application {
 
     public static void main(String[] args) {
         //addTestData();
         UserManager criar = new UserManager();
-        criar.register("admin", "admin", Permissions.UserType.ADM);
-        launch(args);
+        criar.register("admin", "admin123", Permissions.UserType.ADM);
+        TransportadoraManager teste = new TransportadoraManager();
+        teste.register("10683417", "ROLEZAO",  LocalDate.now(), "99999998", null);
+        teste.uthenticate("ROLEZAO");
+
+        //launch(args);
     }
 
     @Override
