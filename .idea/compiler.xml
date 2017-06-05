@@ -21,7 +21,7 @@
         <module name="SCGIPP" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="SCGIPP" target="1.8" />
     </bytecodeTargetLevel>
   </component>

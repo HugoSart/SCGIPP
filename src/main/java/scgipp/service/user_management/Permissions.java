@@ -11,7 +11,7 @@ import java.util.Set;
 import static scgipp.service.user_management.Permissions.Permission.*;
 
 @Embeddable
-public class Permissions {
+public class    Permissions {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.ORDINAL)

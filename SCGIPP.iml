@@ -4,7 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="hibernate.cfg.xml" />
+          <unit-entry name="hibernate.cfg.xml" value="4d90582b-2b9c-49e6-94f7-ec71072e2f06" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resources/hibernate.cfg.xml" />
@@ -32,8 +32,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Hibernate 5.2.9-5.2.9" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="Hibernate 5.2.9-5.2.9" level="project" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
           <root url="jar://$APPLICATION_HOME_DIR$/redist/annotations-java8.jar!/" />
@@ -42,6 +42,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mysql:mysql-connector-java:5.1.42" level="project" />
+    <orderEntry type="library" exported="" name="mysql:mysql-connector-java:5.1.42" level="project" />
   </component>
 </module>

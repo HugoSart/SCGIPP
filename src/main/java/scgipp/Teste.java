@@ -18,6 +18,8 @@ public class Teste extends Application {
 
     public static void main(String[] args) {
         //addTestData();
+        UserManager criar = new UserManager();
+        criar.register("KIRA", "123", Permissions.UserType.ADM);
         launch(args);
     }
 
