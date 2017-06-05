@@ -1,28 +1,33 @@
-package scgipp.service.user_management;
+package scgipp.service.supplier_management;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import scgipp.data.hibernate.DataAccess;
+import scgipp.service.customer_management.Customer;
 
 import java.util.List;
 
-public class UserDAO extends DataAccess<User> {
+/**
+ * Created by hugo_ on 05/06/2017.
+ */
+public class SupplierDAO extends DataAccess<Supplier> {
 
-    public UserDAO() {
+    public SupplierDAO() {
         super();
     }
 
     @Override
-    public Integer add(User user) throws ExceptionInInitializerError {
+    public Integer add(Supplier supplier) throws ExceptionInInitializerError {
+
+        Transaction transaction = null;
+        Integer supplierId = null;
 
         Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-        Integer userId = null;
 
-        try {
+        try  {
             transaction = session.beginTransaction();
-            userId = (Integer)session.save(user);
+            supplierId = (Integer) session.save(supplier);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -32,52 +37,18 @@ public class UserDAO extends DataAccess<User> {
             session.close();
         }
 
-        return userId;
+        return supplierId;
     }
 
     @Override
     public void remove(Integer id) throws ExceptionInInitializerError {
 
-        Session session = sessionFactory.openSession();
-        Transaction transaction = null;
-
-        try {
-            transaction = session.beginTransaction();
-            User user = session.get(User.class, id);
-            session.delete(user);
-            transaction.commit();
-            session.close();
-        }catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-    }
-
-    public void remove(String login) throws ExceptionInInitializerError {
-
-        Integer id = null;
-
-        for (User user : list()) {
-            if (user.getLogin().equals(login)) {
-                id = user.getId();
-                break;
-            }
-        }
-
-        remove(id);
-
-    }
-
-    @Override
-    public void update(User user) throws ExceptionInInitializerError {
         Transaction transaction = null;
         Session session = sessionFactory.openSession();
         try  {
             transaction = session.beginTransaction();
-            System.out.println(user.getPassword());
-            session.update(user);
+            Supplier supplier = session.get(Supplier.class, id);
+            session.delete(supplier);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -86,53 +57,15 @@ public class UserDAO extends DataAccess<User> {
         } finally {
             session.close();
         }
-
     }
 
     @Override
-    public User get(Integer id) throws ExceptionInInitializerError {
+    public void update(Supplier supplier) throws ExceptionInInitializerError {
         Transaction transaction = null;
-
-        User user = null;
-        Session session = sessionFactory.openSession();
-        try {
-            transaction = session.beginTransaction();
-            user = session.get(User.class, id);
-            transaction.commit();
-            session.close();
-        } catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
-
-        return user;
-    }
-
-    public User get(String login) throws ExceptionInInitializerError {
-        List list = list();
-
-        User user = null;
-
-        for (Object ob : list) {
-            if (((User)ob).getLogin().equals(login))
-                user = (User)ob;
-        }
-
-        return user;
-
-    }
-
-    @Override
-    public User load(Integer id) throws ExceptionInInitializerError {
-        Transaction transaction = null;
-
-        User user = null;
         Session session = sessionFactory.openSession();
         try  {
             transaction = session.beginTransaction();
-            user = session.load(User.class, id);
+            session.update(supplier);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -141,20 +74,17 @@ public class UserDAO extends DataAccess<User> {
         } finally {
             session.close();
         }
-
-        return user;
     }
 
     @Override
-    public List<User> list() throws ExceptionInInitializerError {
-
+    public Supplier get(Integer id) throws ExceptionInInitializerError {
         Transaction transaction = null;
 
-        List users = null;
+        Supplier supplier = null;
         Session session = sessionFactory.openSession();
         try  {
             transaction = session.beginTransaction();
-            users = session.createQuery("FROM User").list();
+            supplier = session.get(Supplier.class, id);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -164,7 +94,50 @@ public class UserDAO extends DataAccess<User> {
             session.close();
         }
 
-        return users;
+        return supplier;
+    }
+
+    @Override
+    public Supplier load(Integer id) throws ExceptionInInitializerError {
+        Transaction transaction = null;
+
+        Supplier supplier = null;
+        Session session = sessionFactory.openSession();
+        try  {
+            transaction = session.beginTransaction();
+            supplier = session.load(Supplier.class, id);
+            transaction.commit();
+            session.close();
+        } catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return supplier;
+    }
+
+    @Override
+    public List<Supplier> list() throws ExceptionInInitializerError {
+
+        Transaction transaction = null;
+
+        List supplier = null;
+        Session session = sessionFactory.openSession();
+        try  {
+            transaction = session.beginTransaction();
+            supplier = session.createQuery("FROM Supplier").list();
+            transaction.commit();
+            session.close();
+        } catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return supplier;
     }
 
 }

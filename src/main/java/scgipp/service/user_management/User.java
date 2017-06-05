@@ -21,6 +21,7 @@ public class User {
     @Column(unique = true)
     private String login;
 
+    @Column(nullable = false)
     private String password;
 
     @Embedded

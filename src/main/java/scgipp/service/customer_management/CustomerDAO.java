@@ -8,9 +8,6 @@ import scgipp.service.user_management.User;
 
 import java.util.List;
 
-/**
- * Created by hugo_ on 04/06/2017.
- */
 class CustomerDAO extends DataAccess<Customer> {
 
     public CustomerDAO() {

@@ -19,6 +19,7 @@
         <!-- List of XML mapping files -->
         <mapping class="scgipp.service.user_management.User"/>
         <mapping class="scgipp.service.customer_management.Customer"/>
-
+        <mapping class="scgipp.service.supplier_management.Supplier"/>
+        <mapping class="scgipp.service.Person"/>
     </session-factory>
 </hibernate-configuration>

@@ -1,17 +1,13 @@
 package scgipp.service.user_management;
 
-import org.hibernate.collection.internal.PersistentSet;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static scgipp.service.user_management.Permissions.Permission.*;
 
 @Embeddable
-public class    Permissions {
+public class Permissions {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.ORDINAL)
