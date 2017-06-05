@@ -5,36 +5,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import scgipp.ui.UIManager;
+import scgipp.ui.main.customers.add.AddCustomerUIManager;
 
 import java.io.IOException;
 
-public class AddUserUIManager {
+public class AddUserUIManager extends UIManager {
 
-    public static final String WINDOW_TITLE = "Novo usuário";
-
-    public Stage newWindow() {
-
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/fxml/users_add_screen.fxml"));
-
-        Stage stage = null;
-
-        try {
-
-            Parent root = loader.load();
-
-            stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.setTitle(WINDOW_TITLE);
-            stage.setScene(new Scene(root));
-
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return stage;
+    public AddUserUIManager() {
+        super("/fxml/users_add_screen.fxml");
     }
 
+    @Override
+    protected void initializeData(FXMLLoader loader) {
+
+    }
+
+    @Override
+    protected void configStage(Stage stage) {
+
+    }
 }

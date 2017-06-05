@@ -42,7 +42,6 @@ public class UsersUIController implements Initializable {
         initViews();
 
         userManager = new UserManager();
-        userEditUIManager = new UserEditUIManager();
         observableList = FXCollections.observableList(userManager.getAll());
 
         tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -56,7 +55,8 @@ public class UsersUIController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     User rowData = row.getItem();
-                    userEditUIManager.newWindow(rowData);
+                    userEditUIManager = new UserEditUIManager(rowData);
+                    userEditUIManager.newStage();
                 }
             });
             return row ;
@@ -70,7 +70,7 @@ public class UsersUIController implements Initializable {
 
     public void btAddActionHandler(ActionEvent event) throws IOException {
         AddUserUIManager manajer = new AddUserUIManager();
-        manajer.newWindow();
+        manajer.newStage();
     }
 
     public void btRemoveActionHandler(ActionEvent event) {

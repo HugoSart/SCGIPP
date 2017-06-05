@@ -9,13 +9,12 @@ import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import scgipp.service.customer_management.Adress;
+import scgipp.service.Adress;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.customer_management.CustomerManager;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 /**
@@ -59,6 +58,8 @@ public class AddCustomerUIController implements Initializable {
 
         CustomerManager customerManager = new CustomerManager();
         customerManager.register(customer);
+
+        ((Node)event.getSource()).getScene().getWindow().hide();
 
     }
 

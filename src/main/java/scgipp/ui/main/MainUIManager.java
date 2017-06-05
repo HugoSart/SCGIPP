@@ -1,6 +1,7 @@
 package scgipp.ui.main;
 
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 import scgipp.ui.UIManager;
 
 /**
@@ -14,6 +15,11 @@ public class MainUIManager extends UIManager {
 
     @Override
     protected void initializeData(FXMLLoader loader) {
+
+    }
+
+    @Override
+    protected void configStage(Stage stage) {
 
     }
 }

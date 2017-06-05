@@ -1,4 +1,4 @@
-package scgipp.service.customer_management;
+package scgipp.service;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;

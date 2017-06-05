@@ -2,7 +2,6 @@ package scgipp.service;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import scgipp.service.customer_management.Adress;
 
 import javax.persistence.*;
 import java.time.LocalDate;

@@ -5,6 +5,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -58,6 +59,9 @@ public abstract class UIManager {
             initializeData(loader);
 
             stage = new Stage();
+
+            configStage(stage);
+
             stage.setScene(new Scene(root));
 
         } catch (IOException e) {
@@ -69,5 +73,7 @@ public abstract class UIManager {
     }
 
     protected abstract void initializeData(FXMLLoader loader);
+
+    protected abstract void configStage(Stage stage);
 
 }

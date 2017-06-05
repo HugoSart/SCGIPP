@@ -3,6 +3,7 @@ package scgipp;
 import javafx.application.Application;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.customer_management.CustomerManager;
 import scgipp.service.user_management.Permissions;
@@ -19,7 +20,7 @@ public class Teste extends Application {
     public static void main(String[] args) {
         //addTestData();
         UserManager criar = new UserManager();
-        criar.register("KIRA", "123", Permissions.UserType.ADM);
+        criar.register("admin", "admin", Permissions.UserType.ADM);
         launch(args);
     }
 
@@ -30,6 +31,8 @@ public class Teste extends Application {
         Stage stage = loginFXMLManager.newStage();
         stage.setTitle("SCGIPP");
         stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.getScene().getStylesheets().add(getClass().getResource("/css/DarkTheme.css").toString());
         stage.show();
 
     }

@@ -1,6 +1,7 @@
 package scgipp.ui.main.user.edit.permissions;
 
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 import scgipp.service.user_management.User;
 import scgipp.ui.UIManager;
 
@@ -19,4 +20,8 @@ public class UserPermissionsUIManager extends UIManager {
         userPermissionsUIController.initData(user);
     }
 
+    @Override
+    protected void configStage(Stage stage) {
+        
+    }
 }

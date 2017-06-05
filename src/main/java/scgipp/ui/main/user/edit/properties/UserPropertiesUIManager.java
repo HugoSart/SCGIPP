@@ -1,6 +1,7 @@
 package scgipp.ui.main.user.edit.properties;
 
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 import scgipp.service.user_management.User;
 import scgipp.ui.UIManager;
 
@@ -22,4 +23,8 @@ public class UserPropertiesUIManager extends UIManager {
         userPropertiesUIController.initData(user);
     }
 
+    @Override
+    protected void configStage(Stage stage) {
+
+    }
 }
