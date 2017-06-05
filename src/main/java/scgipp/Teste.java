@@ -7,8 +7,7 @@ import javafx.stage.StageStyle;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.customer_management.CustomerManager;
 import scgipp.service.user_management.Permissions;
-import scgipp.service.user_management.User;
-import scgipp.service.user_management.UserDAO;
+import scgipp.service.user_management.*;
 import scgipp.service.user_management.UserManager;
 import scgipp.ui.login.LoginUIManager;
 

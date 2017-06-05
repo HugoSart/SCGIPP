@@ -1,57 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="scgipp_db@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.1">
     <root id="1"/>
     <schema id="2" parent="1" name="scgipp_db">
       <Current>1</Current>
-      <Visible>1</Visible>
     </schema>
     <schema id="3" parent="1" name="information_schema"/>
-    <schema id="4" parent="1" name="mysql"/>
-    <schema id="5" parent="1" name="performance_schema"/>
-    <schema id="6" parent="1" name="sakila"/>
+    <schema id="4" parent="1" name="mensagens"/>
+    <schema id="5" parent="1" name="mysql"/>
+    <schema id="6" parent="1" name="performance_schema"/>
     <schema id="7" parent="1" name="sys"/>
-    <schema id="8" parent="1" name="world"/>
-    <table id="9" parent="2" name="user"/>
-    <table id="10" parent="2" name="user_permissions"/>
-    <column id="11" parent="9" name="id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
-    </column>
-    <column id="12" parent="9" name="login">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <column id="13" parent="9" name="password">
-      <Position>3</Position>
-      <DataType>varchar(255)|0</DataType>
-    </column>
-    <index id="14" parent="9" name="UK_587tdsv8u5cvheyo9i261xhry">
-      <ColNames>login</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="15" parent="9" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <key id="16" parent="9" name="UK_587tdsv8u5cvheyo9i261xhry">
-      <ColNames>login</ColNames>
-      <UnderlyingIndexName>UK_587tdsv8u5cvheyo9i261xhry</UnderlyingIndexName>
-    </key>
-    <column id="17" parent="10" name="User_id">
-      <Position>1</Position>
-      <DataType>int(11)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="18" parent="10" name="permissions">
-      <Position>2</Position>
-      <DataType>int(11)|0</DataType>
-    </column>
-    <index id="19" parent="10" name="FKg38mildyortx2d5gsshfcvwto">
-      <ColNames>User_id</ColNames>
-    </index>
   </database-model>
 </dataSource>

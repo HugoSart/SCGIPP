@@ -9,6 +9,7 @@ import java.util.List;
 /**
  *   Classe esqueleto para a criação de uma classe do tipo Data Access Object
  */
+
 public abstract class DataAccess<T> {
 
     protected static SessionFactory sessionFactory = null;

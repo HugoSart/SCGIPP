@@ -9,7 +9,7 @@
         <property name="hibernate.id.new_generator_mappings">false</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost/scgipp_db</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password">49162231</property>
+        <property name="hibernate.connection.password">3d90de18</property>
 
         <property name="hibernate.hbm2ddl.auto">create</property>
 
@@ -21,5 +21,6 @@
         <mapping class="scgipp.service.customer_management.Customer"/>
         <mapping class="scgipp.service.supplier_management.Supplier"/>
         <mapping class="scgipp.service.Person"/>
+        <mapping class="scgipp.service.transportadora_management.Transportadora"/>
     </session-factory>
 </hibernate-configuration>

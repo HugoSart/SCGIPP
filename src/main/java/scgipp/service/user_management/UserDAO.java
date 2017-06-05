@@ -7,7 +7,7 @@ import scgipp.data.hibernate.DataAccess;
 
 import java.util.List;
 
-public class UserDAO extends DataAccess<User> {
+    class UserDAO extends DataAccess<User> {
 
     public UserDAO() {
         super();
@@ -99,7 +99,6 @@ public class UserDAO extends DataAccess<User> {
             transaction = session.beginTransaction();
             user = session.get(User.class, id);
             transaction.commit();
-            session.close();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
@@ -134,7 +133,6 @@ public class UserDAO extends DataAccess<User> {
             transaction = session.beginTransaction();
             user = session.load(User.class, id);
             transaction.commit();
-            session.close();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
@@ -156,7 +154,6 @@ public class UserDAO extends DataAccess<User> {
             transaction = session.beginTransaction();
             users = session.createQuery("FROM User").list();
             transaction.commit();
-            session.close();
         } catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
