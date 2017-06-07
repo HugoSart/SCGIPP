@@ -1,6 +1,6 @@
 package scgipp.service.product_management;
 
-import scgipp.data.hibernate.specification.ProductDAO;
+import scgipp.data.hibernate.dao.ProductDAO;
 import scgipp.system.log.Log;
 
 import java.util.List;

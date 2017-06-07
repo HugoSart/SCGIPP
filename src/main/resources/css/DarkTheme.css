@@ -37,7 +37,7 @@
 
     -fx-background-radius: 0;
 
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: black;
 
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
@@ -1157,7 +1157,18 @@
     -fx-text-fill: WHITE;
 }
 
-.main-button {
+.hbox-menu {
+    -fx-background-color: #202020;
     -fx-border-width: 0;
     -fx-font-color: WHITE;
+    -fx-font: 16 ;
+}
+
+.hbox-menu-button {
+    -fx-background-color: #202020;
+    -fx-border-width: 0;
+}
+
+.hbox-menu-button-dangerous {
+    -fx-highlight-fillh: #980000;
 }

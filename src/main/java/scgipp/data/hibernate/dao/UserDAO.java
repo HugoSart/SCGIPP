@@ -1,35 +1,29 @@
-package scgipp.data.hibernate.specification;
+package scgipp.data.hibernate.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import scgipp.data.hibernate.DataAccess;
-import scgipp.service.customer_management.Customer;
 import scgipp.service.user_management.User;
 
 import java.util.List;
-public class CustomerDAO extends DataAccess<Customer> {
 
-    public CustomerDAO() {
+public class UserDAO extends DataAccess<User> {
+
+    public UserDAO() {
         super();
     }
 
-    /**
-     *  Método para adicionar um cliente na database
-     *  @arg    Objeto do cliente a ser adicionado
-     *  @return Id do cliente
-     */
     @Override
-    public Integer add(Customer customer) throws ExceptionInInitializerError {
-
-        Transaction transaction = null;
-        Integer customerId = null;
+    public Integer add(User user) throws ExceptionInInitializerError {
 
         Session session = sessionFactory.openSession();
+        Transaction transaction = null;
+        Integer userId = null;
 
-        try  {
+        try {
             transaction = session.beginTransaction();
-            customerId = (Integer) session.save(customer);
+            userId = (Integer)session.save(user);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -39,21 +33,22 @@ public class CustomerDAO extends DataAccess<Customer> {
             session.close();
         }
 
-        return customerId;
+        return userId;
     }
 
     @Override
     public void remove(Integer id) throws ExceptionInInitializerError {
 
-        Transaction transaction = null;
         Session session = sessionFactory.openSession();
-        try  {
+        Transaction transaction = null;
+
+        try {
             transaction = session.beginTransaction();
-            Customer customer = session.get(Customer.class, id);
-            session.delete(customer);
+            User user = session.get(User.class, id);
+            session.delete(user);
             transaction.commit();
             session.close();
-        } catch (HibernateException e) {
+        }catch (HibernateException e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         } finally {
@@ -61,32 +56,28 @@ public class CustomerDAO extends DataAccess<Customer> {
         }
     }
 
-    @Override
-    public void update(Customer customer) throws ExceptionInInitializerError {
-        Transaction transaction = null;
-        Session session = sessionFactory.openSession();
-        try  {
-            transaction = session.beginTransaction();
-            session.update(customer);
-            transaction.commit();
-            session.close();
-        } catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
-        } finally {
-            session.close();
+    public void remove(String login) throws ExceptionInInitializerError {
+
+        Integer id = null;
+
+        for (User user : list()) {
+            if (user.getLogin().equals(login)) {
+                id = user.getId();
+                break;
+            }
         }
+
+        remove(id);
+
     }
 
     @Override
-    public Customer get(Integer id) throws ExceptionInInitializerError {
+    public void update(User user) throws ExceptionInInitializerError {
         Transaction transaction = null;
-
-        Customer customer = null;
         Session session = sessionFactory.openSession();
         try  {
             transaction = session.beginTransaction();
-            customer = session.get(Customer.class, id);
+            session.update(user);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -96,18 +87,17 @@ public class CustomerDAO extends DataAccess<Customer> {
             session.close();
         }
 
-        return customer;
     }
 
     @Override
-    public Customer load(Integer id) throws ExceptionInInitializerError {
+    public User get(Integer id) throws ExceptionInInitializerError {
         Transaction transaction = null;
 
-        Customer customer = null;
+        User user = null;
         Session session = sessionFactory.openSession();
-        try  {
+        try {
             transaction = session.beginTransaction();
-            customer = session.load(Customer.class, id);
+            user = session.get(User.class, id);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -117,19 +107,32 @@ public class CustomerDAO extends DataAccess<Customer> {
             session.close();
         }
 
-        return customer;
+        return user;
+    }
+
+    public User get(String login) throws ExceptionInInitializerError {
+        List list = list();
+
+        User user = null;
+
+        for (Object ob : list) {
+            if (((User)ob).getLogin().equals(login))
+                user = (User)ob;
+        }
+
+        return user;
+
     }
 
     @Override
-    public List<Customer> list() throws ExceptionInInitializerError {
-
+    public User load(Integer id) throws ExceptionInInitializerError {
         Transaction transaction = null;
 
-        List customers = null;
+        User user = null;
         Session session = sessionFactory.openSession();
         try  {
             transaction = session.beginTransaction();
-            customers = session.createQuery("FROM Customer").list();
+            user = session.load(User.class, id);
             transaction.commit();
             session.close();
         } catch (HibernateException e) {
@@ -139,7 +142,29 @@ public class CustomerDAO extends DataAccess<Customer> {
             session.close();
         }
 
-        return customers;
+        return user;
+    }
+
+    @Override
+    public List<User> list() throws ExceptionInInitializerError {
+
+        Transaction transaction = null;
+
+        List users = null;
+        Session session = sessionFactory.openSession();
+        try  {
+            transaction = session.beginTransaction();
+            users = session.createQuery("FROM User").list();
+            transaction.commit();
+            session.close();
+        } catch (HibernateException e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return users;
     }
 
 }

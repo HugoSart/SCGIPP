@@ -1,10 +1,9 @@
-package scgipp.data.hibernate.specification;
+package scgipp.data.hibernate.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import scgipp.data.hibernate.DataAccess;
-import scgipp.service.customer_management.Customer;
 import scgipp.service.supplier_management.Supplier;
 
 import java.util.List;
