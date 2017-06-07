@@ -1,6 +1,7 @@
 package scgipp.service.user_management;
 
 import scgipp.data.encryption.Encryptor;
+import scgipp.data.hibernate.specification.UserDAO;
 import scgipp.system.log.Log;
 
 import java.util.List;

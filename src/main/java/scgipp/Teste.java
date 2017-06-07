@@ -1,19 +1,10 @@
 package scgipp;
 
 import javafx.application.Application;
-import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import scgipp.service.customer_management.Customer;
-import scgipp.service.customer_management.CustomerManager;
 import scgipp.service.user_management.Permissions;
-import scgipp.service.user_management.User;
-import scgipp.service.user_management.UserDAO;
 import scgipp.service.user_management.UserManager;
-import scgipp.ui.login.LoginUIManager;
-
-import java.awt.*;
-import java.util.Calendar;
+import scgipp.ui.manager.LoginUIManager;
 
 public class Teste extends Application {
 

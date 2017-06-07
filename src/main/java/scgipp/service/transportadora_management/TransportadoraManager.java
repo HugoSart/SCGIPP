@@ -1,8 +1,8 @@
 package scgipp.service.transportadora_management;
 
+import scgipp.data.hibernate.specification.TransportadoraDAO;
 import scgipp.service.Adress;
 import scgipp.system.log.Log;
-import sun.rmi.transport.Transport;
 
 import java.time.LocalDate;
 import java.util.List;

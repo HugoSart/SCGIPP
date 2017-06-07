@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainPane" prefHeight="379.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.login.LoginUIController">
+<AnchorPane fx:id="mainPane" prefHeight="379.0" prefWidth="388.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.LoginUIController">
    <children>
       <AnchorPane layoutY="154.0" maxHeight="388.0" maxWidth="388.0" minHeight="172.0" minWidth="382.0" prefHeight="180.0" prefWidth="388.0" style="-fx-background-color: rgb(0,0,0, 0.9);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="154.0">
          <children>

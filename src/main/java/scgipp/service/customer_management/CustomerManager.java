@@ -1,6 +1,6 @@
 package scgipp.service.customer_management;
 
-import scgipp.service.user_management.User;
+import scgipp.data.hibernate.specification.CustomerDAO;
 import scgipp.system.log.Log;
 
 import java.util.List;
