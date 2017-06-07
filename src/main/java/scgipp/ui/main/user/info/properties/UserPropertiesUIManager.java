@@ -1,13 +1,10 @@
-package scgipp.ui.main.user.edit.properties;
+package scgipp.ui.main.user.info.properties;
 
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import scgipp.service.user_management.User;
 import scgipp.ui.UIManager;
 
-/**
- * Created by hugo_ on 03/06/2017.
- */
 public class UserPropertiesUIManager extends UIManager {
 
     private User user;

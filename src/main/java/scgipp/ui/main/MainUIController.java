@@ -17,10 +17,10 @@ import scgipp.ui.main.user.UsersUIManager;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Node;
 
-
 public class MainUIController {
 
     @FXML private AnchorPane ap;
+    @FXML private AnchorPane apContent;
 
     @FXML private Button btUsers;
 
@@ -59,11 +59,7 @@ public class MainUIController {
     private void openUsersStage() throws Exception {
 
         UsersUIManager usersUIManager = new UsersUIManager();
-        Stage stage = usersUIManager.newStage();
-
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Usuários");
-        stage.show();
+        usersUIManager.newStage().show();
 
     }
 

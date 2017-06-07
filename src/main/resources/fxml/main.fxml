@@ -9,8 +9,9 @@
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ap" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="785.0" prefWidth="1185.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.main.MainUIController">
+<AnchorPane fx:id="ap" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="785.0" prefWidth="1424.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.main.MainUIController">
    <children>
       <MenuBar prefHeight="29.0" prefWidth="1185.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -31,26 +32,27 @@
           </Menu>
         </menus>
       </MenuBar>
-      <ToolBar layoutY="29.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="1185.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+      <ToolBar layoutY="29.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="1185.0" styleClass="main-button" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
          <items>
-            <Button mnemonicParsing="false" text="Estoque" />
-            <Button mnemonicParsing="false" text="Venda" />
-            <Button mnemonicParsing="false" text="Compra" />
-            <Button mnemonicParsing="false" onAction="#btCustomersActionHandler" text="Clientes" />
-            <Button mnemonicParsing="false" text="Transportadoras" />
-            <Button mnemonicParsing="false" text="Fornecedores" />
-            <Button fx:id="btUsers" mnemonicParsing="false" onAction="#btUsersActionHandler" text="Usuários" />
-            <Button fx:id="btChangeUser" mnemonicParsing="false" onAction="#btChangeUserActionHandler" prefWidth="117.0" text="Trocar de Usuário" />
-            <Button mnemonicParsing="false" text="Sair" textAlignment="CENTER" />
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Estoque" />
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Venda" />
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Compra" />
+            <Button mnemonicParsing="false" onAction="#btCustomersActionHandler" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Clientes" />
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Transportadoras" />
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Fornecedores" />
+            <Button fx:id="btUsers" mnemonicParsing="false" onAction="#btUsersActionHandler" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Usuários" />
+            <Button fx:id="btChangeUser" mnemonicParsing="false" onAction="#btChangeUserActionHandler" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Trocar de Usuário" />
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Sair" textAlignment="CENTER" />
          </items>
          <effect>
             <Blend />
          </effect>
       </ToolBar>
-      <Pane layoutX="148.0" layoutY="254.0" prefHeight="191.0" prefWidth="890.0" style="-fx-background-image: url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2000px-Microsoft_logo_%282012%29.svg.png&quot;    ); -fx-background-repeat: no-repeat; -fx-background-size: stretch;">
+      <Pane layoutX="619.0" layoutY="355.0" prefHeight="90.0" prefWidth="419.0" style="-fx-background-image: url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/2000px-Microsoft_logo_%282012%29.svg.png&quot;    ); -fx-background-repeat: no-repeat; -fx-background-size: stretch;">
          <effect>
             <Reflection />
          </effect>
       </Pane>
+      <VBox layoutY="69.0" prefHeight="713.0" prefWidth="193.0" />
    </children>
 </AnchorPane>

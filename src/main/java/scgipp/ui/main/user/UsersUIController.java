@@ -8,17 +8,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import org.hibernate.Session;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import scgipp.service.session_management.UserSession;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
 import scgipp.ui.main.user.add.AddUserUIManager;
-import scgipp.ui.main.user.edit.UserEditUIManager;
+import scgipp.ui.main.user.info.UserInfoUIManager;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.Security;
 import java.util.ResourceBundle;
 
 public class UsersUIController implements Initializable {
@@ -34,7 +34,7 @@ public class UsersUIController implements Initializable {
     @FXML private TableColumn<User, String> tcPassword;
 
     private UserManager userManager;
-    private UserEditUIManager userEditUIManager;
+    private UserInfoUIManager userInfoUIManager;
     private ObservableList<User> observableList;
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,8 +55,10 @@ public class UsersUIController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     User rowData = row.getItem();
-                    userEditUIManager = new UserEditUIManager(rowData);
-                    userEditUIManager.newStage();
+                    userInfoUIManager = new UserInfoUIManager(rowData);
+                    Stage stage = userInfoUIManager.newStage();
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.show();
                 }
             });
             return row ;
@@ -70,7 +72,9 @@ public class UsersUIController implements Initializable {
 
     public void btAddActionHandler(ActionEvent event) throws IOException {
         AddUserUIManager manajer = new AddUserUIManager();
-        manajer.newStage();
+        Stage stage = manajer.newStage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.show();
     }
 
     public void btRemoveActionHandler(ActionEvent event) {

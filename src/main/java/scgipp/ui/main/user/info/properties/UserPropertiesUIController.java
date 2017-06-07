@@ -1,11 +1,10 @@
-package scgipp.ui.main.user.edit.properties;
+package scgipp.ui.main.user.info.properties;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import scgipp.service.user_management.User;
-import scgipp.service.user_management.UserManager;
 import scgipp.ui.main.dialog.DialogManager;
 import java.net.URL;
 import java.util.ResourceBundle;

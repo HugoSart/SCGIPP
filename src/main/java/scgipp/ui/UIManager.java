@@ -59,10 +59,8 @@ public abstract class UIManager {
             initializeData(loader);
 
             stage = new Stage();
-
-            configStage(stage);
-
             stage.setScene(new Scene(root));
+            configStage(stage);
 
         } catch (IOException e) {
             e.printStackTrace();

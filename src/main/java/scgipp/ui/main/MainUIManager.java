@@ -2,11 +2,9 @@ package scgipp.ui.main;
 
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import scgipp.ui.UIManager;
 
-/**
- * Created by hugo_ on 03/06/2017.
- */
 public class MainUIManager extends UIManager {
 
     public MainUIManager() {
@@ -20,6 +18,8 @@ public class MainUIManager extends UIManager {
 
     @Override
     protected void configStage(Stage stage) {
-
+        stage.setTitle("SCGIPP");
+        stage.setResizable(false);
+        stage.getScene().getStylesheets().add(getClass().getResource("/css/DarkTheme.css").toString());
     }
 }

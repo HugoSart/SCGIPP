@@ -1,4 +1,4 @@
-package scgipp.ui.main.user.edit.permissions;
+package scgipp.ui.main.user.info.permissions;
 
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

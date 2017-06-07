@@ -1,4 +1,4 @@
-package scgipp.ui.main.user.edit.permissions;
+package scgipp.ui.main.user.info.permissions;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,9 +13,6 @@ import scgipp.service.user_management.UserManager;
 import java.net.URL;
 import java.util.*;
 
-/**
- * Created by hugo_ on 01/06/2017.
- */
 public class UserPermissionsUIController implements Initializable {
 
     @FXML private ListView<CheckBox> listPermissions;

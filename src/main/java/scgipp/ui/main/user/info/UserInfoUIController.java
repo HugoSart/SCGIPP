@@ -1,4 +1,4 @@
-package scgipp.ui.main.user.edit;
+package scgipp.ui.main.user.info;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,16 +13,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
-import scgipp.ui.main.user.edit.permissions.UserPermissionsUIManager;
-import scgipp.ui.main.user.edit.properties.UserPropertiesUIManager;
+import scgipp.ui.main.user.info.permissions.UserPermissionsUIManager;
+import scgipp.ui.main.user.info.properties.UserPropertiesUIManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by hugo_ on 01/06/2017.
- */
-public class UserEditUIController implements Initializable {
+public class UserInfoUIController implements Initializable {
 
     @FXML TreeView<String> treeOptions;
     @FXML Pane contentPane;
@@ -82,7 +79,6 @@ public class UserEditUIController implements Initializable {
 
                         UserPropertiesUIManager userPropertiesUIManager = new UserPropertiesUIManager(user);
                         userPropertiesUIManager.loadOnPane(contentPane);
-                        System.out.println("dsadss");
 
                         break;
                     case "Permissões":

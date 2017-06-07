@@ -4,13 +4,11 @@ import scgipp.data.encryption.Encryptor;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
+import scgipp.system.log.Log;
 
 import javax.security.sasl.AuthenticationException;
 import java.util.Calendar;
 
-/**
- * Created by hsart on 14/05/17.
- */
 public class UserSession {
 
     private static UserSession instance;

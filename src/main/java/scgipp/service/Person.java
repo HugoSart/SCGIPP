@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @MappedSuperclass
-/*
+/**
  * A classe pai deve ser do tipo MappedSuperClass
  * Dessa forma, as classes derivadas criam sua propria tabela
  * Ao inves de utilizar a tabela Person
@@ -32,10 +32,10 @@ public abstract class Person {
     @Column(nullable = false)
     private LocalDate date;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     public List<String> phones = new ArrayList<>();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     public List<Adress> adresses = new ArrayList<>();
 
     public enum Type {

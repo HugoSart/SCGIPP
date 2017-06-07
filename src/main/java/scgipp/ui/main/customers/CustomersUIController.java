@@ -15,8 +15,10 @@ import scgipp.service.customer_management.Customer;
 import scgipp.service.customer_management.CustomerManager;
 import scgipp.service.user_management.User;
 import scgipp.ui.main.customers.add.AddCustomerUIManager;
+import scgipp.ui.main.customers.info.CustomerInfoUIManager;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 
@@ -26,7 +28,7 @@ public class CustomersUIController implements Initializable {
     @FXML private TableColumn<Customer, Integer> tcId;
     @FXML private TableColumn<Customer, Customer.Type> tcType;
     @FXML private TableColumn<Customer, String> tcName;
-    @FXML private TableColumn<Customer, Calendar> tcDate;
+    @FXML private TableColumn<Customer, LocalDate> tcDate;
     @FXML private TableColumn<Customer, String> tcCPF;
 
     CustomerManager customerManager = new CustomerManager();
@@ -47,16 +49,19 @@ public class CustomersUIController implements Initializable {
 
         tvCustomers.setItems(observableList);
 
-        /*tvCustomers.setRowFactory( tv -> {
-            TableRow<User> row = new TableRow<>();
+        tvCustomers.setRowFactory( tv -> {
+            TableRow<Customer> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-                    User rowData = row.getItem();
-                    userEditUIManager.newWindow(rowData);
+                    Customer rowData = row.getItem();
+                    CustomerInfoUIManager manager = new CustomerInfoUIManager(rowData);
+                    Stage stage = manager.newStage();
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.show();
                 }
             });
             return row ;
-        });*/
+        });
     }
 
     public void initViews() {

@@ -18,7 +18,7 @@ public class UserManager {
         } catch (ExceptionInInitializerError e) {
             e.printStackTrace();
         }
-        Log.show(Log.Type.INFO, "User \"" + login + "\" successufly registred.");
+        Log.show(Log.Type.INFO, "User \"" + login + "\" added to database.");
 
         return user;
     }
@@ -30,8 +30,7 @@ public class UserManager {
         } catch (ExceptionInInitializerError e) {
             e.printStackTrace();
         }
-        Log.show(Log.Type.INFO, "User \"" + login + "\" - \"" + password + "\" successufly registred.");
-        System.out.println(Encryptor.encrypt(password));
+        Log.show(Log.Type.INFO, "User \"" + login + " added to database.");
 
         return user;
     }
@@ -42,7 +41,7 @@ public class UserManager {
         } catch (ExceptionInInitializerError e) {
             e.printStackTrace();
         }
-        Log.show(Log.Type.INFO, "User \"" + login + "\" removed.");
+        Log.show(Log.Type.INFO, "User \"" + login + "\" removed from database.");
     }
 
     public void remove(User user) {
@@ -65,10 +64,8 @@ public class UserManager {
                 return null;
             }
 
-            System.out.println("up: " + user.getPassword() + "\n dp: " + password);
-
             if (user.getPassword().equals(Encryptor.encrypt(password))) {
-                Log.show(Log.Type.INFO, "Authentication Successfuly Done!");
+                Log.show(Log.Type.INFO, "User " + login + " authenticated.");
                 return user;
             } else Log.show(Log.Type.INFO, "Authentication Failed", "User does not match with password.");
 

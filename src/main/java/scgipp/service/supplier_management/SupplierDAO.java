@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by hugo_ on 05/06/2017.
  */
-public class SupplierDAO extends DataAccess<Supplier> {
+class SupplierDAO extends DataAccess<Supplier> {
 
     public SupplierDAO() {
         super();

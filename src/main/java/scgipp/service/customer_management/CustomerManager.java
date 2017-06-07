@@ -1,6 +1,7 @@
 package scgipp.service.customer_management;
 
 import scgipp.service.user_management.User;
+import scgipp.system.log.Log;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ public class CustomerManager {
 
     public void register(Customer customer){
         customerDAO.add(customer);
+        Log.show(Log.Type.INFO, "Customer \"" + customer.getName() + "\" added to database.");
     }
 
     public Customer findCustomer(Integer id) {
@@ -29,6 +31,11 @@ public class CustomerManager {
 
     public void remove(Integer id) {
         customerDAO.remove(id);
+        Log.show(Log.Type.INFO, "Customer \"" + id + "\" removed from database.");
+    }
+
+    public void update(Customer customer) {
+        customerDAO.update(customer);
     }
 
     public List<Customer> getAll() {
