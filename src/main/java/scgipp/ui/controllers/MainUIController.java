@@ -10,6 +10,7 @@ import scgipp.data.hibernate.DataAccess;
 import scgipp.service.session_management.UserSession;
 import scgipp.ui.manager.LoginUIManager;
 import scgipp.ui.manager.CustomersUIManager;
+import scgipp.ui.manager.TransportadoraUIManager;
 import scgipp.ui.manager.UsersUIManager;
 
 public class MainUIController {
@@ -72,4 +73,19 @@ public class MainUIController {
         stage.show();
     }
 
+    public void btTransportadoraActionHandler(ActionEvent actionEvent) {
+        try {
+            openTransportadoraStage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openTransportadoraStage() {
+        TransportadoraUIManager transpUIManager = new TransportadoraUIManager();
+        Stage stage = transpUIManager.newStage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Transportadora");
+        stage.show();
+    }
 }

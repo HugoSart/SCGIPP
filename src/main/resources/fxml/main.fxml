@@ -15,7 +15,7 @@
             <Button disable="true" mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Venda" />
             <Button disable="true" mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Compra" />
             <Button mnemonicParsing="false" onAction="#btCustomersActionHandler" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Clientes" />
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="169.0" styleClass="main-button" text="Transportadoras" />
+            <Button mnemonicParsing="false" onAction="#btTransportadoraActionHandler" prefHeight="48.0" prefWidth="169.0" styleClass="main-button" text="Transportadoras" />
             <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Fornecedores" />
             <Button fx:id="btUsers" mnemonicParsing="false" onAction="#btUsersActionHandler" prefHeight="48.0" prefWidth="150.0" styleClass="main-button" text="Usuários" />
             <Button fx:id="btChangeUser" mnemonicParsing="false" onAction="#btChangeUserActionHandler" prefHeight="48.0" prefWidth="189.0" styleClass="main-button" text="Trocar de Usuário" />
