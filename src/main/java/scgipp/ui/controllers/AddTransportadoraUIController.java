@@ -23,6 +23,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import static scgipp.service.Person.*;
+
 /**
  * Created by kira on 07/06/17.
  */
@@ -51,7 +53,7 @@ public class AddTransportadoraUIController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Transportadora.Type> observableList = FXCollections.observableList(Arrays.asList(Transportadora.Type.values()));
+        ObservableList<Type> observableList = FXCollections.observableList(Arrays.asList(Type.LEGAL));
         cbType.setItems(observableList);
     }
 
@@ -78,7 +80,7 @@ public class AddTransportadoraUIController implements Initializable{
         String name = tfName.getText(), cpf = tfCPF.getText(), phone = tfPhone.getText(),
                 country = tfCountry.getText(), state = tfState.getText(), city = tfCity.getText(), street = tfStreet.getText(), number = tfNumber.getText(), comp = tfComp.getText(), zip = tfZip.getText();
 
-        Transportadora.Type type = cbType.getSelectionModel().getSelectedItem();
+        Type type = cbType.getSelectionModel().getSelectedItem();
 
         LocalDate date = dpData.getValue();
         Adress adress = new Adress(country, state, city, street, number, comp, zip);
@@ -87,9 +89,7 @@ public class AddTransportadoraUIController implements Initializable{
         transpAlvo.addAdress(adress);
         transpAlvo.addPhone(phone);
         TransportadoraManager transpManager = new TransportadoraManager();
-        transpManager.register(cpf, name, date, null, null);
-
-        ((Node)event.getSource()).getScene().getWindow().hide();
+        transpManager.register(cpf, name, date, phone, adress);
 
     }
 

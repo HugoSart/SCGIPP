@@ -3,6 +3,8 @@ package scgipp;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import scgipp.service.Adress;
+import scgipp.service.Person;
+import scgipp.service.customer_management.Customer;
 import scgipp.service.transportadora_management.TransportadoraManager;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.UserManager;
