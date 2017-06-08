@@ -12,9 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import scgipp.service.Adress;
-import scgipp.service.Person;
 import scgipp.service.customer_management.Customer;
-import scgipp.service.customer_management.CustomerManager;
 import scgipp.service.transportadora_management.Transportadora;
 import scgipp.service.transportadora_management.TransportadoraManager;
 
