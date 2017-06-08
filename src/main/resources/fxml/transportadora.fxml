@@ -14,8 +14,8 @@
       <ToolBar prefHeight="40.0" prefWidth="845.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <Button fx:id="btAdd" mnemonicParsing="false" onAction="#btAddActionHandler" text="Adicionar" />
-            <Button fx:id="btRemove" mnemonicParsing="false" text="Remover" />
-            <Button fx:id="btClose" mnemonicParsing="false" text="Fechar" />
+            <Button fx:id="btRemove" mnemonicParsing="false" onAction="#btRemoveActionHandler"  text="Remover" />
+            <Button fx:id="btClose" mnemonicParsing="false"  onAction="#btCloseActionHandler" text="Fechar" />
         </items>
       </ToolBar>
       <TableView fx:id="tvTransportadora" layoutY="101.0" prefHeight="459.0" prefWidth="871.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
