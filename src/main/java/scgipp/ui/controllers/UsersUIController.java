@@ -1,10 +1,14 @@
 package scgipp.ui.controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -57,7 +61,7 @@ public class UsersUIController implements Initializable {
                     User rowData = row.getItem();
                     userInfoUIManager = new UserInfoUIManager(rowData);
                     Stage stage = userInfoUIManager.newStage();
-                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initModality(Modality.APPLICATION_MODAL);
                     stage.show();
                 }
             });
@@ -75,15 +79,23 @@ public class UsersUIController implements Initializable {
         Stage stage = manajer.newStage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
+        ((Node)event.getSource()).getScene().getWindow().focusedProperty().addListener((observable, oldValue, newValue) -> updateTable());
     }
 
     public void btRemoveActionHandler(ActionEvent event) {
         (new UserManager()).remove(tvUsers.getSelectionModel().getSelectedItem());
+        updateTable();
     }
 
     public void initViews() {
         btAdd.setManaged(UserSession.getUser().getPermissions().check(Permissions.Permission.USER_ADD));
         btRemove.setManaged(UserSession.getUser().getPermissions().check(Permissions.Permission.USER_REMOVE));
+    }
+
+    private void updateTable() {
+        observableList = FXCollections.observableList(userManager.getAll());
+        tvUsers.setItems(observableList);
+        tvUsers.refresh();
     }
 
 }

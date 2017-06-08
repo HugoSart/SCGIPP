@@ -87,6 +87,7 @@ public class AddCustomerUIController implements Initializable {
         CustomerManager customerManager = new CustomerManager();
         customerManager.register(customer);
 
+        System.out.printf("aaa");
         ((Node)event.getSource()).getScene().getWindow().hide();
 
     }

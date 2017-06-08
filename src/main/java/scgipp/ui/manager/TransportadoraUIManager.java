@@ -1,6 +1,7 @@
 package scgipp.ui.manager;
 
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scgipp.service.transportadora_management.Transportadora;
 import scgipp.ui.UIManager;
@@ -20,6 +21,6 @@ public class TransportadoraUIManager extends UIManager {
 
     @Override
     protected void configStage(Stage stage) {
-
+        stage.initModality(Modality.APPLICATION_MODAL);
     }
 }

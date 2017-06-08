@@ -1157,6 +1157,10 @@
     -fx-text-fill: WHITE;
 }
 
+.table-view {
+    -fx-background-color: transparent;
+}
+
 .hbox-menu {
     -fx-background-color: #202020;
     -fx-border-width: 0;

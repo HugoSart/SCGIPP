@@ -30,9 +30,6 @@ public class UserSession {
         UserManager userManager = new UserManager();
         User user = userManager.authenticate(login, password);
 
-        System.out.println(password);
-        System.out.println(Encryptor.encrypt(password));
-
         if (user == null) {
             throw new AuthenticationException("Authentication problem. Session init aborted.");
         }

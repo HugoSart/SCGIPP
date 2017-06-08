@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.ui.UIManager;
+import scgipp.ui.util.ResizeHelper;
 
 public class MainUIManager extends UIManager {
 
@@ -20,8 +21,8 @@ public class MainUIManager extends UIManager {
 
     @Override
     protected void configStage(Stage stage) {
+        ResizeHelper.addResizeListener(stage);
         stage.setTitle("SCGIPP");
-        stage.setResizable(false);
         stage.getScene().getStylesheets().add(getClass().getResource("/css/DarkTheme.css").toString());
     }
 }

@@ -16,7 +16,7 @@ import java.net.URL;
 public abstract class UIManager {
 
     protected String TITLE;
-    protected final URL location;
+    protected URL location;
 
     public UIManager(String path) {
         this.location = getClass().getResource(path);
@@ -73,5 +73,9 @@ public abstract class UIManager {
     protected abstract void initializeData(FXMLLoader loader);
 
     protected abstract void configStage(Stage stage);
+
+    public void setPath(String path) {
+        this.location = getClass().getResource(path);
+    }
 
 }
