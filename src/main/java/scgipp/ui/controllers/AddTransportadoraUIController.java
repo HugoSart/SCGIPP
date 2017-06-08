@@ -89,7 +89,7 @@ public class AddTransportadoraUIController implements Initializable{
         TransportadoraManager transpManager = new TransportadoraManager();
         transpManager.register(cpf, name, date, phone, adress);
 
-        ((Node)event.getSource()).getScene().getWindow().hide();
+                ((Node)event.getSource()).getScene().getWindow().hide();
     }
 
     public void btCancelActionHandler(ActionEvent event) {
@@ -111,4 +111,6 @@ public class AddTransportadoraUIController implements Initializable{
         tfComp.setText(newTransp.getAdresses().get(0).getComp());
         tfZip.setText(newTransp.getAdresses().get(0).getZip());
     }
+
+
 }

@@ -52,7 +52,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Fornecedores" HBox.hgrow="ALWAYS">
+            <Button fx:id="btSupplier" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSupplierActionHandler" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Fornecedores" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>

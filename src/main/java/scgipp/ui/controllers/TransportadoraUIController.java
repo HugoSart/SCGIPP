@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -85,6 +86,7 @@ public class TransportadoraUIController implements Initializable {
         Stage stage = manajer.newStage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
+        ((Node)event.getSource()).getScene().getWindow().focusedProperty().addListener((observable, oldValue, newValue) -> updateTable());
     }
 
     public void btRemoveActionHandler(ActionEvent event) throws IOException{
@@ -96,6 +98,11 @@ public class TransportadoraUIController implements Initializable {
         });
     }
 
-    private void initViews() {
+    private void updateTable() {
+        observableList = FXCollections.observableList(transpManager.getAll());
+        tvTransportadora.setItems(observableList);
+        tvTransportadora.refresh();
     }
+
+
 }

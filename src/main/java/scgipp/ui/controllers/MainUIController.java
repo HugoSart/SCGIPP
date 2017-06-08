@@ -8,10 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scgipp.data.hibernate.DataAccess;
 import scgipp.service.session_management.UserSession;
-import scgipp.ui.manager.LoginUIManager;
-import scgipp.ui.manager.CustomersUIManager;
-import scgipp.ui.manager.TransportadoraUIManager;
-import scgipp.ui.manager.UsersUIManager;
+import scgipp.ui.manager.*;
 
 public class MainUIController {
 
@@ -86,6 +83,22 @@ public class MainUIController {
         Stage stage = transpUIManager.newStage();
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Transportadora");
+        stage.show();
+    }
+
+    public void btSupplierActionHandler(ActionEvent actionEvent) {
+        try {
+            openSupplierStage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openSupplierStage() {
+        SupplierUIManager supUIManager = new SupplierUIManager();
+        Stage stage = supUIManager.newStage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Forncedor");
         stage.show();
     }
 }
