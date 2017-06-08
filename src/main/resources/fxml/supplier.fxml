@@ -21,16 +21,15 @@
       <TableView fx:id="tvSupplier" layoutY="101.0" prefHeight="459.0" prefWidth="871.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="101.0">
         <columns>
           <TableColumn fx:id="tcId" prefWidth="122.0" text="Id" />
-          <TableColumn fx:id="tcSupplier" prefWidth="413.0" text="Fornecedor" />
-            <TableColumn fx:id="tcTelefone" minWidth="0.0" prefWidth="309.0" text="Telefone" />
+          <TableColumn fx:id="tcSupplier" prefWidth="317.0" text="Fornecedor" />
+            <TableColumn fx:id="tcTelefone" prefWidth="262.0" text="Telefone" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="60.0" mnemonicParsing="false" text="Procurar" />
       <TextField layoutX="176.0" layoutY="60.0" prefHeight="25.0" prefWidth="678.0" />
       <SplitMenuButton layoutX="82.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Por id">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem mnemonicParsing="false" text="Por nome" />
         </items>
       </SplitMenuButton>
    </children>
