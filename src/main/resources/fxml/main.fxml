@@ -44,7 +44,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="169.0" styleClass="hbox-menu-button" text="Transportadoras" HBox.hgrow="ALWAYS">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btTransportadoraActionHandler" prefHeight="85.0" prefWidth="169.0" styleClass="hbox-menu-button" text="Transportadoras" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>

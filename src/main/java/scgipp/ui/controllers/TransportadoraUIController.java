@@ -2,6 +2,7 @@ package scgipp.ui.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -16,9 +17,12 @@ import scgipp.service.transportadora_management.Transportadora;
 import scgipp.service.transportadora_management.TransportadoraManager;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
+import scgipp.ui.manager.AddUserUIManager;
 import scgipp.ui.manager.CustomersUIManager;
+import scgipp.ui.manager.TransportadoraInfoUIManager;
 import scgipp.ui.manager.UserInfoUIManager;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,8 +41,11 @@ public class TransportadoraUIController implements Initializable {
     @FXML private TableColumn<Transportadora, Integer> tcId;
     @FXML private TableColumn<Transportadora, String> tcTransportadora;
     @FXML private TableColumn<Transportadora, String> tcCnpj;
+    @FXML private TableColumn<Transportadora, String> tcTelefone;
+
 
     private TransportadoraManager transpManager;
+    private TransportadoraInfoUIManager transpInfoUIManager;
     private ObservableList<Transportadora> observableList;
 
 
@@ -50,11 +57,39 @@ public class TransportadoraUIController implements Initializable {
 
         tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tcTransportadora.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tcCnpj.setCellValueFactory(new PropertyValueFactory<>("cnpj"));
+        tcCnpj.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tcTelefone.setCellValueFactory(new PropertyValueFactory<>("phones"));
+
 
         tvTransportadora.setItems(observableList);
 
+        tvTransportadora.setRowFactory( tv -> {
+            TableRow<Transportadora> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    Transportadora rowData = row.getItem();
+                    transpInfoUIManager = new TransportadoraInfoUIManager(rowData);
+                    Stage stage = transpInfoUIManager.newStage();
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.show();
+                }
+            });
+            return row ;
+        });
+
     }
+
+    public void btCloseActionHandler(ActionEvent event) {
+        mainPane.getScene().getWindow().hide();
+    }
+
+    public void btAddActionHandler(ActionEvent event) throws IOException {
+        AddUserUIManager manajer = new AddUserUIManager();
+        Stage stage = manajer.newStage();
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.show();
+    }
+
 
     private void initViews() {
     }

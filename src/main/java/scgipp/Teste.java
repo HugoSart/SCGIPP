@@ -19,7 +19,7 @@ public class Teste extends Application {
         TransportadoraManager transpM = new TransportadoraManager();
         Adress ad = new Adress("Maringa", "Braisl" ,"Parana", null, null, null,"null");
         transpM.register("123312", "ROLE", LocalDate.now(), "aeuhaeu",ad );
-        //launch(args);
+        launch(args);
     }
 
     @Override

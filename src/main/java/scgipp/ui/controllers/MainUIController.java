@@ -73,7 +73,7 @@ public class MainUIController {
         stage.show();
     }
 
-    public void btTransportadoraActionHandler(ActionEvent actionEvent) {
+    public void btTransportadoraActionHandler (ActionEvent actionEvent) {
         try {
             openTransportadoraStage();
         } catch (Exception e) {
