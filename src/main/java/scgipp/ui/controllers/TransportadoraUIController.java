@@ -87,8 +87,13 @@ public class TransportadoraUIController implements Initializable {
         stage.show();
     }
 
-    public void setBtRemoveHandler(ActionEvent event) throws IOException{
-        (new TransportadoraManager()).remove(tvTransportadora.getSelectionModel().getSelectedItem());
+    public void btRemoveActionHandler(ActionEvent event) throws IOException{
+        TransportadoraManager transpManager = new TransportadoraManager();
+        btRemove.setOnAction(e -> {
+            Transportadora selectedItem = tvTransportadora.getSelectionModel().getSelectedItem();
+            transpManager.remove(selectedItem);
+            tvTransportadora.getItems().remove(selectedItem);
+        });
     }
 
     private void initViews() {
