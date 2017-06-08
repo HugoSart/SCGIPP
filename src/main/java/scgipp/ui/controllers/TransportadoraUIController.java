@@ -17,10 +17,7 @@ import scgipp.service.transportadora_management.Transportadora;
 import scgipp.service.transportadora_management.TransportadoraManager;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
-import scgipp.ui.manager.AddUserUIManager;
-import scgipp.ui.manager.CustomersUIManager;
-import scgipp.ui.manager.TransportadoraInfoUIManager;
-import scgipp.ui.manager.UserInfoUIManager;
+import scgipp.ui.manager.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -84,7 +81,7 @@ public class TransportadoraUIController implements Initializable {
     }
 
     public void btAddActionHandler(ActionEvent event) throws IOException {
-        AddUserUIManager manajer = new AddUserUIManager();
+        AddTransportadoraUIManager manajer = new AddTransportadoraUIManager();
         Stage stage = manajer.newStage();
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
