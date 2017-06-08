@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -13,6 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.customer_management.CustomerManager;
+import scgipp.service.user_management.UserManager;
 import scgipp.ui.manager.AddCustomerUIManager;
 import scgipp.ui.manager.CustomerInfoUIManager;
 
@@ -72,14 +74,22 @@ public class CustomersUIController implements Initializable {
         stage.setTitle("Novo cliente");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
+        ((Node)event.getSource()).getScene().getWindow().focusedProperty().addListener((observable, oldValue, newValue) -> updateTable());
     }
 
     public void btRemoveActionHandler(ActionEvent event) {
-
+        (new CustomerManager()).remove(tvCustomers.getSelectionModel().getSelectedItem());
+        updateTable();
     }
 
     public void btCloseActionHandler(ActionEvent event) {
 
+    }
+
+    private void updateTable() {
+        observableList = FXCollections.observableList(customerManager.getAll());
+        tvCustomers.setItems(observableList);
+        tvCustomers.refresh();
     }
 
 }

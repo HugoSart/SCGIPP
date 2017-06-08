@@ -34,6 +34,10 @@ public class CustomerManager {
         Log.show(Log.Type.INFO, "Customer \"" + id + "\" removed from database.");
     }
 
+    public void remove(Customer customer) {
+        remove(customer.getId());
+    }
+
     public void update(Customer customer) {
         customerDAO.update(customer);
     }
