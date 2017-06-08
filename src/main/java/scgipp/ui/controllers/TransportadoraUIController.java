@@ -89,7 +89,7 @@ public class TransportadoraUIController implements Initializable {
         ((Node)event.getSource()).getScene().getWindow().focusedProperty().addListener((observable, oldValue, newValue) -> updateTable());
     }
 
-    public void setBtRemoveHandler(ActionEvent event) throws IOException{
+    public void btRemoveActionHandler(ActionEvent event) throws IOException{
         (new TransportadoraManager()).remove(tvTransportadora.getSelectionModel().getSelectedItem());
         updateTable();
     }
