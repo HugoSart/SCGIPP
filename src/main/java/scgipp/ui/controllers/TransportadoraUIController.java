@@ -2,14 +2,13 @@ package scgipp.ui.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -22,6 +21,8 @@ import scgipp.ui.manager.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 /**
@@ -34,6 +35,8 @@ public class TransportadoraUIController implements Initializable {
     @FXML private Button btAdd;
     @FXML private Button btRemove;
     @FXML private Button btClose;
+    @FXML private Button btSearch;
+    @FXML private TextField tfEntrada;
 
     @FXML private TableView<Transportadora> tvTransportadora;
     @FXML private TableColumn<Transportadora, Integer> tcId;
@@ -74,6 +77,7 @@ public class TransportadoraUIController implements Initializable {
             });
             return row ;
         });
+        this.updateBySearch();
 
     }
 
@@ -90,13 +94,10 @@ public class TransportadoraUIController implements Initializable {
 
     }
 
-    public void btRemoveActionHandler(ActionEvent event) throws IOException{
-        TransportadoraManager transpManager = new TransportadoraManager();
-        btRemove.setOnAction(e -> {
-            Transportadora selectedItem = tvTransportadora.getSelectionModel().getSelectedItem();
-            transpManager.remove(selectedItem);
-            tvTransportadora.getItems().remove(selectedItem);
-        });
+    public void btRemoveActionHandler(ActionEvent event) throws IOException {
+        (new TransportadoraManager()).remove(tvTransportadora.getSelectionModel().getSelectedItem());
+        updateTable();
+
     }
 
     private void updateTable() {
@@ -104,4 +105,32 @@ public class TransportadoraUIController implements Initializable {
         tvTransportadora.setItems(observableList);
         tvTransportadora.refresh();
     }
+
+    public void updateBySearch() {
+        FilteredList<Transportadora> filteredData = new FilteredList<>(observableList, p -> true);
+
+        tfEntrada.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(transportadora-> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (transportadora.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        SortedList<Transportadora> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvTransportadora.comparatorProperty());
+        tvTransportadora.setItems(sortedData);
+
+
+    }
+
 }

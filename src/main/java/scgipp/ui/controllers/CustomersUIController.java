@@ -2,6 +2,8 @@ package scgipp.ui.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -24,12 +27,14 @@ import java.util.ResourceBundle;
 
 public class CustomersUIController implements Initializable {
 
+    @FXML private TextField tfEntrada;
     @FXML private TableView<Customer> tvCustomers;
     @FXML private TableColumn<Customer, Integer> tcId;
     @FXML private TableColumn<Customer, Customer.Type> tcType;
     @FXML private TableColumn<Customer, String> tcName;
     @FXML private TableColumn<Customer, LocalDate> tcDate;
     @FXML private TableColumn<Customer, String> tcCPF;
+
 
     CustomerManager customerManager = new CustomerManager();
     ObservableList<Customer> observableList;
@@ -90,6 +95,33 @@ public class CustomersUIController implements Initializable {
         observableList = FXCollections.observableList(customerManager.getAll());
         tvCustomers.setItems(observableList);
         tvCustomers.refresh();
+    }
+
+    public void updateBySearch() {
+        FilteredList<Customer> filteredData = new FilteredList<>(observableList, p -> true);
+
+        tfEntrada.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(customer-> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (customer.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        SortedList<Customer> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tvCustomers.comparatorProperty());
+        tvCustomers.setItems(sortedData);
+
+
     }
 
 }
