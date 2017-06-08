@@ -1,4 +1,4 @@
-package scgipp.data.hibernate.specification;
+package scgipp.data.hibernate.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import scgipp.data.hibernate.DataAccess;
 import scgipp.service.transportadora_management.Transportadora;
-
-import javax.xml.crypto.dsig.TransformService;
 
 /**
  * Created by kira on 05/06/17.

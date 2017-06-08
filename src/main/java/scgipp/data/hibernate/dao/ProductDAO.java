@@ -1,4 +1,4 @@
-package scgipp.data.hibernate.specification;
+package scgipp.data.hibernate.dao;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

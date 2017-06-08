@@ -1,6 +1,6 @@
 package scgipp.service.transportadora_management;
 
-import scgipp.data.hibernate.specification.TransportadoraDAO;
+import scgipp.data.hibernate.dao.TransportadoraDAO;
 import scgipp.service.Adress;
 import scgipp.system.log.Log;
 

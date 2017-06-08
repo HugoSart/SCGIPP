@@ -1,6 +1,6 @@
 package scgipp.service.supplier_management;
 
-import scgipp.data.hibernate.specification.SupplierDAO;
+import scgipp.data.hibernate.dao.SupplierDAO;
 import scgipp.system.log.Log;
 
 import java.util.List;
