@@ -8,6 +8,9 @@ import scgipp.service.user_management.User;
 
 import java.util.List;
 
+/**
+ * Created by hsart on 13/05/17.
+ */
 public class UserDAO extends DataAccess<User> {
 
     public UserDAO() {

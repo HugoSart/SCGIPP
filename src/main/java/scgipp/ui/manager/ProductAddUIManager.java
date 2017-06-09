@@ -6,9 +6,6 @@ import scgipp.service.product_management.Product;
 import scgipp.ui.UIManager;
 import scgipp.ui.controllers.ProductAddUIController;
 
-/**
- * Created by hugo_ on 08/06/2017.
- */
 public class ProductAddUIManager extends UIManager {
 
     private Product product;

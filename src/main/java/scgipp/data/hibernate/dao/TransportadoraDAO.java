@@ -9,7 +9,7 @@ import scgipp.data.hibernate.DataAccess;
 import scgipp.service.transportadora_management.Transportadora;
 
 /**
- * Created by kira on 05/06/17.
+ * Created by hsart on 13/05/17.
  */
 public class TransportadoraDAO extends DataAccess<Transportadora> {
         /*

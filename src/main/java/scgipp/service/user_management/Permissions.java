@@ -6,6 +6,9 @@ import java.util.Set;
 
 import static scgipp.service.user_management.Permissions.Permission.*;
 
+/**
+ * Created by hsart on 13/05/17.
+ */
 @Embeddable
 public class Permissions {
 

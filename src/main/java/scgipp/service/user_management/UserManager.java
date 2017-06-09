@@ -6,6 +6,9 @@ import scgipp.system.log.Log;
 
 import java.util.List;
 
+/**
+ * Created by hsart on 13/05/17.
+ */
 public class UserManager {
 
     private UserDAO userDAO = new UserDAO();

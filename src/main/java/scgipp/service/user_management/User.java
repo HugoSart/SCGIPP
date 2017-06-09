@@ -12,6 +12,9 @@ import javax.naming.AuthenticationException;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Created by hsart on 13/05/17.
+ */
 @Entity
 public class User {
 

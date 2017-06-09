@@ -7,6 +7,10 @@ import scgipp.data.hibernate.DataAccess;
 import scgipp.service.customer_management.Customer;
 
 import java.util.List;
+
+/**
+ * Created by hsart on 13/05/17.
+ */
 public class CustomerDAO extends DataAccess<Customer> {
 
     public CustomerDAO() {

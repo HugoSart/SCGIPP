@@ -1,8 +1,5 @@
 package scgipp.ui.util;
 
-/**
- * Created by hugo_ on 08/06/2017.
- */
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.event.EventType;

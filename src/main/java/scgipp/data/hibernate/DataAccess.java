@@ -7,9 +7,8 @@ import org.hibernate.cfg.Configuration;
 import java.util.List;
 
 /**
- *   Classe esqueleto para a criação de uma classe do tipo Data Access Object
+ * Created by hsart on 13/05/17.
  */
-
 public abstract class DataAccess<T> {
 
     protected static SessionFactory sessionFactory = null;

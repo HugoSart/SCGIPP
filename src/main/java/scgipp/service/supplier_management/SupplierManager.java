@@ -6,7 +6,7 @@ import scgipp.system.log.Log;
 import java.util.List;
 
 /**
- * Created by hugo_ on 05/06/2017.
+ * Created by carloskanda on 13/05/17.
  */
 public class SupplierManager {
 

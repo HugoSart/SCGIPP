@@ -9,7 +9,7 @@ import scgipp.service.supplier_management.Supplier;
 import java.util.List;
 
 /**
- * Created by hugo_ on 05/06/2017.
+ * Created by hsart on 13/05/17.
  */
 public class SupplierDAO extends DataAccess<Supplier> {
 

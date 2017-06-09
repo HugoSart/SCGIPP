@@ -8,12 +8,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@MappedSuperclass
+/**
+ * Created by hsart on 13/05/17.
+ */
 /**
  * A classe pai deve ser do tipo MappedSuperClass
  * Dessa forma, as classes derivadas criam sua propria tabela
  * Ao inves de utilizar a tabela Person
  */
+@MappedSuperclass
 public abstract class Person {
 
     @Id

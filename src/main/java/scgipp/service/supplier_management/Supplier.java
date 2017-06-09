@@ -4,6 +4,9 @@ import scgipp.service.Person;
 import javax.persistence.Entity;
 import java.time.LocalDate;
 
+/**
+ * Created by carloskanda on 13/05/17.
+ */
 @Entity
 public class Supplier extends Person {
 

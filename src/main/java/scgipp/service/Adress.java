@@ -5,6 +5,9 @@ import javax.persistence.Embeddable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by hsart on 13/05/17.
+ */
 @Embeddable
 public class Adress {
 

@@ -100,16 +100,18 @@ public class AddTransportadoraUIController implements Initializable{
 
     public void initData(Transportadora transportadora) {
         this.newTransp = transportadora;
-        tfName.setText(newTransp.getName());
-        tfCPF.setText(newTransp.getCpf());
-        tfPhone.setText(newTransp.getPhones().get(0));
-        tfCountry.setText(newTransp.getAdresses().get(0).getCountry());
-        tfState.setText(newTransp.getAdresses().get(0).getState());
-        tfCity.setText(newTransp.getAdresses().get(0).getCity());
-        tfStreet.setText(newTransp.getAdresses().get(0).getStreet());
-        tfNumber.setText(newTransp.getAdresses().get(0).getNumber());
-        tfComp.setText(newTransp.getAdresses().get(0).getComp());
-        tfZip.setText(newTransp.getAdresses().get(0).getZip());
+        if (transportadora != null) {
+                tfName.setText(newTransp.getName());
+            tfCPF.setText(newTransp.getCpf());
+            tfPhone.setText(newTransp.getPhones().get(0));
+            tfCountry.setText(newTransp.getAdresses().get(0).getCountry());
+            tfState.setText(newTransp.getAdresses().get(0).getState());
+            tfCity.setText(newTransp.getAdresses().get(0).getCity());
+            tfStreet.setText(newTransp.getAdresses().get(0).getStreet());
+            tfNumber.setText(newTransp.getAdresses().get(0).getNumber());
+            tfComp.setText(newTransp.getAdresses().get(0).getComp());
+            tfZip.setText(newTransp.getAdresses().get(0).getZip());
+        }
     }
 
 

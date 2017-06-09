@@ -5,6 +5,9 @@ import scgipp.system.log.Log;
 
 import java.util.List;
 
+/**
+ * Created by carloskanda on 13/05/17.
+ */
 public class CustomerManager {
 
     private CustomerDAO customerDAO = new CustomerDAO();
