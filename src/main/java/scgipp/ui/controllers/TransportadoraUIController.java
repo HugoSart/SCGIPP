@@ -69,8 +69,8 @@ public class TransportadoraUIController implements Initializable {
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
                     Transportadora rowData = row.getItem();
-                    transpInfoUIManager = new TransportadoraInfoUIManager(rowData);
-                    Stage stage = transpInfoUIManager.newStage();
+                    AddTransportadoraUIManager transpAddUIManager = new AddTransportadoraUIManager(rowData);
+                    Stage stage = transpAddUIManager.newStage();
                     stage.initModality(Modality.WINDOW_MODAL);
                     stage.show();
                 }
@@ -91,7 +91,6 @@ public class TransportadoraUIController implements Initializable {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.show();
         ((Node)event.getSource()).getScene().getWindow().focusedProperty().addListener((observable, oldValue, newValue) -> updateTable());
-
     }
 
     public void btRemoveActionHandler(ActionEvent event) throws IOException {

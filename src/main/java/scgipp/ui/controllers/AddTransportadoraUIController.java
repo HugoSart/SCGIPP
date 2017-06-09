@@ -113,4 +113,35 @@ public class AddTransportadoraUIController implements Initializable{
     }
 
 
+    public void btAddActionHandler(ActionEvent actionEvent) {
+        String name = tfName.getText(), cpf = tfCPF.getText(), phone = tfPhone.getText(),
+                country = tfCountry.getText(), state = tfState.getText(), city = tfCity.getText(), street = tfStreet.getText(), number = tfNumber.getText(), comp = tfComp.getText(), zip = tfZip.getText();
+
+        Type type = cbType.getSelectionModel().getSelectedItem();
+
+        LocalDate date = dpData.getValue();
+        Adress adress = new Adress(country, state, city, street, number, comp, zip);
+
+        TransportadoraManager transpManager = new TransportadoraManager();
+
+        if (newTransp != null) {
+            newTransp.setCpf(cpf);
+            newTransp.setDate(date);
+            newTransp.setName(name);
+            newTransp.addAdress(adress);
+            newTransp.addPhone(phone);
+            newTransp.setType(type);
+            transpManager.update(newTransp);
+            hide();
+            return;
+        }
+
+       transpManager.register(cpf, name, date, phone, adress);;
+
+        hide();
+    }
+
+    private void hide() {
+        tfName.getParent().getScene().getWindow().hide();
+    }
 }
