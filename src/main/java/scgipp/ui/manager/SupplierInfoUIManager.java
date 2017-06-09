@@ -13,7 +13,7 @@ public class SupplierInfoUIManager extends UIManager {
     private Supplier sup;
 
     public SupplierInfoUIManager(Supplier supAlvo) {
-        super("/fxml/supplierr_info.fxml");
+        super("/fxml/supplier_info.fxml");
         this.sup = supAlvo;
     }
 

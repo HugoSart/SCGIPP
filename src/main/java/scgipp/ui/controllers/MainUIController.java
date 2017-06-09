@@ -16,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scgipp.data.hibernate.DataAccess;
 import scgipp.service.session_management.UserSession;
+import scgipp.service.supplier_management.Supplier;
 import scgipp.ui.manager.*;
 
 import java.net.URL;
@@ -153,4 +154,19 @@ public class MainUIController implements Initializable {
 
     }
 
+    public void btSupplierActionHandler(ActionEvent actionEvent) {
+        try {
+            openSupplierStage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void openSupplierStage() {
+        SupplierUIManager supUIManager = new SupplierUIManager();
+        Stage stage = supUIManager.newStage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("FORNECEDOR");
+        stage.show();
+    }
 }
