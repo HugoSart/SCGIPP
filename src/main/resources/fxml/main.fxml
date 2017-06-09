@@ -1,65 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ap" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="785.0" prefWidth="1378.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.MainUIController">
+<AnchorPane fx:id="ap" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="250.0" minWidth="250.0" prefHeight="785.0" prefWidth="1378.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.MainUIController">
    <children>
-      <HBox alignment="TOP_CENTER" focusTraversable="true" prefHeight="86.0" prefWidth="1378.0" style="-fx-background-color: ;" styleClass="hbox-menu" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="menuButtons" alignment="TOP_CENTER" focusTraversable="true" prefHeight="86.0" prefWidth="1378.0" style="-fx-background-color: ;" styleClass="hbox-menu" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Estoque" HBox.hgrow="ALWAYS">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btProductsActionHandler" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Estoque" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>
                         <Image url="@../img/package_36dp.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Venda" HBox.hgrow="ALWAYS">
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Venda" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>
                         <Image url="@../img/cart_36.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Compra" HBox.hgrow="ALWAYS">
+               </graphic>
+            </Button>
+            <Button alignment="CENTER" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Compra" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>
                         <Image url="@../img/cash_multiple_36.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btCustomersActionHandler" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Clientes" HBox.hgrow="ALWAYS">
+               </graphic>
+            </Button>
+            <Button fx:id="btCustomers" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btCustomersActionHandler" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Clientes" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>
                         <Image url="@../img/account_36.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btTransportadoraActionHandler" prefHeight="85.0" prefWidth="169.0" styleClass="hbox-menu-button" text="Transportadoras" HBox.hgrow="ALWAYS">
+               </graphic>
+            </Button>
+            <Button fx:id="btTransp" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btTransportadoraActionHandler" prefHeight="85.0" prefWidth="169.0" styleClass="hbox-menu-button" text="Transportadoras" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>
                         <Image url="@../img/truck_delivery_36.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
-            <Button fx:id="btSupplier" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSupplierActionHandler" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Fornecedores" HBox.hgrow="ALWAYS">
+               </graphic>
+            </Button>
+            <Button fx:id="btSuppliers" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Fornecedores" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>
                         <Image url="@../img/ferry_36.png" />
                      </image>
                   </ImageView>
-               </graphic></Button>
+               </graphic>
+            </Button>
             <Button fx:id="btUsers" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btUsersActionHandler" prefHeight="85.0" prefWidth="134.0" styleClass="hbox-menu-button" text="Usuários" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
@@ -69,7 +77,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <HBox prefHeight="107.0" prefWidth="272.0" />
+            <HBox fx:id="hbox" onMouseClicked="#hboxMouseClickedHandler" onMouseDragged="#hboxMouseDraggedHandler" onMousePressed="#hboxMousePressedHandler" prefHeight="107.0" prefWidth="272.0" HBox.hgrow="ALWAYS" />
             <VBox prefHeight="85.0" prefWidth="68.0">
                <children>
                   <Button fx:id="btChangeUser" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btChangeUserActionHandler" prefHeight="42.0" prefWidth="157.0" styleClass="hbox-menu-button" text="Trocar de Usuário">
@@ -93,9 +101,13 @@
                </children>
             </VBox>
          </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
          <effect>
-            <DropShadow />
+            <DropShadow height="29.65" radius="12.1625" />
          </effect>
       </HBox>
+      <Pane fx:id="contentPane" layoutX="-6.0" layoutY="124.0" prefHeight="699.0" prefWidth="1386.0" stylesheets="@../css/LightTheme.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="86.0" />
    </children>
 </AnchorPane>

@@ -7,6 +7,7 @@ import scgipp.service.Person;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.transportadora_management.TransportadoraManager;
 import scgipp.service.user_management.Permissions;
+import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
 import scgipp.ui.manager.LoginUIManager;
 
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 public class Teste extends Application {
 
     public static void main(String[] args) {
-        //addTestData();
+        addTestData();
         UserManager criar = new UserManager();
         criar.register("admin", "admin", Permissions.UserType.ADM);
         TransportadoraManager transpM = new TransportadoraManager();
@@ -34,7 +35,7 @@ public class Teste extends Application {
 
     public static void addTestData() {
         UserManager userManager = new UserManager();
-        System.out.println(userManager.register("admin", "admin", Permissions.UserType.ADM).getPermissions().check(Permissions.Permission.LOGIN));
+        userManager.register("admin", "admin", Permissions.UserType.ADM);
     }
 
 }

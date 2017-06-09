@@ -25,7 +25,7 @@ public class ProductManager {
     }
 
     public Product register(int prodTipo, int prodUn, String prodNome,
-                            String prodDesc, double prodValue) {
+                            String prodDesc, double prodValue, boolean buyable) {
         /*
          * Metodo para o cadastro de novo produto
          *
@@ -40,7 +40,7 @@ public class ProductManager {
          * novoProduto: o produto cadastrado
          */
 
-        Product novoProduto = new Product(prodTipo, prodUn, prodNome, prodDesc, prodValue);
+        Product novoProduto = new Product(prodTipo, prodUn, prodNome, prodDesc, prodValue, buyable);
         try {
             productDAO.add(novoProduto);
         }

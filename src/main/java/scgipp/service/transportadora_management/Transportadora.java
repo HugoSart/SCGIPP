@@ -8,10 +8,7 @@ import scgipp.service.*;
  * Created by kira on 05/06/17.
  */
 
-@Entity
-public class Transportadora extends Person {
-
-    /*
+/**
      * Classe para implementacao da transportadora
      *
      * Define a classe transportadora
@@ -27,26 +24,29 @@ public class Transportadora extends Person {
      * name: nome fantasia
      * phones: numero de contato
      * address: endereco eletronico
-     */
+ *
+ */
+@Entity
+public class Transportadora extends Person {
 
-    public Transportadora(String c, String n, LocalDate d,
-                          String p, Adress a){
-        /*
+
+
+    /**
          * Metodo construtor da classe
          *
-         * @args:
-         * t: type, c: cnpj, d: date, n: nome, p: numeros de telefone, a: email
-         */
+         * @param c: type
+     *     @param n cnpj, d: date, n: nome, p: numeros de telefone, a: email
+     */
+    public Transportadora(String c, String n, LocalDate d, String p, Adress a){
+
 
         super(Type.LEGAL, n, c, d);
         super.addAdress(a);
         super.addPhone(p);
+
     }
 
     public Transportadora(){}
-
-
-
 
 
 }

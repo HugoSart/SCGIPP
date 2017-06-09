@@ -1,5 +1,9 @@
 package scgipp.service.product_management;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,93 +12,97 @@ import javax.persistence.Id;
 /**
  * Created by kira on 05/06/17.
  */
-@Entity
-public class Product {
-    /*
+
+/**
      * Implementacao de produtos
      *
      * Define a classe utilizada para representar os produtos do sistema
      * Foi preferivel nao extender esta classe a Person
      *
      * @atributos:
-     * idProduto: chave primaria, identificador do produto
-     * tipo: indica o tipo de produto
-     * unEstoque: armazena a quantidade deste produto disponivel em estoque
-     * pNome: nome do produto
+     * id: chave primaria, identificador do produto
+     * type: indica o type de produto
+     * count: armazena a quantidade deste produto buyable em estoque
+     * name: nome do produto
      * descricao: Breve descricao do produto
-     * pVenda: preco de venda do produto
-     * disponivel: indica se ha unidades disponiveis para venda
-     */
+     * customerPrice: preco de venda do produto
+     * buyable: indica se ha unidades disponiveis para venda
+ */
+@Entity
+public class Product {
+
 
     @Id
     @GeneratedValue
-    private int idProduto;
+    private Integer id;
 
     @Column
-    private int tipo;
+    private int type;
 
     @Column
-    private int unEstoque;
+    private int amount;
 
     @Column(unique = true)
-    private String pNome;
+    private String name;
 
     @Column
-    private String descricao;
+    private String description;
 
     @Column
-    private double pVenda;
+    private double customerPrice;
 
     @Column
-    private boolean disponivel;
+    private boolean buyable;
 
-    public Product(int prodTipo, int prodUn, String prodNome,
-                   String prodDesc, double prodValue){
-            /*
+    /**
              * Metodo construtor da classe
              *
              * @args:
-             * prodTipo: e o tipo do produto
+             * prodTipo: e o type do produto
              * prodUn: unidades em estoque
              * prodNome: nome do produto
              * prodDesc: breve descricao do produto
              * prodValue: valor para venda do produto
-             */
+     */
+    public Product(int prodTipo, int prodUn, String prodNome, String prodDesc, double prodValue, boolean isBuyable){
 
-            this.tipo = prodTipo;
-            this.unEstoque = prodUn;
-            this.pNome = prodNome;
-            this.descricao = prodDesc;
-            this.pVenda = prodValue;
-            this.disponivel = this.estaDisponivel();
+
+            this.type = prodTipo;
+            this.amount = prodUn;
+            this.name = prodNome;
+            this.description = prodDesc;
+            this.customerPrice = prodValue;
+            this.buyable = isBuyable;
 
     }
-    //construtor padrao, nescessario para o hibernate
+
     public Product(){}
 
-    public int getId(){
-        /*
+    /**
          * Metodo para retornar id do produto
          *
          * @returns:
          * retorna o id
          */
+    public int getId(){
 
-        return (this.idProduto);
+
+        return (this.id);
     }
 
-    public void setUnidades(int nroUnidades){
-        /*
+    /**
          * Metodo para setar o numero de unidades disponiveis em estoque
          *
          * @args:
          * nroUnidades: qtde de itens a ser adicionado ao estoque
          */
+    public void setAmout(int nroUnidades){
 
-        this.unEstoque = nroUnidades;
+
+        this.amount = nroUnidades;
     }
 
-    public int getUnidades(){
+    public int getAmount(){
         /*
          * Metodo pra retornar nro de itens deste produto em estoque
          *
@@ -102,7 +110,7 @@ public class Product {
          * nro de unidades disponiveis
          */
 
-        return (this.unEstoque);
+        return (this.amount);
     }
     public String getName(){
         /*
@@ -112,10 +120,10 @@ public class Product {
          * retorna o nome do produto
          */
 
-        return (this.pNome);
+        return (this.name);
     }
 
-    public String getDescricao(){
+    public String getDescription(){
         /*
          * Metodo para retornar a descricao deste produto
          *
@@ -123,10 +131,30 @@ public class Product {
          * retorna uma stirng, com a descricao do produto
          */
 
-        return (this.descricao);
+        return (this.description);
     }
 
-    public void setPreco(double novoValor){
+    public int getType() {
+        return type;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setBuyable(boolean buyable) {
+        this.buyable = buyable;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setCustomerPrice(double novoValor){
         /*
          * Metodo para setar novo valor de venda do produto
          *
@@ -134,10 +162,10 @@ public class Product {
          * novoValor: o novo preco a ser setado
          */
 
-        this.pVenda = novoValor;
+        this.customerPrice = novoValor;
     }
 
-    public double getPreco(){
+    public double getCustomerPrice(){
         /*
          * Metodo para retornar o preco do produto
          *
@@ -145,17 +173,35 @@ public class Product {
          * retorna o atual valor do produto
          */
 
-        return this.pVenda;
+        return this.customerPrice;
     }
 
-    public boolean estaDisponivel(){
-        /*
-         * Metodo que verifica se ha unidades disponiveis a venda deste produto em estoque
-         *
-         * @returns:
-         * true caso haja, false caso contrario
-         */
-
-        return (this.getUnidades() != 0);
+    public boolean isBuyable(){
+        return buyable;
     }
+
+    public SimpleIntegerProperty idProperty() {
+        return new SimpleIntegerProperty(id);
+    }
+
+    public SimpleIntegerProperty typeProperty() {
+        return new SimpleIntegerProperty(type);
+    }
+
+    public SimpleIntegerProperty amountProperty() {
+        return new SimpleIntegerProperty(amount);
+    }
+
+    public SimpleStringProperty nameProperty() {
+        return new SimpleStringProperty(name);
+    }
+
+    public SimpleStringProperty descriptionProperty() {
+        return new SimpleStringProperty(description);
+    }
+
+    public SimpleDoubleProperty customerPriceProperty() {
+        return new SimpleDoubleProperty(customerPrice);
+    }
+
 }
