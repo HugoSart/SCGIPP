@@ -77,6 +77,6 @@ public class ProductAddUIController implements Initializable {
             cbBuyable.setSelected(product.isBuyable());
             tfAmount.setText("" + product.getAmount());
         }
-    }
+    } //sadsasa
 
 }
