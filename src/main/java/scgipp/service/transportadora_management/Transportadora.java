@@ -37,7 +37,7 @@ public class Transportadora extends Person {
          * @param c: type
      *     @param n cnpj, d: date, n: nome, p: numeros de telefone, a: email
      */
-    public Transportadora(String c, String n, LocalDate d, String p, Adress a){
+    public Transportadora(String c, String n, LocalDate d, String p, Address a){
 
 
         super(Type.LEGAL, n, c, d);

@@ -39,7 +39,7 @@ public abstract class Person {
     public List<String> phones = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.LAZY)
-    public List<Adress> adresses = new ArrayList<>();
+    public List<Address> addresses = new ArrayList<>();
 
     public enum Type {
         LEGAL("Jurídica"), PHYSICAL("Física");
@@ -105,12 +105,12 @@ public abstract class Person {
         phones.add(phone);
     }
 
-    public List<Adress> getAdresses() {
-        return adresses;
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
-    public void addAdress(Adress adress) {
-        adresses.add(adress);
+    public void addAdress(Address adress) {
+        addresses.add(adress);
     }
 
     public LocalDate getDate() {

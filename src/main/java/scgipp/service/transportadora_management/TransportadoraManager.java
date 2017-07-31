@@ -1,7 +1,7 @@
 package scgipp.service.transportadora_management;
 
 import scgipp.data.hibernate.dao.TransportadoraDAO;
-import scgipp.service.Adress;
+import scgipp.service.Address;
 import scgipp.system.log.Log;
 
 import java.time.LocalDate;
@@ -29,7 +29,7 @@ public class TransportadoraManager {
     }
 
     public Transportadora register(String c, String n, LocalDate d,
-                                   String p, Adress a) {
+                                   String p, Address a) {
         /*
          * Metodo para o cadastro de nova transportadora
          *

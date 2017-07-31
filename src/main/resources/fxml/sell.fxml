@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="504.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.SellUIController">
+   <children>
+      <HBox fx:id="menuButtons" alignment="TOP_CENTER" focusTraversable="true" prefHeight="86.0" prefWidth="1147.0" style="-fx-background-color: ;" styleClass="hbox-menu">
+         <children>
+            <Button fx:id="btSellBudget" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSellBudgetActionHandler" prefHeight="85.0" prefWidth="196.0" styleClass="hbox-menu-button" text="Buscar Orcamento" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../img/package_36dp.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btSell" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSellActionHandler" prefHeight="85.0" prefWidth="204.0" styleClass="hbox-menu-button" text="Concretizar Venda" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ImageView>
+                     <image>
+                        <Image url="@../img/cart_36.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <HBox fx:id="hbox" prefHeight="86.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <VBox prefHeight="85.0" prefWidth="68.0">
+               <children>
+                  <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btExitActionHandler" prefHeight="85.0" prefWidth="127.0" styleClass="hbox-menu-button" text="btExit" textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0">
+                           <image>
+                              <Image url="@../img/exit_24dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <effect>
+            <DropShadow height="29.65" radius="12.1625" />
+         </effect>
+      </HBox>
+      <ListView fx:id="avaliableList" layoutX="14.0" layoutY="146.0" prefHeight="307.0" prefWidth="200.0" />
+      <Label layoutX="14.0" layoutY="108.0" text="Estoque">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="514.0" layoutY="381.0" text="Preco Bruto" />
+      <Button fx:id="btAdd" layoutX="14.0" layoutY="451.0" mnemonicParsing="false" onAction="#btAddProductActionHandler" prefHeight="26.0" prefWidth="200.0" text="Adicionar" />
+      <TextField fx:id="tfTotal" disable="true" layoutX="614.0" layoutY="376.0" />
+      <Label layoutX="516.0" layoutY="456.0" text="Preco Total" />
+      <TextField fx:id="tfTotalDesconto" disable="true" layoutX="614.0" layoutY="451.0" />
+      <ListView fx:id="productList" layoutX="228.0" layoutY="146.0" prefHeight="307.0" prefWidth="200.0" />
+      <Label layoutX="228.0" layoutY="108.0" text="Carrinho">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="228.0" layoutY="451.0" mnemonicParsing="false" onAction="#btRemoveProductActionHandler" prefHeight="26.0" prefWidth="200.0" text="Remover" />
+      <Label layoutX="528.0" layoutY="422.0" text="Desconto" />
+      <TextField fx:id="tfDesconto" layoutX="614.0" layoutY="417.0" onAction="#tfDescontoActionHandler" />
+      <Label layoutX="487.0" layoutY="299.0" text="Transportadora" />
+      <ComboBox fx:id="cbTransp" layoutX="612.0" layoutY="294.0" prefHeight="26.0" prefWidth="171.0" />
+      <Label layoutX="445.0" layoutY="264.0" text="Forma de Pagamento" />
+      <ComboBox fx:id="cbPgmto" layoutX="612.0" layoutY="259.0" prefHeight="26.0" prefWidth="171.0" />
+      <Label layoutX="557.0" layoutY="340.0" text="Frete" />
+      <TextField fx:id="tfFreight" disable="true" layoutX="612.0" layoutY="335.0" />
+   </children>
+</AnchorPane>

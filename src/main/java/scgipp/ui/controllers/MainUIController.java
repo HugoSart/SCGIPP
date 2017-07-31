@@ -71,6 +71,15 @@ public class MainUIController implements Initializable {
         menuButtonClicked((Button)event.getSource());
     }
 
+    public void btSellActionHandler(ActionEvent event) {
+        try {
+            openSellStage();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        menuButtonClicked((Button)event.getSource());
+    }
+
     public void btProductsActionHandler(ActionEvent event) {
         try {
             openProductsStage();
@@ -169,4 +178,13 @@ public class MainUIController implements Initializable {
         stage.setTitle("FORNECEDOR");
         stage.show();
     }
+
+    private void openSellStage() {
+        SellUIManager sellUIManager = new SellUIManager();
+        Stage stage = sellUIManager.newStage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("VENDA");
+        stage.show();
+    }
+
 }

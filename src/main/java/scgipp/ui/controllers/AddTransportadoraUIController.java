@@ -11,7 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import scgipp.service.Adress;
+import scgipp.service.Address;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.transportadora_management.Transportadora;
 import scgipp.service.transportadora_management.TransportadoraManager;
@@ -62,14 +62,14 @@ public class AddTransportadoraUIController implements Initializable{
             newTransp.setName(tfName.getText());
             newTransp.setDate(dpData.getValue());
             newTransp.setCpf(tfCPF.getText());
-            if (newTransp.getAdresses().get(0) != null) {
-                newTransp.getAdresses().get(0).setCountry(tfCountry.getText());
-                newTransp.getAdresses().get(0).setState(tfState.getText());
-                newTransp.getAdresses().get(0).setCity(tfCity.getText());
-                newTransp.getAdresses().get(0).setStreet(tfStreet.getText());
-                newTransp.getAdresses().get(0).setNumber(tfNumber.getText());
-                newTransp.getAdresses().get(0).setComp(tfComp.getText());
-                newTransp.getAdresses().get(0).setZip(tfZip.getText());
+            if (newTransp.getAddresses().get(0) != null) {
+                newTransp.getAddresses().get(0).setCountry(tfCountry.getText());
+                newTransp.getAddresses().get(0).setState(tfState.getText());
+                newTransp.getAddresses().get(0).setCity(tfCity.getText());
+                newTransp.getAddresses().get(0).setStreet(tfStreet.getText());
+                newTransp.getAddresses().get(0).setNumber(tfNumber.getText());
+                newTransp.getAddresses().get(0).setComp(tfComp.getText());
+                newTransp.getAddresses().get(0).setZip(tfZip.getText());
             }
             manager.update(newTransp);
             return;
@@ -81,13 +81,13 @@ public class AddTransportadoraUIController implements Initializable{
         Type type = cbType.getSelectionModel().getSelectedItem();
 
         LocalDate date = dpData.getValue();
-        Adress adress = new Adress(country, state, city, street, number, comp, zip);
+        Address address = new Address(country, state, city, street, number, comp, zip);
 
         Transportadora transpAlvo = new Transportadora(cpf, name, date, null, null);
-        transpAlvo.addAdress(adress);
+        transpAlvo.addAdress(address);
         transpAlvo.addPhone(phone);
         TransportadoraManager transpManager = new TransportadoraManager();
-        transpManager.register(cpf, name, date, phone, adress);
+        transpManager.register(cpf, name, date, phone, address);
 
                 ((Node)event.getSource()).getScene().getWindow().hide();
     }
@@ -104,13 +104,13 @@ public class AddTransportadoraUIController implements Initializable{
                 tfName.setText(newTransp.getName());
             tfCPF.setText(newTransp.getCpf());
             tfPhone.setText(newTransp.getPhones().get(0));
-            tfCountry.setText(newTransp.getAdresses().get(0).getCountry());
-            tfState.setText(newTransp.getAdresses().get(0).getState());
-            tfCity.setText(newTransp.getAdresses().get(0).getCity());
-            tfStreet.setText(newTransp.getAdresses().get(0).getStreet());
-            tfNumber.setText(newTransp.getAdresses().get(0).getNumber());
-            tfComp.setText(newTransp.getAdresses().get(0).getComp());
-            tfZip.setText(newTransp.getAdresses().get(0).getZip());
+            tfCountry.setText(newTransp.getAddresses().get(0).getCountry());
+            tfState.setText(newTransp.getAddresses().get(0).getState());
+            tfCity.setText(newTransp.getAddresses().get(0).getCity());
+            tfStreet.setText(newTransp.getAddresses().get(0).getStreet());
+            tfNumber.setText(newTransp.getAddresses().get(0).getNumber());
+            tfComp.setText(newTransp.getAddresses().get(0).getComp());
+            tfZip.setText(newTransp.getAddresses().get(0).getZip());
         }
     }
 
@@ -122,7 +122,7 @@ public class AddTransportadoraUIController implements Initializable{
         Type type = cbType.getSelectionModel().getSelectedItem();
 
         LocalDate date = dpData.getValue();
-        Adress adress = new Adress(country, state, city, street, number, comp, zip);
+        Address address = new Address(country, state, city, street, number, comp, zip);
 
         TransportadoraManager transpManager = new TransportadoraManager();
 
@@ -130,7 +130,7 @@ public class AddTransportadoraUIController implements Initializable{
             newTransp.setCpf(cpf);
             newTransp.setDate(date);
             newTransp.setName(name);
-            newTransp.addAdress(adress);
+            newTransp.addAdress(address);
             newTransp.addPhone(phone);
             newTransp.setType(type);
             transpManager.update(newTransp);
@@ -138,7 +138,7 @@ public class AddTransportadoraUIController implements Initializable{
             return;
         }
 
-       transpManager.register(cpf, name, date, phone, adress);;
+       transpManager.register(cpf, name, date, phone, address);;
 
         hide();
     }

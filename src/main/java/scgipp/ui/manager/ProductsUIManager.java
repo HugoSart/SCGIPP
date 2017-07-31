@@ -24,4 +24,5 @@ public class ProductsUIManager extends UIManager {
     protected void configStage(Stage stage) {
 
     }
+
 }

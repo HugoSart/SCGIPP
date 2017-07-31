@@ -23,7 +23,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="CENTER" contentDisplay="TOP" disable="true" mnemonicParsing="false" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Venda" HBox.hgrow="ALWAYS">
+            <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSellActionHandler" prefHeight="85.0" prefWidth="150.0" styleClass="hbox-menu-button" text="Venda" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>

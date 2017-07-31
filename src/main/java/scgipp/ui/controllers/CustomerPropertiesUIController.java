@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import scgipp.service.Adress;
+import scgipp.service.Address;
 import scgipp.service.Person;
 import scgipp.service.customer_management.Customer;
 import scgipp.ui.manager.AddCustomerUIManager;
@@ -60,7 +60,7 @@ public class CustomerPropertiesUIController implements Initializable {
         lbDate.setText(customer.getDate().toString());
 
          lbPhone.setText(customer.getPhones().get(0));
-        Adress address = customer.getAdresses().get(0);
+        Address address = customer.getAddresses().get(0);
 
         lbCountry.setText(address.getCountry());
         lbState.setText(address.getState());

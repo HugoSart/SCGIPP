@@ -1153,7 +1153,7 @@
     -fx-background-color: BLACK;
 }
 .label {
-    -fx-text-fill: WHITE;
+    -fx-text-fill: BLACK;
 }
 
 .table-view {

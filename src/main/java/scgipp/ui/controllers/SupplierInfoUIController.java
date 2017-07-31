@@ -7,24 +7,13 @@ import javafx.scene.Node;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.Pane;
-import scgipp.service.Adress;
+import scgipp.service.Address;
 import scgipp.service.supplier_management.Supplier;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.TreeCell;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import scgipp.service.Adress;
-import scgipp.service.transportadora_management.Transportadora;
 
 /**
  * Created by kira on 08/06/17.
@@ -52,7 +41,7 @@ public class SupplierInfoUIController implements Initializable {
     private void initTreeOptions() {
         TreeItem<String> root = new TreeItem<>(sup.getName());
         TreeItem<String> endereco = new TreeItem<>("Endereco");
-        for (Adress a : sup.getAdresses()) {
+        for (Address a : sup.getAddresses()) {
             TreeItem<String> i = new TreeItem<>(a.getCity());
             endereco.getChildren().add(i);
         }

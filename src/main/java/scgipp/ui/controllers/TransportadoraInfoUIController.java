@@ -5,18 +5,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.TreeCell;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import scgipp.service.Adress;
+import scgipp.service.Address;
 import scgipp.service.transportadora_management.Transportadora;
-import scgipp.service.user_management.Permissions;
-import scgipp.service.user_management.User;
-import scgipp.ui.manager.UserPermissionsUIManager;
-import scgipp.ui.manager.UserPropertiesUIManager;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -50,7 +44,7 @@ public class TransportadoraInfoUIController implements Initializable {
     private void initTreeOptions() {
         TreeItem<String> root = new TreeItem<>(transp.getName());
         TreeItem<String> endereco = new TreeItem<>("Endereco");
-        for (Adress a : transp.getAdresses()) {
+        for (Address a : transp.getAddresses()) {
             TreeItem<String> i = new TreeItem<>(a.getCity());
             endereco.getChildren().add(i);
         }

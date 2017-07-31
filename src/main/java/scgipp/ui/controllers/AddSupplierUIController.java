@@ -11,12 +11,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import scgipp.service.Adress;
+import scgipp.service.Address;
 import scgipp.service.Person;
-import scgipp.service.customer_management.Customer;
 import scgipp.service.supplier_management.Supplier;
 import scgipp.service.supplier_management.SupplierManager;
-import static scgipp.service.Person.*;
 
 
 import java.net.URL;
@@ -63,14 +61,14 @@ public class AddSupplierUIController implements Initializable{
             newSupplier.setName(tfName.getText());
             newSupplier.setDate(dpData.getValue());
             newSupplier.setCpf(tfCPF.getText());
-            if (newSupplier.getAdresses().get(0) != null) {
-                newSupplier.getAdresses().get(0).setCountry(tfCountry.getText());
-                newSupplier.getAdresses().get(0).setState(tfState.getText());
-                newSupplier.getAdresses().get(0).setCity(tfCity.getText());
-                newSupplier.getAdresses().get(0).setStreet(tfStreet.getText());
-                newSupplier.getAdresses().get(0).setNumber(tfNumber.getText());
-                newSupplier.getAdresses().get(0).setComp(tfComp.getText());
-                newSupplier.getAdresses().get(0).setZip(tfZip.getText());
+            if (newSupplier.getAddresses().get(0) != null) {
+                newSupplier.getAddresses().get(0).setCountry(tfCountry.getText());
+                newSupplier.getAddresses().get(0).setState(tfState.getText());
+                newSupplier.getAddresses().get(0).setCity(tfCity.getText());
+                newSupplier.getAddresses().get(0).setStreet(tfStreet.getText());
+                newSupplier.getAddresses().get(0).setNumber(tfNumber.getText());
+                newSupplier.getAddresses().get(0).setComp(tfComp.getText());
+                newSupplier.getAddresses().get(0).setZip(tfZip.getText());
             }
             manager.register(newSupplier);
             return;
@@ -82,10 +80,10 @@ public class AddSupplierUIController implements Initializable{
         Person.Type type = cbType.getSelectionModel().getSelectedItem();
 
         LocalDate date = dpData.getValue();
-        Adress adress = new Adress(country, state, city, street, number, comp, zip);
+        Address address = new Address(country, state, city, street, number, comp, zip);
 
         Supplier supAlvo = new Supplier(type, name, cpf, date);
-        supAlvo.addAdress(adress);
+        supAlvo.addAdress(address);
         supAlvo.addPhone(phone);
         SupplierManager supManager = new SupplierManager();
         supManager.register(supAlvo);
@@ -102,12 +100,12 @@ public class AddSupplierUIController implements Initializable{
         tfName.setText(newSupplier.getName());
         tfCPF.setText(newSupplier.getCpf());
         tfPhone.setText(newSupplier.getPhones().get(0));
-        tfCountry.setText(newSupplier.getAdresses().get(0).getCountry());
-        tfState.setText(newSupplier.getAdresses().get(0).getState());
-        tfCity.setText(newSupplier.getAdresses().get(0).getCity());
-        tfStreet.setText(newSupplier.getAdresses().get(0).getStreet());
-        tfNumber.setText(newSupplier.getAdresses().get(0).getNumber());
-        tfComp.setText(newSupplier.getAdresses().get(0).getComp());
-        tfZip.setText(newSupplier.getAdresses().get(0).getZip());
+        tfCountry.setText(newSupplier.getAddresses().get(0).getCountry());
+        tfState.setText(newSupplier.getAddresses().get(0).getState());
+        tfCity.setText(newSupplier.getAddresses().get(0).getCity());
+        tfStreet.setText(newSupplier.getAddresses().get(0).getStreet());
+        tfNumber.setText(newSupplier.getAddresses().get(0).getNumber());
+        tfComp.setText(newSupplier.getAddresses().get(0).getComp());
+        tfZip.setText(newSupplier.getAddresses().get(0).getZip());
     }
 }

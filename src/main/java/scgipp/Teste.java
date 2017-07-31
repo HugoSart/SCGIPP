@@ -2,12 +2,9 @@ package scgipp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import scgipp.service.Adress;
-import scgipp.service.Person;
-import scgipp.service.customer_management.Customer;
+import scgipp.service.Address;
 import scgipp.service.transportadora_management.TransportadoraManager;
 import scgipp.service.user_management.Permissions;
-import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
 import scgipp.ui.manager.LoginUIManager;
 
@@ -20,7 +17,7 @@ public class Teste extends Application {
         UserManager criar = new UserManager();
         criar.register("admin", "admin", Permissions.UserType.ADM);
         TransportadoraManager transpM = new TransportadoraManager();
-        Adress ad = new Adress("Maringa", "Braisl" ,"Parana", null, null, null,"null");
+        Address ad = new Address("Maringa", "Braisl" ,"Parana", null, null, null,"null");
         transpM.register("123312", "ROLE", LocalDate.now(), "aeuhaeu",ad );
         launch(args);
     }

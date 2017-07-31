@@ -11,10 +11,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import scgipp.service.Adress;
+import scgipp.service.Address;
 import scgipp.service.customer_management.Customer;
 import scgipp.service.customer_management.CustomerManager;
-import sun.plugin.javascript.navig.Anchor;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -60,14 +59,14 @@ public class AddCustomerUIController implements Initializable {
             customer.setName(tfName.getText());
             customer.setDate(dpData.getValue());
             customer.setCpf(tfCPF.getText());
-            if (customer.getAdresses().get(0) != null) {
-                customer.getAdresses().get(0).setCountry(tfCountry.getText());
-                customer.getAdresses().get(0).setState(tfState.getText());
-                customer.getAdresses().get(0).setCity(tfCity.getText());
-                customer.getAdresses().get(0).setStreet(tfStreet.getText());
-                customer.getAdresses().get(0).setNumber(tfNumber.getText());
-                customer.getAdresses().get(0).setComp(tfComp.getText());
-                customer.getAdresses().get(0).setZip(tfZip.getText());
+            if (customer.getAddresses().get(0) != null) {
+                customer.getAddresses().get(0).setCountry(tfCountry.getText());
+                customer.getAddresses().get(0).setState(tfState.getText());
+                customer.getAddresses().get(0).setCity(tfCity.getText());
+                customer.getAddresses().get(0).setStreet(tfStreet.getText());
+                customer.getAddresses().get(0).setNumber(tfNumber.getText());
+                customer.getAddresses().get(0).setComp(tfComp.getText());
+                customer.getAddresses().get(0).setZip(tfZip.getText());
             }
             manager.update(customer);
             return;
@@ -79,10 +78,10 @@ public class AddCustomerUIController implements Initializable {
         Customer.Type type = cbType.getSelectionModel().getSelectedItem();
 
         LocalDate date = dpData.getValue();
-        Adress adress = new Adress(country, state, city, street, number, comp, zip);
+        Address address = new Address(country, state, city, street, number, comp, zip);
 
         Customer customer = new Customer(type, name, cpf, date);
-        customer.addAdress(adress);
+        customer.addAdress(address);
         customer.addPhone(phone);
         CustomerManager customerManager = new CustomerManager();
         customerManager.register(customer);
@@ -103,13 +102,13 @@ public class AddCustomerUIController implements Initializable {
         tfName.setText(customer.getName());
         tfCPF.setText(customer.getCpf());
         tfPhone.setText(customer.getPhones().get(0));
-        tfCountry.setText(customer.getAdresses().get(0).getCountry());
-        tfState.setText(customer.getAdresses().get(0).getState());
-        tfCity.setText(customer.getAdresses().get(0).getCity());
-        tfStreet.setText(customer.getAdresses().get(0).getStreet());
-        tfNumber.setText(customer.getAdresses().get(0).getNumber());
-        tfComp.setText(customer.getAdresses().get(0).getComp());
-        tfZip.setText(customer.getAdresses().get(0).getZip());
+        tfCountry.setText(customer.getAddresses().get(0).getCountry());
+        tfState.setText(customer.getAddresses().get(0).getState());
+        tfCity.setText(customer.getAddresses().get(0).getCity());
+        tfStreet.setText(customer.getAddresses().get(0).getStreet());
+        tfNumber.setText(customer.getAddresses().get(0).getNumber());
+        tfComp.setText(customer.getAddresses().get(0).getComp());
+        tfZip.setText(customer.getAddresses().get(0).getZip());
     }
 
 }
