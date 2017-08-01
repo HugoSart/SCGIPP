@@ -24,5 +24,8 @@
         <mapping class="scgipp.service.transportadora_management.Transportadora"/>
         <mapping class="scgipp.service.product_management.Product"/>
         <mapping class="scgipp.service.Person"/>
+        <mapping class="scgipp.service.sale_management.SaleBudget"/>
+        <mapping class="scgipp.service.sale_management.Sale"/>
+
     </session-factory>
 </hibernate-configuration>

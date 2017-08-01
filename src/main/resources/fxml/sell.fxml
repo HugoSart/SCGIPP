@@ -7,14 +7,16 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.PerspectiveTransform?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="504.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.SellUIController">
+<AnchorPane prefHeight="504.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.SaleUIController">
    <children>
       <HBox fx:id="menuButtons" alignment="TOP_CENTER" focusTraversable="true" prefHeight="86.0" prefWidth="1147.0" style="-fx-background-color: ;" styleClass="hbox-menu">
          <children>
@@ -27,7 +29,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button fx:id="btSell" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSellActionHandler" prefHeight="85.0" prefWidth="204.0" styleClass="hbox-menu-button" text="Concretizar Venda" HBox.hgrow="ALWAYS">
+            <Button fx:id="btSell" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="204.0" styleClass="hbox-menu-button" text="Concretizar Venda" HBox.hgrow="ALWAYS">
                <graphic>
                   <ImageView>
                      <image>
@@ -64,11 +66,11 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Label layoutX="514.0" layoutY="381.0" text="Preco Bruto" />
+      <Label layoutX="438.0" layoutY="334.0" text="Preco Bruto" />
       <Button fx:id="btAdd" layoutX="14.0" layoutY="451.0" mnemonicParsing="false" onAction="#btAddProductActionHandler" prefHeight="26.0" prefWidth="200.0" text="Adicionar" />
-      <TextField fx:id="tfTotal" disable="true" layoutX="614.0" layoutY="376.0" />
-      <Label layoutX="516.0" layoutY="456.0" text="Preco Total" />
-      <TextField fx:id="tfTotalDesconto" disable="true" layoutX="614.0" layoutY="451.0" />
+      <TextField fx:id="tfTotal" disable="true" layoutX="522.0" layoutY="329.0" prefHeight="26.0" prefWidth="103.0" />
+      <Label layoutX="440.0" layoutY="408.0" text="Preco Total" />
+      <TextField fx:id="tfTotalDesconto" disable="true" layoutX="522.0" layoutY="403.0" prefHeight="26.0" prefWidth="103.0" />
       <ListView fx:id="productList" layoutX="228.0" layoutY="146.0" prefHeight="307.0" prefWidth="200.0" />
       <Label layoutX="228.0" layoutY="108.0" text="Carrinho">
          <font>
@@ -76,13 +78,29 @@
          </font>
       </Label>
       <Button layoutX="228.0" layoutY="451.0" mnemonicParsing="false" onAction="#btRemoveProductActionHandler" prefHeight="26.0" prefWidth="200.0" text="Remover" />
-      <Label layoutX="528.0" layoutY="422.0" text="Desconto" />
-      <TextField fx:id="tfDesconto" layoutX="614.0" layoutY="417.0" onAction="#tfDescontoActionHandler" />
-      <Label layoutX="487.0" layoutY="299.0" text="Transportadora" />
-      <ComboBox fx:id="cbTransp" layoutX="612.0" layoutY="294.0" prefHeight="26.0" prefWidth="171.0" />
-      <Label layoutX="445.0" layoutY="264.0" text="Forma de Pagamento" />
-      <ComboBox fx:id="cbPgmto" layoutX="612.0" layoutY="259.0" prefHeight="26.0" prefWidth="171.0" />
-      <Label layoutX="557.0" layoutY="340.0" text="Frete" />
-      <TextField fx:id="tfFreight" disable="true" layoutX="612.0" layoutY="335.0" />
+      <Label layoutX="438.0" layoutY="371.0" text="Desconto" />
+      <TextField fx:id="tfDesconto" layoutX="522.0" layoutY="366.0" onAction="#tfDescontoActionHandler" prefHeight="26.0" prefWidth="103.0" />
+      <ComboBox fx:id="cbTransp" layoutX="437.0" layoutY="146.0" prefHeight="26.0" prefWidth="189.0" promptText="Transportadora" />
+      <ComboBox fx:id="cbPgmto" layoutX="437.0" layoutY="294.0" prefHeight="26.0" prefWidth="189.0" promptText="Forma de Pagamento" />
+      <Label layoutX="437.0" layoutY="220.0" text="Frete" />
+      <TextField fx:id="tfFreight" disable="true" layoutX="488.0" layoutY="215.0" prefHeight="26.0" prefWidth="138.0" />
+      <TextField fx:id="tfCEP" layoutX="488.0" layoutY="179.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Label layoutX="437.0" layoutY="184.0" text="CEP" />
+      <Label layoutX="437.0" layoutY="108.0" text="Informacoes">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="437.0" layoutY="252.0" text="Precos">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="437.0" layoutY="447.0" mnemonicParsing="false" onAction="#btSaveActionHandler" prefHeight="30.0" prefWidth="189.0" text="Salvar" />
+      <Line endX="100.0" layoutX="773.0" layoutY="294.0" startX="-100.0">
+         <effect>
+            <PerspectiveTransform llx="10.0" lly="10.0" lrx="10.0" lry="10.0" />
+         </effect>
+      </Line>
    </children>
 </AnchorPane>

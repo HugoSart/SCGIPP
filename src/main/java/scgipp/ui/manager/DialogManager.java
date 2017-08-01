@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
+import scgipp.service.sale_management.SaleBudget;
 import scgipp.service.user_management.User;
 import scgipp.service.user_management.UserManager;
 
@@ -18,6 +19,20 @@ import java.util.Optional;
  * Created by hugo_ on 03/06/2017.
  */
 public class DialogManager {
+
+    public static boolean askBudgetName(SaleBudget saleBudget) {
+
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Orçamento");
+        dialog.setHeaderText("Salvar Orçamento");
+        dialog.setContentText("Insira o indentificador deste orçamento:");
+
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(name -> saleBudget.name = name);
+
+        return result.isPresent();
+
+    }
 
     public static void changePassword(User user) {
         // Create the custom dialog.

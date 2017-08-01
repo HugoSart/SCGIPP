@@ -179,6 +179,10 @@ public class Product {
         return buyable;
     }
 
+    public String toString() {
+        return getName();
+    }
+
     public SimpleIntegerProperty idProperty() {
         return new SimpleIntegerProperty(id);
     }
