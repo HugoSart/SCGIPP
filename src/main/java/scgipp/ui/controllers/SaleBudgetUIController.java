@@ -11,6 +11,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scgipp.service.product_management.Product;
@@ -29,6 +30,8 @@ import java.util.ResourceBundle;
 public class SaleBudgetUIController implements Initializable {
 
     @FXML private TextField tfSearch;
+
+    @FXML private AnchorPane mainPane;
 
     @FXML private TableView<SaleBudget> tvProducts;
     @FXML private TableColumn<SaleBudget, Integer> tcId;
@@ -49,16 +52,6 @@ public class SaleBudgetUIController implements Initializable {
         tcProducts.setCellValueFactory(new PropertyValueFactory<>("products"));
 
         tvProducts.setItems(observableList);
-
-        tvProducts.setRowFactory( tv -> {
-            TableRow<SaleBudget> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
-
-                }
-            });
-            return row ;
-        });
 
     }
 

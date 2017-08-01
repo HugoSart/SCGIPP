@@ -121,6 +121,10 @@ public abstract class Person {
         this.date = date;
     }
 
+    public String toString() {
+        return getName();
+    }
+
     public SimpleIntegerProperty idProperty() {
         return new SimpleIntegerProperty(id);
     }

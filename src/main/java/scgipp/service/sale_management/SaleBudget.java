@@ -25,7 +25,7 @@ public class SaleBudget {
     @OneToOne
     public Transportadora trasporter;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Product> products;
 
     public String zip = null;

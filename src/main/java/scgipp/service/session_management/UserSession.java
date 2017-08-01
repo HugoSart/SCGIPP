@@ -27,6 +27,7 @@ public class UserSession {
     }
 
     public static UserSession open(String login, String password) throws AuthenticationException {
+
         UserManager userManager = new UserManager();
         User user = userManager.authenticate(login, password);
 

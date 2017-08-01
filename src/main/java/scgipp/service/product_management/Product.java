@@ -41,7 +41,6 @@ public class Product {
     @Column
     private int amount;
 
-    @Column(unique = true)
     private String name;
 
     @Column
@@ -76,6 +75,10 @@ public class Product {
     }
 
     public Product(){}
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     /**
          * Metodo para retornar id do produto

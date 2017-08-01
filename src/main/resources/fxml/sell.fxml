@@ -16,29 +16,31 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="504.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.SaleUIController">
+<AnchorPane fx:id="mainPane" prefHeight="504.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="scgipp.ui.controllers.SaleUIController">
    <children>
-      <HBox fx:id="menuButtons" alignment="TOP_CENTER" focusTraversable="true" prefHeight="86.0" prefWidth="1147.0" style="-fx-background-color: ;" styleClass="hbox-menu">
+      <HBox fx:id="menuButtons" alignment="TOP_CENTER" focusTraversable="true" prefHeight="86.0" prefWidth="874.0" style="-fx-background-color: ;" styleClass="hbox-menu">
          <children>
-            <Button fx:id="btSellBudget" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSellBudgetActionHandler" prefHeight="85.0" prefWidth="196.0" styleClass="hbox-menu-button" text="Buscar Orcamento" HBox.hgrow="ALWAYS">
-               <graphic>
-                  <ImageView>
-                     <image>
-                        <Image url="@../img/package_36dp.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button fx:id="btSell" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="85.0" prefWidth="204.0" styleClass="hbox-menu-button" text="Concretizar Venda" HBox.hgrow="ALWAYS">
-               <graphic>
-                  <ImageView>
-                     <image>
-                        <Image url="@../img/cart_36.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <HBox fx:id="hbox" prefHeight="86.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <HBox fx:id="hbox" prefHeight="86.0" prefWidth="826.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="btSales" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSalesActionHandler" prefHeight="85.0" prefWidth="202.0" styleClass="hbox-menu-button" text="Estatus de Vendas">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../img/package_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btSellBudget" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#btSellBudgetActionHandler" prefHeight="85.0" prefWidth="206.0" styleClass="hbox-menu-button" text="Ver Orcamentos" HBox.hgrow="ALWAYS">
+                     <graphic>
+                        <ImageView>
+                           <image>
+                              <Image url="@../img/package_36dp.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children></HBox>
             <VBox prefHeight="85.0" prefWidth="68.0">
                <children>
                   <Button alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" onAction="#btExitActionHandler" prefHeight="85.0" prefWidth="127.0" styleClass="hbox-menu-button" text="btExit" textAlignment="CENTER">
@@ -80,18 +82,13 @@
       <Button layoutX="228.0" layoutY="451.0" mnemonicParsing="false" onAction="#btRemoveProductActionHandler" prefHeight="26.0" prefWidth="200.0" text="Remover" />
       <Label layoutX="438.0" layoutY="371.0" text="Desconto" />
       <TextField fx:id="tfDesconto" layoutX="522.0" layoutY="366.0" onAction="#tfDescontoActionHandler" prefHeight="26.0" prefWidth="103.0" />
-      <ComboBox fx:id="cbTransp" layoutX="437.0" layoutY="146.0" prefHeight="26.0" prefWidth="189.0" promptText="Transportadora" />
+      <ComboBox fx:id="cbTransp" layoutX="437.0" layoutY="183.0" onAction="#cbTranspActionHandler" prefHeight="26.0" prefWidth="189.0" promptText="Transportadora" />
       <ComboBox fx:id="cbPgmto" layoutX="437.0" layoutY="294.0" prefHeight="26.0" prefWidth="189.0" promptText="Forma de Pagamento" />
-      <Label layoutX="437.0" layoutY="220.0" text="Frete" />
-      <TextField fx:id="tfFreight" disable="true" layoutX="488.0" layoutY="215.0" prefHeight="26.0" prefWidth="138.0" />
-      <TextField fx:id="tfCEP" layoutX="488.0" layoutY="179.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
-      <Label layoutX="437.0" layoutY="184.0" text="CEP" />
+      <Label layoutX="437.0" layoutY="257.0" text="Frete" />
+      <TextField fx:id="tfFreight" disable="true" layoutX="488.0" layoutY="252.0" prefHeight="26.0" prefWidth="138.0" />
+      <TextField fx:id="tfCEP" layoutX="488.0" layoutY="216.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Label layoutX="437.0" layoutY="221.0" text="CEP" />
       <Label layoutX="437.0" layoutY="108.0" text="Informacoes">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="437.0" layoutY="252.0" text="Precos">
          <font>
             <Font size="24.0" />
          </font>
@@ -102,5 +99,35 @@
             <PerspectiveTransform llx="10.0" lly="10.0" lrx="10.0" lry="10.0" />
          </effect>
       </Line>
+      <Label layoutX="640.0" layoutY="108.0" text="Cliente">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="cbBudget" layoutX="437.0" layoutY="146.0" onAction="#cbBudgetActionHandler" prefHeight="26.0" prefWidth="189.0" promptText="Orcamento" />
+      <ComboBox fx:id="cbCustomer" layoutX="640.0" layoutY="146.0" onAction="#cbCustomerActionHandler" prefHeight="26.0" prefWidth="201.0" promptText="Cliente" />
+      <Label layoutX="640.0" layoutY="188.0" text="Pais" />
+      <TextField fx:id="tfCountry" layoutX="702.0" layoutY="183.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Label layoutX="640.0" layoutY="257.0" text="Cidade" />
+      <TextField fx:id="tfState" layoutX="702.0" layoutY="216.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <TextField fx:id="tfCity" layoutX="702.0" layoutY="252.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Label layoutX="640.0" layoutY="221.0" text="Estado" />
+      <Label layoutX="640.0" layoutY="292.0" text="Rua" />
+      <TextField fx:id="tfStreet" layoutX="702.0" layoutY="287.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Label layoutX="641.0" layoutY="326.0" text="Numero" />
+      <TextField fx:id="tfNumber" layoutX="703.0" layoutY="321.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Label layoutX="641.0" layoutY="358.0" text="Comp." />
+      <TextField fx:id="tfComp" layoutX="703.0" layoutY="353.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Label layoutX="641.0" layoutY="395.0" text="CEP" />
+      <TextField fx:id="tfZip" layoutX="703.0" layoutY="390.0" onInputMethodTextChanged="#tfCEPTextChangedHandler" prefHeight="26.0" prefWidth="138.0" />
+      <Button fx:id="btSell1" alignment="CENTER" contentDisplay="TOP" layoutX="640.0" layoutY="426.0" mnemonicParsing="false" onAction="#btSaleActionHandler" prefHeight="54.0" prefWidth="200.0" styleClass="hbox-menu-button" text="Concretizar Venda">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0">
+               <image>
+                  <Image url="@../img/cart_36.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

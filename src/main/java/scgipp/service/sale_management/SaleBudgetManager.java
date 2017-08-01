@@ -1,6 +1,7 @@
 package scgipp.service.sale_management;
 
 import scgipp.data.hibernate.dao.SaleBudgetDAO;
+import scgipp.data.hibernate.dao.SaleDAO;
 
 import java.util.List;
 
