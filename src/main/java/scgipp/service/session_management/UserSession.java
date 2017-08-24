@@ -1,10 +1,7 @@
-package scgipp.service.session_management;
+/*package scgipp.service.session_management;
 
-import scgipp.data.encryption.Encryptor;
 import scgipp.service.user_management.Permissions;
 import scgipp.service.user_management.User;
-import scgipp.service.user_management.UserManager;
-import scgipp.system.log.Log;
 
 import javax.security.sasl.AuthenticationException;
 import java.util.Calendar;
@@ -52,4 +49,4 @@ public class UserSession {
         instance = null;
     }
 
-}
+}*/

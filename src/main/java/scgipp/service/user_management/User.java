@@ -2,24 +2,19 @@ package scgipp.service.user_management;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import org.hibernate.Session;
-import org.hibernate.annotations.Type;
-import org.hibernate.type.descriptor.sql.VarcharTypeDescriptor;
-import org.jetbrains.annotations.Contract;
-import scgipp.data.encryption.Encryptor;
+import scgipp.data.Entity;
 
-import javax.naming.AuthenticationException;
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  * Created by hsart on 13/05/17.
  */
-@Entity
-public class User {
 
-    @Id @GeneratedValue
-    private Integer id;
+@javax.persistence.Entity
+public class User extends Entity {
 
     @Column(unique = true)
     private String login;
@@ -50,7 +45,7 @@ public class User {
         setPassword(password);
     }
 
-    void setId(Integer id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
