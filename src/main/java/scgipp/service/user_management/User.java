@@ -2,12 +2,10 @@ package scgipp.service.user_management;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import scgipp.data.Entity;
+import scgipp.data.hibernate.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 /**
  * Created by hsart on 13/05/17.

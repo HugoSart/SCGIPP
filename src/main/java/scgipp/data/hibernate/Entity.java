@@ -1,4 +1,4 @@
-package scgipp.data;
+package scgipp.data.hibernate;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

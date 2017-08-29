@@ -1,3 +1,75 @@
+/* =================== COLOR PALLETE ================== */
+{
+    dark-primary-color:     #303F9F;
+    default-primary-color:  #3F51B5;
+    light-primary-color:    #C5CAE9;
+    text-primary-color:     #FFFFFF;
+    accent-color:           #448AFF;
+    primary-text-color:     #212121;
+    secondary-text-color:   #757575;
+    divider-color:          #BDBDBD;
+}
+
+/* ==================== TEXT FIELD ==================== */
+
+.text-field {
+    -fx-background-radius: 0;
+    -fx-background-color: rgba(255,255,255,0.1);
+    -fx-border-width: 1;
+    -fx-border-color: rgba(255,255,255,0.3);
+    -fx-text-fill: white;
+}
+
+.button {
+    -fx-background-radius: 0;
+    -fx-background-color: accent-color;
+    -fx-text-fill: white;
+}
+
+/* ==================== TAB PANE  ==================== */
+
+.tab-pane {
+    -fx-tab-min-width:  0;
+    -fx-tab-min-height: 210;
+    -fx-tab-max-height: 210;
+}
+
+.tab {
+    -fx-background-color: default-primary-color;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+.tab-pane .tab {
+    -fx-background-color: default-primary-color;
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: rgba(0,0,0,0.2);
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: accent-color;
+}
+
+.tab-header-background {
+    -fx-background-color: default-primary-color;
+}
+
+.tab .tab-label {
+    -fx-rotate: 90;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab-label {
+    -fx-content-display: top;
+}
+
+.tab .image-view {
+    -fx-rotate: 0;
+}
+
 .menu-button {
     -fx-background-repeat: no-repeat;
     -fx-background-size: stretch;
@@ -5,3 +77,33 @@
     -fx-pref-height: 64;
     -fx-background-color: transparent;
 }
+
+.image-button {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.image-button:hover {
+    -fx-background-color: rgba(0,0,0,0.1);
+}
+
+.image-button:pressed {
+    -fx-background-color: rgba(0,0,0,0.2);
+}
+
+.image-button-close {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.image-button-close:hover {
+    -fx-background-color: #E81123;
+}
+
+.image-button-close:pressed {
+    -fx-background-color: #FF9B8E;
+}
+
+

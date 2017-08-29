@@ -17,11 +17,7 @@ import java.util.List;
  * Ao inves de utilizar a tabela Person
  */
 @MappedSuperclass
-public abstract class Person {
-
-    @Id
-    @GeneratedValue
-    private Integer id;
+public abstract class Person extends scgipp.data.hibernate.Entity {
 
     @Column(nullable = false)
     private Type type;
@@ -63,14 +59,6 @@ public abstract class Person {
         this.name = name;
         this.cpf = cpf;
         this.date = date;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Type getType() {

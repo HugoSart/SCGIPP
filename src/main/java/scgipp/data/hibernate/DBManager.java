@@ -3,9 +3,7 @@ package scgipp.data.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import scgipp.data.Entity;
 import scgipp.service.user_management.User;
-import scgipp.system.log.Log;
 
 import java.util.ArrayList;
 import java.util.List;
