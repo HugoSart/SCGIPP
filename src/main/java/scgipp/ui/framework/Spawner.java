@@ -24,8 +24,8 @@ public class Spawner {
             Parent root = fxmlLoader.load();
 
             Scene scene = new Scene(root);
-            activity.configScene(scene);
-            activity.configStage(stage);
+            stage.setScene(scene);
+            activity.create(stage);
             stage.show();
 
         } catch(IOException e) {

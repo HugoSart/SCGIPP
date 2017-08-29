@@ -24,29 +24,30 @@ public abstract class Activity {
     public Activity(Activity parent, String fxmlPath) {
         this.parent = parent;
         this.fxmlPath = fxmlPath;
-        create();
     }
 
 
     // ============ LIFE CYCLE METHODS ================= //
 
-    final void create() {
-        onCreate();
+    final void create(Stage stage) {
+        onCreate(stage);
+        configStage(stage);
+    }
+
+    final void configStage(Stage stage) {
+        onConfigStage(stage);
+        configScene(stage.getScene());
     }
 
     final void configScene(Scene scene) {
         onConfigScene(scene);
     }
 
-    final void configStage(Stage stage) {
-        onConfigStage(stage);
-    }
-
 
 
     // ============= CUSTOMIZATION CYCLE METHODS ============= //
 
-    public void onCreate() {}
+    public void onCreate(Stage stage) {}
 
     public void onConfigScene(Scene scene) {}
 
