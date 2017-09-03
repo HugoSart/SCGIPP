@@ -1,7 +1,7 @@
 package scgipp.ui.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -9,8 +9,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.ui.framework.Activity;
 import scgipp.ui.framework.WidgetCustomizer;
-
-import java.awt.event.ActionEvent;
 
 /**
  * User: hugo_<br/>
@@ -21,9 +19,10 @@ public class LoginActivity extends Activity {
 
     @FXML private HBox menu;
     @FXML private Button exitButton;
+    @FXML private Button enterButton;
 
-    public LoginActivity(Activity parent) {
-        super(parent, "fxml/login.fxml");
+    public LoginActivity() {
+        super("fxml/login.fxml");
     }
 
     @Override
@@ -37,10 +36,11 @@ public class LoginActivity extends Activity {
         super.onConfigScene(scene);
         scene.getStylesheets().add("css/style.css");
         WidgetCustomizer.makeDraggable(menu);
-        WidgetCustomizer.makeKiller(exitButton);
     }
 
-
-
+    @FXML
+    public void exitButtonActionHandler(ActionEvent event) {
+        System.exit(0);
+    }
 
 }

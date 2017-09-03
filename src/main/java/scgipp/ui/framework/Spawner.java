@@ -4,7 +4,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 /**
@@ -14,7 +17,12 @@ import java.io.IOException;
  */
 public class Spawner {
 
-    public static void newWindow(Stage stage, Activity activity) {
+    public static void newWindow(@Nullable Stage stage, @NotNull Activity activity, @NotNull String id, @Nullable Activity parent) {
+
+        activity.id = id;
+        activity.parent = parent;
+
+        if (activity.parent != null) activity.getParent().children.put(activity.getId(), activity);
 
         try {
 
@@ -32,6 +40,18 @@ public class Spawner {
             e.printStackTrace();
         }
 
+    }
+
+    public static void newWindow(@Nullable Stage stage, @NotNull Activity activity, @Nullable Activity parent) {
+        newWindow(stage, activity, activity.toString(), parent);
+    }
+
+    public static void newWindow(@NotNull Activity activity, @NotNull String id, @Nullable Activity parent) {
+        newWindow(new Stage(), activity, id, parent);
+    }
+
+    public static void newWindow(@NotNull Activity activity, @Nullable Activity parent) {
+        newWindow(activity, activity.toString(), parent);
     }
 
 }

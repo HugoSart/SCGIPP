@@ -19,8 +19,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        LoginActivity loginActivity = new LoginActivity(null);
-        Spawner.newWindow(primaryStage, loginActivity);
+        LoginActivity loginActivity = new LoginActivity();
+        Spawner.newWindow(primaryStage, loginActivity, null);
 
     }
 }

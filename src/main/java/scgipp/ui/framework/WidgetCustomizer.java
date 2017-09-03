@@ -10,9 +10,11 @@ import javafx.scene.input.MouseEvent;
  * Date: 28/08/2017<br/>
  * Time: 22:34<br/>
  */
-public abstract class WidgetCustomizer {
+public class WidgetCustomizer {
 
     static class Delta { double x, y; }
+
+    private WidgetCustomizer() {}
 
     public static void makeDraggable(Node node) {
 
@@ -29,10 +31,22 @@ public abstract class WidgetCustomizer {
 
     }
 
-    public static void makeKiller(Node node) {
+    public static void makeMovable(Node node) {
+
+        final Delta dragDelta = new Delta();
         node.setOnMousePressed(mouseEvent -> {
-            System.exit(0);
+            // record a delta distance for the drag and drop operation.
+            dragDelta.x = node.getLayoutX() - mouseEvent.getSceneX();
+            dragDelta.y = node.getLayoutY() - mouseEvent.getSceneY();
+            node.setCursor(Cursor.MOVE);
         });
+        node.setOnMouseReleased(mouseEvent -> node.setCursor(Cursor.HAND));
+        node.setOnMouseDragged(mouseEvent -> {
+            node.setLayoutX(mouseEvent.getSceneX() + dragDelta.x);
+            node.setLayoutY(mouseEvent.getSceneY() + dragDelta.y);
+        });
+        node.setOnMouseEntered(mouseEvent -> node.setCursor(Cursor.HAND));
+
     }
 
 }
