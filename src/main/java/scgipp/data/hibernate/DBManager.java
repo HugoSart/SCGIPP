@@ -3,8 +3,12 @@ package scgipp.data.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.exception.ConstraintViolationException;
 import scgipp.service.entities.User;
+import scgipp.system.log.Log;
 
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +25,7 @@ public class DBManager {
 
     private HibernateUtil dbConnection;
 
-    HibernateUtil connection() {
+    public HibernateUtil connection() {
         return dbConnection;
     }
 
@@ -49,10 +53,11 @@ public class DBManager {
             id = (Integer)session.save(entity);
             transaction.commit();
         } catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+            standardExceptionCatch(e, transaction);
         } finally {
-            session.close();
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
 
         entity.setId(id);
@@ -66,16 +71,20 @@ public class DBManager {
     public void remove(final Integer id) {
 
         Transaction transaction = null;
+        Session session = null;
 
-        try (Session session = dbConnection.openSession()) {
+        try {
+            session = dbConnection.openSession();
             transaction = session.beginTransaction();
             Entity entity = session.get(User.class, id);
             session.delete(entity);
             transaction.commit();
-            session.close();
-        }catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+        } catch (HibernateException e) {
+            standardExceptionCatch(e, transaction);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
 
     }
@@ -95,10 +104,11 @@ public class DBManager {
             session.update(object);
             transaction.commit();
         } catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+            standardExceptionCatch(e, transaction);
         } finally {
-            session.close();
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
 
     }
@@ -120,10 +130,12 @@ public class DBManager {
             transaction = session.beginTransaction();
             object = session.get(clazz, id);
             transaction.commit();
-            session.close();
         } catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+            standardExceptionCatch(e, transaction);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
 
         return object;
@@ -138,21 +150,30 @@ public class DBManager {
      */
     public <T extends Entity> List<T> list(final Class<T> clazz) {
 
+        Session session = null;
+
         Transaction transaction = null;
         List<T> objects = new ArrayList<>();
 
-        try (Session session = dbConnection.openSession()) {
+        try {
+            session = dbConnection.openSession();
             transaction = session.beginTransaction();
             objects = session.createCriteria(clazz).list();
             transaction.commit();
-            session.close();
         } catch (HibernateException e) {
-            if (transaction != null) transaction.rollback();
-            e.printStackTrace();
+            standardExceptionCatch(e, transaction);
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
 
         return objects;
 
     }
 
+    private void standardExceptionCatch(HibernateException e, Transaction transaction) {
+        if (transaction != null) transaction.rollback();
+        //Log.show("EXCEPTION", e.getClass().getSimpleName(), e.getCause().getMessage());
+    }
 }

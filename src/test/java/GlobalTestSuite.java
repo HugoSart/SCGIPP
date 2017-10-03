@@ -1,7 +1,6 @@
-package crud;
-
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import test_cases.UserManagerTestCases;
 
 /**
  * User: hugo_<br/>
@@ -11,8 +10,8 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        DBInsertTestCases.class,
+        UserManagerTestCases.class,
 })
-public class CrudTestSuit {
+public class GlobalTestSuite {
 
 }

@@ -15,14 +15,14 @@ public class Log {
         isEnabled = true;
     }
 
-    public static void show(Type type, String message) {
+    public static void show(String tag, String message) {
         if (isEnabled)
-            System.out.println(type.toString() + ": " + message);
+            System.out.println(tag + ": " + message);
     }
 
-    public static void show(Type type, String info, String message) {
+    public static void show(String tag, String info, String message) {
         if (isEnabled)
-            System.out.println(type.toString() + ": " + info + " - " + message);
+            System.out.println(tag.toString() + ": " + info + " - " + message);
     }
 
 }

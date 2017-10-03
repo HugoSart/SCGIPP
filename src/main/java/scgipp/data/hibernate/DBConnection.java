@@ -12,12 +12,14 @@ public class DBConnection {
     }
 
     public static DBManager manager() {
-        initialize();
         return manager;
     }
 
     public static void finish() {
-        if (manager != null) manager.connection().finish();
+        if (manager != null) {
+            manager.connection().finish();
+            manager = null;
+        }
     }
 
 }

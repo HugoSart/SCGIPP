@@ -1,5 +1,6 @@
 package scgipp.service.entities;
 
+import scgipp.data.encryption.Encryptor;
 import scgipp.data.hibernate.Entity;
 import scgipp.service.entities.embbeded.Permissions;
 
@@ -56,7 +57,7 @@ public class User extends Entity {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Encryptor.encrypt(password);
     }
 
     public String getPassword() {
