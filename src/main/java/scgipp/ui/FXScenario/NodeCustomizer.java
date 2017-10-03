@@ -1,20 +1,18 @@
-package scgipp.ui.framework;
+package scgipp.ui.FXScenario;
 
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 
 /**
  * User: hugo_<br/>
  * Date: 28/08/2017<br/>
  * Time: 22:34<br/>
  */
-public class WidgetCustomizer {
+public class NodeCustomizer {
 
     static class Delta { double x, y; }
 
-    private WidgetCustomizer() {}
+    private NodeCustomizer() {}
 
     public static void makeDraggable(Node node) {
 

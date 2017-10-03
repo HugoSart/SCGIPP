@@ -11,9 +11,9 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        UserTest.class
+        UserTest.class,
+        UserTest2.class
 })
 public class CrudTestSuit {
-
 
 }

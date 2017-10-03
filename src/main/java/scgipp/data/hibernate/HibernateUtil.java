@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Created by hsart on 13/05/17.
  */
-public class HibernateUtil {
+class HibernateUtil {
 
     private SessionFactory sessionFactory = null;
 

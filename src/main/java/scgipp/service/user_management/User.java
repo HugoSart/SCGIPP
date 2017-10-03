@@ -23,9 +23,7 @@ public class User extends Entity {
     @Embedded
     public Permissions permissions;
 
-    protected User() {
-
-    }
+    protected User() {}
 
     protected User(Permissions.UserType userType) {
         permissions = new Permissions(userType);

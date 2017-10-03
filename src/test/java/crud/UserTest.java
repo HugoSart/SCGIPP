@@ -4,7 +4,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import scgipp.data.hibernate.DBConnection;
+import scgipp.data.hibernate.DBManager;
+import scgipp.service.Adress;
 import scgipp.service.user_management.User;
+
+import java.util.List;
 
 /**
  * User: hugo_<br/>
@@ -40,11 +44,27 @@ public class UserTest {
         DBConnection.manager().update(testUser1);
     }
 
+    @Test
+    public void getUserTest() {
+        addUserTest();
+        User user = DBConnection.manager().get(User.class, 1);
+        System.out.println("Test user login: " + user.getLogin());
+    }
+
+    @Test
+    public void listUserTest() {
+        addUserTest();
+        List<User> users = DBConnection.manager().list(User.class);
+
+        for (User u : users) {
+            System.out.println("Login: " + u.getLogin());
+        }
+
+    }
+
     @After
     public void tearDown() {
         DBConnection.finish();
     }
-
-
 
 }

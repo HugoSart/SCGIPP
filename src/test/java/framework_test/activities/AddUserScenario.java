@@ -1,24 +1,23 @@
-package framework;
+package framework_test.activities;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import scgipp.ui.framework.Activity;
-import scgipp.ui.framework.FeedbackActivity;
+import scgipp.ui.FXScenario.FeedbackScenario;
 
 /**
  * User: hugo_<br/>
  * Date: 03/09/2017<br/>
  * Time: 17:30<br/>
  */
-public class AddUserActivity extends FeedbackActivity {
+public class AddUserScenario extends FeedbackScenario {
 
     @FXML
     TextField tfName;
 
-    public AddUserActivity() {
+    public AddUserScenario() {
         super("add_user.fxml");
     }
 
@@ -29,8 +28,8 @@ public class AddUserActivity extends FeedbackActivity {
 
     @FXML
     public void btOkActionHandler(ActionEvent actionEvent) {
-        putExtra("return_user", tfName.getText());
-        returnAndFinish();
+        putFeedback("userName", tfName.getText());
+        processFeedbackAndFinish();
     }
 
     @FXML

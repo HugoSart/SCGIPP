@@ -2,8 +2,9 @@ package scgipp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import scgipp.ui.controller.LoginActivity;
-import scgipp.ui.framework.Spawner;
+import scgipp.ui.scenarios.LoginScenario;
+import scgipp.ui.FXScenario.Scenario;
+import scgipp.ui.FXScenario.Spawner;
 
 /**
  * User: hugo_<br/>
@@ -19,8 +20,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        LoginActivity loginActivity = new LoginActivity();
-        Spawner.newWindow(primaryStage, loginActivity, null);
+        Scenario loginScenario = new LoginScenario();
+        Spawner.newWindow(loginScenario, null);
 
     }
+
 }
