@@ -1,8 +1,9 @@
-package scgipp.service.user_management;
+package scgipp.service.entity;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import scgipp.data.hibernate.Entity;
+import scgipp.service.user_management.Permissions;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;

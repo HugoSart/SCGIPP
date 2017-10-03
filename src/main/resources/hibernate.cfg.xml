@@ -18,7 +18,7 @@
         <property name="hibernate.c3p0.idle_test_period">1000</property>
 
         <!-- List of XML mapping files -->
-        <mapping class="scgipp.service.user_management.User"/>
+        <mapping class="scgipp.service.entity.User"/>
         <mapping class="scgipp.service.Person"/>
 
     </session-factory>

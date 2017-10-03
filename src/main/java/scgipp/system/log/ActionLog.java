@@ -1,6 +1,6 @@
 package scgipp.system.log;
 
-import scgipp.service.user_management.User;
+import scgipp.service.entity.User;
 
 /**
  * User: hugo_<br/>

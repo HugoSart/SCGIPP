@@ -5,11 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import scgipp.data.hibernate.DBConnection;
-import scgipp.data.hibernate.DBManager;
-import scgipp.service.Adress;
-import scgipp.service.user_management.User;
-
-import java.util.List;
+import scgipp.service.entity.User;
 
 /**
  * User: hugo_<br/>

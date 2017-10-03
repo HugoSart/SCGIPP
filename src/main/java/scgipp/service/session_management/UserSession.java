@@ -1,7 +1,7 @@
 /*package scgipp.service.session_management;
 
 import scgipp.service.user_management.Permissions;
-import scgipp.service.user_management.User;
+import scgipp.service.entity.User;
 
 import javax.security.sasl.AuthenticationException;
 import java.util.Calendar;
