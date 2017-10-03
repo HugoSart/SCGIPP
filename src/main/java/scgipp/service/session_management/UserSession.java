@@ -1,6 +1,6 @@
 /*package scgipp.service.session_management;
 
-import scgipp.service.user_management.Permissions;
+import scgipp.service.entities.embbeded.Permissions;
 import scgipp.service.entity.User;
 
 import javax.security.sasl.AuthenticationException;

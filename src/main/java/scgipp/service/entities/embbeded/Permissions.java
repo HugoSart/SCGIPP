@@ -1,10 +1,10 @@
-package scgipp.service.user_management;
+package scgipp.service.entities.embbeded;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import static scgipp.service.user_management.Permissions.Permission.*;
+import static scgipp.service.entities.embbeded.Permissions.Permission.*;
 
 /**
  * Created by hsart on 13/05/17.
@@ -26,13 +26,13 @@ public class Permissions {
         ADM, SELLER, TEST
     }
 
-    protected Permissions() {}
+    public Permissions() {}
 
-    protected Permissions(UserType ut) {
+    public Permissions(UserType ut) {
         switch (ut) {
             case ADM:
 
-                for (Permission p : values())
+                for (Permission p : Permission.values())
                     add(p);
 
                 break;

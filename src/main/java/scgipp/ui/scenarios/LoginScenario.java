@@ -7,8 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
+
+import java.util.Map;
 
 /**
  * User: hugo_<br/>

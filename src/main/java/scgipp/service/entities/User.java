@@ -1,9 +1,7 @@
-package scgipp.service.entity;
+package scgipp.service.entities;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import scgipp.data.hibernate.Entity;
-import scgipp.service.user_management.Permissions;
+import scgipp.service.entities.embbeded.Permissions;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -11,7 +9,6 @@ import javax.persistence.Embedded;
 /**
  * Created by hsart on 13/05/17.
  */
-
 @javax.persistence.Entity
 public class User extends Entity {
 
@@ -76,18 +73,6 @@ public class User extends Entity {
 
     public String toString() {
         return "id = " + id + ", login = " + login + ";\n";
-    }
-
-    public SimpleIntegerProperty idProperty() {
-        return new SimpleIntegerProperty(id);
-    }
-
-    public SimpleStringProperty loginProperty() {
-        return new SimpleStringProperty(login);
-    }
-
-    public SimpleStringProperty passwordProperty() {
-        return new SimpleStringProperty(password);
     }
 
 }

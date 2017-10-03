@@ -1,4 +1,4 @@
-package scgipp.service.entity;
+package scgipp.service.entities;
 
 import scgipp.data.hibernate.Entity;
 

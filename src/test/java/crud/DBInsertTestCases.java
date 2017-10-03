@@ -5,7 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import scgipp.data.hibernate.DBConnection;
-import scgipp.service.entity.User;
+import scgipp.service.entities.User;
 
 /**
  * User: hugo_<br/>
@@ -32,7 +32,7 @@ public class DBInsertTestCases {
 
         Assert.assertEquals((int)id1, (int)testUser1.getId());
         Assert.assertEquals((int)id2, (int)testUser2.getId());
-        Assert.assertEquals((int)duplicateId1, (int)duplicateUser1.getId());
+        Assert.assertEquals(duplicateId1, null);
 
     }
 

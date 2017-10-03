@@ -1,7 +1,8 @@
-package scgipp.service;
+package scgipp.service.entities.superclass;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import scgipp.service.entities.embbeded.Adress;
 
 import javax.persistence.*;
 import java.time.LocalDate;
