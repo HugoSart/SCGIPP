@@ -1,6 +1,6 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import test_cases.UserManagerTestCases;
+import manager_test_cases.UserManagerTestCases;
 
 /**
  * User: hugo_<br/>

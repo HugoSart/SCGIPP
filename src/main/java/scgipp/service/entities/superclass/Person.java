@@ -2,7 +2,7 @@ package scgipp.service.entities.superclass;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import scgipp.service.entities.embbeded.Adress;
+import scgipp.service.entities.embbeded.EmbeddableAddress;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -36,7 +36,7 @@ public abstract class Person extends scgipp.data.hibernate.Entity {
     public List<String> phones = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.LAZY)
-    public List<Adress> adresses = new ArrayList<>();
+    public List<EmbeddableAddress> embeddableAddresses = new ArrayList<>();
 
     public enum Type {
         LEGAL("Jurídica"), PHYSICAL("Física");
@@ -94,12 +94,12 @@ public abstract class Person extends scgipp.data.hibernate.Entity {
         phones.add(phone);
     }
 
-    public List<Adress> getAdresses() {
-        return adresses;
+    public List<EmbeddableAddress> getEmbeddableAddresses() {
+        return embeddableAddresses;
     }
 
-    public void addAdress(Adress adress) {
-        adresses.add(adress);
+    public void addAdress(EmbeddableAddress embeddableAddress) {
+        embeddableAddresses.add(embeddableAddress);
     }
 
     public LocalDate getDate() {
