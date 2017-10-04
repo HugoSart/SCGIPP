@@ -25,6 +25,16 @@ public class CorreiosServerTestCases {
 
         System.out.println(properties.getProperty(CorreiosServer.PropertyTags.VALUE));
 
+        properties = correiosServer.calcFreightSimulation(null, null,
+                CorreiosServer.ServiceCode.PAC_VAREJO,
+                "87200727", "87020260",
+                "0.300", CorreiosServer.PackageType.BOX_PACKAGE,
+                50, 10, 50, 20,
+                false, 788.70, false);
+
+        System.out.println(properties.getProperty(CorreiosServer.PropertyTags.VALUE));
+
+
     }
 
 

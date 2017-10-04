@@ -1,4 +1,4 @@
-package test_cases;
+package manager_test_cases;
 
 import org.junit.After;
 import org.junit.Assert;
