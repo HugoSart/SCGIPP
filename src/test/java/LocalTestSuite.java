@@ -1,6 +1,5 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import other_tests.MailServerTest;
 import test_cases.UserManagerTestCases;
 
 /**

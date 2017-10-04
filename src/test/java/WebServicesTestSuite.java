@@ -1,7 +1,6 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import other_tests.MailServerTest;
-import test_cases.UserManagerTestCases;
+import other_tests.CorreiosServerTestCases;
 
 /**
  * User: hugo_<br/>
@@ -11,7 +10,8 @@ import test_cases.UserManagerTestCases;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        MailServerTest.class
+        CorreiosServerTestCases.class
 })
 public class WebServicesTestSuite {
+
 }
