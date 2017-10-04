@@ -41,7 +41,16 @@ public class UserManagerTestCases {
 
     @Test
     public void updateUserTest() {
-        // TODO: implementar este método
+
+        Integer auxId = 1;
+
+        User user = DBConnection.manager().get(User.class, auxId);
+        user.setLogin("changedLogin");
+
+        UserManager.updateUser(user);
+        user = DBConnection.manager().get(User.class, user.getId());
+        Assert.assertEquals(user.getLogin(), "changedLogin");
+
     }
 
     @Test
@@ -49,7 +58,6 @@ public class UserManagerTestCases {
         User staticUser1 = UserManager.authenticate("staticUser1", "staticUser1");
         Assert.assertEquals(staticUser1.getLogin(), "staticUser1");
     }
-
 
     @After
     public void tearDown() {

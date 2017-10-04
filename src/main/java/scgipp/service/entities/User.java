@@ -48,7 +48,7 @@ public class User extends Entity {
         return id;
     }
 
-    void setLogin(String login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 

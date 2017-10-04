@@ -1,6 +1,5 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import test_cases.UserManagerTestCases;
 
 /**
  * User: hugo_<br/>
@@ -10,7 +9,8 @@ import test_cases.UserManagerTestCases;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        UserManagerTestCases.class,
+        LocalTestSuite.class,
+        WebServicesTestSuite.class
 })
 public class GlobalTestSuite {
 
