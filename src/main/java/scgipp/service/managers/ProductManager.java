@@ -9,7 +9,7 @@ public class ProductManager {
 
     private static DBManager dbManager = DBConnection.manager();
 
-    public static Integer addUser(Product product){
+    public static Integer addProduct(Product product){
         Integer id = dbManager.add(product);
         if(product.getId() != null){
             Log.show("DATABASE", "Product", "Produto <id = " + product.getId() +
@@ -17,4 +17,9 @@ public class ProductManager {
         }
         return id;
     }
+
+    public static Integer removeProduct(Product product){
+    }
+
+
 }

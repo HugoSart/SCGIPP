@@ -9,8 +9,6 @@ public class Product extends Entity {
     private int totalQuantity;
     private float price;
     private String description;
-    private int avaliableQuantity;
-    private int reservedPreSell;
 
     protected Product(){}
 
@@ -72,8 +70,6 @@ public class Product extends Entity {
 
     public String toString(){
         String productInformation = "Nome = " + name + "\nEstoque total = " + totalQuantity +
-                                     "\nEstoque disponível = " + avaliableQuantity +
-                                     "\nReservados para pré-vendas = " + reservedPreSell +
                                      "\nPreço = " + price + "\nDescrição = " + description;
         return productInformation;
     }
