@@ -1,5 +1,6 @@
 package manager_test_cases;
 
+import javassist.NotFoundException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -55,8 +56,13 @@ public class UserManagerTestCases {
 
     @Test
     public void authenticateTest() {
-        User staticUser1 = UserManager.authenticate("staticUser1", "staticUser1");
-        Assert.assertEquals(staticUser1.getLogin(), "staticUser1");
+        User staticUser1 = null;
+        try {
+            staticUser1 = UserManager.authenticate("staticUser1", "staticUser1");
+            Assert.assertEquals(staticUser1.getLogin(), "staticUser1");
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @After

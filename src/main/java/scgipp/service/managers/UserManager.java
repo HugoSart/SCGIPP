@@ -1,5 +1,6 @@
 package scgipp.service.managers;
 
+import javassist.NotFoundException;
 import org.jetbrains.annotations.NotNull;
 import scgipp.data.encryption.Encryptor;
 import scgipp.data.hibernate.DBConnection;
@@ -31,7 +32,7 @@ public class UserManager {
         Log.show("DATABASE", "User", "User <id = " + user.getId() + ", login = " + user.getLogin() + "> has been updated in scgipp_db.");
     }
 
-    public static User authenticate(@NotNull String login, @NotNull String password) {
+    public static User authenticate(@NotNull String login, @NotNull String password) throws NotFoundException {
 
         password = Encryptor.encrypt(password);
 

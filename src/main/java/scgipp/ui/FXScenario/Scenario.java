@@ -42,8 +42,6 @@ public abstract class Scenario {
 
         try {
 
-
-
             // Config Scene
             Parent root = fxmlLoader.load();
             scene = new Scene(root);

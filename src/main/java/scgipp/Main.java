@@ -2,6 +2,7 @@ package scgipp;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import scgipp.data.hibernate.DBConnection;
 import scgipp.ui.scenarios.LoginScenario;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
@@ -19,6 +20,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
+        DBConnection.initialize();
 
         Scenario loginScenario = new LoginScenario();
         Spawner.newWindow(loginScenario, null);
