@@ -20,6 +20,8 @@ import java.util.List;
 @MappedSuperclass
 public abstract class Person extends scgipp.data.hibernate.Entity {
 
+
+
     @Column(nullable = false)
     private Type type;
 
