@@ -29,9 +29,9 @@ public class CustomerManager {
                  "name = " + customer.getName() + "has been updated in sgcipp db");
     }
 
-    public static void removeCustome(@NotNull Integer id)
+    public static void removeCustome(@NotNull Customer customer)
     {
-        dbManager.remove(id);
+        dbManager.remove(customer);
     }
 
 }
