@@ -66,9 +66,9 @@ public class DBManager {
 
     /**
      * Método que remove a entidade correspondende na tabela do banco de dados.
-     * @param id id da entidade a ser removida
+     * @param entity a entidade a ser removida
      */
-    public void remove(final Integer id) {
+    public void remove(final Entity entity) {
 
         Transaction transaction = null;
         Session session = null;
@@ -76,7 +76,6 @@ public class DBManager {
         try {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
-            Entity entity = session.get(User.class, id);
             session.delete(entity);
             transaction.commit();
         } catch (HibernateException e) {
