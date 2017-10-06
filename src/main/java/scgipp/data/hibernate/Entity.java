@@ -16,6 +16,11 @@ public abstract class Entity {
     @GeneratedValue
     protected Integer id;
 
+    public static enum Tipo{
+        FISICA,
+        JURIDICA
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
