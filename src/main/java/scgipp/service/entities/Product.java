@@ -2,38 +2,28 @@ package scgipp.service.entities;
 
 import scgipp.data.hibernate.Entity;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
+@javax.persistence.Entity
 public class Product extends Entity {
 
+    @Column (nullable = false, unique = true)
     private String name;
-    private int totalQuantity;
-    private float price;
+
     private String description;
 
     protected Product(){}
 
-    public Product(String name, int quantity, float price){
-
+    public Product(String name){
         this();
         setName(name);
-        setTotalQuantity(quantity);
-        setPrice(price);
     }
 
-    public Product(String name, int quantity, float price, String description){
+    public Product(String name, String description){
         this();
         setName(name);
-        setTotalQuantity(quantity);
-        setPrice(price);
         setDescription(description);
-    }
-
-    public void setId(Integer id){
-        this.id = id;
-    }
-
-    public Integer getId(){
-        return id;
     }
 
     public void setName(String name){
@@ -44,22 +34,6 @@ public class Product extends Entity {
         return name;
     }
 
-    public void setTotalQuantity(int quantity){
-        this.totalQuantity = quantity;
-    }
-
-    public int getTotalQuantity(){
-        return totalQuantity;
-    }
-
-    public void setPrice(float price){
-        this.price = price;
-    }
-
-    public float getPrice(){
-        return price;
-    }
-
     public void setDescription(String description){
         this.description = description;
     }
@@ -68,9 +42,4 @@ public class Product extends Entity {
         return description;
     }
 
-    public String toString(){
-        String productInformation = "Nome = " + name + "\nEstoque total = " + totalQuantity +
-                                     "\nPreço = " + price + "\nDescrição = " + description;
-        return productInformation;
-    }
 }

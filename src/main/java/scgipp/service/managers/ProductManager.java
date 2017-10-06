@@ -12,14 +12,28 @@ public class ProductManager {
     public static Integer addProduct(Product product){
         Integer id = dbManager.add(product);
         if(product.getId() != null){
-            Log.show("DATABASE", "Product", "Produto <id = " + product.getId() +
-                    "> foi adicionado ao banco de dados");
+            Log.show("DATABASE", "Product", "Product <id = " + product.getId() +
+                    "> has been added to the database.");
         }
         return id;
     }
 
-    public static Integer removeProduct(Product product){
+    public static void removeProduct(Product product){
+        dbManager.remove(product.getId());
+        if(product.getId() != null){
+            Log.show("DATABASE", "Product", "An error has occurred.\nProduct <id = "
+                    + product.getId() + "has not been removed");
+        }
+        else {
+            Log.show("DATABASE", "Product", "The product has been removed.");
+        }
     }
 
+    public static void updateProduct(Product product){
+        dbManager.update(product);
+        Log.show("DATABASE", "Product", "The stock product has been updated.");
+    }
 
 }
+
+
