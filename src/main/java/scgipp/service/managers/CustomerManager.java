@@ -32,6 +32,8 @@ public class CustomerManager {
     public static void removeCustome(@NotNull Customer customer)
     {
         dbManager.remove(customer);
+        Log.show("DATABASE", "Customer", "Customer id = " + customer.getId() +
+                 "has been removed from scgipp db");
     }
 
 }
