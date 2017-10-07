@@ -14,7 +14,7 @@ import java.util.List;
 
 public class SupplierManager {
 
-    private static DBManager dbManager= new DBConnection().manager();
+    private static DBManager dbManager= DBConnection.manager();
 
     public void addSupplier(@NotNull Supplier supplier){
         dbManager.add(supplier);
@@ -25,7 +25,7 @@ public class SupplierManager {
     }
 
     public void removeSupplier(@NotNull Supplier supplier){
-        dbManager.remove(supplier.getId());
+        dbManager.remove(supplier);
     }
 
     public List<Supplier> getAll(){
