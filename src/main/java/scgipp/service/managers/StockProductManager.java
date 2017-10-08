@@ -19,7 +19,7 @@ public class StockProductManager {
     }
 
     public static void removeStockProduct(StockProduct stockProduct){
-        dbManager.remove(stockProduct.getId());
+        dbManager.remove(stockProduct);
         if(stockProduct.getId() != null){
             Log.show("DATABASE", "StockProduct", "An error has occurred.\nStockProduct <id = "
                     + stockProduct.getId() +

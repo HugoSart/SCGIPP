@@ -17,28 +17,10 @@ import java.util.List;
  * Dessa forma, as classes derivadas criam sua propria tabela
  * Ao inves de utilizar a tabela Person
  */
+
 @MappedSuperclass
-public abstract class Person extends scgipp.data.hibernate.Entity {
+public class Person extends scgipp.data.hibernate.Entity {
 
-
-
-    @Column(nullable = false)
-    private Type type;
-
-    @Column(nullable = false)
-    private String name;
-
-    @Column(unique = true, nullable = false)
-    private String cpf;
-
-    @Column(nullable = false)
-    private LocalDate date;
-
-    @ElementCollection(fetch = FetchType.LAZY)
-    public List<String> phones = new ArrayList<>();
-
-    @ElementCollection(fetch = FetchType.LAZY)
-    public List<EmbeddableAddress> embeddableAddresses = new ArrayList<>();
 
     public enum Type {
         LEGAL("Jurídica"), PHYSICAL("Física");
@@ -54,6 +36,26 @@ public abstract class Person extends scgipp.data.hibernate.Entity {
         }
 
     }
+    @Column(nullable = false)
+    private Type type;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(unique = true, nullable = false)
+    private String cpf;
+
+    @Column(nullable = false)
+    private LocalDate date;
+
+    /*
+    @ElementCollection(fetch = FetchType.LAZY)
+    public List<String> phones = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.LAZY)
+    public List<EmbeddableAddress> embeddableAddresses = new ArrayList<>();
+    */
+
 
     public Person() {}
 
@@ -67,7 +69,6 @@ public abstract class Person extends scgipp.data.hibernate.Entity {
     public Type getType() {
         return type;
     }
-
     public void setType(Type type) {
         this.type = type;
     }
@@ -88,6 +89,7 @@ public abstract class Person extends scgipp.data.hibernate.Entity {
         this.cpf = cpf;
     }
 
+    /*
     public List<String> getPhones() {
         return phones;
     }
@@ -103,6 +105,7 @@ public abstract class Person extends scgipp.data.hibernate.Entity {
     public void addAdress(EmbeddableAddress embeddableAddress) {
         embeddableAddresses.add(embeddableAddress);
     }
+    */
 
     public LocalDate getDate() {
         return date;

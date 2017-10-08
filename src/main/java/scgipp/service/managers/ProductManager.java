@@ -19,7 +19,7 @@ public class ProductManager {
     }
 
     public static void removeProduct(Product product){
-        dbManager.remove(product.getId());
+        dbManager.remove(product);
         if(product.getId() != null){
             Log.show("DATABASE", "Product", "An error has occurred.\nProduct <id = "
                     + product.getId() + "has not been removed");
