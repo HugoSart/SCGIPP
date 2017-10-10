@@ -44,8 +44,9 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="mysql:mysql-connector-java:5.1.42" level="project" />
-    <orderEntry type="library" name="com.jfoenix:jfoenix:1.5.0" level="project" />
     <orderEntry type="library" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" name="pagseguro-api-2.6.0" level="project" />
+    <orderEntry type="library" name="de.jensd:fontawesomefx:8.9" level="project" />
+    <orderEntry type="library" name="UndecoratorBis" level="project" />
   </component>
 </module>

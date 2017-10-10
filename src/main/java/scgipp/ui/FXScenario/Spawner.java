@@ -1,13 +1,9 @@
 package scgipp.ui.FXScenario;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.io.IOException;
 
 /**
  * User: hugo_<br/>
@@ -30,9 +26,28 @@ public class Spawner {
         newWindow(null, scenario, parent);
     }
 
-    public static void newWindow(@NotNull FeedbackScenario scenario, @NotNull int requestCode, @NotNull Scenario parent) {
+    public static void newFeedbackWindow(Stage stage, @NotNull FeedbackScenario scenario, int requestCode, @Nullable Scenario parent, @NotNull FeedbackScenario.FeedbackListener listener) {
+        scenario.listener = listener;
+        scenario.parent = parent;
         scenario.requestCode = requestCode;
-        newWindow(scenario, parent);
+        scenario.stage = stage;
+        scenario.create();
+        scenario.stage.show();
+    }
+
+    public static void newFeedbackWindow(@NotNull FeedbackScenario scenario, int requestCode, @NotNull Scenario parent, @NotNull FeedbackScenario.FeedbackListener listener) {
+        newFeedbackWindow(null, scenario, requestCode, parent, listener);
+    }
+
+    public static void newFeedbackWindow(@NotNull FeedbackScenario scenario, int requestCode, @NotNull FeedbackScenario.FeedbackListener listener) {
+        newFeedbackWindow(null, scenario, requestCode, null, listener);
+    }
+
+    public static void newFragment(@NotNull Fragment fragment, Scenario parent, @NotNull Pane rootPane) {
+        fragment.parent = parent;
+        rootPane.getChildren().clear();
+        fragment.rootPane = rootPane;
+        fragment.create();
     }
 
 }

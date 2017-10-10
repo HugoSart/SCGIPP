@@ -1,11 +1,20 @@
 package scgipp.ui.FXScenario;
 
+import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseButton;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -79,8 +88,22 @@ public class NodeCustomizer {
         if (btMaximize != null) {
             btMaximize.setOnAction(event -> scenario.getStage().setMaximized(!scenario.getStage().isMaximized()));
             menuBar.setOnMouseClicked(event -> {
-                if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2)
-                    scenario.getStage().setMaximized(!scenario.getStage().isMaximized());
+                if (event.getButton().equals(MouseButton.PRIMARY) && event.getClickCount() == 2) {
+                    scenario.getStage().setMaximized(!scenario.getStage().isMaximized() && scenario.hasUndecoratedStyle);
+                    if (!scenario.getStage().isMaximized()) {
+                        ((Pane)scenario.getStage().getScene().getRoot()).setPadding(new Insets(20,20,20,20));
+                        ((Pane)scenario.getStage().getScene().getRoot()).setBackground(new Background(new BackgroundFill(
+                                Paint.valueOf("#FFFFFF"),
+                                new CornerRadii(1f),
+                                new Insets(20,20,20,20))));
+                    } else {
+                        ((Pane)scenario.getStage().getScene().getRoot()).setPadding(new Insets(0,0,0,0));
+                        ((Pane)scenario.getStage().getScene().getRoot()).setBackground(new Background(new BackgroundFill(
+                                Paint.valueOf("#FFFFFF"),
+                                new CornerRadii(1f),
+                                new Insets(0,0,0,0))));
+                    }
+                }
             });
         }
 
@@ -88,6 +111,18 @@ public class NodeCustomizer {
             //btHide.setOnAction(event -> scenario.stage.);
         }
 
+    }
+
+    public static void setUpUndecoratedScenario(Scenario scenario) {
+        scenario.getStage().initStyle(StageStyle.UNDECORATED);
+        scenario.getStage().initStyle(StageStyle.TRANSPARENT);
+        scenario.getStage().getScene().setFill(Color.TRANSPARENT);
+        scenario.getStage().getScene().getRoot().setEffect(new DropShadow());
+        ((Pane)scenario.getStage().getScene().getRoot()).setPadding(new Insets(20,20,20,20));
+        ((Pane)scenario.getStage().getScene().getRoot()).setBackground(new Background(new BackgroundFill(
+                Paint.valueOf("#FFFFFF"),
+                new CornerRadii(1f),
+                new Insets(20,20,20,20))));
     }
 
 }

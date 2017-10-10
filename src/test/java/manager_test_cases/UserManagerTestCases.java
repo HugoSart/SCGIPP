@@ -30,9 +30,9 @@ public class UserManagerTestCases {
         User testUser2 = new User("testUser2", "testUser2");
         User duplicateUser1 = new User("testUser1", "testUser1");
 
-        Integer id1 = UserManager.addUser(testUser1);
-        Integer id2 = UserManager.addUser(testUser2);
-        Integer duplicateId1 = UserManager.addUser(duplicateUser1);
+        Integer id1 = UserManager.getInstance().addUser(testUser1);
+        Integer id2 = UserManager.getInstance().addUser(testUser2);
+        Integer duplicateId1 = UserManager.getInstance().addUser(duplicateUser1);
 
         Assert.assertEquals((int)id1, (int)testUser1.getId());
         Assert.assertEquals((int)id2, (int)testUser2.getId());
@@ -48,7 +48,7 @@ public class UserManagerTestCases {
         User user = DBConnection.manager().get(User.class, auxId);
         user.setLogin("changedLogin");
 
-        UserManager.updateUser(user);
+        UserManager.getInstance().updateUser(user);
         user = DBConnection.manager().get(User.class, user.getId());
         Assert.assertEquals(user.getLogin(), "changedLogin");
 
@@ -58,7 +58,7 @@ public class UserManagerTestCases {
     public void authenticateTest() {
         User staticUser1 = null;
         try {
-            staticUser1 = UserManager.authenticate("staticUser1", "staticUser1");
+            staticUser1 = UserManager.getInstance().authenticate("staticUser1", "staticUser1");
             Assert.assertEquals(staticUser1.getLogin(), "staticUser1");
         } catch (NotFoundException e) {
             e.printStackTrace();

@@ -18,21 +18,28 @@ import java.util.List;
  */
 public class UserManager {
 
-    private static DBManager dbManager = DBConnection.manager();
+    private static UserManager instance = null;
 
-    public static Integer addUser(@NotNull User user) {
+    private DBManager dbManager = DBConnection.manager();
+
+    public static UserManager getInstance() {
+        if (instance == null && DBConnection.isActive()) instance = new UserManager();
+        return instance;
+    }
+
+    public Integer addUser(@NotNull User user) {
         Integer id = dbManager.add(user);
         if (user.getId() != null)
             Log.show("DATABASE", "User", "User <id = " + user.getId() + ", login = " + user.getLogin() + "> added to scgipp_db.");
         return id;
     }
 
-    public static void updateUser(@NotNull User user) {
+    public void updateUser(@NotNull User user) {
         dbManager.update(user);
         Log.show("DATABASE", "User", "User <id = " + user.getId() + ", login = " + user.getLogin() + "> has been updated in scgipp_db.");
     }
 
-    public static User authenticate(@NotNull String login, @NotNull String password) throws NotFoundException {
+    public User authenticate(@NotNull String login, @NotNull String password) throws NotFoundException {
 
         password = Encryptor.encrypt(password);
 
@@ -43,8 +50,16 @@ public class UserManager {
             }
         }
 
-        return null;
+        throw new NotFoundException("Failed to authenticate User { login = " + login + ", password = " + password + " }.");
 
+    }
+
+    public void delete(@NotNull User user) {
+        dbManager.remove(user);
+    }
+
+    public List<User> getAll() {
+        return DBConnection.manager().list(User.class);
     }
 
 }

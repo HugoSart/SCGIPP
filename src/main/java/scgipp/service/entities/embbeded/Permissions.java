@@ -12,8 +12,7 @@ import static scgipp.service.entities.embbeded.Permissions.Permission.*;
 @Embeddable
 public class Permissions {
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.ORDINAL)
+    @ElementCollection(fetch = FetchType.LAZY)
     private Set<Permission> permissions = new HashSet<>();
 
     public enum Permission {

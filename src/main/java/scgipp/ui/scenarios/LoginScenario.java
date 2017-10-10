@@ -1,26 +1,21 @@
 package scgipp.ui.scenarios;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javassist.NotFoundException;
 import scgipp.service.UserSession;
+import scgipp.service.entities.User;
 import scgipp.service.managers.UserManager;
-import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Spawner;
 
 import javax.management.InstanceAlreadyExistsException;
-import java.util.Map;
 
 /**
  * User: hugo_<br/>
@@ -28,6 +23,8 @@ import java.util.Map;
  * Time: 18:01<br/>
  */
 public class LoginScenario extends Scenario {
+
+    @FXML private Pane rootPane;
 
     @FXML private HBox menu;
     @FXML private Button exitButton;
@@ -42,28 +39,30 @@ public class LoginScenario extends Scenario {
     }
 
     @Override
-    public void onConfigStage(Stage stage) {
-        stage.initStyle(StageStyle.UNDECORATED);
-    }
-
-    @Override
     public void onConfigScene(Scene scene) {
+
         scene.getStylesheets().add("css/style.css");
-        NodeCustomizer.setUpMenuBar(this, menu, exitButton, null, hideButton);
 
         enterButton.setOnAction(event -> {
             String login = tfUser.getText(), password = tfPassword.getText();
             try {
-                UserSession.openSession(UserManager.authenticate(login, password));
+                User user = UserManager.getInstance().authenticate(login, password);
+                UserSession.openSession(user);
                 MainScenario mainScenario = new MainScenario();
                 Spawner.newWindow(mainScenario, this);
                 finish();
             } catch (InstanceAlreadyExistsException | NotFoundException e) {
+                e.printStackTrace();
                 errorLabel.setVisible(true);
             }
         });
 
     }
 
+    @Override
+    public void onConfigStage(Stage stage) {
+        addStyle(Style.BETTER_UNDECORATED);
+        NodeCustomizer.setUpMenuBar(this, menu, exitButton, null, hideButton);
+    }
 
 }

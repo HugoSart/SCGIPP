@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="512.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" prefHeight="676.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="menu" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="1037.0" style="-fx-background-color: rgba(68,138,255,1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -51,7 +51,7 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane layoutY="227.0" prefHeight="449.0" prefWidth="468.0" style="-fx-background-color: rgba(63,81,181,0);">
+      <AnchorPane layoutY="227.0" prefHeight="449.0" prefWidth="438.0" style="-fx-background-color: rgba(63,81,181,0);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label focusTraversable="false" layoutX="165.0" layoutY="68.0" prefHeight="71.0" prefWidth="140.0" text="SCGIPP" textFill="#456aff">
                <font>
@@ -73,7 +73,7 @@
             <Label fx:id="errorLabel" layoutX="57.0" layoutY="418.0" styleClass="error-label" text="Não foi possível encontrar um usuário correspondente a esta senha" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="27.0" prefHeight="201.0" prefWidth="468.0" style="-fx-background-color: rgba(68,138,255,1);">
+      <AnchorPane layoutY="27.0" prefHeight="201.0" prefWidth="468.0" style="-fx-background-color: rgba(68,138,255,1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
          <children>
             <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="53.0" layoutY="22.0">
                <image>

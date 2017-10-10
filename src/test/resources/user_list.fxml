@@ -15,8 +15,8 @@
          </font>
       </Label>
       <ListView fx:id="lvUser" layoutX="14.0" layoutY="44.0" prefHeight="340.0" prefWidth="249.0" />
-      <Button fx:id="btAdd" layoutX="274.0" layoutY="44.0" mnemonicParsing="false" onAction="#btAddActionHandler" text="Adicionar" />
+      <Button fx:id="btAdd" layoutX="274.0" layoutY="44.0" mnemonicParsing="false" text="Adicionar" />
       <Button layoutX="274.0" layoutY="361.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Remover" />
-      <Button layoutX="274.0" layoutY="78.0" mnemonicParsing="false" onAction="#btEditActionHandler" prefHeight="25.0" prefWidth="67.0" text="Editar" />
+      <Button layoutX="274.0" layoutY="78.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Editar" />
    </children>
 </AnchorPane>

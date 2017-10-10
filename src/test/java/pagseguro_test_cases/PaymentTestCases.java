@@ -65,7 +65,7 @@ public class PaymentTestCases {
     }
 
     @Test
-    public void checkTransacionStatusTest() {
+    public void checkTransactionStatusTest() {
 
         try {
             Transaction transaction = TransactionSearchService.searchByCode(PagSeguroTestSeller.getCredentials(), "ADE3EAE9797E4D45A6BC1BAB72124E51");

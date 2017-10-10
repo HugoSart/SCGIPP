@@ -7,6 +7,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import scgipp.service.entities.User;
 import scgipp.system.log.Log;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;

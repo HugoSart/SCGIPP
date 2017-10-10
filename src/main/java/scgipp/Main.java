@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import scgipp.data.hibernate.DBConnection;
 import scgipp.data.hibernate.DBManager;
-import scgipp.service.entities.Customer;
-import scgipp.service.managers.CustomerManager;
+import scgipp.service.entities.User;
+import scgipp.service.entities.embbeded.Permissions;
 import scgipp.ui.scenarios.LoginScenario;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
@@ -27,10 +27,20 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         DBConnection.initialize();
-        System.out.println("vaii");
+        initTestUsers();
 
         Scenario loginScenario = new LoginScenario();
         Spawner.newWindow(loginScenario, null);
+
+    }
+
+    private static void initTestUsers() {
+        DBManager dbManager = DBConnection.manager();
+        dbManager.add(new User("admin", "admin", Permissions.UserType.ADM));
+        dbManager.add(new User("hugovs", "hugovs", Permissions.UserType.ADM));
+        dbManager.add(new User("inteligega", "inteligega"));
+        dbManager.add(new User("tskira", "tskira", Permissions.UserType.ADM));
+        dbManager.add(new User("adario", "adario",Permissions.UserType.ADM));
     }
 
 }

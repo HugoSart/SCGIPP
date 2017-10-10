@@ -10,6 +10,8 @@ import java.util.Map;
  */
 public abstract class FeedbackScenario extends Scenario {
 
+    FeedbackListener listener;
+
     int requestCode;
     private int resultCode;
 
@@ -25,8 +27,7 @@ public abstract class FeedbackScenario extends Scenario {
     }
 
     final void feedback() {
-        if (FeedbackListener.class.isAssignableFrom(parent.getClass()))
-            ((FeedbackListener)parent).onFeedback(requestCode, resultCode, feedbackData);
+        listener.onFeedback(requestCode, resultCode, feedbackData);
     }
 
     protected void processFeedback() {

@@ -3,29 +3,27 @@ package scgipp.ui.FXScenario;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.*;
-
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * User: hugo_<br/>
- * Date: 27/08/2017<br/>
- * Time: 18:00<br/>
+ * Date: 08/10/2017<br/>
+ * Time: 21:33<br/>
  */
-public abstract class Scenario {
-
-    boolean hasUndecoratedStyle = false;
+public class Fragment {
 
     Scenario parent;
+    Pane rootPane;
     Map<String, Object> extraInformation = new HashMap<>();
 
     String fxmlPath;
 
-    Stage stage = null;
-
-    public Scenario(String fxmlPath) {
+    public Fragment(String fxmlPath) {
         this.fxmlPath = fxmlPath;
     }
 
@@ -40,19 +38,13 @@ public abstract class Scenario {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource(fxmlPath));
         fxmlLoader.setController(this);
 
-        Scene scene;
-
         try {
 
-            // Config Scene
-            Parent root = fxmlLoader.load();
-            scene = new Scene(root);
-            configScene(scene);
+            Pane newLoadedPane =  fxmlLoader.load();
 
-            // Config Stage
-            if (stage == null) stage = new Stage();
-            stage.setScene(scene);
-            configStage(stage);
+            onCreateView();
+
+            rootPane.getChildren().add(newLoadedPane);
 
             ready();
 
@@ -63,21 +55,12 @@ public abstract class Scenario {
 
     }
 
-    final void configScene(Scene scene) {
-        onConfigScene(scene);
-    }
-
-    final void configStage(Stage stage) {
-        onConfigStage(stage);
-    }
-
     final void ready() {
         onReady();
     }
 
     final void destroy() {
         onDestroy();
-        stage.close();
     }
 
 
@@ -86,9 +69,7 @@ public abstract class Scenario {
 
     protected void onCreate() {}
 
-    protected void onConfigScene(Scene scene) {}
-
-    protected void onConfigStage(Stage stage) {}
+    protected void onCreateView() {}
 
     protected void onReady() {}
 
@@ -117,25 +98,5 @@ public abstract class Scenario {
     public Scenario getParent() {
         return parent;
     }
-
-    public Stage getStage() {
-        return stage;
-    }
-
-    public void addStyle(Style style) {
-
-        switch (style) {
-            case BETTER_UNDECORATED:
-                hasUndecoratedStyle = true;
-                NodeCustomizer.setUpUndecoratedScenario(this);
-                break;
-        }
-
-    }
-
-    public enum Style {
-        BETTER_UNDECORATED
-    }
-
 
 }

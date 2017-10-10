@@ -1,5 +1,9 @@
 package scgipp.service.entities;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import scgipp.data.encryption.Encryptor;
 import scgipp.data.hibernate.Entity;
 import scgipp.service.entities.embbeded.Permissions;
@@ -29,7 +33,7 @@ public class User extends Entity {
     }
 
     public User(String login, String password) {
-        this();
+        this(Permissions.UserType.TEST);
         setLogin(login);
         setPassword(password);
     }
@@ -74,6 +78,14 @@ public class User extends Entity {
 
     public String toString() {
         return "id = " + id + ", login = " + login + ";\n";
+    }
+
+    public IntegerProperty idProperty() {
+        return new SimpleIntegerProperty(id);
+    }
+
+    public StringProperty loginProperty() {
+        return new SimpleStringProperty(login);
     }
 
 }
