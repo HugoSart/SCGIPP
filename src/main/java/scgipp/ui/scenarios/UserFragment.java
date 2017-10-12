@@ -2,10 +2,8 @@ package scgipp.ui.scenarios;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import scgipp.service.entities.User;
 import scgipp.service.managers.UserManager;
@@ -14,9 +12,7 @@ import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Spawner;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * User: hugo_<br/>
@@ -57,7 +53,7 @@ public class UserFragment extends Fragment {
 
         btAddUser.setOnAction(event -> {
             FeedbackScenario addUserScenario = new AddUserScenario();
-            Spawner.newFeedbackWindow(addUserScenario, 0, (requestCode, resultCode, data) -> {
+            Spawner.startFeedbackScenario(addUserScenario, 0, this, (requestCode, resultCode, data) -> {
                 User user = (User)data.get(AddUserScenario.FEEDBACK_NEW_USER);
                 if (userManager.addUser(user) != -1)
                     userObservableList.add(user);
@@ -78,7 +74,7 @@ public class UserFragment extends Fragment {
                 User user = tvUsers.getSelectionModel().getSelectedItem();
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
                 userInfoFragment.putExtra("user", user);
-                Spawner.newFragment(userInfoFragment, getParent(), userInfoPane);
+                Spawner.startFragment(userInfoFragment, getParentController(), userInfoPane);
             }
         });
 

@@ -12,9 +12,9 @@ import org.jetbrains.annotations.Nullable;
  */
 public class Spawner {
 
-    public static void newWindow(Stage stage, Scenario scenario, Scenario parent) {
+    public static void startScenario(Scenario scenario, Controller parentController, Stage stage) {
 
-        scenario.parent = parent;
+        scenario.parentController = parentController;
 
         scenario.stage = stage;
         scenario.create();
@@ -22,29 +22,29 @@ public class Spawner {
 
     }
 
-    public static void newWindow(@NotNull Scenario scenario, @Nullable Scenario parent) {
-        newWindow(null, scenario, parent);
+    public static void startScenario(@NotNull Scenario scenario, @Nullable Controller parentController) {
+        startScenario(scenario, parentController, null);
     }
 
-    public static void newFeedbackWindow(Stage stage, @NotNull FeedbackScenario scenario, int requestCode, @Nullable Scenario parent, @NotNull FeedbackScenario.FeedbackListener listener) {
+    public static void startFeedbackScenario(@NotNull FeedbackScenario scenario, int requestCode, @Nullable Controller parentController, Stage stage, @NotNull FeedbackScenario.FeedbackListener listener) {
         scenario.listener = listener;
-        scenario.parent = parent;
+        scenario.parentController = parentController;
         scenario.requestCode = requestCode;
         scenario.stage = stage;
         scenario.create();
         scenario.stage.show();
     }
 
-    public static void newFeedbackWindow(@NotNull FeedbackScenario scenario, int requestCode, @NotNull Scenario parent, @NotNull FeedbackScenario.FeedbackListener listener) {
-        newFeedbackWindow(null, scenario, requestCode, parent, listener);
+    public static void startFeedbackScenario(@NotNull FeedbackScenario scenario, int requestCode, @NotNull Controller parentController, @NotNull FeedbackScenario.FeedbackListener listener) {
+        startFeedbackScenario(scenario, requestCode, parentController, null, listener);
     }
 
-    public static void newFeedbackWindow(@NotNull FeedbackScenario scenario, int requestCode, @NotNull FeedbackScenario.FeedbackListener listener) {
-        newFeedbackWindow(null, scenario, requestCode, null, listener);
+    public static void startFeedbackScenario(@NotNull FeedbackScenario scenario, int requestCode, @NotNull FeedbackScenario.FeedbackListener listener) {
+        startFeedbackScenario(scenario, requestCode, null, listener);
     }
 
-    public static void newFragment(@NotNull Fragment fragment, Scenario parent, @NotNull Pane rootPane) {
-        fragment.parent = parent;
+    public static void startFragment(@NotNull Fragment fragment, Controller parent, @NotNull Pane rootPane) {
+        fragment.parentController = parent;
         rootPane.getChildren().clear();
         fragment.rootPane = rootPane;
         fragment.create();

@@ -36,7 +36,7 @@ public class MainScenario extends Scenario {
         lbSessionUser.setText(UserSession.getSession().getActiveUser().getLogin());
 
         Fragment fragmentScenario = new UserFragment();
-        Spawner.newFragment(fragmentScenario, this, pUsers);
+        Spawner.startFragment(fragmentScenario, this, pUsers);
 
     }
 

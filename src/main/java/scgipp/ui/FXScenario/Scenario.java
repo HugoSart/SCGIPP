@@ -14,19 +14,14 @@ import java.util.*;
  * Date: 27/08/2017<br/>
  * Time: 18:00<br/>
  */
-public abstract class Scenario {
+public abstract class Scenario extends Controller {
 
     boolean hasUndecoratedStyle = false;
-
-    Scenario parent;
-    Map<String, Object> extraInformation = new HashMap<>();
-
-    String fxmlPath;
 
     Stage stage = null;
 
     public Scenario(String fxmlPath) {
-        this.fxmlPath = fxmlPath;
+        super(fxmlPath);
     }
 
 
@@ -102,21 +97,8 @@ public abstract class Scenario {
         destroy();
     }
 
-    public void putExtra(String id, Object object) {
-        extraInformation.put(id, object);
-    }
-
-    public Object getExtra(String id) {
-        return extraInformation.get(id);
-    }
-
-
 
     // ============ SETTERS AND GETTERS ================= //
-
-    public Scenario getParent() {
-        return parent;
-    }
 
     public Stage getStage() {
         return stage;

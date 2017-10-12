@@ -10,8 +10,6 @@ import scgipp.ui.scenarios.LoginScenario;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
 
-import java.time.LocalDate;
-
 /**
  * User: hugo_<br/>
  * Date: 28/08/2017<br/>
@@ -30,7 +28,7 @@ public class Main extends Application {
         initTestUsers();
 
         Scenario loginScenario = new LoginScenario();
-        Spawner.newWindow(loginScenario, null);
+        Spawner.startScenario(loginScenario, null);
 
     }
 

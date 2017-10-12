@@ -1,13 +1,5 @@
-import insidefx.undecorator.Undecorator;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.scenarios.LoginScenario;
 
@@ -21,7 +13,7 @@ public class UndecoratorTest extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         LoginScenario loginScenario = new LoginScenario();
-        Spawner.newWindow(stage, loginScenario, null);
+        Spawner.startScenario(loginScenario, null, stage);
     }
 
     public static void main(String[] args) {

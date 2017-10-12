@@ -15,16 +15,12 @@ import java.util.Map;
  * Date: 08/10/2017<br/>
  * Time: 21:33<br/>
  */
-public class Fragment {
+public class Fragment extends Controller {
 
-    Scenario parent;
     Pane rootPane;
-    Map<String, Object> extraInformation = new HashMap<>();
-
-    String fxmlPath;
 
     public Fragment(String fxmlPath) {
-        this.fxmlPath = fxmlPath;
+        super(fxmlPath);
     }
 
 
@@ -49,7 +45,7 @@ public class Fragment {
             ready();
 
         } catch (IOException e) {
-            System.err.println("Failed to create " + getClass().getSimpleName() + " scenario.");
+            System.err.println("Failed to create " + getClass().getSimpleName() + " fragment.");
             e.printStackTrace();
         }
 
@@ -74,29 +70,5 @@ public class Fragment {
     protected void onReady() {}
 
     protected void onDestroy() {}
-
-
-
-    // ================ OTHER METHODS ======================//
-
-    public void finish() {
-        destroy();
-    }
-
-    public void putExtra(String id, Object object) {
-        extraInformation.put(id, object);
-    }
-
-    public Object getExtra(String id) {
-        return extraInformation.get(id);
-    }
-
-
-
-    // ============ SETTERS AND GETTERS ================= //
-
-    public Scenario getParent() {
-        return parent;
-    }
 
 }

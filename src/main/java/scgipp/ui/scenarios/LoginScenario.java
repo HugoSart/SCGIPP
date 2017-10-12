@@ -49,7 +49,7 @@ public class LoginScenario extends Scenario {
                 User user = UserManager.getInstance().authenticate(login, password);
                 UserSession.openSession(user);
                 MainScenario mainScenario = new MainScenario();
-                Spawner.newWindow(mainScenario, this);
+                Spawner.startScenario(mainScenario, this);
                 finish();
             } catch (InstanceAlreadyExistsException | NotFoundException e) {
                 e.printStackTrace();
