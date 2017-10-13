@@ -2,6 +2,7 @@ package scgipp.service.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,7 +11,7 @@ import java.util.List;
 @Entity
 public class Buy extends scgipp.data.hibernate.Entity{
 
-    @Column
+    @ManyToOne
     private User user;
 
     @Column
