@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="676.0" prefWidth="460.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" prefHeight="676.0" prefWidth="555.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox fx:id="menu" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="1037.0" style="-fx-background-color: rgba(68,138,255,1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -53,44 +53,44 @@
       </HBox>
       <AnchorPane layoutY="227.0" prefHeight="449.0" prefWidth="438.0" style="-fx-background-color: rgba(63,81,181,0);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label focusTraversable="false" layoutX="165.0" layoutY="68.0" prefHeight="71.0" prefWidth="140.0" text="SCGIPP" textFill="#456aff">
+            <Label alignment="CENTER" focusTraversable="false" layoutX="176.0" layoutY="58.0" prefHeight="71.0" prefWidth="140.0" text="SCGIPP" textFill="#456aff" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="175.0" AnchorPane.topAnchor="58.0">
                <font>
                   <Font name="Agency FB" size="59.0" />
                </font>
             </Label>
-            <TextField fx:id="tfUser" alignment="CENTER" layoutX="124.0" layoutY="180.0" prefHeight="38.0" prefWidth="221.0" promptText="Usuário">
+            <TextField fx:id="tfUser" alignment="CENTER" layoutX="185.0" layoutY="170.0" prefHeight="22.0" prefWidth="185.0" promptText="Usuário" text="admin" AnchorPane.topAnchor="170.0">
                <font>
                   <Font size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="tfPassword" alignment="CENTER" layoutX="124.0" layoutY="225.0" prefHeight="38.0" prefWidth="221.0" promptText="Senha">
+            <PasswordField fx:id="tfPassword" alignment="CENTER" layoutX="185.0" layoutY="225.0" prefHeight="17.0" prefWidth="185.0" promptText="Senha" text="admin" AnchorPane.topAnchor="225.0">
                <font>
                   <Font size="14.0" />
                </font></PasswordField>
-            <Button fx:id="enterButton" defaultButton="true" layoutX="124.0" layoutY="341.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="221.0" text="ENTRAR">
+            <Button fx:id="enterButton" defaultButton="true" layoutX="185.0" layoutY="308.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="185.0" text="ENTRAR" AnchorPane.topAnchor="308.0">
                <font>
                   <Font size="14.0" />
                </font></Button>
-            <Label fx:id="errorLabel" layoutX="57.0" layoutY="418.0" styleClass="error-label" text="Não foi possível encontrar um usuário correspondente a esta senha" />
+            <Label fx:id="errorLabel" alignment="CENTER" layoutX="1.0" layoutY="418.0" prefHeight="17.0" prefWidth="555.0" styleClass="error-label" text="Não foi possível encontrar um usuário correspondente a esta senha" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutY="27.0" prefHeight="201.0" prefWidth="468.0" style="-fx-background-color: rgba(68,138,255,1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
          <children>
-            <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="53.0" layoutY="22.0">
+            <ImageView fitHeight="116.0" fitWidth="116.0" layoutX="97.0" layoutY="23.0">
                <image>
                   <Image url="@../img/head.png" />
                </image>
             </ImageView>
-            <Label focusTraversable="false" layoutX="194.0" layoutY="66.0" prefHeight="34.0" prefWidth="221.0" text="&quot;Bons e velhos costumes" textFill="WHITE">
+            <Label focusTraversable="false" layoutX="232.0" layoutY="65.0" prefHeight="34.0" prefWidth="240.0" text="&quot;Bons e velhos costumes" textFill="WHITE" AnchorPane.leftAnchor="232.0" AnchorPane.rightAnchor="83.0">
                <font>
                   <Font name="Agency FB" size="28.0" />
                </font>
             </Label>
-            <Label focusTraversable="false" layoutX="212.0" layoutY="104.0" prefHeight="34.0" prefWidth="185.0" text="em primeiro lugar...&quot;" textFill="WHITE">
+            <Label focusTraversable="false" layoutX="240.0" layoutY="103.0" prefHeight="34.0" prefWidth="225.0" text="em primeiro lugar...&quot;" textFill="WHITE" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="90.0">
                <font>
                   <Font name="Agency FB" size="28.0" />
                </font>
             </Label>
-            <Label focusTraversable="false" layoutX="75.0" layoutY="141.0" prefHeight="38.0" prefWidth="72.0" text="Think ®" textFill="WHITE">
+            <Label focusTraversable="false" layoutX="119.0" layoutY="142.0" prefHeight="38.0" prefWidth="72.0" text="Think ®" textFill="WHITE">
                <font>
                   <Font name="Agency FB" size="29.0" />
                </font>

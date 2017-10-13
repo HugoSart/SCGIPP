@@ -1,9 +1,6 @@
 package scgipp.ui.scenarios;
 
-import com.sun.org.apache.bcel.internal.generic.GOTO;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -11,13 +8,11 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import scgipp.data.hibernate.DBManager;
 import scgipp.service.entities.User;
 import scgipp.service.entities.embbeded.Permissions;
 import scgipp.service.managers.UserManager;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
-import scgipp.ui.FXScenario.Scenario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +92,7 @@ public class AddUserScenario extends FeedbackScenario {
 
         btCancel.setOnAction(event -> finish());
 
-        addStyle(Style.BETTER_UNDECORATED);
+        setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
 
         List<CheckBox> permissionsCheckBoxList = new ArrayList<>();
         for (Permissions.Permission permission : Permissions.Permission.values()) {

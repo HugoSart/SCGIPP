@@ -46,6 +46,9 @@ public class UserFragment extends Fragment {
         for (User user : userList) {
             System.out.println(user);
         }
+
+        userInfoPane.setVisible(false);
+
         userObservableList = FXCollections.observableList(userList);
         tcId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcLogin.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
@@ -66,11 +69,13 @@ public class UserFragment extends Fragment {
             userManager.delete(user);
             userObservableList.remove(user);
             tvUsers.refresh();
+            userInfoPane.setVisible(false);
         });
 
         NodeCustomizer.makeMovable(btAddUser);
         tvUsers.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
+                userInfoPane.setVisible(true);
                 User user = tvUsers.getSelectionModel().getSelectedItem();
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
                 userInfoFragment.putExtra("user", user);
