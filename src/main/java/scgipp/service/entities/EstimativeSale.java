@@ -15,15 +15,17 @@ public class EstimativeSale extends Entity {
     @OneToOne
     private Sale sale;
 
+    @OneToOne
+    private ShippingCompany shippingCompany;
+
     @ManyToMany(mappedBy = "EstivativesBuySale")
     private List<Product> productList = new ArrayList<>();
 
-    //private ShippingCompany
-
     protected EstimativeSale(){};
 
-    public EstimativeSale(Sale sale) {
+    public EstimativeSale(Sale sale, ShippingCompany shippingCompany) {
         this.sale = sale;
+        this.shippingCompany = shippingCompany;
     }
 
     public Sale getSale() {

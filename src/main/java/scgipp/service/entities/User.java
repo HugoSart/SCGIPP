@@ -1,12 +1,11 @@
 package scgipp.service.entities;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import scgipp.data.encryption.Encryptor;
-import scgipp.data.hibernate.Entity;
 import scgipp.service.entities.embbeded.Permissions;
+import scgipp.service.entities.superclass.Person;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -18,7 +17,7 @@ import java.util.List;
  * Created by hsart on 13/05/17.
  */
 @javax.persistence.Entity
-public class User extends Entity {
+public class User extends Person {
 
     @Column(unique = true)
     private String login;
@@ -86,7 +85,7 @@ public class User extends Entity {
         return "id = " + id + ", login = " + login + ";\n";
     }
 
-    public IntegerProperty idProperty() {
+    public SimpleIntegerProperty idProperty() {
         return new SimpleIntegerProperty(id);
     }
 

@@ -11,16 +11,17 @@ import java.util.List;
 @javax.persistence.Entity
 public class EstimativeBuy extends Entity {
 
-    @ManyToMany(mappedBy = "EstimativeSales")
-    private List<Product> productList = new ArrayList<>();
-
     @OneToOne
     private Supplier supplier;
 
     @ManyToOne
     private Buy buy;
 
-    //private ShippingCompany shippingCompany;
+    @ManyToOne
+    private ShippingCompany shippingCompany;
+
+    @ManyToMany(mappedBy = "EstimativeSales")
+    private List<Product> productList = new ArrayList<>();
 
     protected EstimativeBuy(){};
 

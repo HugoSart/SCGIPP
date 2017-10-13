@@ -11,13 +11,6 @@ import java.util.List;
 @javax.persistence.Entity
 public class Product extends Entity {
 
-
-    @ManyToMany
-    private List<EstimativeSale> estimativeSaleList = new ArrayList<>();
-
-    @ManyToMany
-    private List<EstimativeBuy> estimativeBuyList = new ArrayList<>();
-
     @Column (nullable = false, unique = true)
     private String name;
 
@@ -26,6 +19,12 @@ public class Product extends Entity {
 
     @OneToOne
     private Sale sale;
+
+    @ManyToMany
+    private List<EstimativeSale> estimativeSaleList = new ArrayList<>();
+
+    @ManyToMany
+    private List<EstimativeBuy> estimativeBuyList = new ArrayList<>();
 
     protected Product(){}
 
@@ -54,6 +53,14 @@ public class Product extends Entity {
 
     public String getDescription(){
         return description;
+    }
+
+    public void addEstimativeSale(EstimativeSale estimativeSale){
+        estimativeSaleList.add(estimativeSale);
+    }
+
+    public void addEstimativeBuy(EstimativeBuy estimativeBuy){
+        estimativeBuyList.add(estimativeBuy);
     }
 
 }
