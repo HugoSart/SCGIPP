@@ -10,6 +10,9 @@ import scgipp.service.entities.embbeded.Permissions;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hsart on 13/05/17.
@@ -22,6 +25,9 @@ public class User extends Entity {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany
+    private List<Sale> saleList = new ArrayList<>();
 
     @Embedded
     public Permissions permissions;

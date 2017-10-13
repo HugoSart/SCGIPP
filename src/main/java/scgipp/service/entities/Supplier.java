@@ -3,12 +3,14 @@ package scgipp.service.entities;
 import scgipp.data.hibernate.Entity;
 
 import javax.persistence.Column;
+import javax.persistence.OneToOne;
 
 /**
 * Created by: Dario
 * On: 4/10/17
 **/
 
+@javax.persistence.Entity
 public class Supplier extends Entity {
 
     @Column(unique = true, nullable = false)
@@ -23,13 +25,17 @@ public class Supplier extends Entity {
     @Column
     private int phoneNumber;
 
-    protected Supplier(){};
+    @OneToOne
+    private EstimativeSale estimativeSale;
 
-    public Supplier(String name, String cnpj, String anddress, int phoneNumber) {
+    protected Supplier(){}
+
+    public Supplier(String name, String cnpj, String anddress, int phoneNumber, EstimativeSale estimativeSale) {
         this.name = name;
         this.cnpj = cnpj;
         this.anddress = anddress;
         this.phoneNumber = phoneNumber;
+        this.estimativeSale = estimativeSale;
     }
 
     public String getName() {
@@ -64,4 +70,13 @@ public class Supplier extends Entity {
         this.phoneNumber = phoneNumber;
     }
 
+    public EstimativeSale getEstimativeSale() {
+        return estimativeSale;
+    }
+
+    public void setEstimativeSale(EstimativeSale estimativeSale) {
+        this.estimativeSale = estimativeSale;
+    }
+
 }
+

@@ -19,6 +19,12 @@
 
         <!-- List of XML mapping files -->
         <mapping class="scgipp.service.entities.User"/>
+        <mapping class="scgipp.service.entities.Supplier"/>
+        <mapping class="scgipp.service.entities.Sale"/>
+        <mapping class="scgipp.service.entities.Devolution"/>
+        <mapping class="scgipp.service.entities.EstimativeBuy"/>
+        <mapping class="scgipp.service.entities.EstimativeSale"/>
+        <mapping class="scgipp.service.entities.Sale"/>
         <mapping class="scgipp.service.entities.Product"/>
         <mapping class="scgipp.service.entities.Customer"/>
         <mapping class="scgipp.service.entities.superclass.Person"/>
