@@ -5,8 +5,6 @@ import scgipp.data.hibernate.DBManager;
 import scgipp.service.entities.Product;
 import scgipp.system.log.Log;
 
-import java.util.List;
-
 public class ProductManager {
 
     private static DBManager dbManager = DBConnection.manager();
@@ -36,13 +34,6 @@ public class ProductManager {
         Log.show("DATABASE", "Product", "The stock product has been updated.");
     }
 
-    public static Product getProduct(Product product){
-        return dbManager.get(Product.class, product.getId());
-    }
-
-    public List<Product> listAll(){
-        return dbManager.list(Product.class);
-    }
 }
 
 

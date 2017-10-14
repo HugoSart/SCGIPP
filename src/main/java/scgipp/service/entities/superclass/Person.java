@@ -48,14 +48,11 @@ public class Person extends scgipp.data.hibernate.Entity {
     @Column(nullable = false)
     private LocalDate date;
 
-    /*
     @ElementCollection(fetch = FetchType.LAZY)
     public List<String> phones = new ArrayList<>();
 
     @ElementCollection(fetch = FetchType.LAZY)
     public List<EmbeddableAddress> embeddableAddresses = new ArrayList<>();
-    */
-
 
     public Person() {}
 

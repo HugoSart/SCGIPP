@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.*;
 
 
 /**
@@ -104,9 +103,9 @@ public abstract class Scenario extends Controller {
         return stage;
     }
 
-    public void addStyle(Style style) {
+    public void setUpScenarioStyle(ScenarioStyle scenarioStyle) {
 
-        switch (style) {
+        switch (scenarioStyle) {
             case BETTER_UNDECORATED:
                 hasUndecoratedStyle = true;
                 NodeCustomizer.setUpUndecoratedScenario(this);
@@ -115,7 +114,7 @@ public abstract class Scenario extends Controller {
 
     }
 
-    public enum Style {
+    public enum ScenarioStyle {
         BETTER_UNDECORATED
     }
 
