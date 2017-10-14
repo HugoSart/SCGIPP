@@ -123,7 +123,6 @@ public class NodeCustomizer {
                 Paint.valueOf("#FFFFFF"),
                 new CornerRadii(1f),
                 new Insets(20,20,20,20))));
-        //ResizeHelper.addResizeListener(scenario.stage);
     }
 
 }

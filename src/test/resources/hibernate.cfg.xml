@@ -11,7 +11,7 @@
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">root</property>
 
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
 
         <property name="hibernate.connection.pool_size">5</property>
@@ -20,6 +20,7 @@
         <!-- List of XML mapping files -->
         <mapping class="scgipp.service.entities.User"/>
         <mapping class="scgipp.service.entities.Product"/>
+        <mapping class="scgipp.service.entities.StockProduct"/>
         <mapping class="scgipp.service.entities.Customer"/>
         <mapping class="scgipp.service.entities.superclass.Person"/>
     </session-factory>

@@ -4,30 +4,32 @@ import scgipp.data.hibernate.Entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @javax.persistence.Entity
 public class StockProduct extends Entity{
 
-    @OneToOne
-    private Product product = new Product();
+    @ManyToOne
+    private Product product;
 
     @Column(nullable = false)
-    private Float price;
+    private Double price;
 
+    @Column(nullable = false)
     private Integer quantity;
 
     protected StockProduct(){};
 
-    public StockProduct(String name, String description, Integer quantity, Float price){
+    /*public StockProduct(String name, String description, Integer quantity, Double price){
         this();
         this.product.setName(name);
         this.product.setDescription(description);
         this.quantity = quantity;
         this.price = price;
-    }
+    }*/
 
-    public StockProduct(Product product, Integer quantity, Float price){
+    public StockProduct(Product product, Integer quantity, Double price){
         this();
         this.setProduct(product);
         this.setQuantity(quantity);
@@ -35,8 +37,7 @@ public class StockProduct extends Entity{
     }
 
     public void setProduct(Product product){
-        this.product.setName(product.getName());
-        this.product.setDescription(product.getDescription());
+        this.product = product;
     }
 
     public Product getProduct(){
@@ -51,12 +52,12 @@ public class StockProduct extends Entity{
         return quantity;
     }
 
-    public void setPrice(Float price){
+    public void setPrice(Double price){
         this.price = price;
     }
 
-    public Float getPrice(){
+    public Double getPrice(){
         return price;
     }
-//a
+
 }

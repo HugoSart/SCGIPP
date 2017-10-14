@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="652.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="621.0" prefWidth="1077.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
     <AnchorPane layoutX="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="621.0" prefWidth="492.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -21,7 +21,7 @@
                         <Insets left="28.0" />
                      </padding>
                   </TextField>
-                  <TableView fx:id="tvUsers" layoutX="101.0" layoutY="34.0" prefHeight="525.0" prefWidth="348.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="33.0">
+                  <TableView fx:id="tvUsers" layoutX="101.0" layoutY="34.0" prefHeight="525.0" prefWidth="348.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="33.0">
                     <columns>
                       <TableColumn fx:id="tcId" minWidth="5.0" prefWidth="66.0" text="Id" />
                       <TableColumn fx:id="tcLogin" prefWidth="280.0" text="Login" />
@@ -58,7 +58,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="userInfoPane" layoutX="491.0" prefHeight="652.0" prefWidth="398.0" style="-fx-border-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="491.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="userInfoPane" layoutX="477.0" layoutY="14.0" prefHeight="595.0" prefWidth="566.0" AnchorPane.rightAnchor="14.0">
          <children>
             <fx:include source="fragment_user_info.fxml" />
          </children>

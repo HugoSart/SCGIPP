@@ -43,7 +43,7 @@ public class MainScenario extends Scenario {
     @Override
     protected void onConfigStage(Stage stage) {
         NodeCustomizer.setUpMenuBar(this, menuBar, btExit, btMaximize, btHide);
-        setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
+        addStyle(Style.BETTER_UNDECORATED);
     }
 
 }

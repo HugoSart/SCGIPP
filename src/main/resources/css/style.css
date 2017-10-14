@@ -32,10 +32,6 @@
     -fx-background-color: transparent;
 }
 
-.permissions-list-view:disabled {
-    -fx-opacity: 1;
-}
-
 
 /* ==================== TEXT FIELD ==================== */
 

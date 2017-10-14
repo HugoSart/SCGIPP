@@ -23,6 +23,7 @@ public abstract class FeedbackScenario extends Scenario {
 
     public FeedbackScenario(String fxmlPath) {
         super(fxmlPath);
+        this.requestCode = requestCode;
     }
 
     final void feedback() {

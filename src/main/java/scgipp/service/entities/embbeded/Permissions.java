@@ -70,10 +70,6 @@ public class Permissions {
 
     }
 
-    public void removeAll() {
-        permissions.clear();
-    }
-
     public boolean check(Permission permission) {
         return permissions.contains(permission);
     }

@@ -10,14 +10,4 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EmbeddableAddress extends Address {
 
-    private String postalCode;
-
-    public String getPostalCode() {
-        return this.postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
 }
