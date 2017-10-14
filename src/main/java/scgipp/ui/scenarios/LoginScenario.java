@@ -7,13 +7,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javassist.NotFoundException;
 import scgipp.service.UserSession;
 import scgipp.service.entities.User;
 import scgipp.service.managers.UserManager;
+import scgipp.ui.FXScenario.ResizeHelper;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Spawner;
+import sun.swing.MenuItemLayoutHelper;
 
 import javax.management.InstanceAlreadyExistsException;
 
@@ -61,7 +64,7 @@ public class LoginScenario extends Scenario {
 
     @Override
     public void onConfigStage(Stage stage) {
-        addStyle(Style.BETTER_UNDECORATED);
+        setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
         NodeCustomizer.setUpMenuBar(this, menu, exitButton, null, hideButton);
     }
 
