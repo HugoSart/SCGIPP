@@ -58,5 +58,5 @@ public class StockProduct extends Entity{
     public Float getPrice(){
         return price;
     }
-
+//a
 }
