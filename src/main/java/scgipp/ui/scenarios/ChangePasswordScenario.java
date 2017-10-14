@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import scgipp.data.encryption.Encryptor;
 import scgipp.service.entities.User;
@@ -41,6 +42,7 @@ public class ChangePasswordScenario extends FeedbackScenario {
     @Override
     protected void onConfigStage(Stage stage) {
         setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
+        stage.initModality(Modality.APPLICATION_MODAL);
         NodeCustomizer.setUpMenuBar(this, menuBar, btExit, null, null);
         stage.getScene().getStylesheets().add("css/style.css");
 

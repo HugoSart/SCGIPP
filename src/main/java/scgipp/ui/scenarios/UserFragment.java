@@ -74,7 +74,6 @@ public class UserFragment extends Fragment {
             userInfoPane.setVisible(false);
         });
 
-        NodeCustomizer.makeMovable(btAddUser);
         tvUsers.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
                 userInfoPane.setVisible(true);
