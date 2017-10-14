@@ -2,6 +2,7 @@ package scgipp.ui.scenarios;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -29,6 +30,7 @@ public class UserFragment extends Fragment {
     @FXML private TableColumn<User, Integer> tcId;
     @FXML private TableColumn<User, String> tcLogin;
 
+    @FXML private TextField tfSearch;
     @FXML private Button btTest;
     @FXML private Button btAddUser;
     @FXML private Button btRemove;
@@ -82,6 +84,16 @@ public class UserFragment extends Fragment {
                 Spawner.startFragment(userInfoFragment, getParentController(), userInfoPane);
             }
         });
+
+        FilteredList<User> filteredData = new FilteredList<>(userObservableList, p -> true);
+        tfSearch.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
+            if (newValue == null || newValue.isEmpty()) return true;
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (String.valueOf(myObject.getLogin()).toLowerCase().contains(lowerCaseFilter)) return true;
+            else if (String.valueOf(myObject.getId()).toLowerCase().contains(lowerCaseFilter)) return true;
+            return false;
+        }));
+        tvUsers.setItems(filteredData);
 
     }
 
