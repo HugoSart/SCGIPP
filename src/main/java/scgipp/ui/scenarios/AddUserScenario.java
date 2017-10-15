@@ -47,7 +47,7 @@ public class AddUserScenario extends FeedbackScenario {
 
     @Override
     protected void onConfigScene(Scene scene) {
-        scene.getStylesheets().add("css/style.css");
+        scene.getStylesheets().add("css/Style.css");
     }
 
     @Override

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <AnchorPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MaterialDesignIconView />
@@ -45,7 +45,7 @@
                <content>
                   <AnchorPane fx:id="pUsers" style="-fx-background-color: rgba(255,255,255,1);">
                      <children>
-                        <fx:include source="users.fxml" />
+                        <fx:include source="fragment_users.fxml" />
                      </children>
                   </AnchorPane>
                </content>
