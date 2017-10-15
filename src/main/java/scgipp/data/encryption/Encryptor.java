@@ -3,9 +3,6 @@ package scgipp.data.encryption;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- * Created by hsart on 13/05/17.
- */
 public class Encryptor {
 
     public static String encrypt(String passwordToHash) {

@@ -18,14 +18,10 @@
         <property name="hibernate.c3p0.idle_test_period">1000</property>
 
         <!-- List of XML mapping files -->
-        <mapping class="scgipp.service.user_management.User"/>
-        <mapping class="scgipp.service.customer_management.Customer"/>
-        <mapping class="scgipp.service.supplier_management.Supplier"/>
-        <mapping class="scgipp.service.transportadora_management.Transportadora"/>
-        <mapping class="scgipp.service.product_management.Product"/>
-        <mapping class="scgipp.service.Person"/>
-        <mapping class="scgipp.service.sale_management.SaleBudget"/>
-        <mapping class="scgipp.service.sale_management.Sale"/>
-
+        <mapping class="scgipp.service.entities.User"/>
+        <mapping class="scgipp.service.entities.Product"/>
+        <mapping class="scgipp.service.entities.Customer"/>
+        <mapping class="scgipp.service.entities.superclass.Person"/>
     </session-factory>
+
 </hibernate-configuration>
