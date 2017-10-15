@@ -25,8 +25,10 @@ public class User extends Person {
     @Column(nullable = false)
     private String password;
 
+    /*
     @OneToMany
     private List<Sale> saleList = new ArrayList<>();
+    */
 
     @Embedded
     public Permissions permissions;

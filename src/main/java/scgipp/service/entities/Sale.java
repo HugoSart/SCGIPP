@@ -19,20 +19,21 @@ public class Sale extends Entity {
     @OneToOne
     private EstimativeSale estimativeSale;
 
+    /*
     @ManyToOne
     private User user;
 
     @ManyToOne
     private Client client;
-
+    */
     protected Sale(){};
 
     public Sale(Date date, Devolution devolution, EstimativeSale estimativeSale, User user, Client client) {
         this.date = date;
         this.devolution = devolution;
         this.estimativeSale = estimativeSale;
-        this.user = user;
-        this.client = client;
+        //this.user = user;
+        //this.client = client;
     }
 
     public Date getDate() {
@@ -59,6 +60,7 @@ public class Sale extends Entity {
         this.estimativeSale = estimativeSale;
     }
 
+    /*
     public User getUser() {
         return user;
     }
@@ -74,5 +76,5 @@ public class Sale extends Entity {
     public void setClient(Client client) {
         this.client = client;
     }
-
+    */
 }

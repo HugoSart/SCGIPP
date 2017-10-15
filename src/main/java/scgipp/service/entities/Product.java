@@ -17,15 +17,17 @@ public class Product extends Entity {
     @Column
     private String description;
 
+    /*
     @OneToOne
     private Sale sale;
+
 
     @ManyToMany
     private List<EstimativeSale> estimativeSaleList = new ArrayList<>();
 
     @ManyToMany
     private List<EstimativeBuy> estimativeBuyList = new ArrayList<>();
-
+    */
     protected Product(){}
 
     public Product(String name){
@@ -55,6 +57,7 @@ public class Product extends Entity {
         return description;
     }
 
+    /*
     public void addEstimativeSale(EstimativeSale estimativeSale){
         estimativeSaleList.add(estimativeSale);
     }
@@ -62,5 +65,6 @@ public class Product extends Entity {
     public void addEstimativeBuy(EstimativeBuy estimativeBuy){
         estimativeBuyList.add(estimativeBuy);
     }
+    */
 
 }
