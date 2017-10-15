@@ -27,12 +27,12 @@ public class MainScenario extends Scenario {
     @FXML private AnchorPane pUsers;
 
     public MainScenario() {
-        super("fxml/main.fxml");
+        super("fxml/scenario_main.fxml");
     }
 
     @Override
     protected void onConfigScene(Scene scene) {
-        scene.getStylesheets().add("css/style.css");
+        scene.getStylesheets().add("css/Style.css");
         lbSessionUser.setText(UserSession.getSession().getActiveUser().getLogin());
 
         Fragment fragmentScenario = new UserFragment();

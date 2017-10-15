@@ -11,7 +11,6 @@ import scgipp.data.encryption.Encryptor;
 import scgipp.service.entities.User;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
-import scgipp.ui.FXScenario.Scenario;
 
 /**
  * User: hugo_<br/>
@@ -44,7 +43,7 @@ public class ChangePasswordScenario extends FeedbackScenario {
         setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
         stage.initModality(Modality.APPLICATION_MODAL);
         NodeCustomizer.setUpMenuBar(this, menuBar, btExit, null, null);
-        stage.getScene().getStylesheets().add("css/style.css");
+        stage.getScene().getStylesheets().add("css/Style.css");
 
         user = (User)getExtra("user");
 

@@ -10,7 +10,6 @@ import scgipp.service.entities.User;
 import scgipp.service.managers.UserManager;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Fragment;
-import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Spawner;
 
 import java.util.List;
@@ -38,7 +37,7 @@ public class UserFragment extends Fragment {
     @FXML ObservableList<User> userObservableList;
 
     public UserFragment() {
-        super("fxml/users.fxml");
+        super("fxml/fragment_users.fxml");
     }
 
     @Override

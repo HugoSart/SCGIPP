@@ -45,7 +45,7 @@
                <content>
                   <AnchorPane fx:id="pUsers" style="-fx-background-color: rgba(255,255,255,1);">
                      <children>
-                        <fx:include source="users.fxml" />
+                        <fx:include source="fragment_users.fxml" />
                      </children>
                   </AnchorPane>
                </content>
