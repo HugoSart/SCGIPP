@@ -1,27 +1,32 @@
 package scgipp.service.entities;
 
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import scgipp.data.encryption.Encryptor;
-import scgipp.data.hibernate.Entity;
 import scgipp.service.entities.embbeded.Permissions;
+import scgipp.service.entities.superclass.Person;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hsart on 13/05/17.
  */
 @javax.persistence.Entity
-public class User extends Entity {
+public class User extends Person {
 
     @Column(unique = true)
     private String login;
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany
+    private List<Sale> saleList = new ArrayList<>();
 
     @Embedded
     public Permissions permissions;
@@ -80,7 +85,7 @@ public class User extends Entity {
         return "id = " + id + ", login = " + login + ";\n";
     }
 
-    public IntegerProperty idProperty() {
+    public SimpleIntegerProperty idProperty() {
         return new SimpleIntegerProperty(id);
     }
 
