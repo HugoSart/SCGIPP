@@ -2,6 +2,7 @@ package scgipp.service.entities.superclass;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import scgipp.service.entities.embbeded.EmbeddableAddress;
 
 import javax.persistence.*;
@@ -86,7 +87,7 @@ public class Person extends scgipp.data.hibernate.Entity {
         this.cpf = cpf;
     }
 
-    /*
+
     public List<String> getPhones() {
         return phones;
     }
@@ -102,7 +103,7 @@ public class Person extends scgipp.data.hibernate.Entity {
     public void addAdress(EmbeddableAddress embeddableAddress) {
         embeddableAddresses.add(embeddableAddress);
     }
-    */
+
 
     public LocalDate getDate() {
         return date;
@@ -115,6 +116,11 @@ public class Person extends scgipp.data.hibernate.Entity {
     public SimpleIntegerProperty idProperty() {
         return new SimpleIntegerProperty(id);
     }
+
+    public StringProperty nameProperty() {
+        return new SimpleStringProperty(name);
+    }
+
 
     public SimpleStringProperty typeProperty() {
         return type.nameProperty();

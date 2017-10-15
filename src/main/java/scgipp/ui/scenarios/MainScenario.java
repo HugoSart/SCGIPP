@@ -25,6 +25,7 @@ public class MainScenario extends Scenario {
     @FXML private Label lbSessionUser;
 
     @FXML private AnchorPane pUsers;
+    @FXML private AnchorPane pCustomers;
 
     public MainScenario() {
         super("fxml/scenario_main.fxml");
@@ -36,7 +37,9 @@ public class MainScenario extends Scenario {
         lbSessionUser.setText(UserSession.getSession().getActiveUser().getLogin());
 
         Fragment fragmentScenario = new UserFragment();
+
         Spawner.startFragment(fragmentScenario, this, pUsers);
+        Spawner.startFragment(fragmentScenario, this, pCustomers);
 
     }
 

@@ -15,7 +15,7 @@ import scgipp.ui.FXScenario.Spawner;
  * Date: 28/08/2017<br/>
  * Time: 21:15<br/>
  */
-public class    Main extends Application {
+public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
