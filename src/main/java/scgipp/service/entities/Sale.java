@@ -28,7 +28,7 @@ public class Sale extends Entity {
     */
     protected Sale(){};
 
-    public Sale(Date date, Devolution devolution, EstimativeSale estimativeSale, User user, Client client) {
+    public Sale(Date date, Devolution devolution, EstimativeSale estimativeSale, User user, Customer customer) {
         this.date = date;
         this.devolution = devolution;
         this.estimativeSale = estimativeSale;
@@ -77,4 +77,5 @@ public class Sale extends Entity {
         this.client = client;
     }
     */
+
 }

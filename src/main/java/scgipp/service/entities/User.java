@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import scgipp.data.encryption.Encryptor;
+import scgipp.data.hibernate.Entity;
 import scgipp.service.entities.embbeded.Permissions;
 import scgipp.service.entities.superclass.Person;
 
@@ -17,18 +18,13 @@ import java.util.List;
  * Created by hsart on 13/05/17.
  */
 @javax.persistence.Entity
-public class User extends Person {
+public class User extends Entity {
 
     @Column(unique = true)
     private String login;
 
     @Column(nullable = false)
     private String password;
-
-    /*
-    @OneToMany
-    private List<Sale> saleList = new ArrayList<>();
-    */
 
     @Embedded
     public Permissions permissions;
@@ -51,13 +47,6 @@ public class User extends Person {
         setPassword(password);
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getId() {
-        return id;
-    }
 
     public void setLogin(String login) {
         this.login = login;
@@ -84,7 +73,7 @@ public class User extends Person {
     }
 
     public String toString() {
-        return "id = " + id + ", login = " + login + ";\n";
+        return "User[id=" + getId() + ", login=" + login + ", password=" + password + "]\n";
     }
 
     public SimpleIntegerProperty idProperty() {
