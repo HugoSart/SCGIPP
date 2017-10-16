@@ -1,9 +1,10 @@
 package scgipp.service.entities;
 
-import scgipp.data.hibernate.Entity;
+import scgipp.service.entities.embbeded.EmbeddableAddress;
+import scgipp.service.entities.embbeded.EmbeddablePhone;
+import scgipp.service.entities.superclass.Person;
 
-import javax.persistence.Column;
-import javax.persistence.OneToOne;
+import java.util.List;
 
 /**
 * Created by: Dario
@@ -11,71 +12,20 @@ import javax.persistence.OneToOne;
 **/
 
 @javax.persistence.Entity
-public class Supplier extends Entity {
+public class Supplier extends Person {
 
-    @Column(unique = true, nullable = false)
-    private String name;
+    protected Supplier() {}
 
-    @Column(unique = true, nullable = false)
-    private String cnpj;
-
-    @Column
-    private String anddress;
-
-    @Column
-    private int phoneNumber;
-
-    @OneToOne
-    private EstimativeSale estimativeSale;
-
-    protected Supplier(){}
-
-    public Supplier(String name, String cnpj, String anddress, int phoneNumber, EstimativeSale estimativeSale) {
-        this.name = name;
-        this.cnpj = cnpj;
-        this.anddress = anddress;
-        this.phoneNumber = phoneNumber;
-        this.estimativeSale = estimativeSale;
+    public Supplier(String name, String cnpj) {
+        setType(Type.LEGAL);
+        setName(name);
+        setCpf_cnpj(cnpj);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getAnddress() {
-        return anddress;
-    }
-
-    public void setAnddress(String anddress) {
-        this.anddress = anddress;
-    }
-
-    public int getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public EstimativeSale getEstimativeSale() {
-        return estimativeSale;
-    }
-
-    public void setEstimativeSale(EstimativeSale estimativeSale) {
-        this.estimativeSale = estimativeSale;
+    public Supplier(String name, String cnpj, List<EmbeddableAddress> addresses, List<EmbeddablePhone> phones) {
+        this(name, cnpj);
+        this.embeddableAddresses = addresses;
+        this.phones = phones;
     }
 
 }

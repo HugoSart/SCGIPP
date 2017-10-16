@@ -42,7 +42,8 @@ public class UserInfoFragment extends Fragment {
 
     @Override
     protected void onCreateView() {
-        user =(User)getExtra("user");
+
+        user = (User)getExtra("user");
         tfLogin.setText(user.getLogin());
 
         List<CheckBox> checkBoxList = new ArrayList<>();
@@ -86,4 +87,5 @@ public class UserInfoFragment extends Fragment {
         });
 
     }
+
 }

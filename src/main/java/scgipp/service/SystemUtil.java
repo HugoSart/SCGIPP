@@ -9,7 +9,7 @@ import scgipp.data.hibernate.DBConnection;
  */
 public class SystemUtil {
 
-    public static void finish() {
+    public static void exit() {
         DBConnection.finish();
         System.exit(0);
     }

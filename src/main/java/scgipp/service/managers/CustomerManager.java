@@ -27,7 +27,7 @@ public class CustomerManager {
         Integer id = dbManager.add(customer);
         if (customer.getId() != null)
             Log.show("DATABASE", "Customer", "Customer id = " + customer.getId() +
-                     "name = " + customer.getName() + "cpf = " + customer.getCpf() + "added to scgipp db");
+                     "name = " + customer.getName() + "cpf = " + customer.getCpf_cnpj() + "added to scgipp db");
         return id;
     }
 

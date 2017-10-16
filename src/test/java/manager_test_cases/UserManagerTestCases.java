@@ -67,7 +67,7 @@ public class UserManagerTestCases {
 
     @After
     public void tearDown() {
-        //DBConnection.finish();
+        //DBConnection.exit();
     }
 
 }

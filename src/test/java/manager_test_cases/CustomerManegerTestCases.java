@@ -50,7 +50,7 @@ public class CustomerManegerTestCases {
 
     @After
     public void tearDown() {
-        //DBConnection.finish();
+        //DBConnection.exit();
     }
 
 }

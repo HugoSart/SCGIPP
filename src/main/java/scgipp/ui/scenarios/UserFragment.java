@@ -77,9 +77,11 @@ public class UserFragment extends Fragment {
             if (event.isPrimaryButtonDown()) {
                 userInfoPane.setVisible(true);
                 User user = tvUsers.getSelectionModel().getSelectedItem();
+
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
                 userInfoFragment.putExtra("user", user);
                 Spawner.startFragment(userInfoFragment, getParentController(), userInfoPane);
+
             }
         });
 

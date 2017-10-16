@@ -14,21 +14,9 @@ public class Product extends Entity {
     @Column (nullable = false, unique = true)
     private String name;
 
-    @Column
     private String description;
 
-    /*
-    @OneToOne
-    private Sale sale;
-
-
-    @ManyToMany
-    private List<EstimativeSale> estimativeSaleList = new ArrayList<>();
-
-    @ManyToMany
-    private List<EstimativeBuy> estimativeBuyList = new ArrayList<>();
-    */
-    protected Product(){}
+    protected Product() {}
 
     public Product(String name){
         this();
@@ -36,8 +24,7 @@ public class Product extends Entity {
     }
 
     public Product(String name, String description){
-        this();
-        setName(name);
+        this(name);
         setDescription(description);
     }
 
@@ -56,15 +43,5 @@ public class Product extends Entity {
     public String getDescription(){
         return description;
     }
-
-    /*
-    public void addEstimativeSale(EstimativeSale estimativeSale){
-        estimativeSaleList.add(estimativeSale);
-    }
-
-    public void addEstimativeBuy(EstimativeBuy estimativeBuy){
-        estimativeBuyList.add(estimativeBuy);
-    }
-    */
 
 }

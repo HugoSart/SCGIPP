@@ -12,12 +12,17 @@ public class EmbeddableAddress extends Address {
 
     private String postalCode;
 
-    public String getPostalCode() {
-        return this.postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                "[postalCode="  + getPostalCode() +
+                ", street="     + getStreet() +
+                ", number="     + getNumber() +
+                ", complement=" + getComplement() +
+                ", district="   + getDistrict() +
+                ", city="       + getCity() +
+                ", stage="      + getState() +
+                ", country="    + getCountry() + "]\n";
     }
 
 }

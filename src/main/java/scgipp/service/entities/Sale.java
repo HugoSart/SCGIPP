@@ -5,42 +5,39 @@ import scgipp.data.hibernate.Entity;
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import java.time.LocalDate;
 import java.util.Date;
 
 @javax.persistence.Entity
 public class Sale extends Entity {
 
     @Column
-    private Date date;
+    private LocalDate date;
 
     @OneToOne
     private Devolution devolution;
 
     @OneToOne
-    private EstimativeSale estimativeSale;
+    private SaleBudget saleBudget;
 
-    /*
     @ManyToOne
     private User user;
 
-    @ManyToOne
-    private Client client;
-    */
-    protected Sale(){};
+    protected Sale(){}
 
-    public Sale(Date date, Devolution devolution, EstimativeSale estimativeSale, User user, Customer customer) {
+    public Sale(LocalDate date, Devolution devolution, SaleBudget saleBudget, User user, Customer customer) {
         this.date = date;
         this.devolution = devolution;
-        this.estimativeSale = estimativeSale;
+        this.saleBudget = saleBudget;
         //this.user = user;
         //this.client = client;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -52,30 +49,12 @@ public class Sale extends Entity {
         this.devolution = devolution;
     }
 
-    public EstimativeSale getEstimativeSale() {
-        return estimativeSale;
+    public SaleBudget getSaleBudget() {
+        return saleBudget;
     }
 
-    public void setEstimativeSale(EstimativeSale estimativeSale) {
-        this.estimativeSale = estimativeSale;
+    public void setSaleBudget(SaleBudget saleBudget) {
+        this.saleBudget = saleBudget;
     }
-
-    /*
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-    */
 
 }
