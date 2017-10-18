@@ -4,6 +4,7 @@ import scgipp.service.entities.embbeded.EmbeddableAddress;
 import scgipp.service.entities.embbeded.EmbeddablePhone;
 import scgipp.service.entities.superclass.Person;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 /**
@@ -11,10 +12,10 @@ import java.util.List;
 * On: 4/10/17
 **/
 
-@javax.persistence.Entity
+@Entity
 public class Supplier extends Person {
 
-    protected Supplier() {}
+    public Supplier() {}
 
     public Supplier(String name, String cnpj) {
         setType(Type.LEGAL);

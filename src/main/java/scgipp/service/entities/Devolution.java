@@ -8,7 +8,7 @@ public class Devolution extends scgipp.data.hibernate.Entity {
     @OneToOne
     private Sale sale;
 
-    protected Devolution(){}
+    public Devolution(){}
 
     public Devolution(Sale sale) {
         this.sale = sale;

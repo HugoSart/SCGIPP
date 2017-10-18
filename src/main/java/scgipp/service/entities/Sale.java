@@ -23,14 +23,13 @@ public class Sale extends Entity {
     @ManyToOne
     private User user;
 
-    protected Sale(){}
+    public Sale(){}
 
-    public Sale(LocalDate date, Devolution devolution, SaleBudget saleBudget, User user, Customer customer) {
+    public Sale(LocalDate date, Devolution devolution, SaleBudget saleBudget, User user) {
         this.date = date;
         this.devolution = devolution;
         this.saleBudget = saleBudget;
-        //this.user = user;
-        //this.client = client;
+        this.user = user;
     }
 
     public LocalDate getDate() {
@@ -57,4 +56,11 @@ public class Sale extends Entity {
         this.saleBudget = saleBudget;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

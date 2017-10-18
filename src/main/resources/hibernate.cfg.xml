@@ -23,6 +23,10 @@
         <mapping class="scgipp.service.entities.Customer"/>
         <mapping class="scgipp.service.entities.StockProduct"/>
         <mapping class="scgipp.service.entities.superclass.Person"/>
+        <mapping class="scgipp.service.entities.Supplier"/>
+        <mapping class="scgipp.service.entities.Sale"/>
+        <mapping class="scgipp.service.entities.Devolution"/>
+        <mapping class="scgipp.service.entities.SaleBudget"/>
     </session-factory>
 
 </hibernate-configuration>
