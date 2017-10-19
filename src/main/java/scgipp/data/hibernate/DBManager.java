@@ -174,6 +174,7 @@ public class DBManager {
 
     private void standardExceptionCatch(HibernateException e, Transaction transaction) {
         if (transaction != null) transaction.rollback();
-        //Log.show("EXCEPTION", e.getClass().getSimpleName(), e.getCause().getMessage());
+        e.printStackTrace();
+        Log.show("EXCEPTION", e.getClass().getSimpleName(), e.getCause().getMessage());
     }
 }

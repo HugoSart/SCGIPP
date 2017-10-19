@@ -5,6 +5,7 @@ import scgipp.service.entities.embbeded.EmbeddablePhone;
 import scgipp.service.entities.superclass.Person;
 
 import javax.persistence.Entity;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class Supplier extends Person {
         setType(Type.LEGAL);
         setName(name);
         setCpf_cnpj(cnpj);
+        setDate(LocalDate.now());
     }
 
     public Supplier(String name, String cnpj, List<EmbeddableAddress> addresses, List<EmbeddablePhone> phones) {

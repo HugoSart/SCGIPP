@@ -9,6 +9,7 @@ import scgipp.service.entities.Product;
 import scgipp.service.entities.Sale;
 import scgipp.service.entities.SaleBudget;
 import scgipp.service.managers.DevolutionManager;
+import scgipp.service.managers.SaleManager;
 
 import java.time.LocalDate;
 
@@ -23,6 +24,10 @@ public class DevolutionManagerTestCases {
     public void addDevolutionTest(){
         Sale sale1 = new Sale();
         Sale sale2 = new Sale();
+        SaleManager saleManager = new SaleManager();
+
+        saleManager.addSale(sale1);
+        saleManager.addSale(sale2);
 
         Devolution devolution1 = new Devolution(sale1);
         Devolution devolution2 = new Devolution(sale1);
@@ -38,28 +43,17 @@ public class DevolutionManagerTestCases {
     }
 
     @Test
-    public void updateDevolutionTest(){
-        Devolution devolution = DevolutionManager.getDevolution(1);
-        Sale sale = new Sale();
-
-        sale.setId(9999999);
-        devolution.setSale(sale);
-
-        DevolutionManager.updateDevolution(devolution);
-
-        devolution = DevolutionManager.getDevolution(1);
-        int saleIdTest = devolution.getSale().getId();
-
-        Assert.assertEquals(saleIdTest, 9999999);
-    }
-
-    @Test
     public void removeDevolution(){
+        SaleManager saleManager = new SaleManager();
         Sale sale = new Sale();
         Devolution devolution = new Devolution(sale);
 
+        saleManager.addSale(sale);
+        devolution.setSale(sale);
+        Integer idTest = DevolutionManager.addDevolution(devolution);
+
         DevolutionManager.removeDevolution(devolution);
-        DevolutionManager.updateDevolution(devolution);
+        Assert.assertNull(DevolutionManager.getDevolution(idTest.intValue()));
     }
 
 }
