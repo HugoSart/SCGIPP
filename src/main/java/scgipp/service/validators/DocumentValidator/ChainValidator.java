@@ -12,7 +12,7 @@ public class ChainValidator {
                 documentNumber.equals("44444444444") || documentNumber.equals("55555555555") ||
                 documentNumber.equals("66666666666") || documentNumber.equals("77777777777") ||
                 documentNumber.equals("88888888888") || documentNumber.equals("99999999999") ||
-                (documentNumber.length() != 11)) return(false);
+                (documentNumber.length() != 11)) return false;
         else return true;
     }
 

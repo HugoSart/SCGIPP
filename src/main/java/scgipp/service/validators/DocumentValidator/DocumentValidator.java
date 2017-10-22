@@ -4,31 +4,26 @@ import java.util.InputMismatchException;
 
 public class DocumentValidator {
 
-    private String documentNumber;
-    private SecurityCalculator securityCalculator = new SecurityCalculator();
-    private ChainValidator chainValidator = new ChainValidator();
+    private static SecurityCalculator securityCalculator = new SecurityCalculator();
+    private static ChainValidator chainValidator = new ChainValidator();
 
-    public boolean isValidCPF(String CPF){
-        documentNumber = CPF;
-        securityCalculator.setDocumentNumber(documentNumber);
-        chainValidator.setDocumentNumber(documentNumber);
-
+    public static boolean isValidCPF(String CPF){
+        securityCalculator.setDocumentNumber(CPF);
+        chainValidator.setDocumentNumber(CPF);
 
         if(chainValidator.validCpfChain() && validCPFSecurityDigits()) return true;
         else return false;
     }
 
-    public boolean isValidCPNJ(String CNPJ){
-        documentNumber = CNPJ;
-        securityCalculator.setDocumentNumber(documentNumber);
-        chainValidator.setDocumentNumber(documentNumber);
+    public static boolean isValidCPNJ(String CNPJ){
+        securityCalculator.setDocumentNumber(CNPJ);
+        chainValidator.setDocumentNumber(CNPJ);
 
         if(chainValidator.validCnpjChain() && validCNPJSecurityDigits()) return true;
         else return false;
     }
 
-
-    private boolean validCPFSecurityDigits() {
+    private static boolean validCPFSecurityDigits() {
         try{
             if(securityCalculator.CpfDigitCalculator(10) && securityCalculator.CpfDigitCalculator(11)) return true;
             else return false;
@@ -37,7 +32,7 @@ public class DocumentValidator {
         }
     }
 
-    private boolean validCNPJSecurityDigits(){
+    private static boolean validCNPJSecurityDigits(){
         try{
             if(securityCalculator.CnpjDigitCalculator(13) && securityCalculator.CnpjDigitCalculator(14)) return true;
             else return false;
