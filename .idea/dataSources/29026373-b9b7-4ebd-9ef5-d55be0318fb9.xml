@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="scgipp_db@localhost">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.2">
     <root id="1"/>
     <schema id="2" parent="1" name="scgipp_db">
       <Current>1</Current>
@@ -9,171 +9,174 @@
     <schema id="3" parent="1" name="information_schema"/>
     <schema id="4" parent="1" name="mysql"/>
     <schema id="5" parent="1" name="performance_schema"/>
-    <schema id="6" parent="1" name="sys"/>
-    <table id="7" parent="2" name="Customer"/>
-    <table id="8" parent="2" name="Customer_embeddableAddresses"/>
-    <table id="9" parent="2" name="Customer_phones"/>
-    <table id="10" parent="2" name="Product"/>
-    <table id="11" parent="2" name="StockProduct"/>
-    <table id="12" parent="2" name="User"/>
-    <table id="13" parent="2" name="User_permissions"/>
-    <column id="14" parent="7" name="id">
+    <schema id="6" parent="1" name="sakila"/>
+    <schema id="7" parent="1" name="secomp_db"/>
+    <schema id="8" parent="1" name="sys"/>
+    <schema id="9" parent="1" name="world"/>
+    <table id="10" parent="2" name="customer"/>
+    <table id="11" parent="2" name="customer_embeddableaddresses"/>
+    <table id="12" parent="2" name="customer_phones"/>
+    <table id="13" parent="2" name="product"/>
+    <table id="14" parent="2" name="stockproduct"/>
+    <table id="15" parent="2" name="user"/>
+    <table id="16" parent="2" name="user_permissions"/>
+    <column id="17" parent="10" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="15" parent="7" name="cpf">
+    <column id="18" parent="10" name="cpf_cnpj">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="16" parent="7" name="date">
+    <column id="19" parent="10" name="date">
       <Position>3</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="17" parent="7" name="name">
+    <column id="20" parent="10" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="18" parent="7" name="type">
+    <column id="21" parent="10" name="type">
       <Position>5</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="19" parent="7" name="UK_hgw30cn7btka8p6139p3wxijc">
-      <ColNames>cpf</ColNames>
+    <index id="22" parent="10" name="UK_slvbob128gleavkn5g1uecoc2">
+      <ColNames>cpf_cnpj</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="20" parent="7" name="PRIMARY">
+    <key id="23" parent="10" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="21" parent="7" name="UK_hgw30cn7btka8p6139p3wxijc">
-      <ColNames>cpf</ColNames>
-      <UnderlyingIndexName>UK_hgw30cn7btka8p6139p3wxijc</UnderlyingIndexName>
+    <key id="24" parent="10" name="UK_slvbob128gleavkn5g1uecoc2">
+      <ColNames>cpf_cnpj</ColNames>
+      <UnderlyingIndexName>UK_slvbob128gleavkn5g1uecoc2</UnderlyingIndexName>
     </key>
-    <column id="22" parent="8" name="Customer_id">
+    <column id="25" parent="11" name="Customer_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="23" parent="8" name="postalCode">
+    <column id="26" parent="11" name="postalCode">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <index id="24" parent="8" name="FK60uxvwbxydk7hkasbtyxeme4g">
+    <index id="27" parent="11" name="FK60uxvwbxydk7hkasbtyxeme4g">
       <ColNames>Customer_id</ColNames>
     </index>
-    <column id="25" parent="9" name="Customer_id">
+    <column id="28" parent="12" name="Customer_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="26" parent="9" name="phones">
+    <column id="29" parent="12" name="areaCode">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <index id="27" parent="9" name="FKmsy0iqyacw8ghj9esr5b7q92s">
+    <index id="30" parent="12" name="FKmsy0iqyacw8ghj9esr5b7q92s">
       <ColNames>Customer_id</ColNames>
     </index>
-    <column id="28" parent="10" name="id">
+    <column id="31" parent="13" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="29" parent="10" name="description">
+    <column id="32" parent="13" name="description">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="30" parent="10" name="name">
+    <column id="33" parent="13" name="name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="31" parent="10" name="UK_gxubutkbk5o2a6aakbe7q9kww">
+    <index id="34" parent="13" name="UK_gxubutkbk5o2a6aakbe7q9kww">
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="32" parent="10" name="PRIMARY">
+    <key id="35" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="33" parent="10" name="UK_gxubutkbk5o2a6aakbe7q9kww">
+    <key id="36" parent="13" name="UK_gxubutkbk5o2a6aakbe7q9kww">
       <ColNames>name</ColNames>
       <UnderlyingIndexName>UK_gxubutkbk5o2a6aakbe7q9kww</UnderlyingIndexName>
     </key>
-    <column id="34" parent="11" name="id">
+    <column id="37" parent="14" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="35" parent="11" name="price">
+    <column id="38" parent="14" name="price">
       <Position>2</Position>
       <DataType>double|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="36" parent="11" name="quantity">
+    <column id="39" parent="14" name="quantity">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="11" name="product_id">
+    <column id="40" parent="14" name="product_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="38" parent="11" name="FKtj1yymy2dk8ie8u1dksogx7bs">
+    <index id="41" parent="14" name="FKtj1yymy2dk8ie8u1dksogx7bs">
       <ColNames>product_id</ColNames>
     </index>
-    <key id="39" parent="11" name="PRIMARY">
+    <key id="42" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="40" parent="12" name="id">
+    <column id="43" parent="15" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="41" parent="12" name="login">
+    <column id="44" parent="15" name="login">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <column id="42" parent="12" name="password">
+    <column id="45" parent="15" name="password">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="43" parent="12" name="UK_587tdsv8u5cvheyo9i261xhry">
+    <index id="46" parent="15" name="UK_587tdsv8u5cvheyo9i261xhry">
       <ColNames>login</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="44" parent="12" name="PRIMARY">
+    <key id="47" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="45" parent="12" name="UK_587tdsv8u5cvheyo9i261xhry">
+    <key id="48" parent="15" name="UK_587tdsv8u5cvheyo9i261xhry">
       <ColNames>login</ColNames>
       <UnderlyingIndexName>UK_587tdsv8u5cvheyo9i261xhry</UnderlyingIndexName>
     </key>
-    <column id="46" parent="13" name="User_id">
+    <column id="49" parent="16" name="User_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="47" parent="13" name="permissions">
+    <column id="50" parent="16" name="permissions">
       <Position>2</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="48" parent="13" name="FKg38mildyortx2d5gsshfcvwto">
+    <index id="51" parent="16" name="FKg38mildyortx2d5gsshfcvwto">
       <ColNames>User_id</ColNames>
     </index>
   </database-model>

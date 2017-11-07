@@ -34,7 +34,6 @@ public class CorreiosServerTestCases {
 
         System.out.println(properties.getProperty(CorreiosServer.PropertyTags.VALUE));
 
-
     }
 
 

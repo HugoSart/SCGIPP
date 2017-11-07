@@ -26,6 +26,7 @@ public class MainScenario extends Scenario {
 
     @FXML private AnchorPane pUsers;
     @FXML private AnchorPane pCustomers;
+    @FXML private AnchorPane pSales;
 
     public MainScenario() {
         super("fxml/scenario_main.fxml");
@@ -36,10 +37,8 @@ public class MainScenario extends Scenario {
         scene.getStylesheets().add("css/Style.css");
         lbSessionUser.setText(UserSession.getSession().getActiveUser().getLogin());
 
-        Fragment fragmentScenario = new UserFragment();
-
-        Spawner.startFragment(fragmentScenario, this, pUsers);
-        Spawner.startFragment(fragmentScenario, this, pCustomers);
+        Spawner.startFragment(new UserFragment(), this, pUsers);
+        Spawner.startFragment(new SalesFragment(), this, pSales);
 
     }
 

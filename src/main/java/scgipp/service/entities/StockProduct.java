@@ -1,39 +1,33 @@
 package scgipp.service.entities;
 
-import scgipp.data.hibernate.Entity;
+import scgipp.data.hibernate.BaseEntity;
 
 import javax.persistence.Column;
-import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
-@javax.persistence.Entity
-public class StockProduct extends Entity{
+@Entity
+public class StockProduct extends BaseEntity {
 
     @ManyToOne
     private Product product;
 
     @Column(nullable = false)
-    private Double price;
+    private double purchasePrice;
+
+    @Column(nullable = false)
+    private double salePrice;
 
     @Column(nullable = false)
     private Integer quantity;
 
-    protected StockProduct(){};
+    protected StockProduct() {}
 
-    /*public StockProduct(String name, String description, Integer quantity, Double price){
-        this();
-        this.product.setName(name);
-        this.product.setDescription(description);
-        this.quantity = quantity;
-        this.price = price;
-    }*/
-
-    public StockProduct(Product product, Integer quantity, Double price){
+    public StockProduct(Product product, Integer quantity, double salePrice){
         this();
         this.setProduct(product);
         this.setQuantity(quantity);
-        this.setPrice(price);
+        this.setSalePrice(salePrice);
     }
 
     public void setProduct(Product product){
@@ -52,12 +46,20 @@ public class StockProduct extends Entity{
         return quantity;
     }
 
-    public void setPrice(Double price){
-        this.price = price;
+    public double getPurchasePrice() {
+        return purchasePrice;
     }
 
-    public Double getPrice(){
-        return price;
+    public void setPurchasePrice(double buyPrice) {
+        this.purchasePrice = buyPrice;
+    }
+
+    public void setSalePrice(double price){
+        this.salePrice = price;
+    }
+
+    public double getSalePrice(){
+        return salePrice;
     }
 
 }

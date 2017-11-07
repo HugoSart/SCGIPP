@@ -1,15 +1,14 @@
 package scgipp.service.entities;
 
-import scgipp.data.hibernate.Entity;
+import scgipp.data.hibernate.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import java.time.LocalDate;
-import java.util.Date;
 
 @javax.persistence.Entity
-public class Sale extends Entity {
+public class Sale extends BaseEntity {
 
     @Column
     private LocalDate date;

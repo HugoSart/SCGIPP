@@ -47,12 +47,12 @@ public class StockProductManagerTestCases {
         StockProduct stockProduct = DBConnection.manager().get(StockProduct.class, auxId);
         stockProduct.setProduct(product);
         stockProduct.setQuantity(10);
-        stockProduct.setPrice(10.10);
+        stockProduct.setPurchasePrice(10.10);
 
         StockProductManager.updateStockProduct(stockProduct);
         Assert.assertEquals(stockProduct.getProduct(), product);
         Assert.assertEquals((int)stockProduct.getQuantity(), 10);
-        Assert.assertEquals(10.10, stockProduct.getPrice(), 0);
+        Assert.assertEquals(10.10, stockProduct.getPurchasePrice(), 0);
     }
 
     @Test

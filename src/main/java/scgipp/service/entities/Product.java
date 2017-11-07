@@ -1,15 +1,11 @@
 package scgipp.service.entities;
 
-import scgipp.data.hibernate.Entity;
+import scgipp.data.hibernate.BaseEntity;
 
 import javax.persistence.Column;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
-import java.util.ArrayList;
-import java.util.List;
 
 @javax.persistence.Entity
-public class Product extends Entity {
+public class Product extends BaseEntity {
 
     @Column (nullable = false, unique = true)
     private String name;

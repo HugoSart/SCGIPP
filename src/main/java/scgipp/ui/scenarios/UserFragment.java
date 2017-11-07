@@ -11,6 +11,7 @@ import scgipp.service.managers.UserManager;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.FXScenario.Spawner;
+import scgipp.ui.visible.ObservableUser;
 
 import java.util.List;
 
@@ -25,16 +26,16 @@ public class UserFragment extends Fragment {
 
     @FXML private AnchorPane userInfoPane;
 
-    @FXML private TableView<User> tvUsers;
-    @FXML private TableColumn<User, Integer> tcId;
-    @FXML private TableColumn<User, String> tcLogin;
+    @FXML private TableView<ObservableUser> tvUsers;
+    @FXML private TableColumn<ObservableUser, Integer> tcId;
+    @FXML private TableColumn<ObservableUser, String> tcLogin;
 
     @FXML private TextField tfSearch;
     @FXML private Button btTest;
     @FXML private Button btAddUser;
     @FXML private Button btRemove;
 
-    @FXML ObservableList<User> userObservableList;
+    @FXML private ObservableList<ObservableUser> userObservableList;
 
     public UserFragment() {
         super("fxml/fragment_users.fxml");
@@ -50,7 +51,7 @@ public class UserFragment extends Fragment {
 
         userInfoPane.setVisible(false);
 
-        userObservableList = FXCollections.observableList(userList);
+        userObservableList = FXCollections.observableList(ObservableUser.userListTAsObservableUserList(userList));
         tcId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcLogin.setCellValueFactory(cellData -> cellData.getValue().loginProperty());
         tvUsers.setItems(userObservableList);
@@ -60,15 +61,15 @@ public class UserFragment extends Fragment {
             Spawner.startFeedbackScenario(addUserScenario, 0, this, (requestCode, resultCode, data) -> {
                 User user = (User)data.get(AddUserScenario.FEEDBACK_NEW_USER);
                 if (userManager.addUser(user) != -1)
-                    userObservableList.add(user);
+                    userObservableList.add(new ObservableUser(user));
                 tvUsers.refresh();
             });
         });
 
         btRemove.setOnAction(event -> {
-            User user = tvUsers.getSelectionModel().getSelectedItem();
-            userManager.delete(user);
-            userObservableList.remove(user);
+            ObservableUser observableUser = tvUsers.getSelectionModel().getSelectedItem();
+            userManager.delete(observableUser.getUser());
+            userObservableList.remove(observableUser);
             tvUsers.refresh();
             userInfoPane.setVisible(false);
         });
@@ -76,21 +77,21 @@ public class UserFragment extends Fragment {
         tvUsers.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
                 userInfoPane.setVisible(true);
-                User user = tvUsers.getSelectionModel().getSelectedItem();
+                ObservableUser observableUser = tvUsers.getSelectionModel().getSelectedItem();
 
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
-                userInfoFragment.putExtra("user", user);
+                userInfoFragment.putExtra("user", observableUser.getUser());
                 Spawner.startFragment(userInfoFragment, getParentController(), userInfoPane);
 
             }
         });
 
-        FilteredList<User> filteredData = new FilteredList<>(userObservableList, p -> true);
+        FilteredList<ObservableUser> filteredData = new FilteredList<>(userObservableList, p -> true);
         tfSearch.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
             if (newValue == null || newValue.isEmpty()) return true;
             String lowerCaseFilter = newValue.toLowerCase();
-            if (String.valueOf(myObject.getLogin()).toLowerCase().contains(lowerCaseFilter)) return true;
-            else if (String.valueOf(myObject.getId()).toLowerCase().contains(lowerCaseFilter)) return true;
+            if (String.valueOf(myObject.getUser().getLogin()).toLowerCase().contains(lowerCaseFilter)) return true;
+            else if (String.valueOf(myObject.getUser().getId()).toLowerCase().contains(lowerCaseFilter)) return true;
             return false;
         }));
         tvUsers.setItems(filteredData);

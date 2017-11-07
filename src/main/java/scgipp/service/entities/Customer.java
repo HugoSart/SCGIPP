@@ -20,7 +20,6 @@ public class Customer extends Person {
         setName(name);
         setCpf_cnpj(cpf);
         setDate(date);
-
     }
 
 }

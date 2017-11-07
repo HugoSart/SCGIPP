@@ -1,14 +1,14 @@
 package scgipp.service.entities;
 
-import scgipp.data.hibernate.Entity;
+import br.com.uol.pagseguro.domain.Transaction;
+import scgipp.data.hibernate.BaseEntity;
 import scgipp.service.entities.embbeded.EmbeddableAddress;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
-@javax.persistence.Entity
-public class SaleBudget extends Entity {
+@Entity
+public class SaleBudget extends BaseEntity {
 
     @OneToMany
     private List<Product> products;

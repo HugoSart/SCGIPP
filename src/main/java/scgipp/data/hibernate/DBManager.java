@@ -3,13 +3,8 @@ package scgipp.data.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
-import scgipp.service.entities.User;
 import scgipp.system.log.Log;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,10 +33,10 @@ public class DBManager {
 
     /**
      * Método que adiciona uma entidade na tabela do banco de dados correspondente.
-     * @param entity Entidade a ser persistida no banco de dados
+     * @param baseEntity Entidade a ser persistida no banco de dados
      * @return Id da entidade persistida
      */
-    public Integer add(final Entity entity) {
+    public Integer add(final BaseEntity baseEntity) {
 
         Session session = null;
 
@@ -51,7 +46,7 @@ public class DBManager {
         try {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
-            id = (Integer)session.save(entity);
+            id = (Integer)session.save(baseEntity);
             transaction.commit();
         } catch (HibernateException e) {
             standardExceptionCatch(e, transaction);
@@ -61,15 +56,15 @@ public class DBManager {
             }
         }
 
-        entity.setId(id);
+        baseEntity.setId(id);
         return id;
     }
 
     /**
      * Método que remove a entidade correspondende na tabela do banco de dados.
-     * @param entity a entidade a ser removida
+     * @param baseEntity a entidade a ser removida
      */
-    public void remove(final Entity entity) {
+    public void remove(final BaseEntity baseEntity) {
 
         Transaction transaction = null;
         Session session = null;
@@ -77,7 +72,7 @@ public class DBManager {
         try {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
-            session.delete(entity);
+            session.delete(baseEntity);
             transaction.commit();
         } catch (HibernateException e) {
             standardExceptionCatch(e, transaction);
@@ -93,7 +88,7 @@ public class DBManager {
      * Método que atualiza uma entidade já persistida no banco de dados correspondente.
      * @param object objeto a ser atualizado
      */
-    public void update(final Entity object) {
+    public void update(final BaseEntity object) {
 
         Session session = null;
         Transaction transaction = null;
@@ -119,7 +114,7 @@ public class DBManager {
      * @param id id da entidade a ser recuperada
      * @return O objeto correspondente a entidade recuperada
      */
-    public <T extends Entity> T get(final Class<T> clazz, final Integer id) {
+    public <T extends BaseEntity> T get(final Class<T> clazz, final Integer id) {
 
         Session session = null;
         Transaction transaction = null;
@@ -148,7 +143,7 @@ public class DBManager {
      * @param <> tipo das entidades a serem recuperadas
      * @return lista de objetos correspondente a todas as entidades recuperadas
      */
-    public <T extends Entity> List<T> list(final Class<T> clazz) {
+    public <T extends BaseEntity> List<T> list(final Class<T> clazz) {
 
         Session session = null;
 

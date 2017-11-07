@@ -115,11 +115,11 @@
 
 .tab-pane {
     -fx-tab-min-width:  0;
-    -fx-tab-min-height: 210;
-    -fx-tab-max-height: 210;
+    -fx-tab-min-height: 50;
+    -fx-tab-max-height: 50;
 }
 
-.tab {
+.tab-pane .tab {
     -fx-background-color: default-primary-color;
     -fx-background-radius: 0;
     -fx-border-radius: 0;
@@ -136,22 +136,63 @@
     -fx-background-color: accent-color;
 }
 
-.tab-header-background {
+.tab-pane .tab-header-background {
     -fx-background-color: default-primary-color;
 }
 
-.tab .tab-label {
+.tab-pane .tab .tab-label {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab-pane .tab-label {
+    -fx-content-display: top;
+}
+
+.tab-pane .tab .image-view {
+    -fx-rotate: 0;
+}
+
+.vertical-tab-pane {
+    -fx-tab-min-width:  0;
+    -fx-tab-min-height: 210;
+    -fx-tab-max-height: 210;
+}
+
+.vertical-tab-pane .tab {
+    -fx-background-color: default-primary-color;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+.vertical-tab-pane .tab {
+    -fx-background-color: default-primary-color;
+}
+
+.vertical-tab-pane .tab:hover {
+    -fx-background-color: rgba(0,0,0,0.2);
+}
+
+.vertical-tab-pane .tab:selected {
+    -fx-background-color: accent-color;
+}
+
+.vertical-tab-pane .tab-header-background {
+    -fx-background-color: default-primary-color;
+}
+
+.vertical-tab-pane .tab .tab-label {
     -fx-rotate: 90;
     -fx-text-fill: white;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
 
-.tab-label {
+.vertical-tab-pane .tab-label {
     -fx-content-display: top;
 }
 
-.tab .image-view {
+.vertical-tab-pane .tab .image-view {
     -fx-rotate: 0;
 }
 

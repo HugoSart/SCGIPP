@@ -4,21 +4,17 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import scgipp.data.encryption.Encryptor;
-import scgipp.data.hibernate.Entity;
+import scgipp.data.hibernate.BaseEntity;
 import scgipp.service.entities.embbeded.Permissions;
-import scgipp.service.entities.superclass.Person;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
-import javax.persistence.OneToMany;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by hsart on 13/05/17.
  */
 @javax.persistence.Entity
-public class User extends Entity {
+public class User extends BaseEntity {
 
     @Column(unique = true)
     private String login;
@@ -74,14 +70,6 @@ public class User extends Entity {
 
     public String toString() {
         return "User[id=" + getId() + ", login=" + login + ", password=" + password + "]\n";
-    }
-
-    public SimpleIntegerProperty idProperty() {
-        return new SimpleIntegerProperty(id);
-    }
-
-    public StringProperty loginProperty() {
-        return new SimpleStringProperty(login);
     }
 
 }

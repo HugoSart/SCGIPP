@@ -1,9 +1,11 @@
 package scgipp.service.entities;
 
+import scgipp.data.hibernate.BaseEntity;
+
 import javax.persistence.OneToOne;
 
 @javax.persistence.Entity
-public class Devolution extends scgipp.data.hibernate.Entity {
+public class Devolution extends BaseEntity {
 
     @OneToOne
     private Sale sale;

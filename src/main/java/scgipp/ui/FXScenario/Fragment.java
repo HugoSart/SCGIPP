@@ -36,7 +36,7 @@ public class Fragment extends Controller {
 
         try {
 
-            Pane newLoadedPane =  fxmlLoader.load();
+            Pane newLoadedPane = fxmlLoader.load();
 
             onCreateView();
 

@@ -3,6 +3,7 @@ package scgipp.service.entities.superclass;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import scgipp.data.hibernate.BaseEntity;
 import scgipp.service.entities.embbeded.EmbeddableAddress;
 import scgipp.service.entities.embbeded.EmbeddablePhone;
 
@@ -20,7 +21,7 @@ import java.util.List;
  */
 
 @MappedSuperclass
-public class Person extends scgipp.data.hibernate.Entity {
+public class Person extends BaseEntity {
 
     public enum Type {
         LEGAL("Jurídica"), PHYSICAL("Física");
