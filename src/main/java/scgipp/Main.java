@@ -4,11 +4,15 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import scgipp.data.hibernate.DBConnection;
 import scgipp.data.hibernate.DBManager;
+import scgipp.service.entities.Customer;
 import scgipp.service.entities.User;
 import scgipp.service.entities.embbeded.Permissions;
+import scgipp.service.entities.superclass.Person;
 import scgipp.ui.scenarios.LoginScenario;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
+
+import java.time.LocalDate;
 
 /**
  * User: hugo_<br/>
@@ -34,6 +38,7 @@ public class Main extends Application {
 
     private static void initTestUsers() {
         DBManager dbManager = DBConnection.manager();
+        dbManager.add(new Customer(Person.Type.LEGAL, "customer1", "0000000", LocalDate.now()));
         dbManager.add(new User("admin", "admin", Permissions.UserType.ADM));
         dbManager.add(new User("hugovs", "hugovs", Permissions.UserType.ADM));
         dbManager.add(new User("inteligega", "inteligega"));

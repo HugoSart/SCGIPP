@@ -38,6 +38,7 @@ public class MainScenario extends Scenario {
         lbSessionUser.setText(UserSession.getSession().getActiveUser().getLogin());
 
         Spawner.startFragment(new UserFragment(), this, pUsers);
+        Spawner.startFragment(new CustomerFragment(), this, pCustomers);
         Spawner.startFragment(new SalesFragment(), this, pSales);
 
     }
