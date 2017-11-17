@@ -1,33 +1,41 @@
 package scgipp.service.entities;
 
 import scgipp.data.hibernate.BaseEntity;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.Embedded;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import java.time.LocalDate;
 
-@Entity
-public class StockProduct extends BaseEntity {
+import static jdk.nashorn.internal.objects.NativeDate.setDate;
+
+@javax.persistence.Entity
+public class StockProduct extends BaseEntity{
 
     @ManyToOne
     private Product product;
 
     @Column(nullable = false)
-    private double purchasePrice;
-
-    @Column(nullable = false)
-    private double salePrice;
+    private Double price;
 
     @Column(nullable = false)
     private Integer quantity;
 
-    protected StockProduct() {}
+    protected StockProduct(){};
 
-    public StockProduct(Product product, Integer quantity, double salePrice){
+    /*public StockProduct(String name, String description, Integer quantity, Double price){
+        this();
+        this.product.setName(name);
+        this.product.setDescription(description);
+        this.quantity = quantity;
+        this.price = price;
+    }*/
+
+    public StockProduct(Product product, Integer quantity, Double price){
         this();
         this.setProduct(product);
         this.setQuantity(quantity);
-        this.setSalePrice(salePrice);
+        this.setPrice(price);
     }
 
     public void setProduct(Product product){
@@ -46,20 +54,12 @@ public class StockProduct extends BaseEntity {
         return quantity;
     }
 
-    public double getPurchasePrice() {
-        return purchasePrice;
+    public void setPrice(Double price){
+        this.price = price;
     }
 
-    public void setPurchasePrice(double buyPrice) {
-        this.purchasePrice = buyPrice;
-    }
-
-    public void setSalePrice(double price){
-        this.salePrice = price;
-    }
-
-    public double getSalePrice(){
-        return salePrice;
+    public Double getPrice(){
+        return price;
     }
 
 }
