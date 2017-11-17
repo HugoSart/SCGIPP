@@ -47,7 +47,7 @@ public class SupplierManager {
         return dbManager.get(Supplier.class, id);
     }
 
-    public List<Supplier> getAll(){
+    public static List<Supplier> getAll(){
         return dbManager.list(Supplier.class);
     }
 

@@ -30,6 +30,5 @@ public class Supplier extends Person {
         this.embeddableAddresses = addresses;
         this.phones = phones;
     }
-
 }
 
