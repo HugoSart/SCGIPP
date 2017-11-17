@@ -32,7 +32,7 @@ public class CustomerFragment extends Fragment {
     @FXML private TableView<Customer> tvCustomers;
     @FXML private TableColumn<Customer, Integer> tcId;
     @FXML private TableColumn<Customer, String> tcName;
-
+    @FXML private TableColumn<Customer, String> tcCPF;
     @FXML private TextField tfSearch;
     @FXML private Button btTest;
     @FXML private Button btAddCustomer;
