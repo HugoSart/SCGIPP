@@ -8,16 +8,18 @@ public class DocumentValidator {
     private static ChainValidator chainValidator = new ChainValidator();
 
     public static boolean isValidCPF(String CPF){
-        securityCalculator.setDocumentNumber(CPF);
-        chainValidator.setDocumentNumber(CPF);
+        String cpfCleaned = chainValidator.stringCleaner(CPF);
+        securityCalculator.setDocumentNumber(cpfCleaned);
+        chainValidator.setDocumentNumber(cpfCleaned);
 
         if(chainValidator.validCpfChain() && validCPFSecurityDigits()) return true;
         else return false;
     }
 
     public static boolean isValidCPNJ(String CNPJ){
-        securityCalculator.setDocumentNumber(CNPJ);
-        chainValidator.setDocumentNumber(CNPJ);
+        String cnpjCleaned = chainValidator.stringCleaner(CNPJ);
+        securityCalculator.setDocumentNumber(cnpjCleaned);
+        chainValidator.setDocumentNumber(cnpjCleaned);
 
         if(chainValidator.validCnpjChain() && validCNPJSecurityDigits()) return true;
         else return false;

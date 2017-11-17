@@ -2,13 +2,13 @@ package scgipp.service.validators.DocumentValidator;
 
 import java.util.InputMismatchException;
 
-public class SecurityCalculator {
+class SecurityCalculator {
 
     private String documentNumber;
 
-    protected SecurityCalculator(){}
+    SecurityCalculator(){}
 
-    protected boolean CpfDigitCalculator(int securityDigitPosition) throws InputMismatchException {
+    boolean CpfDigitCalculator(int securityDigitPosition) throws InputMismatchException {
         int num, sum, rest, weight;
         sum = 0;
         weight = securityDigitPosition;
@@ -25,7 +25,7 @@ public class SecurityCalculator {
         else return documentNumber.charAt(securityDigitPosition-1) == (char)(rest + 48);
     }
 
-    protected boolean CnpjDigitCalculator(int securityDigitPosition) throws InputMismatchException {
+    boolean CnpjDigitCalculator(int securityDigitPosition) throws InputMismatchException {
         int num, sum, rest, weight;
         sum = 0;
         weight = 2;
@@ -43,7 +43,7 @@ public class SecurityCalculator {
         else return documentNumber.charAt(securityDigitPosition-1) == (char)((11 - rest) + 48);
     }
 
-    protected void setDocumentNumber(String documentNumber) {
+    void setDocumentNumber(String documentNumber) {
         this.documentNumber = documentNumber;
     }
 }
