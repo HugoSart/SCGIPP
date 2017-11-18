@@ -33,7 +33,8 @@ public class ProductManager {
 
     public static void updateProduct(Product product){
         dbManager.update(product);
-        Log.show("DATABASE", "Product", "The stock product has been updated.");
+        if(product.getId() != null)
+            Log.show("DATABASE", "Product", "The stock product has been updated.");
     }
 
     public static Product getProduct(Product product){
