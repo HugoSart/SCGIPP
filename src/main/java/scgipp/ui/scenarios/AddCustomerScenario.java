@@ -8,41 +8,41 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import scgipp.service.entities.Customer;
 import scgipp.service.entities.User;
 import scgipp.service.entities.embbeded.Permissions;
-import scgipp.service.managers.UserManager;
+import scgipp.service.entities.superclass.Person;
+import scgipp.service.managers.CustomerManager;
+import scgipp.service.validators.DocumentValidator.DocumentValidator;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
 
+import javax.swing.text.Document;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * User: hugo_<br/>
- * Date: 09/10/2017<br/>
- * Time: 17:03<br/>
- */
-public class AddUserScenario extends FeedbackScenario {
+public class AddCustomerScenario extends FeedbackScenario{
 
-    private UserManager userManager = UserManager.getInstance();
-
-    public static final String FEEDBACK_NEW_USER = "new_user";
+    private CustomerManager customerManager = CustomerManager.getInstance();
 
     @FXML private HBox menuBar;
-    @FXML private Label lbSessionUser1;
+    @FXML private Label lbSessionCustomer1;
     @FXML private Button btExit;
     @FXML private Button btOk;
     @FXML private Button btCancel;
-    @FXML private TextField tfLogin;
-    @FXML private PasswordField tfPassword;
-    @FXML private PasswordField tfConfirmPassword;
+    @FXML private TextField tfName;
+    @FXML private PasswordField tfCPF;
     @FXML private Label lbLoginAlreadyExists;
-    @FXML private Label lbPasswordDoesNotMatch;
-    @FXML private ListView<CheckBox> lvPermissions;
+    @FXML private Label lbVoidfield;
+    @FXML private ChoiceBox<Person.Type> cbType;
+    @FXML private TextField tfPhone;
+    @FXML private TextField tfAddress;
+    @FXML private DatePicker dpDate;
+    @FXML private Label lbFalseCpf;
+    @FXML private Label lbAlreadyOnSystem;
 
-    public AddUserScenario() {
-        super("fxml/scenario_add_user.fxml");
-    }
+    public AddCustomerScenario(){super("fxml/scenario_add_customer.fxml"); }
 
     @Override
     protected void onConfigScene(Scene scene) {
@@ -59,20 +59,24 @@ public class AddUserScenario extends FeedbackScenario {
 
         btOk.setOnAction(event -> {
 
-            String login = tfLogin.getText(), password = tfPassword.getText(), passwordConfirmation = tfConfirmPassword.getText();
+            String name = tfName.getText(), address = tfAddress.getText()  , phone = tfPhone.getText(), cpf;
+            LocalDate date = dpDate.getValue();
+            cpf = tfCPF.getText();
 
-            boolean loginAlreadyRegistered = false;
-            for (User user : userManager.getAll()) {
-                if (user.getLogin().equals(login)) {
-                    loginAlreadyRegistered = true;
+            boolean AlreadyOnSystem = false;
+            for (Customer customer : customerManager.getAll()) {
+                if (customer.getCpf_cnpj().equals(cpf) {
+                    AlreadyOnSystem = true;
                     break;
                 }
             }
 
-            lbLoginAlreadyExists.setVisible(loginAlreadyRegistered);
-            lbPasswordDoesNotMatch.setVisible(!password.equals(passwordConfirmation));
+            boolean FalseDocument = DocumentValidator.isValidCPF(cpf)
 
-            if (!loginAlreadyRegistered && password.equals(passwordConfirmation)) {
+            lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
+            lbFalseCpf.setVisible(!FalseDocument));
+
+            if (FalseDocument && !AlreadyOnSystem)) {
 
                 User user = new User(login, password);
 
