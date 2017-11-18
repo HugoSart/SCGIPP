@@ -4,16 +4,28 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<<<<<<< HEAD
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+=======
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+>>>>>>> [C]ObservableCustomer
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane prefHeight="382.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+=======
+<AnchorPane prefHeight="402.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+>>>>>>> [C]ObservableCustomer
     <children>
         <HBox fx:id="menuBar" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="1053.0" style="-fx-background-color: rgba(0,0,0,0.1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -52,6 +64,26 @@
                 <Font size="10.0" />
             </font>
         </Label>
+<<<<<<< HEAD
       <ChoiceBox fx:id="cbType" layoutX="76.0" layoutY="106.0" prefWidth="150.0" />
+=======
+      <ChoiceBox fx:id="cbType" layoutX="76.0" layoutY="109.0" prefWidth="150.0">
+         <effect>
+            <Blend />
+         </effect></ChoiceBox>
+      <TextField fx:id="tfPhone" layoutX="77.0" layoutY="268.0" promptText="Telefone" />
+      <TextField fx:id="tfAddress" layoutX="77.0" layoutY="312.0" promptText="Enderecço" />
+      <Label fx:id="lbFalseCpf" layoutX="293.0" layoutY="170.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Documento Invalido" textFill="#ff6a6a">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dpDate" layoutX="70.0" layoutY="216.0" />
+      <Label fx:id="lbAlreadyOnSystem" layoutX="293.0" layoutY="77.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Cliente ja cadastratado" textFill="#ff6a6a">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+>>>>>>> [C]ObservableCustomer
     </children>
 </AnchorPane>
