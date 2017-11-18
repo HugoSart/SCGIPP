@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <component name="libraryTable">
   <library name="UndecoratorBis">
     <CLASSES>
@@ -8,15 +7,4 @@
     <JAVADOC />
     <SOURCES />
   </library>
-=======
-<component name="libraryTable">
-  <library name="UndecoratorBis">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/UndecoratorBis.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/UndecoratorBis.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
->>>>>>> [C]ObservableCustomer
 </component>

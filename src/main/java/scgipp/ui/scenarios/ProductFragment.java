@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-package scgipp.ui.scenarios;
-
-public class ProductFragment {
-}
-=======
->>>>>>> [C]ObservableCustomer
 package scgipp.ui.scenarios;
 
 import javafx.fxml.FXML;
@@ -44,7 +35,3 @@ public class ProductFragment extends Fragment {
         }
     }
 }
-<<<<<<< HEAD
-=======
->>>>>>> 76e25ad21599ebbde2d82b2e7d8e16ccf6c4fcfb
->>>>>>> [C]ObservableCustomer
