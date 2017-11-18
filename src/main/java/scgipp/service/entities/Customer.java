@@ -1,5 +1,6 @@
 package scgipp.service.entities;
 
+import org.hibernate.annotations.SQLDelete;
 import scgipp.service.entities.superclass.Person;
 
 
@@ -11,6 +12,7 @@ import java.time.LocalDate;
  */
 
 @Entity
+@SQLDelete(sql = "UPDATE Customer SET state = 0 where id = ?")
 public class Customer extends Person {
 
     protected Customer() {}
