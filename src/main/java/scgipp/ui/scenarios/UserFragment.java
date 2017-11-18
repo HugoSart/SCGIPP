@@ -78,7 +78,6 @@ public class UserFragment extends Fragment {
             if (event.isPrimaryButtonDown()) {
                 userInfoPane.setVisible(true);
                 ObservableUser observableUser = tvUsers.getSelectionModel().getSelectedItem();
-
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
                 userInfoFragment.putExtra("user", observableUser.getUser());
                 Spawner.startFragment(userInfoFragment, getParentController(), userInfoPane);

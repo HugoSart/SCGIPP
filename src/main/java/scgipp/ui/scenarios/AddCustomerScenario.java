@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.entities.Customer;
 import scgipp.service.entities.User;
+import scgipp.service.entities.embbeded.EmbeddableAddress;
+import scgipp.service.entities.embbeded.EmbeddablePhone;
 import scgipp.service.entities.embbeded.Permissions;
 import scgipp.service.entities.superclass.Person;
 import scgipp.service.managers.CustomerManager;
@@ -25,6 +27,7 @@ import java.util.List;
 public class AddCustomerScenario extends FeedbackScenario{
 
     private CustomerManager customerManager = CustomerManager.getInstance();
+    public static final String FEEDBACK_NEW_COSTUMER = "new_customer";
 
     @FXML private HBox menuBar;
     @FXML private Label lbSessionCustomer1;
@@ -63,47 +66,40 @@ public class AddCustomerScenario extends FeedbackScenario{
             LocalDate date = dpDate.getValue();
             cpf = tfCPF.getText();
 
+            EmbeddableAddress newAddress = new EmbeddableAddress();
+            newAddress.setStreet(address);
+
+            EmbeddablePhone newPhone = new EmbeddablePhone();
+            newPhone.setFullPhone(phone);
+
             boolean AlreadyOnSystem = false;
             for (Customer customer : customerManager.getAll()) {
-                if (customer.getCpf_cnpj().equals(cpf) {
+                if (customer.getCpf_cnpj().equals(cpf)){
                     AlreadyOnSystem = true;
                     break;
                 }
             }
 
-            boolean FalseDocument = DocumentValidator.isValidCPF(cpf)
+            boolean FalseDocument = DocumentValidator.isValidCPF(cpf);
 
             lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
-            lbFalseCpf.setVisible(!FalseDocument));
+            lbFalseCpf.setVisible(!FalseDocument);
 
-            if (FalseDocument && !AlreadyOnSystem)) {
+            if (FalseDocument && !AlreadyOnSystem) {
 
-                User user = new User(login, password);
+                Customer newCustomer = new Customer(Person.Type.LEGAL, name, cpf, date);
+                newCustomer.addAdress(newAddress);
+                newCustomer.addPhone(newPhone);
 
-                for (CheckBox checkBox : lvPermissions.getItems()) {
-                    if (checkBox.isSelected()) {
-                        user.permissions.add(Permissions.Permission.valueOf(checkBox.getText()));
-                    }
-                }
-
-                putFeedback(FEEDBACK_NEW_USER, user);
+                putFeedback(FEEDBACK_NEW_COSTUMER, newCustomer);
                 processFeedbackAndFinish();
             }
-
 
         });
 
         btCancel.setOnAction(event -> finish());
 
         setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
-
-        List<CheckBox> permissionsCheckBoxList = new ArrayList<>();
-        for (Permissions.Permission permission : Permissions.Permission.values()) {
-            CheckBox cb = new CheckBox();
-            cb.setText(permission.toString());
-            permissionsCheckBoxList.add(cb);
-        }
-        lvPermissions.setItems(FXCollections.observableArrayList(permissionsCheckBoxList));
 
     }
 }
