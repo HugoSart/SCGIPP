@@ -1,6 +1,7 @@
 package scgipp.ui.scenarios;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -28,22 +29,51 @@ public class AddCustomerScenario extends FeedbackScenario{
 
     private CustomerManager customerManager = CustomerManager.getInstance();
     public static final String FEEDBACK_NEW_COSTUMER = "new_customer";
+    ObservableList<String> personTypes = FXCollections.observableArrayList("FISICA", "JURIDICA");
 
     @FXML private HBox menuBar;
+
     @FXML private Label lbSessionCustomer1;
+
     @FXML private Button btExit;
+
     @FXML private Button btOk;
+
     @FXML private Button btCancel;
+
     @FXML private TextField tfName;
-    @FXML private PasswordField tfCPF;
-    @FXML private Label lbLoginAlreadyExists;
-    @FXML private Label lbVoidfield;
-    @FXML private ChoiceBox<Person.Type> cbType;
+
+    @FXML private Label lbNomeObrigatorio;
+
+    @FXML private Label lbDocumentoObrigatorio;
+
+    @FXML private ChoiceBox cbType;
+
     @FXML private TextField tfPhone;
+
     @FXML private TextField tfAddress;
-    @FXML private DatePicker dpDate;
+
     @FXML private Label lbFalseCpf;
+
+    @FXML private DatePicker dpDate;
+
     @FXML private Label lbAlreadyOnSystem;
+
+    @FXML private Label lCampoObrigatorio;
+
+    @FXML private TextField tfCPF;
+
+    @FXML private Label lbTelefoneObrigatorio;
+
+    @FXML private Label lbEnderecoObrigatorio;
+
+    @FXML private ChoiceBox<String> cbTipo;
+
+    @FXML private void initialize()
+    {
+        cbTipo.setItems(personTypes);
+    }
+
 
     public AddCustomerScenario(){super("fxml/scenario_add_customer.fxml"); }
 
@@ -58,21 +88,25 @@ public class AddCustomerScenario extends FeedbackScenario{
         NodeCustomizer.setUpMenuBar(this, menuBar, btExit, null, null);
 
         stage.initModality(Modality.APPLICATION_MODAL);
+
         stage.initStyle(StageStyle.UNDECORATED);
 
         btOk.setOnAction(event -> {
 
-            String name = tfName.getText(), address = tfAddress.getText()  , phone = tfPhone.getText(), cpf;
-            LocalDate date = dpDate.getValue();
+            String name = null,  address = null , phone = null, cpf = null, tipo = null;
+            name = tfName.getText();
+            address = tfAddress.getText();
+            phone = tfPhone.getText();
             cpf = tfCPF.getText();
+            tipo = cbTipo.getValue();
+            LocalDate date = dpDate.getValue();
 
             EmbeddableAddress newAddress = new EmbeddableAddress();
             newAddress.setStreet(address);
 
-            EmbeddablePhone newPhone = new EmbeddablePhone();
-            newPhone.setFullPhone(phone);
-
+            //pegando campos nulos
             boolean AlreadyOnSystem = false;
+            
             for (Customer customer : customerManager.getAll()) {
                 if (customer.getCpf_cnpj().equals(cpf)){
                     AlreadyOnSystem = true;
@@ -82,11 +116,17 @@ public class AddCustomerScenario extends FeedbackScenario{
 
             boolean FalseDocument = DocumentValidator.isValidCPF(cpf);
 
+            lbNomeObrigatorio.setVisible(name.isEmpty());
+            lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
+            lbTelefoneObrigatorio.setVisible(phone.isEmpty());
+            lbEnderecoObrigatorio.setVisible(address.isEmpty());
             lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
             lbFalseCpf.setVisible(!FalseDocument);
 
-            if (FalseDocument && !AlreadyOnSystem) {
+            if (FalseDocument && !AlreadyOnSystem ) {
 
+                EmbeddablePhone newPhone = new EmbeddablePhone();
+                newPhone.setFullPhone(phone);
                 Customer newCustomer = new Customer(Person.Type.LEGAL, name, cpf, date);
                 newCustomer.addAdress(newAddress);
                 newCustomer.addPhone(newPhone);

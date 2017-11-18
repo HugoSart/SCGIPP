@@ -6,9 +6,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -41,35 +39,43 @@
         </HBox>
         <Button fx:id="btOk" defaultButton="true" layoutX="271.0" layoutY="167.0" mnemonicParsing="false" text="Concluír" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
         <Button fx:id="btCancel" layoutX="201.0" layoutY="179.0" mnemonicParsing="false" text="Cancelar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="82.0" />
-        <MaterialDesignIconView fill="#2297f2" glyphName="ACCOUNT" layoutX="37.0" layoutY="93.0" size="24" />
+        <MaterialDesignIconView fill="#2297f2" glyphName="ACCOUNT" layoutX="35.0" layoutY="93.0" size="24" />
         <TextField fx:id="tfName" layoutX="75.0" layoutY="70.0" prefHeight="27.0" prefWidth="210.0" promptText="Name*" />
-        <PasswordField fx:id="tfCPF" layoutX="74.0" layoutY="164.0" prefHeight="27.0" prefWidth="210.0" promptText="CPF/CNPJ*" />
-        <Label fx:id="lbLoginAlreadyExists" layoutX="76.0" layoutY="50.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+        <Label fx:id="lbNomeObrigatorio" layoutX="76.0" layoutY="50.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
-        <Label fx:id="lbVoidfield" layoutX="75.0" layoutY="142.0" prefHeight="15.0" prefWidth="104.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+        <Label fx:id="lbDocumentoObrigatorio" layoutX="75.0" layoutY="150.0" prefHeight="15.0" prefWidth="104.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
-      <ChoiceBox fx:id="cbType" layoutX="76.0" layoutY="109.0" prefWidth="150.0">
-         <effect>
-            <Blend />
-         </effect></ChoiceBox>
-      <TextField fx:id="tfPhone" layoutX="77.0" layoutY="268.0" promptText="Telefone" />
-      <TextField fx:id="tfAddress" layoutX="77.0" layoutY="312.0" promptText="Enderecço" />
-      <Label fx:id="lbFalseCpf" layoutX="293.0" layoutY="170.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Documento Invalido" textFill="#ff6a6a">
+      <TextField fx:id="tfPhone" layoutX="80.0" layoutY="286.0" promptText="Telefone*" />
+      <TextField fx:id="tfAddress" layoutX="80.0" layoutY="338.0" promptText="Endereço*" />
+      <Label fx:id="lbFalseCpf" layoutX="312.0" layoutY="178.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Documento Invalido" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dpDate" layoutX="70.0" layoutY="216.0" />
+      <DatePicker fx:id="dpDate" layoutX="79.0" layoutY="222.0" />
       <Label fx:id="lbAlreadyOnSystem" layoutX="293.0" layoutY="77.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Cliente ja cadastratado" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
+      <Label fx:id="lCampoObrigatorio" layoutX="21.0" layoutY="380.0" text="(* Campos obrigatorios )" />
+      <TextField fx:id="tfCPF" layoutX="77.0" layoutY="173.0" prefHeight="25.0" prefWidth="210.0" promptText="CPF/CNPJ *" />
+      <Label fx:id="lbTelefoneObrigatorio" layoutX="86.0" layoutY="262.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbEnderecoObrigatorio" layoutX="86.0" layoutY="323.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="cbTipo" layoutX="76.0" layoutY="113.0" prefWidth="150.0" />
     </children>
 </AnchorPane>
