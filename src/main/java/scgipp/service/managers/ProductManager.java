@@ -9,7 +9,14 @@ import java.util.List;
 
 public class ProductManager {
 
+    private static ProductManager instance = null;
+
     private static DBManager dbManager = DBConnection.manager();
+
+    public static ProductManager getInstance() {
+        if (instance == null && DBConnection.isActive()) instance = new ProductManager();
+        return instance;
+    }
 
     public static Integer addProduct(Product product){
         Integer id = dbManager.add(product);
