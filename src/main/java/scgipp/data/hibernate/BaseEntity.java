@@ -1,10 +1,12 @@
 package scgipp.data.hibernate;
 
-import com.sun.org.apache.xerces.internal.impl.validation.EntityState;
 import org.hibernate.annotations.SQLDelete;
-import org.hibernate.event.internal.AbstractSaveEventListener;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+
+import static scgipp.data.hibernate.BaseEntity.DELETED;
+import static scgipp.data.hibernate.BaseEntity.NORMAL;
 
 /**
  * User: hugo_<br/>
@@ -14,11 +16,14 @@ import javax.persistence.*;
 @MappedSuperclass
 public abstract class BaseEntity {
 
+    public static final int NORMAL = 1;
+    public static final int DELETED = 0;
+
+    protected int state = NORMAL;
+
     @Id
     @GeneratedValue
     protected Integer id;
-
-    private State state;
 
     public void setId(Integer id) {
         this.id = id;
@@ -30,16 +35,12 @@ public abstract class BaseEntity {
 
     @PrePersist
     private void persistEntity() {
-        state = State.NORMAL;
+        state = NORMAL;
     }
 
     @PreRemove
     private void deleteEntity() {
-        state = State.DELETED;
-    }
-
-    public enum State {
-        DELETED, NORMAL
+        state = DELETED;
     }
 
 }

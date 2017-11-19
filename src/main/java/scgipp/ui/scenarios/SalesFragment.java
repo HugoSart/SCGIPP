@@ -14,4 +14,19 @@ public class SalesFragment extends Fragment {
         super("fxml/fragment_sales.fxml");
 }
 
+    @Override
+    protected void onCreateView() {
+        super.onCreateView();
+        setUpPagSeguroTab();
+        setUpLocalTab();
+    }
+
+    private void setUpPagSeguroTab() {
+
+    }
+
+    private void setUpLocalTab() {
+
+    }
+
 }

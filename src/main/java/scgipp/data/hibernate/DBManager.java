@@ -72,7 +72,8 @@ public class DBManager {
         try {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
-            session.delete(baseEntity);
+            baseEntity.state = BaseEntity.DELETED;
+            session.update(baseEntity);
             transaction.commit();
         } catch (HibernateException e) {
             standardExceptionCatch(e, transaction);
