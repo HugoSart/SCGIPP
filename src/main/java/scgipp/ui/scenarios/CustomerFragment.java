@@ -34,7 +34,7 @@ public class CustomerFragment extends Fragment {
     @FXML private TableView<ObservableCustomer> tvCustomers;
     @FXML private TableColumn<ObservableCustomer, Integer> tcId;
     @FXML private TableColumn<ObservableCustomer, String> tcName;
-    @FXML private TableColumn<ObservableCustomer, String> tcCPF;
+    @FXML private TableColumn<ObservableCustomer, String> tcDocument;
     @FXML private TextField tfSearch;
     @FXML private Button btTest;
     @FXML private Button btAddCustomer;
@@ -60,6 +60,7 @@ public class CustomerFragment extends Fragment {
         customerObservableList = FXCollections.observableList(ObservableCustomer.custumerListTAsObservableUserList(customerList));
         tcId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tcDocument.setCellValueFactory(cellData -> cellData.getValue().cpfProperty());
         tvCustomers.setItems(customerObservableList);
 
         btAddCustomer.setOnAction(event -> {
@@ -96,6 +97,7 @@ public class CustomerFragment extends Fragment {
             String lowerCaseFilter = newValue.toLowerCase();
             if (String.valueOf(myObject.getCustomer().getName()).toLowerCase().contains(lowerCaseFilter)) return true;
             else if (String.valueOf(myObject.getCustomer().getId()).toLowerCase().contains(lowerCaseFilter)) return true;
+            else if (String.valueOf(myObject.getCustomer().getCpf_cnpj()).toLowerCase().contains(lowerCaseFilter)) return true;
             return false;
         }));
         tvCustomers.setItems(filteredData);

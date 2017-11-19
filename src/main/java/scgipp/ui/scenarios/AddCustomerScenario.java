@@ -28,6 +28,7 @@ import java.util.List;
 public class AddCustomerScenario extends FeedbackScenario{
 
     private CustomerManager customerManager = CustomerManager.getInstance();
+
     public static final String FEEDBACK_NEW_CUSTOMER = "new_customer";
     ObservableList<String> personTypes = FXCollections.observableArrayList("FISICA", "JURIDICA");
 
@@ -143,15 +144,20 @@ public class AddCustomerScenario extends FeedbackScenario{
                     EmbeddablePhone newPhone = new EmbeddablePhone();
                     newPhone.setFullPhone(phone);
                     Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
-                   // newCustomer.addAdress(newAddress);
-                   // newCustomer.addPhone(newPhone);
+                    //newCustomer.addAdress(newAddress);
+                    //newCustomer.addPhone(newPhone);
                     putFeedback(FEEDBACK_NEW_CUSTOMER, newCustomer);
-                    processFeedbackAndFinish();                }
+                    processFeedbackAndFinish();
+
+
+                }
             }
+            /*
             else
             {
                 tipo = "FISICA";
             }
+            */
 
 
         });
