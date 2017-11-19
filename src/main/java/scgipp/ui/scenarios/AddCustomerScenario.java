@@ -28,7 +28,7 @@ import java.util.List;
 public class AddCustomerScenario extends FeedbackScenario{
 
     private CustomerManager customerManager = CustomerManager.getInstance();
-    public static final String FEEDBACK_NEW_COSTUMER = "new_customer";
+    public static final String FEEDBACK_NEW_CUSTOMER = "new_customer";
     ObservableList<String> personTypes = FXCollections.observableArrayList("FISICA", "JURIDICA");
 
     @FXML private HBox menuBar;
@@ -74,6 +74,8 @@ public class AddCustomerScenario extends FeedbackScenario{
         cbTipo.setItems(personTypes);
     }
 
+    @FXML private Label lbDataObrigatorio;
+
 
     public AddCustomerScenario(){super("fxml/scenario_add_customer.fxml"); }
 
@@ -93,20 +95,18 @@ public class AddCustomerScenario extends FeedbackScenario{
 
         btOk.setOnAction(event -> {
 
-            String name = null,  address = null , phone = null, cpf = null, tipo = null;
+            String name,  address , phone, cpf, tipo;
             name = tfName.getText();
             address = tfAddress.getText();
             phone = tfPhone.getText();
             cpf = tfCPF.getText();
             tipo = cbTipo.getValue();
             LocalDate date = dpDate.getValue();
-
-            EmbeddableAddress newAddress = new EmbeddableAddress();
-            newAddress.setStreet(address);
-
+            Person.Type tipo_cadastrar = Person.Type.LEGAL;
+            boolean falseDocument = true;
             //pegando campos nulos
             boolean AlreadyOnSystem = false;
-            
+
             for (Customer customer : customerManager.getAll()) {
                 if (customer.getCpf_cnpj().equals(cpf)){
                     AlreadyOnSystem = true;
@@ -114,26 +114,45 @@ public class AddCustomerScenario extends FeedbackScenario{
                 }
             }
 
-            boolean FalseDocument = DocumentValidator.isValidCPF(cpf);
-
             lbNomeObrigatorio.setVisible(name.isEmpty());
             lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
             lbTelefoneObrigatorio.setVisible(phone.isEmpty());
             lbEnderecoObrigatorio.setVisible(address.isEmpty());
             lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
-            lbFalseCpf.setVisible(!FalseDocument);
 
-            if (FalseDocument && !AlreadyOnSystem ) {
 
-                EmbeddablePhone newPhone = new EmbeddablePhone();
-                newPhone.setFullPhone(phone);
-                Customer newCustomer = new Customer(Person.Type.LEGAL, name, cpf, date);
-                newCustomer.addAdress(newAddress);
-                newCustomer.addPhone(newPhone);
+            lbFalseCpf.setVisible(!falseDocument);
+            lbDataObrigatorio.setVisible(date == null);
 
-                putFeedback(FEEDBACK_NEW_COSTUMER, newCustomer);
-                processFeedbackAndFinish();
+            if (!tipo.isEmpty())
+            {
+                if (tipo.equals("FISICA"))
+                {
+                    tipo_cadastrar = Person.Type.PHYSICAL;
+                    falseDocument = DocumentValidator.isValidCPF(cpf);
+                }
+                if (tipo.equals("JURIDICA"))
+                {
+                    tipo_cadastrar = Person.Type.LEGAL;
+                    falseDocument = DocumentValidator.isValidCPNJ(cpf);
+                }
+                if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
+                    CustomerManager customerManager = new CustomerManager();
+                    EmbeddableAddress newAddress = new EmbeddableAddress();
+                    newAddress.setStreet(address);
+                    EmbeddablePhone newPhone = new EmbeddablePhone();
+                    newPhone.setFullPhone(phone);
+                    Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
+                   // newCustomer.addAdress(newAddress);
+                   // newCustomer.addPhone(newPhone);
+                    putFeedback(FEEDBACK_NEW_CUSTOMER, newCustomer);
+                    processFeedbackAndFinish();                }
             }
+            else
+            {
+                tipo = "FISICA";
+            }
+
 
         });
 

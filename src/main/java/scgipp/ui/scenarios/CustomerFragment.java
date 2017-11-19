@@ -65,7 +65,7 @@ public class CustomerFragment extends Fragment {
         btAddCustomer.setOnAction(event -> {
             FeedbackScenario addCustomerScenario = new AddCustomerScenario();
             Spawner.startFeedbackScenario(addCustomerScenario, 0, this, (requestCode, resultCode, data) -> {
-                Customer customer = (Customer)data.get(AddCustomerScenario.FEEDBACK_NEW_COSTUMER);
+                Customer customer = (Customer)data.get(AddCustomerScenario.FEEDBACK_NEW_CUSTOMER);
                 if (customerManager.addCustomer(customer) != -1)
                     customerObservableList.add(new ObservableCustomer(customer));
                 tvCustomers.refresh();

@@ -77,5 +77,10 @@
          </font>
       </Label>
       <ChoiceBox fx:id="cbTipo" layoutX="76.0" layoutY="113.0" prefWidth="150.0" />
+      <Label fx:id="lbDataObrigatorio" layoutX="284.0" layoutY="227.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>
