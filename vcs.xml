@@ -10,6 +10,10 @@
           <option name="url" value="https://github.com/lelo451/PPIOO_GUI.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/lelo451/PPIOO.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\Taz\IdeaProjects" />
