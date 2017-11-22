@@ -1,5 +1,8 @@
 package scgipp;
 
+import br.com.uol.pagseguro.domain.AccountCredentials;
+import br.com.uol.pagseguro.exception.PagSeguroServiceException;
+import br.com.uol.pagseguro.properties.PagSeguroConfig;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import scgipp.data.hibernate.DBConnection;
@@ -21,6 +24,10 @@ import java.time.LocalDate;
  */
 public class Main extends Application {
 
+    public static final String email = "scgipp@gmail.com";
+    public static final String productionToken = "05266A48764E42FF954A4816912CFD32";
+    public static final String sandboxToken = "E6F09AA7BD24429288C9723009687660";
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -28,6 +35,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+        PagSeguroConfig.setSandboxEnvironment();
         DBConnection.initialize();
         initTestUsers();
 
@@ -44,6 +52,15 @@ public class Main extends Application {
         dbManager.add(new User("inteligega", "inteligega"));
         dbManager.add(new User("tskira", "tskira", Permissions.UserType.ADM));
         dbManager.add(new User("adario", "adario",Permissions.UserType.ADM));
+    }
+
+    public static AccountCredentials getCredentials() {
+        try {
+            return new AccountCredentials(email, productionToken, sandboxToken);
+        } catch (PagSeguroServiceException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

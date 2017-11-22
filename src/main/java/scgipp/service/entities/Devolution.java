@@ -5,7 +5,7 @@ import scgipp.data.hibernate.BaseEntity;
 import javax.persistence.OneToOne;
 
 @javax.persistence.Entity
-public class Devolution extends BaseEntity {
+public class Devolution extends BaseEntity<Integer> {
 
     @OneToOne
     private Sale sale;

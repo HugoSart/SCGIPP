@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import static jdk.nashorn.internal.objects.NativeDate.setDate;
 
 @javax.persistence.Entity
-public class StockProduct extends BaseEntity{
+public class StockProduct extends BaseEntity<Integer> {
 
     @ManyToOne
     private Product product;
@@ -21,7 +21,7 @@ public class StockProduct extends BaseEntity{
     @Column(nullable = false)
     private Integer quantity;
 
-    protected StockProduct(){};
+    protected StockProduct(){}
 
     /*public StockProduct(String name, String description, Integer quantity, Double price){
         this();

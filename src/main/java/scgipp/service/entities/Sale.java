@@ -1,58 +1,28 @@
 package scgipp.service.entities;
 
+import br.com.uol.pagseguro.domain.Transaction;
 import scgipp.data.hibernate.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @javax.persistence.Entity
-public class Sale extends BaseEntity {
-
-    @Column
-    private LocalDate date;
-
-    @OneToOne
-    private Devolution devolution;
-
-    @OneToOne
-    private SaleBudget saleBudget;
+public class Sale extends BaseEntity<Integer> {
 
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private Customer customer;
+
+    private String transactionCode;
+
     public Sale(){}
 
-    public Sale(LocalDate date, Devolution devolution, SaleBudget saleBudget, User user) {
-        this.date = date;
-        this.devolution = devolution;
-        this.saleBudget = saleBudget;
+    public Sale(User user, Customer customer, String transactionCode) {
         this.user = user;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Devolution getDevolution() {
-        return devolution;
-    }
-
-    public void setDevolution(Devolution devolution) {
-        this.devolution = devolution;
-    }
-
-    public SaleBudget getSaleBudget() {
-        return saleBudget;
-    }
-
-    public void setSaleBudget(SaleBudget saleBudget) {
-        this.saleBudget = saleBudget;
+        this.customer = customer;
+        this.transactionCode = transactionCode;
     }
 
     public User getUser() {
@@ -62,4 +32,8 @@ public class Sale extends BaseEntity {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Customer getCustomer() { return customer; }
+
+    public void setCustomer(Customer customer) { this.customer = customer; }
 }

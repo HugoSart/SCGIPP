@@ -1,7 +1,7 @@
 package scgipp.service.entities;
 
-import scgipp.service.entities.embbeded.EmbeddableAddress;
-import scgipp.service.entities.embbeded.EmbeddablePhone;
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.domain.Phone;
 import scgipp.service.entities.superclass.Person;
 
 import javax.persistence.Entity;
@@ -25,7 +25,7 @@ public class Supplier extends Person {
         setDate(LocalDate.now());
     }
 
-    public Supplier(String name, String cnpj, List<EmbeddableAddress> addresses, List<EmbeddablePhone> phones) {
+    public Supplier(String name, String cnpj, List<Address> addresses, List<Phone> phones) {
         this(name, cnpj);
         this.embeddableAddresses = addresses;
         this.phones = phones;
