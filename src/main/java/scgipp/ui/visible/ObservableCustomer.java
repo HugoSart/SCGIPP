@@ -4,9 +4,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
 import scgipp.service.entities.Customer;
-import scgipp.service.entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,5 +44,12 @@ public class ObservableCustomer {
     public StringProperty cpfProperty()
     {
         return new SimpleStringProperty(customer.getCpf_cnpj());
+    }
+
+    public StringProperty addressProperty() {
+        return new SimpleStringProperty(customer.getAddresses().get(1).getStreet().toString());
+    }
+    public StringProperty phoneProperty() {
+        return new SimpleStringProperty(customer.getPhones().get(1).getNumber().toString());
     }
 }

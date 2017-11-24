@@ -7,6 +7,9 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,26 +49,35 @@
                 <Font size="10.0" />
             </font>
         </Label>
-        <Label fx:id="lbDocumentoObrigatorio" layoutX="75.0" layoutY="150.0" prefHeight="15.0" prefWidth="104.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+        <Label fx:id="lbDocumentoObrigatorio" layoutX="76.0" layoutY="145.0" prefHeight="15.0" prefWidth="104.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
             <font>
                 <Font size="10.0" />
             </font>
         </Label>
       <TextField fx:id="tfPhone" layoutX="80.0" layoutY="286.0" promptText="Telefone*" />
       <TextField fx:id="tfAddress" layoutX="80.0" layoutY="338.0" promptText="Endereço*" />
-      <Label fx:id="lbFalseCpf" layoutX="312.0" layoutY="178.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Documento Invalido" textFill="#ff6a6a">
+      <Label fx:id="lbFalseCpf" layoutX="301.0" layoutY="171.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Documento Invalido" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <DatePicker fx:id="dpDate" layoutX="79.0" layoutY="222.0" />
+      <DatePicker fx:id="dpDate" layoutX="79.0" layoutY="222.0" style="-fx-background-color: 0000;">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></DatePicker>
       <Label fx:id="lbAlreadyOnSystem" layoutX="293.0" layoutY="77.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Cliente ja cadastratado" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="lCampoObrigatorio" layoutX="21.0" layoutY="380.0" text="(* Campos obrigatorios )" />
-      <TextField fx:id="tfCPF" layoutX="77.0" layoutY="173.0" prefHeight="25.0" prefWidth="210.0" promptText="CPF/CNPJ *" />
+      <TextField fx:id="tfCPF" layoutX="75.0" layoutY="166.0" prefHeight="25.0" prefWidth="210.0" promptText="CPF/CNPJ *" />
       <Label fx:id="lbTelefoneObrigatorio" layoutX="86.0" layoutY="262.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
@@ -82,5 +94,6 @@
             <Font size="10.0" />
          </font>
       </Label>
+      <Label fx:id="lbDataNascimento" layoutX="84.0" layoutY="201.0" text="Data de Nascimento/Fundação" />
     </children>
 </AnchorPane>

@@ -128,6 +128,16 @@ public class Person extends BaseEntity<Integer> {
         return type.nameProperty();
     }
 
+    public SimpleStringProperty addressProperty() {
+        String endereco = getAddresses().get(1).getStreet().toString();
+        return new SimpleStringProperty(endereco);
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        String fone = getPhones().get(1).getNumber().toString();
+        return new SimpleStringProperty(fone);
+    }
+
     public SimpleStringProperty cpfProperty() {
         return new SimpleStringProperty(cpf_cnpj);
     }
