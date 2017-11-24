@@ -1,12 +1,12 @@
 package manager_test_cases;
 
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.domain.Phone;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import scgipp.data.hibernate.DBConnection;
 import scgipp.service.entities.Supplier;
-import scgipp.service.entities.embbeded.EmbeddableAddress;
-import scgipp.service.entities.embbeded.EmbeddablePhone;
 import scgipp.service.managers.SupplierManager;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class SupplierManagerTestCases {
 
     @Test
     public void removeSupplierTest(){
-        Supplier supplier = new Supplier("Empresa 3", "000000333000", new ArrayList<EmbeddableAddress>(), new ArrayList<EmbeddablePhone>());
+        Supplier supplier = new Supplier("Empresa 3", "000000333000", new ArrayList<>(), new ArrayList<>());
         Integer idTest = SupplierManager.addSupplier(supplier);
 
         SupplierManager.removeSupplier(supplier);

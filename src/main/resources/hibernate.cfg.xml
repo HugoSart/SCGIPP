@@ -9,7 +9,7 @@
         <property name="hibernate.id.new_generator_mappings">false</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost/scgipp_db</property>
         <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
+        <property name="hibernate.connection.password">root</property>
 
         <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.enable_lazy_load_no_trans">true</property>
@@ -18,6 +18,8 @@
         <property name="hibernate.c3p0.idle_test_period">1000</property>
 
         <!-- List of XML mapping files -->
+        <mapping class="br.com.uol.pagseguro.domain.Item"/>
+
         <mapping class="scgipp.service.entities.User"/>
         <mapping class="scgipp.service.entities.Product"/>
         <mapping class="scgipp.service.entities.Customer"/>
@@ -27,6 +29,7 @@
         <mapping class="scgipp.service.entities.Sale"/>
         <mapping class="scgipp.service.entities.Devolution"/>
         <mapping class="scgipp.service.entities.SaleBudget"/>
+
     </session-factory>
 
 </hibernate-configuration>

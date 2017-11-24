@@ -73,7 +73,7 @@ public class DBManager {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
             baseEntity.state = BaseEntity.DELETED;
-            session.update(baseEntity);
+            session.update                                                                                                                                  (baseEntity);
             transaction.commit();
         } catch (HibernateException e) {
             standardExceptionCatch(e, transaction);
@@ -115,7 +115,7 @@ public class DBManager {
      * @param id id da entidade a ser recuperada
      * @return O objeto correspondente a entidade recuperada
      */
-    public <T extends BaseEntity> T get(final Class<T> clazz, final Integer id) {
+    public <T extends BaseEntity> T get(final Class<T> clazz, final Object id) {
 
         Session session = null;
         Transaction transaction = null;
@@ -124,7 +124,10 @@ public class DBManager {
         try {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
-            object = session.get(clazz, id);
+            if (id instanceof Integer)
+                object = session.get(clazz, (Integer)id);
+            else if (id instanceof String)
+                object = session.get(clazz, (String)id);
             transaction.commit();
         } catch (HibernateException e) {
             standardExceptionCatch(e, transaction);

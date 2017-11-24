@@ -1,23 +1,22 @@
 package scgipp.service.entities;
 
-import br.com.uol.pagseguro.domain.Transaction;
+import br.com.uol.pagseguro.domain.Address;
 import scgipp.data.hibernate.BaseEntity;
-import scgipp.service.entities.embbeded.EmbeddableAddress;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class SaleBudget extends BaseEntity {
+public class SaleBudget extends BaseEntity<Integer> {
 
     @OneToMany
     private List<Product> products;
 
-    private EmbeddableAddress address;
+    private Address address;
 
     public SaleBudget() {}
 
-    public SaleBudget(List<Product> products, EmbeddableAddress address) {
+    public SaleBudget(List<Product> products, Address address) {
         this.products = products;
         this.address = address;
     }
