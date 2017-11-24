@@ -6,11 +6,12 @@ import scgipp.service.entities.embbeded.Permissions;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 
 /**
  * Created by hsart on 13/05/17.
  */
-@javax.persistence.Entity
+@Entity
 public class User extends BaseEntity<Integer> {
 
     @Column(unique = true)

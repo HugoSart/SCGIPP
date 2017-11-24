@@ -1,15 +1,13 @@
 package scgipp.service.entities;
 
 import scgipp.data.hibernate.BaseEntity;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 import static jdk.nashorn.internal.objects.NativeDate.setDate;
 
-@javax.persistence.Entity
+@Entity
 public class StockProduct extends BaseEntity<Integer> {
 
     @ManyToOne

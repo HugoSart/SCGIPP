@@ -1,12 +1,13 @@
 package scgipp.service.entities;
 
 import br.com.uol.pagseguro.domain.Transaction;
+import org.hibernate.annotations.SQLDelete;
 import scgipp.data.hibernate.BaseEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@javax.persistence.Entity
+@Entity
 public class Sale extends BaseEntity<Integer> {
 
     @ManyToOne

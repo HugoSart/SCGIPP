@@ -28,6 +28,7 @@ public class MainScenario extends Scenario {
     @FXML private AnchorPane pCustomers;
     @FXML private AnchorPane pSales;
     @FXML private AnchorPane pSupplier;
+    @FXML private AnchorPane pProduct;
 
     public MainScenario() {
         super("fxml/scenario_main.fxml");
@@ -42,6 +43,7 @@ public class MainScenario extends Scenario {
         Spawner.startFragment(new CustomerFragment(), this, pCustomers);
         Spawner.startFragment(new SalesFragment(), this, pSales);
         Spawner.startFragment(new SupplierFragment(), this, pSupplier);
+        Spawner.startFragment(new ProductFragment(), this, pProduct);
     }
 
     @Override

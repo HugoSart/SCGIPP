@@ -2,9 +2,10 @@ package scgipp.service.entities;
 
 import scgipp.data.hibernate.BaseEntity;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
-@javax.persistence.Entity
+@Entity
 public class Devolution extends BaseEntity<Integer> {
 
     @OneToOne
