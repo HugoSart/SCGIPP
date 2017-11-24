@@ -20,20 +20,20 @@ package br.com.uol.pagseguro.domain;
 
 import scgipp.data.hibernate.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
  * Represents a product/item in a transaction
  */
-@Entity
-public class Item extends BaseEntity<String> {
+@Embeddable
+public class Item {
 
     /**
      * Product identifier, such as SKU
      */
-    //private String id;
+    @Column(name = "item_id")
+    private String id;
 
     /**
      * Product description

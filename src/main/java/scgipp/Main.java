@@ -8,13 +8,16 @@ import javafx.stage.Stage;
 import scgipp.data.hibernate.DBConnection;
 import scgipp.data.hibernate.DBManager;
 import scgipp.service.entities.Customer;
+import scgipp.service.entities.Product;
 import scgipp.service.entities.User;
 import scgipp.service.entities.embbeded.Permissions;
 import scgipp.service.entities.superclass.Person;
+import scgipp.service.managers.ProductManager;
 import scgipp.ui.scenarios.LoginScenario;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -49,9 +52,10 @@ public class Main extends Application {
         dbManager.add(new Customer(Person.Type.LEGAL, "customer1", "0000000", LocalDate.now()));
         dbManager.add(new User("admin", "admin", Permissions.UserType.ADM));
         dbManager.add(new User("hugovs", "hugovs", Permissions.UserType.ADM));
-        dbManager.add(new User("inteligega", "inteligega"));
+        dbManager.add(new User("amiguinho", "inteligega"));
         dbManager.add(new User("tskira", "tskira", Permissions.UserType.ADM));
         dbManager.add(new User("adario", "adario",Permissions.UserType.ADM));
+        ProductManager.addProduct(new Product("notebook bom", "mto bom", 10, new BigDecimal(5)));
     }
 
     public static AccountCredentials getCredentials() {

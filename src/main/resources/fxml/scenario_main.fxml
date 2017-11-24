@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MaterialDesignIconView />
       <TabPane layoutY="27.0" prefHeight="693.0" prefWidth="1280.0" side="LEFT" styleClass="vertical-tab-pane" tabClosingPolicy="UNAVAILABLE" tabMaxWidth="90.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="27.0">
@@ -30,7 +30,7 @@
             </Tab>
           <Tab closable="false" text="Produtos">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="568.0" prefWidth="842.0" />
+              <AnchorPane fx:id="pProduct" minHeight="0.0" minWidth="0.0" prefHeight="568.0" prefWidth="842.0" />
             </content>
           </Tab>
             <Tab closable="false" text="Vendas">

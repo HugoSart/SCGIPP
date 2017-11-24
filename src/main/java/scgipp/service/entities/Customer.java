@@ -12,7 +12,6 @@ import java.time.LocalDate;
  */
 
 @Entity
-@SQLDelete(sql = "UPDATE Customer SET state = 0 where id = ?")
 public class Customer extends Person {
 
     protected Customer() {}
