@@ -22,6 +22,8 @@ public class ProductFragment extends Fragment {
 
     private ProductManager productManager = ProductManager.getInstance();
 
+    @FXML private AnchorPane descriptionInfoPane;
+
     @FXML private TableView<ObservableProduct> tvProduct;
     @FXML private TableColumn<ObservableProduct, Integer> tcId;
     @FXML private TableColumn<ObservableProduct, String> tcName;
@@ -47,6 +49,8 @@ public class ProductFragment extends Fragment {
             System.out.println(product);
         }
 
+        descriptionInfoPane.setVisible(false);
+
         productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
         tcId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
@@ -54,40 +58,43 @@ public class ProductFragment extends Fragment {
         tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
         tvProduct.setItems(productObservableList);
 
-        /*btAddUser.setOnAction(event -> {
-            FeedbackScenario addUserScenario = new AddUserScenario();
-            Spawner.startFeedbackScenario(addUserScenario, 0, this, (requestCode, resultCode, data) -> {
-                User user = (User)data.get(AddUserScenario.FEEDBACK_NEW_USER);
-                if (userManager.addUser(user) != -1)
-                    userObservableList.add(new ObservableUser(user));
-                tvUsers.refresh();
+        btAddProduct.setOnAction(event -> {
+            FeedbackScenario addProductScenario = new AddProductScenario();
+            Spawner.startFeedbackScenario(addProductScenario, 0, this, (requestCode, resultCode, data) -> {
+                Product product = (Product)data.get(AddProductScenario.FEEDBACK_NEW_PRODUCT);
+                if (productManager.addProduct(product) != -1)
+                    productObservableList.add(new ObservableProduct(product));
+                tvProduct.refresh();
             });
         });
 
-        btRemove.setOnAction(event -> {
-            ObservableUser observableUser = tvUsers.getSelectionModel().getSelectedItem();
-            userManager.delete(observableUser.getUser());
-            userObservableList.remove(observableUser);
-            tvUsers.refresh();
-            userInfoPane.setVisible(false);
+        btRemoveProduct.setOnAction(event -> {
+            ObservableProduct observableProduct = tvProduct.getSelectionModel().getSelectedItem();
+            ProductManager.removeProduct(observableProduct.getProduct());
+            productObservableList.remove(observableProduct);
+            tvProduct.refresh();
+            tfDescription.clear();
+            descriptionInfoPane.setVisible(false);
         });
-*/
+
         tvProduct.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
+                descriptionInfoPane.setVisible(true);
                 ObservableProduct observableProduct = tvProduct.getSelectionModel().getSelectedItem();
-                tfDescription.setText(observableProduct.getProduct().getDescription());
+                tfDescription.setText((observableProduct.getProduct().getDescription()));
+
             }
         });
 
-    /*    FilteredList<ObservableUser> filteredData = new FilteredList<>(userObservableList, p -> true);
+        FilteredList<ObservableProduct> filteredData = new FilteredList<>(productObservableList, p -> true);
         tfSearch.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
             if (newValue == null || newValue.isEmpty()) return true;
             String lowerCaseFilter = newValue.toLowerCase();
-            if (String.valueOf(myObject.getUser().getLogin()).toLowerCase().contains(lowerCaseFilter)) return true;
-            else if (String.valueOf(myObject.getUser().getId()).toLowerCase().contains(lowerCaseFilter)) return true;
+            if (String.valueOf(myObject.getProduct().getName()).toLowerCase().contains(lowerCaseFilter)) return true;
+            else if (String.valueOf(myObject.getProduct().getId()).toLowerCase().contains(lowerCaseFilter)) return true;
             return false;
         }));
-        tvUsers.setItems(filteredData);*/
+        tvProduct.setItems(filteredData);
 
     }
 

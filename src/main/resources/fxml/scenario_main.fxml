@@ -32,6 +32,9 @@
             <content>
               <AnchorPane fx:id="pProduct" minHeight="0.0" minWidth="0.0" prefHeight="568.0" prefWidth="842.0" />
             </content>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="HEXAGON" size="32" style="-fx-rotate: 0;" />
+               </graphic>
           </Tab>
             <Tab closable="false" text="Vendas">
                <content>
