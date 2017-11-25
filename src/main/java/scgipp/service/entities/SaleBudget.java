@@ -25,4 +25,5 @@ public class SaleBudget extends BaseEntity<Integer> {
         return products;
     }
 
+
 }

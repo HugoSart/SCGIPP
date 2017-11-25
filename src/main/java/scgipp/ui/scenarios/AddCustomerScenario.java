@@ -40,7 +40,7 @@ public class AddCustomerScenario extends FeedbackScenario{
     @FXML private Label lbFalseCpf;
     @FXML private DatePicker dpDate;
     @FXML private Label lbAlreadyOnSystem;
-    @FXML private Label lCampoObrigatorio;
+    //@FXML private Label lCampoObrigatorio;
     @FXML private TextField tfCPF;
     @FXML private Label lbTelefoneObrigatorio;
     @FXML private Label lbEnderecoObrigatorio;
@@ -112,17 +112,15 @@ public class AddCustomerScenario extends FeedbackScenario{
                     falseDocument = DocumentValidator.isValidCPNJ(cpf);
                 }
                 if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
-                    CustomerManager customerManager = new CustomerManager();
                     Address newAddress = new Address();
                     newAddress.setStreet(address);
                     Phone newPhone = new Phone();
-                    newPhone.setFullPhone(phone);
+                    newPhone.setNumber(phone);
                     Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
                     //newCustomer.addAdress(newAddress);
                     //newCustomer.addPhone(newPhone);
                     putFeedback(FEEDBACK_NEW_CUSTOMER, newCustomer);
                     processFeedbackAndFinish();
-
 
                 }
             }

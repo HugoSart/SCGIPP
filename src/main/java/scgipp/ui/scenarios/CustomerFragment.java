@@ -4,10 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.hibernate.id.uuid.CustomVersionOneStrategy;
 import scgipp.service.entities.Customer;
@@ -28,8 +25,7 @@ public class CustomerFragment extends Fragment {
 
     private CustomerManager customerManager = CustomerManager.getInstance();
 
-    @FXML
-    private AnchorPane customerInfoPane;
+    //@FXML private AnchorPane customerInfoPane;
 
     @FXML private TableView<ObservableCustomer> tvCustomers;
     @FXML private TableColumn<ObservableCustomer, Integer> tcId;
@@ -39,9 +35,13 @@ public class CustomerFragment extends Fragment {
     @FXML private Button btTest;
     @FXML private Button btAddCustomer;
     @FXML private Button btRemove;
+    @FXML private TableColumn<ObservableCustomer, String> tcEndereco;
+    @FXML private TableColumn<ObservableCustomer, String> tcTelefone;
 
     @FXML
-    ObservableList<ObservableCustomer> customerObservableList;
+    private Label lbDataNascimento;
+
+    @FXML ObservableList<ObservableCustomer> customerObservableList;
 
     public CustomerFragment() {
         super("fxml/fragment_customer.fxml");
@@ -55,12 +55,15 @@ public class CustomerFragment extends Fragment {
             System.out.println(customer);
         }
 
-        customerInfoPane.setVisible(false);
+        //customerInfoPane.setVisible(false);
 
         customerObservableList = FXCollections.observableList(ObservableCustomer.custumerListTAsObservableUserList(customerList));
         tcId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tcDocument.setCellValueFactory(cellData -> cellData.getValue().cpfProperty());
+        //tcEndereco.setCellValueFactory(cellData -> cellData.getValue().addressProperty());
+        //tcTelefone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
+
         tvCustomers.setItems(customerObservableList);
 
         btAddCustomer.setOnAction(event -> {
@@ -78,16 +81,16 @@ public class CustomerFragment extends Fragment {
             customerManager.removeCustomer(customer.getCustomer());
             customerObservableList.remove(customer);
             tvCustomers.refresh();
-            customerInfoPane.setVisible(false);
+           // customerInfoPane.setVisible(false);
         });
 
         tvCustomers.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
-                customerInfoPane.setVisible(true);
+               // customerInfoPane.setVisible(true);
                 ObservableCustomer customer = tvCustomers.getSelectionModel().getSelectedItem();
-                UserInfoFragment userInfoFragment = new UserInfoFragment();
-                userInfoFragment.putExtra("customer", customer);
-                Spawner.startFragment(userInfoFragment, getParentController(), customerInfoPane);
+                //UserInfoFragment userInfoFragment = new UserInfoFragment();
+                //userInfoFragment.putExtra("customer", customer);
+                //Spawner.startFragment(userInfoFragment, getParentController(), customerInfoPane);
             }
         });
 

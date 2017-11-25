@@ -24,7 +24,7 @@ public class ObservableSupplier {
     }
 
     public StringProperty cnpjProperty(){
-        return new SimpleStringProperty(supplierCNPJ());
+        return new SimpleStringProperty(supplierCNPJ(this.supplier));
     }
 
     public static List<ObservableSupplier> supplierListAsObervableSupplierList(List<Supplier> supplierList) {
@@ -37,7 +37,7 @@ public class ObservableSupplier {
         return observableSuppliers;
     }
 
-    private String supplierCNPJ() {
+    public String supplierCNPJ(Supplier supplier) {
         String label = "00.000.000/0000-00";
         String supplierCNPJ = supplier.getCpf_cnpj();
         StringBuilder newString = new StringBuilder();
