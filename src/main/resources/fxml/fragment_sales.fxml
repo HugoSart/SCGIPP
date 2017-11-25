@@ -39,7 +39,7 @@
                               <DatePicker fx:id="dpInitial" layoutY="34.0" promptText="Data inicial" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="34.0" />
                               <DatePicker fx:id="dpFinal" layoutX="185.0" layoutY="34.0" promptText="Data final" AnchorPane.leftAnchor="185.0" AnchorPane.topAnchor="34.0" />
                               <Button fx:id="btSearch" layoutX="640.0" layoutY="35.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="312.0" text="Mostrar" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0" />
-                              <ProgressIndicator fx:id="piProgress" layoutX="515.0" layoutY="34.0" prefHeight="28.0" prefWidth="27.0" />
+                              <ProgressIndicator fx:id="piProgress" layoutX="515.0" layoutY="34.0" prefHeight="28.0" prefWidth="27.0" visible="false" />
                            </children>
                         </AnchorPane>
                      </children></AnchorPane>

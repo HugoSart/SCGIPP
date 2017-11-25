@@ -1,23 +1,21 @@
 package scgipp.ui.scenarios;
 
-import br.com.uol.pagseguro.domain.PaymentMethod;
 import br.com.uol.pagseguro.domain.TransactionSearchResult;
 import br.com.uol.pagseguro.domain.TransactionSummary;
-import br.com.uol.pagseguro.enums.TransactionStatus;
-import br.com.uol.pagseguro.enums.TransactionType;
 import br.com.uol.pagseguro.exception.PagSeguroServiceException;
 import br.com.uol.pagseguro.service.TransactionSearchService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import scgipp.Main;
 import scgipp.ui.FXScenario.Fragment;
+import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableTransactionSummary;
 
-import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
@@ -59,8 +57,6 @@ public class SalesFragment extends Fragment {
 
     private void setUpPagSeguroTab() {
 
-        observableTransactionSummaries = FXCollections.observableArrayList();
-
         btSearch.setOnAction(event -> searchPagSeguro());
         tcCode.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
         tcDate.setCellValueFactory(cellData -> cellData.getValue().dateProperty());
@@ -68,6 +64,19 @@ public class SalesFragment extends Fragment {
         tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
         tcPaymentMethod.setCellValueFactory(cellData -> cellData.getValue().paymentProperty());
         tcStatus.setCellValueFactory(cellData -> cellData.getValue().statusProperty());
+
+        tvTransactions.setRowFactory( tv -> {
+            TableRow<ObservableTransactionSummary> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+                    ObservableTransactionSummary rowData = row.getItem();
+                    SaleInfoScenario saleInfoScenario = new SaleInfoScenario();
+                    saleInfoScenario.putExtra("summary", rowData.getTransactionSummary());
+                    Spawner.startScenario(saleInfoScenario, this);
+                }
+            });
+            return row ;
+        });
 
     }
 
@@ -77,11 +86,11 @@ public class SalesFragment extends Fragment {
 
     private void searchPagSeguro() {
 
-        new Thread(new LoadTransactionsTask()).start();
+        new Thread(new LoadTransactionSummariesTask()).start();
 
     }
 
-    protected class LoadTransactionsTask extends Task<List<ObservableTransactionSummary>> {
+    protected class LoadTransactionSummariesTask extends Task<List<ObservableTransactionSummary>> {
 
         @Override
         protected List<ObservableTransactionSummary> call() throws Exception {
@@ -109,11 +118,34 @@ public class SalesFragment extends Fragment {
 
         @Override
         protected void succeeded() {
-            tvTransactions.getItems().setAll(getValue());
+            observableTransactionSummaries = FXCollections.observableArrayList(getValue());
+            FilteredList<ObservableTransactionSummary> filteredData = new FilteredList<>(observableTransactionSummaries, p -> true);
+            tfSearch.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
+                if (newValue == null || newValue.isEmpty()) return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (String.valueOf(myObject.getTransactionSummary().getCode()).toLowerCase().contains(lowerCaseFilter)) return true;
+                else if (String.valueOf(myObject.getTransactionSummary().getDate()).toLowerCase().contains(lowerCaseFilter)) return true;
+                else if (String.valueOf(myObject.getTransactionSummary().getStatus()).toLowerCase().contains(lowerCaseFilter)) return true;
+                else if (String.valueOf(myObject.getTransactionSummary().getStatus()).toLowerCase().contains(lowerCaseFilter)) return true;
+                return false;
+            }));
+            tvTransactions.setItems(filteredData);
             btSearch.setVisible(true);
             piProgress.setVisible(false);
         }
 
+        @Override
+        protected void failed() {
+            btSearch.setVisible(true);
+            piProgress.setVisible(false);
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro");
+            alert.setHeaderText("Erro na busca");
+            alert.setContentText("O intervalo de datas precisa ser igual ou menor a 30 dias.");
+
+            alert.showAndWait();
+
+        }
     }
 
 }

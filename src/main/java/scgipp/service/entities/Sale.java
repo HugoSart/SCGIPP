@@ -26,7 +26,7 @@ public class Sale extends BaseEntity<Integer> {
     @Column
     private java.math.BigDecimal totalPrice;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     public List<Product> productsList;
 
     private String transactionCode;

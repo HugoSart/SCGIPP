@@ -232,4 +232,28 @@
     -fx-background-color: #FF9B8E;
 }
 
+/* ============= DATE PICKER ============ */
+.date-picker {
+    -fx-background-color: transparent;
+}
+
+.date-picker > .text-field {
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+.date-picker:focused > .text-field,
+.date-picker > .text-field:focused {
+    -fx-background-insets: 0 0 0 0, 0 0 0 0, 0 0 0 0;
+    -fx-background-radius: 0 0 0 0, 0 0 0 0 0;
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-padding: 0.588883em 0.5em 0.666667em 0.5em; /* 7 6 8 6 */
+    -fx-background-color: derive(-fx-box-border,30%),
+    linear-gradient(to bottom, derive(-fx-base,-3%),
+            derive(-fx-base,5%) 50%,
+            derive(-fx-base,-3%));
+    -fx-background-insets: 0 0 0 0, 0 0 0 0;
+}
 
