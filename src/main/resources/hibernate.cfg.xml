@@ -26,7 +26,6 @@
         <mapping class="scgipp.service.entities.Sale"/>
         <mapping class="scgipp.service.entities.Devolution"/>
         <mapping class="scgipp.service.entities.SaleBudget"/>
-
     </session-factory>
 
 </hibernate-configuration>

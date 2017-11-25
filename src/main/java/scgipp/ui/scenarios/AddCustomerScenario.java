@@ -111,6 +111,7 @@ public class AddCustomerScenario extends FeedbackScenario{
                     tipo_cadastrar = Person.Type.LEGAL;
                     falseDocument = DocumentValidator.isValidCPNJ(cpf);
                 }
+                if (!falseDocument) lbFalseCpf.setVisible(true);
                 if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
                     Address newAddress = new Address();
                     newAddress.setStreet(address);
@@ -124,14 +125,6 @@ public class AddCustomerScenario extends FeedbackScenario{
 
                 }
             }
-            /*
-            else
-            {
-                tipo = "FISICA";
-            }
-            */
-
-
         });
 
         btCancel.setOnAction(event -> finish());
