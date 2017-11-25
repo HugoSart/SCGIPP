@@ -1,20 +1,18 @@
 package scgipp.service.entities;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import scgipp.data.encryption.Encryptor;
 import scgipp.data.hibernate.BaseEntity;
 import scgipp.service.entities.embbeded.Permissions;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 
 /**
  * Created by hsart on 13/05/17.
  */
-@javax.persistence.Entity
-public class User extends BaseEntity {
+@Entity
+public class User extends BaseEntity<Integer> {
 
     @Column(unique = true)
     private String login;

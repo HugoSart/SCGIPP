@@ -1,3 +1,4 @@
+/*
 package manager_test_cases;
 
 import org.junit.Assert;
@@ -67,4 +68,4 @@ public class StockProductManagerTestCases {
         StockProductManager.updateStockProduct(stockProduct4);
     }
 
-}
+}*/

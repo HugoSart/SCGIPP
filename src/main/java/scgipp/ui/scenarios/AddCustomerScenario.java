@@ -1,5 +1,7 @@
 package scgipp.ui.scenarios;
 
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.domain.Phone;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,20 +12,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import scgipp.service.entities.Customer;
-import scgipp.service.entities.User;
-import scgipp.service.entities.embbeded.EmbeddableAddress;
-import scgipp.service.entities.embbeded.EmbeddablePhone;
-import scgipp.service.entities.embbeded.Permissions;
 import scgipp.service.entities.superclass.Person;
 import scgipp.service.managers.CustomerManager;
 import scgipp.service.validators.DocumentValidator.DocumentValidator;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
-
-import javax.swing.text.Document;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddCustomerScenario extends FeedbackScenario{
 
@@ -33,48 +27,28 @@ public class AddCustomerScenario extends FeedbackScenario{
     ObservableList<String> personTypes = FXCollections.observableArrayList("FISICA", "JURIDICA");
 
     @FXML private HBox menuBar;
-
     @FXML private Label lbSessionCustomer1;
-
     @FXML private Button btExit;
-
     @FXML private Button btOk;
-
     @FXML private Button btCancel;
-
     @FXML private TextField tfName;
-
     @FXML private Label lbNomeObrigatorio;
-
     @FXML private Label lbDocumentoObrigatorio;
-
     @FXML private ChoiceBox cbType;
-
     @FXML private TextField tfPhone;
-
     @FXML private TextField tfAddress;
-
     @FXML private Label lbFalseCpf;
-
     @FXML private DatePicker dpDate;
-
     @FXML private Label lbAlreadyOnSystem;
-
-    @FXML private Label lCampoObrigatorio;
-
+    //@FXML private Label lCampoObrigatorio;
     @FXML private TextField tfCPF;
-
     @FXML private Label lbTelefoneObrigatorio;
-
     @FXML private Label lbEnderecoObrigatorio;
-
     @FXML private ChoiceBox<String> cbTipo;
-
     @FXML private void initialize()
     {
         cbTipo.setItems(personTypes);
     }
-
     @FXML private Label lbDataObrigatorio;
 
 
@@ -139,17 +113,15 @@ public class AddCustomerScenario extends FeedbackScenario{
                 }
                 if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
                     CustomerManager customerManager = new CustomerManager();
-                    EmbeddableAddress newAddress = new EmbeddableAddress();
+                    Address newAddress = new Address();
                     newAddress.setStreet(address);
-                    EmbeddablePhone newPhone = new EmbeddablePhone();
-                    newPhone.setFullPhone(phone);
+                    Phone newPhone = new Phone();
+                    newPhone.setNumber(phone);
                     Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
                     //newCustomer.addAdress(newAddress);
-                    //newCustomer.addPhone(newPhone);
+                    newCustomer.addPhone(newPhone);
                     putFeedback(FEEDBACK_NEW_CUSTOMER, newCustomer);
                     processFeedbackAndFinish();
-
-
                 }
             }
             /*

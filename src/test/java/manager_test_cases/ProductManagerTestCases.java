@@ -1,3 +1,4 @@
+/*
 package manager_test_cases;
 
 import org.junit.After;
@@ -63,4 +64,4 @@ public class ProductManagerTestCases {
         //DBConnection.finish();
     }
 
-}
+}*/

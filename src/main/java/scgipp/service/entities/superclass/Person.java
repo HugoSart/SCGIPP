@@ -1,11 +1,11 @@
 package scgipp.service.entities.superclass;
 
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.domain.Phone;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import scgipp.data.hibernate.BaseEntity;
-import scgipp.service.entities.embbeded.EmbeddableAddress;
-import scgipp.service.entities.embbeded.EmbeddablePhone;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 @MappedSuperclass
-public class Person extends BaseEntity {
+public class Person extends BaseEntity<Integer> {
 
     public enum Type {
         LEGAL("Jurídica"), PHYSICAL("Física");
@@ -50,10 +50,10 @@ public class Person extends BaseEntity {
     private LocalDate date;
 
     @ElementCollection(fetch = FetchType.LAZY)
-    public List<EmbeddablePhone> phones;
+    public List<Phone> phones;
 
     @ElementCollection(fetch = FetchType.LAZY)
-    public List<EmbeddableAddress> embeddableAddresses;
+    public List<Address> embeddableAddresses;
 
     public Person() {}
 
@@ -88,23 +88,23 @@ public class Person extends BaseEntity {
         this.cpf_cnpj = cpf;
     }
 
-    public List<EmbeddablePhone> getPhones() {
+    public List<Phone> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<EmbeddablePhone> phones) {
+    public void setPhones(List<Phone> phones) {
         this.phones = phones;
     }
 
-    public void addPhone(EmbeddablePhone phone) {
+    public void addPhone(Phone phone) {
         phones.add(phone);
     }
 
-    public List<EmbeddableAddress> getAddresses() {
+    public List<Address> getAddresses() {
         return embeddableAddresses;
     }
 
-    public void addAdress(EmbeddableAddress embeddableAddress) {
+    public void addAdress(Address embeddableAddress) {
         embeddableAddresses.add(embeddableAddress);
     }
 
@@ -126,6 +126,16 @@ public class Person extends BaseEntity {
 
     public SimpleStringProperty typeProperty() {
         return type.nameProperty();
+    }
+
+    public SimpleStringProperty addressProperty() {
+        String endereco = getAddresses().get(1).getStreet().toString();
+        return new SimpleStringProperty(endereco);
+    }
+
+    public SimpleStringProperty phoneProperty() {
+        String fone = getPhones().get(1).getNumber().toString();
+        return new SimpleStringProperty(fone);
     }
 
     public SimpleStringProperty cpfProperty() {
