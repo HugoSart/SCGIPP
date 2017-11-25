@@ -62,7 +62,7 @@ public class CustomerFragment extends Fragment {
         tcName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tcDocument.setCellValueFactory(cellData -> cellData.getValue().cpfProperty());
         //tcEndereco.setCellValueFactory(cellData -> cellData.getValue().addressProperty());
-        tcTelefone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
+        //tcTelefone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
 
         tvCustomers.setItems(customerObservableList);
 

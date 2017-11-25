@@ -112,16 +112,16 @@ public class AddCustomerScenario extends FeedbackScenario{
                     falseDocument = DocumentValidator.isValidCPNJ(cpf);
                 }
                 if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
-                    CustomerManager customerManager = new CustomerManager();
                     Address newAddress = new Address();
                     newAddress.setStreet(address);
                     Phone newPhone = new Phone();
                     newPhone.setNumber(phone);
                     Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
                     //newCustomer.addAdress(newAddress);
-                    newCustomer.addPhone(newPhone);
+                    //newCustomer.addPhone(newPhone);
                     putFeedback(FEEDBACK_NEW_CUSTOMER, newCustomer);
                     processFeedbackAndFinish();
+
                 }
             }
             /*
