@@ -22,6 +22,6 @@ public class CNPJValidatorTests {
         Assert.assertTrue(!documentValidator.isValidCPNJ("11111111111111"));
         Assert.assertTrue(!documentValidator.isValidCPNJ("11111111111122"));
         Assert.assertTrue(!documentValidator.isValidCPNJ("11116711111122"));
-        Assert.assertTrue(!documentValidator.isValidCPNJ("19116711131122"));
+        Assert.assertTrue(!documentValidator.isValidCPNJ("19116711131122"));    
     }
 }

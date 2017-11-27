@@ -37,6 +37,7 @@ public class Person extends BaseEntity<Integer> {
         }
 
     }
+
     @Column(nullable = false)
     private Type type;
 

@@ -155,7 +155,7 @@ public class UpdateCustomerScenario extends FeedbackScenario {
             lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
             //lbTelefoneObrigatorio.setVisible(phone.isEmpty());
             //lbEnderecoObrigatorio.setVisible(address.isEmpty());
-            lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
+            //lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
             lbFalseCpf.setVisible(!falseDocument);
             lbDataObrigatorio.setVisible(date == null);
 

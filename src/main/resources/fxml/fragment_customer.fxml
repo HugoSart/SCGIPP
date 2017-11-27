@@ -61,6 +61,9 @@
                                 <effect>
                                     <DropShadow blurType="ONE_PASS_BOX" height="2.2225" radius="0.055625000000000036" width="0.0" />
                                 </effect>
+                           <VBox.margin>
+                              <Insets bottom="8.0" />
+                           </VBox.margin>
                             </Button>
                         <Button fx:id="btUpdate" mnemonicParsing="false" prefHeight="26.0" prefWidth="92.0" text="Atualizar" textAlignment="CENTER" wrapText="true">
                            <effect>
