@@ -153,8 +153,8 @@ public class UpdateCustomerScenario extends FeedbackScenario {
 
             lbNomeObrigatorio.setVisible(name.isEmpty());
             lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
-            lbTelefoneObrigatorio.setVisible(phone.isEmpty());
-            lbEnderecoObrigatorio.setVisible(address.isEmpty());
+            //lbTelefoneObrigatorio.setVisible(phone.isEmpty());
+            //lbEnderecoObrigatorio.setVisible(address.isEmpty());
             lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
             lbFalseCpf.setVisible(!falseDocument);
             lbDataObrigatorio.setVisible(date == null);
@@ -173,7 +173,7 @@ public class UpdateCustomerScenario extends FeedbackScenario {
                     falseDocument = DocumentValidator.isValidCPNJ(cpf);
                 }
                 if (!falseDocument) lbFalseCpf.setVisible(true);
-                if (falseDocument && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
+                if (falseDocument && !name.isEmpty() && date != null) {
                     this.updateThisCustomer.setName(name);
                     this.updateThisCustomer.setCpf_cnpj(cpf);
                     this.updateThisCustomer.setDate(date);
