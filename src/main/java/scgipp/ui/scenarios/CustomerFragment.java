@@ -37,6 +37,8 @@ public class CustomerFragment extends Fragment {
     @FXML private Button btRemove;
     @FXML private TableColumn<ObservableCustomer, String> tcEndereco;
     @FXML private TableColumn<ObservableCustomer, String> tcTelefone;
+    @FXML private Button btUpdate;
+
 
     @FXML
     private Label lbDataNascimento;
@@ -92,6 +94,19 @@ public class CustomerFragment extends Fragment {
                 //userInfoFragment.putExtra("customer", customer);
                 //Spawner.startFragment(userInfoFragment, getParentController(), customerInfoPane);
             }
+        });
+
+        btUpdate.setOnAction(event -> {
+            ObservableCustomer observableCustomer = tvCustomers.getSelectionModel().getSelectedItem();
+            FeedbackScenario updateCustomerScenario = new UpdateCustomerScenario(observableCustomer.getCustomer());
+            Spawner.startFeedbackScenario(updateCustomerScenario, 0, this, (requestCode, resultCode, data) -> {
+                Customer customerUpdated = (Customer)data.get(UpdateCustomerScenario.FEEDBACK_NEW_CUSTOMER);
+                customerManager.updateCustomer(customerUpdated);
+                tvCustomers.refresh();
+            });
+            //customerManager.updateCustomer(observableCustomer.getUser());
+            //customerObservableList.remove(observableCustomer);
+            //tvCustomers.refresh();
         });
 
         FilteredList<ObservableCustomer> filteredData = new FilteredList<>(customerObservableList, p -> true);

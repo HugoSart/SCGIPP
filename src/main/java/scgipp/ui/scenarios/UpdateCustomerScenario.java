@@ -17,45 +17,103 @@ import scgipp.service.managers.CustomerManager;
 import scgipp.service.validators.DocumentValidator.DocumentValidator;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
-import java.time.LocalDate;
+import scgipp.ui.FXScenario.Scenario;
 
-public class AddCustomerScenario extends FeedbackScenario{
+import java.time.LocalDate;
+import java.time.chrono.Chronology;
+
+public class UpdateCustomerScenario extends FeedbackScenario {
 
     private CustomerManager customerManager = CustomerManager.getInstance();
 
     public static final String FEEDBACK_NEW_CUSTOMER = "new_customer";
+
     ObservableList<String> personTypes = FXCollections.observableArrayList("FISICA", "JURIDICA");
 
-    @FXML private HBox menuBar;
-    @FXML private Label lbSessionCustomer1;
-    @FXML private Button btExit;
-    @FXML private Button btOk;
-    @FXML private Button btCancel;
-    @FXML private TextField tfName;
-    @FXML private Label lbNomeObrigatorio;
-    @FXML private Label lbDocumentoObrigatorio;
-    @FXML private ChoiceBox cbType;
-    @FXML private TextField tfPhone;
-    @FXML private TextField tfAddress;
-    @FXML private Label lbFalseCpf;
-    @FXML private DatePicker dpDate;
-    @FXML private Label lbAlreadyOnSystem;
-    //@FXML private Label lCampoObrigatorio;
-    @FXML private TextField tfCPF;
-    @FXML private Label lbTelefoneObrigatorio;
-    @FXML private Label lbEnderecoObrigatorio;
-    @FXML private ChoiceBox<String> cbTipo;
-    @FXML private Label lbDataObrigatorio;
+    private Customer updateThisCustomer;
+    @FXML
+    private HBox menuBar;
 
-    @FXML private Label lbTipoObrigatorio;
+    @FXML
+    private Label lbSessionCustomer1;
+
+    @FXML
+    private Button btExit;
+
+    @FXML
+    private Button btOk;
+
+    @FXML
+    private Button btCancel;
+
+    @FXML
+    private TextField tfName;
+
+    @FXML
+    private Label lbNomeObrigatorio;
+
+    @FXML
+    private Label lbDocumentoObrigatorio;
+
+    @FXML
+    private TextField tfPhone;
+
+    @FXML
+    private TextField tfAddress;
+
+    @FXML
+    private Label lbFalseCpf;
+
+    @FXML
+    private DatePicker dpDate;
+
+    @FXML
+    private Label lbAlreadyOnSystem;
+
+    @FXML
+    private TextField tfCPF;
+
+    @FXML
+    private Label lbTelefoneObrigatorio;
+
+    @FXML
+    private Label lbEnderecoObrigatorio;
+
+    @FXML
+    private ChoiceBox<String> cbTipo;
+
+    @FXML
+    private Label lbDataObrigatorio;
+
+    @FXML
+    private Label lbDataNascimento;
+
+
+
+
+    public UpdateCustomerScenario(Customer customer2Update){
+        super("fxml/scenario_update_customer.fxml");
+        this.updateThisCustomer = customer2Update;
+    }
 
     @FXML private void initialize()
     {
+
         cbTipo.setItems(personTypes);
+        tfName.setText(this.updateThisCustomer.getName());
+        tfCPF.setText(this.updateThisCustomer.getCpf_cnpj());
+        if(this.updateThisCustomer.getType() == Person.Type.PHYSICAL)
+        {
+            cbTipo.getSelectionModel().select(0);
+        }
+        else
+        {
+            cbTipo.getSelectionModel().select(1);
+        }
+        dpDate.setValue(this.updateThisCustomer.getDate());
     }
 
 
-    public AddCustomerScenario(){super("fxml/scenario_add_customer.fxml"); }
 
     @Override
     protected void onConfigScene(Scene scene) {
@@ -92,16 +150,15 @@ public class AddCustomerScenario extends FeedbackScenario{
                 }
             }
 
+
             lbNomeObrigatorio.setVisible(name.isEmpty());
             lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
             lbTelefoneObrigatorio.setVisible(phone.isEmpty());
             lbEnderecoObrigatorio.setVisible(address.isEmpty());
             lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
-            lbTipoObrigatorio.setVisible(cbTipo.getSelectionModel().isEmpty());
-
-
             lbFalseCpf.setVisible(!falseDocument);
             lbDataObrigatorio.setVisible(date == null);
+
 
             if (!tipo.isEmpty())
             {
@@ -116,15 +173,11 @@ public class AddCustomerScenario extends FeedbackScenario{
                     falseDocument = DocumentValidator.isValidCPNJ(cpf);
                 }
                 if (!falseDocument) lbFalseCpf.setVisible(true);
-                if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
-                    Address newAddress = new Address();
-                    newAddress.setStreet(address);
-                    Phone newPhone = new Phone();
-                    newPhone.setNumber(phone);
-                    Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
-                    //newCustomer.addAdress(newAddress);
-                    //newCustomer.addPhone(newPhone);
-                    putFeedback(FEEDBACK_NEW_CUSTOMER, newCustomer);
+                if (falseDocument && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
+                    this.updateThisCustomer.setName(name);
+                    this.updateThisCustomer.setCpf_cnpj(cpf);
+                    this.updateThisCustomer.setDate(date);
+                    putFeedback(FEEDBACK_NEW_CUSTOMER, this.updateThisCustomer);
                     processFeedbackAndFinish();
                 }
             }
@@ -132,7 +185,8 @@ public class AddCustomerScenario extends FeedbackScenario{
 
         btCancel.setOnAction(event -> finish());
 
-        setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
+        setUpScenarioStyle(Scenario.ScenarioStyle.BETTER_UNDECORATED);
 
     }
+
 }
