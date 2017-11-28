@@ -47,9 +47,9 @@ public class ObservableCustomer {
     }
 
     public StringProperty addressProperty() {
-        return new SimpleStringProperty(customer.getAddresses().get(1).getStreet().toString());
+        return new SimpleStringProperty(customer.getAddresses().get(0).getStreet().toString());
     }
     public StringProperty phoneProperty() {
-        return new SimpleStringProperty(customer.getPhones().get(1).getNumber().toString());
+        return new SimpleStringProperty(customer.getPhones().get(0).getNumber().toString());
     }
 }

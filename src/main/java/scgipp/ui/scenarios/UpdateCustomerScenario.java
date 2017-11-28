@@ -111,6 +111,8 @@ public class UpdateCustomerScenario extends FeedbackScenario {
             cbTipo.getSelectionModel().select(1);
         }
         dpDate.setValue(this.updateThisCustomer.getDate());
+        tfAddress.setText(updateThisCustomer.getAddresses().get(0).getStreet());
+        tfPhone.setText(updateThisCustomer.getPhones().get(0).getNumber());
     }
 
 
@@ -173,10 +175,18 @@ public class UpdateCustomerScenario extends FeedbackScenario {
                     falseDocument = DocumentValidator.isValidCPNJ(cpf);
                 }
                 if (!falseDocument) lbFalseCpf.setVisible(true);
-                if (falseDocument && !name.isEmpty() && date != null) {
+                if (falseDocument && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
+                    Address newAddress = new Address();
+                    newAddress.setStreet(address);
+                    Phone newPhone = new Phone();
+                    newPhone.setNumber(phone);
                     this.updateThisCustomer.setName(name);
                     this.updateThisCustomer.setCpf_cnpj(cpf);
                     this.updateThisCustomer.setDate(date);
+                    this.updateThisCustomer.getAddresses().remove(0);
+                    this.updateThisCustomer.addAdress(newAddress);
+                    this.updateThisCustomer.getPhones().remove(0);
+                    this.updateThisCustomer.addPhone(newPhone);
                     putFeedback(FEEDBACK_NEW_CUSTOMER, this.updateThisCustomer);
                     processFeedbackAndFinish();
                 }

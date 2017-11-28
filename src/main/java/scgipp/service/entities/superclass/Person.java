@@ -9,6 +9,7 @@ import scgipp.data.hibernate.BaseEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -98,7 +99,10 @@ public class Person extends BaseEntity<Integer> {
     }
 
     public void addPhone(Phone phone) {
-        phones.add(phone);
+        if (this.phones == null)
+        {
+            this.phones= new ArrayList<>();
+        }        phones.add(phone);
     }
 
     public List<Address> getAddresses() {
@@ -106,6 +110,10 @@ public class Person extends BaseEntity<Integer> {
     }
 
     public void addAdress(Address embeddableAddress) {
+        if (this.embeddableAddresses == null)
+        {
+            this.embeddableAddresses = new ArrayList<>();
+        }
         embeddableAddresses.add(embeddableAddress);
     }
 

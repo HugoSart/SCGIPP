@@ -52,7 +52,6 @@ public class Main extends Application {
 
     private static void initTestUsers() {
         DBManager dbManager = DBConnection.manager();
-        dbManager.add(new Customer(Person.Type.LEGAL, "customer1", "0000000", LocalDate.now()));
         Address endereco = new Address();
         endereco.setStreet("colombo");
         dbManager.add(new User("admin", "admin", Permissions.UserType.ADM));

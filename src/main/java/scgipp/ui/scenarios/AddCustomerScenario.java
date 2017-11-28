@@ -122,8 +122,8 @@ public class AddCustomerScenario extends FeedbackScenario{
                     Phone newPhone = new Phone();
                     newPhone.setNumber(phone);
                     Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
-                    //newCustomer.addAdress(newAddress);
-                    //newCustomer.addPhone(newPhone);
+                    newCustomer.addAdress(newAddress);
+                    newCustomer.addPhone(newPhone);
                     putFeedback(FEEDBACK_NEW_CUSTOMER, newCustomer);
                     processFeedbackAndFinish();
                 }
