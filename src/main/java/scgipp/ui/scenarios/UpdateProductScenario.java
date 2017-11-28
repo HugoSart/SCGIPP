@@ -1,6 +1,9 @@
 package scgipp.ui.scenarios;
 
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.domain.Phone;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -8,21 +11,24 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import scgipp.service.entities.Customer;
 import scgipp.service.entities.Product;
-import scgipp.service.entities.User;
-import scgipp.service.entities.embbeded.Permissions;
+import scgipp.service.entities.superclass.Person;
+import scgipp.service.managers.CustomerManager;
 import scgipp.service.managers.ProductManager;
-import scgipp.service.managers.UserManager;
+import scgipp.service.validators.DocumentValidator.DocumentValidator;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
+import scgipp.ui.FXScenario.Scenario;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.time.chrono.Chronology;
 
-public class AddProductScenario extends FeedbackScenario {
+public class UpdateProductScenario extends FeedbackScenario {
 
     private ProductManager productManager = ProductManager.getInstance();
+    private Product updateThisProduct;
 
     public static final String FEEDBACK_NEW_PRODUCT = "new_product";
 
@@ -40,9 +46,31 @@ public class AddProductScenario extends FeedbackScenario {
     @FXML private Label lbQuantity;
     @FXML private Label lbPrice;
 
-    public AddProductScenario() {
-        super("fxml/scenario_add_product.fxml");
+    public UpdateProductScenario(Product product2Update){
+        super("fxml/scenario_update_product.fxml");
+        this.updateThisProduct = product2Update;
     }
+
+  /*  @FXML private void initialize()
+    {
+
+        cbTipo.setItems(personTypes);
+        tfName.setText(this.updateThisCustomer.getName());
+        tfCPF.setText(this.updateThisCustomer.getCpf_cnpj());
+        if(this.updateThisCustomer.getType() == Person.Type.PHYSICAL)
+        {
+            cbTipo.getSelectionModel().select(0);
+        }
+        else
+        {
+            cbTipo.getSelectionModel().select(1);
+        }
+        dpDate.setValue(this.updateThisCustomer.getDate());
+        tfAddress.setText(updateThisCustomer.getAddresses().get(0).getStreet());
+        tfPhone.setText(updateThisCustomer.getPhones().get(0).getNumber());
+    }*/
+
+
 
     @Override
     protected void onConfigScene(Scene scene) {
@@ -55,6 +83,7 @@ public class AddProductScenario extends FeedbackScenario {
         NodeCustomizer.setUpMenuBar(this, menuBar, btExit, null, null);
 
         stage.initModality(Modality.APPLICATION_MODAL);
+
         stage.initStyle(StageStyle.UNDECORATED);
 
         btOk.setOnAction(event -> {
@@ -84,16 +113,22 @@ public class AddProductScenario extends FeedbackScenario {
 
             lbName.setVisible(productAlreadyRegistered);
 
-            if (!productAlreadyRegistered) {
+            if (productAlreadyRegistered && !description.isEmpty() && (quantity > 0) && price != null && (price.doubleValue() > 0)) {
 
-                Product product = new Product(name, description, quantity, price);
-                putFeedback(FEEDBACK_NEW_PRODUCT, product);
+                this.updateThisProduct.setName(name);
+                this.updateThisProduct.setDescription(description);
+                this.updateThisProduct.setAmount(price);
+                this.updateThisProduct.setQuantity(quantity);
+
+                putFeedback(FEEDBACK_NEW_PRODUCT, this.updateThisProduct);
                 processFeedbackAndFinish();
             }
         });
 
         btCancel.setOnAction(event -> finish());
 
-        setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
+        setUpScenarioStyle(Scenario.ScenarioStyle.BETTER_UNDECORATED);
+
     }
+
 }
