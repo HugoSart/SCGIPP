@@ -54,8 +54,8 @@
                 <Font size="10.0" />
             </font>
         </Label>
-      <TextField fx:id="tfPhone" layoutX="80.0" layoutY="286.0" promptText="Telefone*" />
-      <TextField fx:id="tfAddress" layoutX="80.0" layoutY="338.0" promptText="Endereço*" />
+      <TextField fx:id="tfPhone" layoutX="84.0" layoutY="349.0" promptText="Telefone*" />
+      <TextField fx:id="tfAddress" layoutX="84.0" layoutY="288.0" promptText="Endereço*" />
       <Label fx:id="lbFalseCpf" layoutX="301.0" layoutY="171.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Documento Invalido" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
@@ -78,12 +78,12 @@
          </font>
       </Label>
       <TextField fx:id="tfCPF" layoutX="75.0" layoutY="166.0" prefHeight="25.0" prefWidth="210.0" promptText="CPF/CNPJ *" />
-      <Label fx:id="lbTelefoneObrigatorio" layoutX="86.0" layoutY="262.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+      <Label fx:id="lbTelefoneObrigatorio" layoutX="84.0" layoutY="334.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="lbEnderecoObrigatorio" layoutX="86.0" layoutY="323.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+      <Label fx:id="lbEnderecoObrigatorio" layoutX="84.0" layoutY="264.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
