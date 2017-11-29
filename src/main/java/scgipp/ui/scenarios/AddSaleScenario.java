@@ -2,6 +2,7 @@ package scgipp.ui.scenarios;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,7 +22,11 @@ import scgipp.ui.visible.ObservableProduct;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static javax.swing.UIManager.get;
 
 public class AddSaleScenario extends FeedbackScenario {
 
@@ -77,7 +82,7 @@ public class AddSaleScenario extends FeedbackScenario {
 
     @FXML private ObservableList<ObservableProduct> productObservableList;
 
-    @FXML private ObservableList<ObservableProduct> productObservableItemList;
+    @FXML private ObservableList<ObservableProduct> productObservableSaleList;
 
     @FXML
     private TableView<ObservableProduct> tvItemList;
@@ -148,11 +153,6 @@ public class AddSaleScenario extends FeedbackScenario {
             System.out.println(product);
         }
 
-        productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
-        tcItem.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-        tvItem.setItems(productObservableList);
-
 
         btSelecionar.setOnAction(event -> {
             ObservableCustomer customer = tvCustomer.getSelectionModel().getSelectedItem();
@@ -164,21 +164,39 @@ public class AddSaleScenario extends FeedbackScenario {
             }
         });
 
-        btAdd.setOnAction((event -> {
-            ObservableProduct observableProduct = tvItem.getSelectionModel().getSelectedItem();
-            Integer quantidadeCurrentItem = spQuantity.getValue();
-            /*
-             * Verificar compatibilidade com o estoque
-             */
-            //observableProduct.getProduct().setQuantity(quantidadeCurrentItem);
-            itensToSale.add(observableProduct.getProduct());
-            productObservableItemList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
-            tcItemListName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-            tcItemListPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+
+        btAdd.setOnAction(((ActionEvent event) -> {
+            Integer numberItens = Integer.valueOf(spQuantity.getValue());
+            ObservableProduct observableSaleProduct = tvItem.getSelectionModel().getSelectedItem();
+            Product novoProduto = new Product(observableSaleProduct.getProduct().getName(),
+                                                observableSaleProduct.getProduct().getDescription(),
+                                                numberItens,
+                                                observableSaleProduct.getProduct().getAmount());
+
+            itensToSale.add(novoProduto);
+            productObservableSaleList.add(new ObservableProduct(novoProduto));
+            System.out.println(numberItens);
             tvItemList.refresh();
         }));
 
+        SpinnerValueFactory<Integer> valueFactory = //
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
+                        10, 1);
 
+        spQuantity.setValueFactory(valueFactory);
+
+        productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
+        productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
+
+        tcItem.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+        tvItem.setItems(productObservableList);
+
+        tcItemListName.setCellValueFactory(param -> param.getValue().nameProperty());
+        tcItemListUnity.setCellValueFactory(param -> param.getValue().quantityProperty().asObject());
+        tcItemListPrice.setCellValueFactory(param -> param.getValue().totalPriceProperty().asObject() );
+        tvItemList.setItems(productObservableSaleList);
+        tvItemList.refresh();
 
 
     }

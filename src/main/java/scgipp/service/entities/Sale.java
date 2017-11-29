@@ -42,7 +42,6 @@ public class Sale extends BaseEntity<Integer> {
         for (Product p : saleBudget.getProducts()) {
             this.totalPrice = totalPrice.add(p.getAmount());
         }
-
     }
 
     public BigDecimal getTotalPrice() {

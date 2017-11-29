@@ -38,4 +38,6 @@ public class ObservableProduct {
 
     }
 
+    public DoubleProperty totalPriceProperty() { return new SimpleDoubleProperty(product.getAmount().doubleValue() * this.getProduct().getQuantity()); }
+
 }
