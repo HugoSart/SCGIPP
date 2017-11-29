@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import scgipp.Main;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Fragment;
+import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableTransactionSummary;
 
@@ -42,6 +43,8 @@ public class SalesFragment extends Fragment {
     @FXML private DatePicker dpInitial;
     @FXML private DatePicker dpFinal;
     @FXML private Button btSearch;
+    @FXML private Button btNew;
+    @FXML private Button btStatus;
     @FXML private ProgressIndicator piProgress;
     @FXML
     private Button btNewSale;
@@ -83,6 +86,11 @@ public class SalesFragment extends Fragment {
                 }
             });
             return row ;
+        });
+
+        btNew.setOnAction(event -> {
+            Scenario newPagSeguroSaleScenario = new NewPagSeguroSaleScenario();
+            Spawner.startScenario(newPagSeguroSaleScenario, this);
         });
 
     }
@@ -164,6 +172,7 @@ public class SalesFragment extends Fragment {
             alert.showAndWait();
 
         }
+
     }
 
 }
