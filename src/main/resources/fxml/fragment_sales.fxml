@@ -54,7 +54,7 @@
                         <AnchorPane fx:id="customTableView1" layoutX="14.0" layoutY="14.0" prefHeight="558.0" prefWidth="471.0">
                            <children>
                               <TextField fx:id="tfSearch1" prefHeight="27.0" prefWidth="456.0" promptText="Procurar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" />
-                              <TableView fx:id="tvUsers1" layoutX="76.0" layoutY="34.0" prefHeight="510.0" prefWidth="801.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="-405.0" AnchorPane.topAnchor="33.0">
+                              <TableView fx:id="tvSales" layoutX="70.0" layoutY="35.0" prefHeight="528.0" prefWidth="806.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="-405.0" AnchorPane.topAnchor="35.0">
                                  <columns>
                                     <TableColumn fx:id="tcCustomer" prefWidth="63.0" text="Cliente" />
                                     <TableColumn fx:id="tcUser" prefWidth="229.0" text="Vendedor" />
