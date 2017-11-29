@@ -51,6 +51,14 @@
                                         <DropShadow blurType="ONE_PASS_BOX" height="2.2225" radius="0.055625000000000036" width="0.0" />
                                     </effect>
                                 </Button>
+                        <Button fx:id="btUpdateProduct" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Atualizar" textAlignment="CENTER">
+                           <effect>
+                              <DropShadow blurType="ONE_PASS_BOX" height="2.2225" radius="0.055625000000000036" width="0.0" />
+                           </effect>
+                           <padding>
+                              <Insets bottom="1.0" />
+                           </padding>
+                        </Button>
                             </children>
                         </VBox>
                         <MaterialDesignIconView fill="#5896ed" glyphName="MAGNIFY" layoutX="5.0" layoutY="20.0" size="18" text="" />

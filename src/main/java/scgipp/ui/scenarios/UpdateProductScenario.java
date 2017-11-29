@@ -51,27 +51,6 @@ public class UpdateProductScenario extends FeedbackScenario {
         this.updateThisProduct = product2Update;
     }
 
-  /*  @FXML private void initialize()
-    {
-
-        cbTipo.setItems(personTypes);
-        tfName.setText(this.updateThisCustomer.getName());
-        tfCPF.setText(this.updateThisCustomer.getCpf_cnpj());
-        if(this.updateThisCustomer.getType() == Person.Type.PHYSICAL)
-        {
-            cbTipo.getSelectionModel().select(0);
-        }
-        else
-        {
-            cbTipo.getSelectionModel().select(1);
-        }
-        dpDate.setValue(this.updateThisCustomer.getDate());
-        tfAddress.setText(updateThisCustomer.getAddresses().get(0).getStreet());
-        tfPhone.setText(updateThisCustomer.getPhones().get(0).getNumber());
-    }*/
-
-
-
     @Override
     protected void onConfigScene(Scene scene) {
         scene.getStylesheets().add("css/Style.css");

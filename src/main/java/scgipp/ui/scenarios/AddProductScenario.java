@@ -64,9 +64,9 @@ public class AddProductScenario extends FeedbackScenario {
             Integer quantity = Integer.parseInt(tfQuantity.getText());
             BigDecimal price = new BigDecimal(Float.parseFloat(tfPrice.getText()));
 
-            lbPrice.setDisable(true);
-            lbQuantity.setDisable(true);
-            lbName.setDisable(true);
+            lbPrice.setVisible(false);
+            lbQuantity.setVisible(false);
+            lbName.setVisible(false);
 
             boolean productAlreadyRegistered = false;
             for (Product product : productManager.listAll()) {
@@ -84,7 +84,7 @@ public class AddProductScenario extends FeedbackScenario {
 
             lbName.setVisible(productAlreadyRegistered);
 
-            if (!productAlreadyRegistered) {
+            if (!productAlreadyRegistered && price != null && price.doubleValue() >= 0 && quantity != null && quantity >= 0) {
 
                 Product product = new Product(name, description, quantity, price);
                 putFeedback(FEEDBACK_NEW_PRODUCT, product);
