@@ -63,7 +63,7 @@ public class AddUserScenario extends FeedbackScenario {
 
             boolean loginAlreadyRegistered = false;
             for (User user : userManager.getAll()) {
-                if (user.getLogin().equals(login)) {
+                if (user.getLogin().equals(login) || tfLogin.getText().isEmpty()) {
                     loginAlreadyRegistered = true;
                     break;
                 }

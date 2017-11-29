@@ -95,7 +95,6 @@ public class Transaction {
      * 
      * @see Item
      */
-    @OneToMany
     private List<Item> items;
 
     /**

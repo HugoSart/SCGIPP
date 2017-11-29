@@ -58,10 +58,10 @@
                 </AnchorPane>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="491.0" prefHeight="652.0" prefWidth="398.0" style="-fx-border-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="491.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane fx:id="descriptionInfoPane" layoutX="491.0" prefHeight="652.0" prefWidth="398.0" style="-fx-border-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="491.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <TextField fx:id="tfDescription" layoutX="76.0" layoutY="48.0" prefHeight="593.0" prefWidth="186.0" />
-            <Label layoutX="76.0" layoutY="25.0" text="Descriçao" />
+            <TextField fx:id="tfDescription" alignment="TOP_LEFT" layoutX="71.0" layoutY="83.0" prefHeight="168.0" prefWidth="297.0" />
+            <Label layoutX="79.0" layoutY="53.0" text="Descriçao" />
          </children>
         </AnchorPane>
     </children>

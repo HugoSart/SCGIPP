@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="443.0" prefWidth="884.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="menuBar" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="1053.0" style="-fx-background-color: rgba(0,0,0,0.1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label fx:id="lbSessionUser1" prefHeight="29.0" prefWidth="210.0" text="Transação" textFill="WHITE">
+                     <padding>
+                        <Insets left="8.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <Button fx:id="btExit" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="30.0" prefWidth="40.0" styleClass="image-button-close">
+               <graphic>
+                  <ImageView fitHeight="10.0" fitWidth="10.0">
+                     <image>
+                        <Image url="@../img/cross.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <AnchorPane fx:id="pInfo" layoutY="29.0" prefHeight="412.0" prefWidth="633.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0">
+         <children>
+            <AnchorPane layoutX="15.0" layoutY="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0">
+               <children>
+                  <Label layoutY="41.0" text="Código">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label fx:id="lbCode" layoutX="155.0" layoutY="41.0" prefHeight="17.0" prefWidth="128.0" text="CODE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label layoutY="65.0" text="Data da transação" />
+                  <Label fx:id="lbTransactionDate" layoutX="155.0" layoutY="65.0" prefHeight="17.0" prefWidth="128.0" text="DATE" />
+                  <Label layoutY="89.0" text="Tipo da transação" />
+                  <Label fx:id="lbType" layoutX="155.0" layoutY="89.0" prefHeight="17.0" prefWidth="128.0" text="TYPE" />
+                  <Label text="Informações Gerais">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="15.0" layoutY="383.0" text="Última atualização em " textFill="#5e29e5" />
+            <Label fx:id="lbLastUpdate" layoutX="136.0" layoutY="383.0" prefHeight="17.0" prefWidth="128.0" text="DATE" textFill="#5e29e5" />
+            <Label layoutX="15.0" layoutY="345.0" text="Status" />
+            <AnchorPane layoutX="15.0" layoutY="146.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="146.0">
+               <children>
+                  <Label layoutY="41.0" text="Método de pagamento" />
+                  <Label fx:id="lbPaymentType" layoutX="155.0" layoutY="41.0" prefHeight="17.0" prefWidth="128.0" text="PAYMENT_TYPE" />
+                  <Label text="Pagamento">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutY="64.0" text="Preço bruto" />
+                  <Label fx:id="lbGrossAmount" layoutX="155.0" layoutY="64.0" prefHeight="17.0" prefWidth="128.0" text="PRICE" />
+                  <Label layoutY="87.0" text="Preço com disconto" />
+                  <Label fx:id="lbDisccountAmount" layoutX="155.0" layoutY="87.0" prefHeight="17.0" prefWidth="128.0" text="PRICE" />
+                  <Label layoutY="111.0" text="Valor da taxa" />
+                  <Label fx:id="lbFeeAmount" layoutX="155.0" layoutY="111.0" prefHeight="17.0" prefWidth="128.0" text="PRICE" />
+                  <Label layoutY="135.0" text="Valor extra" />
+                  <Label fx:id="lbExtraAmount" layoutX="155.0" layoutY="135.0" prefHeight="17.0" prefWidth="128.0" text="PRICE" />
+                  <Label layoutY="159.0" text="Valor líquido" />
+                  <Label fx:id="lbNetAmount" layoutX="155.0" layoutY="159.0" prefHeight="17.0" prefWidth="128.0" text="PRICE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="388.0" layoutY="14.0" prefHeight="381.0" prefWidth="552.0" AnchorPane.leftAnchor="388.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="14.0">
+               <children>
+                  <TableView fx:id="tvProducts" layoutY="35.0" prefHeight="346.0" prefWidth="552.0">
+                    <columns>
+                      <TableColumn fx:id="tcName" prefWidth="85.0" text="Nome" />
+                      <TableColumn fx:id="tcAmount" prefWidth="101.0" text="Preço Unitário" />
+                        <TableColumn fx:id="tcWeight" prefWidth="91.0" text="Peso Unitário" />
+                        <TableColumn fx:id="tcQuantity" prefWidth="88.0" text="Quantidade" />
+                        <TableColumn fx:id="tcShippingCost" prefWidth="185.0" text="Custo Unitário de Transporte" />
+                    </columns>
+                  </TableView>
+                  <Label text="Produtos">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="lbStatus" layoutX="171.0" layoutY="345.0" prefHeight="17.0" prefWidth="128.0" text="STATUS" />
+         </children>
+      </AnchorPane>
+      <VBox fx:id="vbSearching" layoutX="423.0" layoutY="193.0" prefHeight="58.0" prefWidth="128.0" AnchorPane.bottomAnchor="192.0" AnchorPane.leftAnchor="423.0" AnchorPane.rightAnchor="423.0" AnchorPane.topAnchor="193.0">
+         <children>
+            <ProgressIndicator prefHeight="29.0" prefWidth="40.0" />
+            <Label prefHeight="29.0" prefWidth="128.0" text="Buscando Transaćão">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -25,6 +25,8 @@ public class Product extends BaseEntity<Integer> {
         this.name = name;
     }
 
+    public Item getItem(){return this.item;}
+
     public void setName(String name){
         this.name = name;
     }
