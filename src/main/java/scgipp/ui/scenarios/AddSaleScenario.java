@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import scgipp.service.UserSession;
 import scgipp.service.entities.Customer;
 import scgipp.service.entities.Product;
 import scgipp.service.managers.CustomerManager;
@@ -26,7 +27,7 @@ public class AddSaleScenario extends FeedbackScenario {
     private UserManager userManager = UserManager.getInstance();
     private CustomerManager customerManager = CustomerManager.getInstance();
     private ProductManager productManager = ProductManager.getInstance();
-
+    private UserSession userSession = UserSession.getSession();
 
     @FXML
     private TextField tfCustomerAddress;
@@ -96,6 +97,7 @@ public class AddSaleScenario extends FeedbackScenario {
         tfCustomerAddress.setDisable(true);
         tfPhone.setDisable(true);
         tfSalesmanName.setDisable(true);
+        tfSalesmanName.setText(userSession.getActiveUser().getLogin());
         List<Customer> customerList = customerManager.getAll();
         for (Customer customer : customerList) {
             System.out.println(customer);
