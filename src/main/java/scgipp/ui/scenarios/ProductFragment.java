@@ -66,6 +66,7 @@ public class ProductFragment extends Fragment {
                 if (productManager.addProduct(product) != -1)
                     productObservableList.add(new ObservableProduct(product));
                 tvProduct.refresh();
+
             });
         });
 
@@ -85,6 +86,8 @@ public class ProductFragment extends Fragment {
                 Product productUpdated = (Product)data.get(UpdateProductScenario.FEEDBACK_NEW_PRODUCT);
                 productManager.updateProduct(productUpdated);
                 tvProduct.refresh();
+                descriptionInfoPane.setVisible(false);
+                descriptionInfoPane.setVisible(true);
             });
         });
 
@@ -93,7 +96,6 @@ public class ProductFragment extends Fragment {
                 descriptionInfoPane.setVisible(true);
                 ObservableProduct observableProduct = tvProduct.getSelectionModel().getSelectedItem();
                 tfDescription.setText((observableProduct.getProduct().getDescription()));
-
             }
         });
 

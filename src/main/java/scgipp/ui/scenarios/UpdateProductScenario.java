@@ -51,6 +51,15 @@ public class UpdateProductScenario extends FeedbackScenario {
         this.updateThisProduct = product2Update;
     }
 
+    @FXML private void initialize()
+    {
+
+        tfName.setText(this.updateThisProduct.getName());
+        tfDescription.setText(this.updateThisProduct.getDescription());
+        tfPrice.setText(updateThisProduct.getAmount().toString());
+        tfQuantity.setText(updateThisProduct.getQuantity().toString());
+    }
+
     @Override
     protected void onConfigScene(Scene scene) {
         scene.getStylesheets().add("css/Style.css");
@@ -72,27 +81,15 @@ public class UpdateProductScenario extends FeedbackScenario {
             Integer quantity = Integer.parseInt(tfQuantity.getText());
             BigDecimal price = new BigDecimal(Float.parseFloat(tfPrice.getText()));
 
-            lbPrice.setDisable(true);
-            lbQuantity.setDisable(true);
-            lbName.setDisable(true);
-
             boolean productAlreadyRegistered = false;
             for (Product product : productManager.listAll()) {
-                if (product.getName().equals(name) || tfName.getText().isEmpty()) {
+                if (product.getName().equals(name)) {
                     productAlreadyRegistered = true;
                     break;
                 }
             }
 
-            if(quantity == null || quantity < 0)
-                lbQuantity.setVisible(true);
-
-            if(price == null || price.doubleValue() < 0)
-                lbPrice.setVisible(true);
-
-            lbName.setVisible(productAlreadyRegistered);
-
-            if (productAlreadyRegistered && !description.isEmpty() && (quantity > 0) && price != null && (price.doubleValue() > 0)) {
+            if ((productAlreadyRegistered) && (name != null) /*&& (price != null) && (price.doubleValue() >= 0) && (quantity != null) && (quantity >= 0)*/) {
 
                 this.updateThisProduct.setName(name);
                 this.updateThisProduct.setDescription(description);
