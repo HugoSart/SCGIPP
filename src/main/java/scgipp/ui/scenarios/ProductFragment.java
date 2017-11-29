@@ -34,6 +34,7 @@ public class ProductFragment extends Fragment {
     @FXML private TextField tfDescription;
     @FXML private Button btAddProduct;
     @FXML private Button btRemoveProduct;
+    @FXML private Button btUpdateProduct;
 
     @FXML private ObservableList<ObservableProduct> productObservableList;
 
@@ -75,6 +76,16 @@ public class ProductFragment extends Fragment {
             tvProduct.refresh();
             tfDescription.clear();
             descriptionInfoPane.setVisible(false);
+        });
+
+            btUpdateProduct.setOnAction(event -> {
+            ObservableProduct observableProduct = tvProduct.getSelectionModel().getSelectedItem();
+            FeedbackScenario updateProductScenario = new UpdateProductScenario(observableProduct.getProduct());
+            Spawner.startFeedbackScenario(updateProductScenario, 0, this, (requestCode, resultCode, data) -> {
+                Product productUpdated = (Product)data.get(UpdateProductScenario.FEEDBACK_NEW_PRODUCT);
+                productManager.updateProduct(productUpdated);
+                tvProduct.refresh();
+            });
         });
 
         tvProduct.setOnMousePressed(event -> {
