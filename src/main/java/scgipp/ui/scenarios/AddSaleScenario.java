@@ -2,6 +2,7 @@ package scgipp.ui.scenarios;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -151,53 +152,84 @@ public class AddSaleScenario extends FeedbackScenario {
         List<Product> productList = productManager.listAll();
         for (Product product : productList) {
             System.out.println(product);
-        }
 
 
-        btSelecionar.setOnAction(event -> {
-            ObservableCustomer customer = tvCustomer.getSelectionModel().getSelectedItem();
-            if(customer != null)
-            {
-                tfPhone.setText(customer.getCustomer().getPhones().get(0).getNumber());
-                tfCustomerAddress.setText(customer.getCustomer().getAddresses().get(0).getStreet());
-                tfCNPJ_CPF.setText(customer.getCustomer().getCpf_cnpj());
-            }
-        });
+            btSelecionar.setOnAction(event -> {
+                ObservableCustomer customer = tvCustomer.getSelectionModel().getSelectedItem();
+                if (customer != null) {
+                    tfPhone.setText(customer.getCustomer().getPhones().get(0).getNumber());
+                    tfCustomerAddress.setText(customer.getCustomer().getAddresses().get(0).getStreet());
+                    tfCNPJ_CPF.setText(customer.getCustomer().getCpf_cnpj());
+                }
+            });
+
+            btRemove.setOnAction(event -> {
+                ObservableProduct observableProduct = tvItemList.getSelectionModel().getSelectedItem();
+                itensToSale.remove(observableProduct.getProduct());
+                tvItemList.refresh();
+            });
 
 
-        btAdd.setOnAction(((ActionEvent event) -> {
-            Integer numberItens = Integer.valueOf(spQuantity.getValue());
-            ObservableProduct observableSaleProduct = tvItem.getSelectionModel().getSelectedItem();
-            Product novoProduto = new Product(observableSaleProduct.getProduct().getName(),
-                                                observableSaleProduct.getProduct().getDescription(),
-                                                numberItens,
-                                                observableSaleProduct.getProduct().getAmount());
+            btAdd.setOnAction(((ActionEvent event) -> {
+                Integer numberItens = spQuantity.getValue();
+                ObservableProduct observableSaleProduct = tvItem.getSelectionModel().getSelectedItem();
+                Product novoProduto = new Product(observableSaleProduct.getProduct().getName(),
+                        observableSaleProduct.getProduct().getDescription(),
+                        numberItens,
+                        observableSaleProduct.getProduct().getAmount());
 
-            itensToSale.add(novoProduto);
-            productObservableSaleList.add(new ObservableProduct(novoProduto));
-            System.out.println(numberItens);
+                itensToSale.add(novoProduto);
+                productObservableSaleList.add(new ObservableProduct(novoProduto));
+                System.out.println(numberItens);
+                tvItemList.refresh();
+            }));
+
+            FilteredList<ObservableCustomer> filteredData = new FilteredList<>(customerObservableList, p -> true);
+            tfPesquisarCliente.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
+                if (newValue == null || newValue.isEmpty()) return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (String.valueOf(myObject.getCustomer().getName()).toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else if (String.valueOf(myObject.getCustomer().getId()).toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                return false;
+            }));
+            tvCustomer.setItems(filteredData);
+
+            productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
+            productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
+
+            tcItem.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+            tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+            tvItem.setItems(productObservableList);
+
+
+            SpinnerValueFactory<Integer> valueFactory = //
+                    new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
+                            1000,
+                            1);
+            spQuantity.setValueFactory(valueFactory);
+
+            tcItemListName.setCellValueFactory(param -> param.getValue().nameProperty());
+            tcItemListUnity.setCellValueFactory(param -> param.getValue().quantityProperty().asObject());
+            tcItemListPrice.setCellValueFactory(param -> param.getValue().totalPriceProperty().asObject());
+            tvItemList.setItems(productObservableSaleList);
             tvItemList.refresh();
-        }));
 
-        SpinnerValueFactory<Integer> valueFactory = //
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
-
-        spQuantity.setValueFactory(valueFactory);
-
-        productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
-        productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
-
-        tcItem.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-        tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-        tvItem.setItems(productObservableList);
-
-        tcItemListName.setCellValueFactory(param -> param.getValue().nameProperty());
-        tcItemListUnity.setCellValueFactory(param -> param.getValue().quantityProperty().asObject());
-        tcItemListPrice.setCellValueFactory(param -> param.getValue().totalPriceProperty().asObject() );
-        tvItemList.setItems(productObservableSaleList);
-        tvItemList.refresh();
+            FilteredList<ObservableProduct> filteredDataProduct = new FilteredList<>(productObservableList, p -> true);
+            tfPesquisar.textProperty().addListener((observable, oldValue, newValue) -> filteredDataProduct.setPredicate(myObject -> {
+                if (newValue == null || newValue.isEmpty()) return true;
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (String.valueOf(myObject.getProduct().getName()).toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                else if (String.valueOf(myObject.getProduct().getId()).toLowerCase().contains(lowerCaseFilter))
+                    return true;
+                return false;
+            }));
+            tvItem.setItems(filteredDataProduct);
 
 
+        }
     }
 
 }

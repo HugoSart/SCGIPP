@@ -58,7 +58,7 @@
             <Button fx:id="btRemove" layoutX="9.0" layoutY="505.0" mnemonicParsing="false" text="Remover" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="spQuantity" layoutX="14.0" layoutY="327.0" prefHeight="323.0" prefWidth="406.0" style="-fx-background-color: #3F51B5;">
+      <AnchorPane layoutX="14.0" layoutY="327.0" prefHeight="323.0" prefWidth="406.0" style="-fx-background-color: #3F51B5;">
          <children>
             <TableView fx:id="tvItem" layoutX="11.0" layoutY="48.0" prefHeight="138.0" prefWidth="384.0">
                <columns>
