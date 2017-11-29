@@ -6,10 +6,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import scgipp.service.entities.Supplier;
 import scgipp.service.managers.SupplierManager;
 import scgipp.service.validators.CEP.CepData;
@@ -17,7 +24,6 @@ import scgipp.service.validators.DocumentValidator.DocumentValidator;
 import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.exceptions.*;
 import scgipp.ui.visible.ObservableSupplier;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -27,6 +33,7 @@ public class SupplierFragment extends Fragment {
 
     @FXML private AnchorPane infoPane;
     @FXML private AnchorPane editPane;
+    @FXML private AnchorPane helpPane;
     @FXML private TableView<ObservableSupplier> table;
     @FXML private TableColumn<ObservableSupplier, String> nameColumn;
     @FXML private TableColumn<ObservableSupplier, String> cnpjColumn;
@@ -59,8 +66,15 @@ public class SupplierFragment extends Fragment {
 
     private String name;
     private String cnpj;
+    private String street;
     private String DDD;
     private String telephone;
+    private String number;
+    private String complement;
+    private String district;
+    private String city;
+    private String state;
+    private String postalCode;
 
     private Alert alert = new Alert(Alert.AlertType.NONE);
 
@@ -72,6 +86,23 @@ public class SupplierFragment extends Fragment {
     protected void onCreateView() {
         setInitialGUIState();
 
+        helpPane.setOnMouseClicked(event -> {
+            WebView webView = new WebView();
+            webView.setZoom(0.7);
+            WebEngine engine = webView.getEngine();
+            engine.load("http://sgeajuda.webnode.com/");
+
+
+            VBox root = new VBox();
+            root.getChildren().addAll(webView);
+
+            Scene scene = new Scene(root, 1280,728);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+
+            stage.show();
+        });
+
         addButton.setOnAction(event -> {
             editPane.setVisible(true);
             saveEditButton.setVisible(false);
@@ -82,18 +113,18 @@ public class SupplierFragment extends Fragment {
             getFieldsData();
 
             try {
-                if(nameField.getText().length() == 0) {
+                if(name == null) {
                     throw new NullFieldException("Nome");
                 }
                 else {
                     if (notExistSameNameInBD(name)) {
                         if (DocumentValidator.isValidCPNJ(cnpj)) {
                             if (notExistSameCNPJNumberInBD(cnpj)) {
-                                if (!cityField.getText().isEmpty() && numberField.getText().isEmpty()) {
+                                if (!city.isEmpty() && number.isEmpty()) {
                                     throw new NullFieldException("número do endereço");
                                 }
                                 else {
-                                    SupplierManager.addSupplier(nameField.getText(), cnpjField.getText(), new Address("Brasil", stateField.getText(), cityField.getText(), districtField.getText(), postalCodeField.getText(), streetField.getText(), numberField.getText(), complementField.getText()), new Phone(DDD, telephone));
+                                    SupplierManager.addSupplier(name, cnpj, new Address("Brasil", state, city, district, postalCode, street, number, complement), new Phone(DDD, telephone));
                                     successInsertionAlert();
                                     afterSaveGUIState();
                                 }
@@ -150,21 +181,19 @@ public class SupplierFragment extends Fragment {
             try {
                 getFieldsData();
 
-                if(nameField.getText().length() == 0) {
+                if(name.length() == 0) {
                     throw new NullFieldException("Nome");
                 }
                 else {
-                    if (!cityField.getText().isEmpty() && numberField.getText().isEmpty()) {
+                    if (!city.isEmpty() && number.isEmpty()) {
                         throw new NullFieldException("número do endereço");
                     }
                     else {
                         Supplier supplier = table.getSelectionModel().getSelectedItem().getSupplier();
-                        updateSupplier(supplier);
-                        SupplierManager.updateSupplier(supplier);
+                        SupplierManager.updateSupplier(supplier, name, new Address("Brasil", state, city, district, postalCode, street, number, complement),new Phone(DDD, telephone) );
 
-                        alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setHeaderText("Fornecedor atualizado com sucesso!");
-                        alert.showAndWait();
+                        successUpdateAlert();
+                        afterSaveGUIState();
                     }
                 }
             } catch (Exception e) {
@@ -194,22 +223,19 @@ public class SupplierFragment extends Fragment {
                 observableSuppliers.remove(observableSupplier);
                 table.refresh();
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText("Fornecedor removido com sucesso!");
-                alert.showAndWait();
-
+                successRemoveAlert();
                 cleanFields();
                 closeAnchorPanes();
             }
         });
 
-        FilteredList<ObservableSupplier> filteredData = new FilteredList<ObservableSupplier>(observableSuppliers, p-> true);
+        FilteredList<ObservableSupplier> filteredData = new FilteredList<>(observableSuppliers, p-> true);
         searchField.textProperty().addListener(((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
             if (newValue == null || newValue.isEmpty()) return true;
             String lowerCaseFilter = newValue.toLowerCase();
             if(String.valueOf(myObject.getSupplier().getName()).toLowerCase().contains(lowerCaseFilter)) return true;
-            else if (String.valueOf(myObject.getSupplier().getId()).toLowerCase().contains(lowerCaseFilter)) return true;
-            else if (String.valueOf(myObject.getSupplier().getCpf_cnpj()).toLowerCase().contains(lowerCaseFilter)) return true;
+            //else if (String.valueOf(myObject.getSupplier().getId()).toLowerCase().contains(lowerCaseFilter)) return true;
+            //else if (String.valueOf(myObject.getSupplier().getCpf_cnpj()).toLowerCase().contains(lowerCaseFilter)) return true;
             return false;
         })));
         table.setItems(filteredData);
@@ -254,17 +280,42 @@ public class SupplierFragment extends Fragment {
         });
     }
 
-    private void afterSaveGUIState() {
-        cleanFields();
-        populateTable();
-        disableAddressFields();
-        closeAnchorPanes();
+    private void successRemoveAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Fornecedor removido com sucesso!");
+        alert.showAndWait();
+    }
+
+    private void successUpdateAlert() {
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText("Fornecedor atualizado com sucesso!");
+        alert.showAndWait();
     }
 
     private void successInsertionAlert() {
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setHeaderText("Fornecedor cadastrado com sucesso!");
         alert.showAndWait();
+    }
+
+    private void setInitialGUIState() {
+        supplierTelText.setVisible(false);
+        supplierAddressText.setVisible(false);
+        saveAddButton.setVisible(false);
+        saveEditButton.setVisible(false);
+        removeButton.setDisable(true);
+
+        disableAddressFields();
+        closeAnchorPanes();
+        populateTable();
+        configureSearchOption();
+    }
+
+    private void afterSaveGUIState() {
+        cleanFields();
+        populateTable();
+        disableAddressFields();
+        closeAnchorPanes();
     }
 
     private void setFieldsData(Supplier supplier) {
@@ -283,34 +334,8 @@ public class SupplierFragment extends Fragment {
             complementField.setText(supplier.getAddresses().get(0).getComplement());
             cityField.setText(supplier.getAddresses().get(0).getCity());
             stateField.setText(supplier.getAddresses().get(0).getState());
-            postalCodeField.setText(supplier.getAddresses().get(0).getPostalCode());
+            //postalCodeField.setText(supplier.getAddresses().get(0).getPostalCode());
         }
-    }
-
-    private void updateSupplier(Supplier supplier) {
-        Address address = new Address("Brasil", stateField.getText(), cityField.getText(), districtField.getText(), postalCodeField.getText(), streetField.getText(), numberField.getText(), complementField.getText());
-        Phone phone = new Phone(DDD, telephone);
-
-        supplier.getPhones().clear();
-        supplier.getPhones().clear();
-
-        supplier.getPhones().add(phone);
-        supplier.getAddresses().add(address);
-
-        afterSaveGUIState();
-    }
-
-    private void setInitialGUIState() {
-        supplierTelText.setVisible(false);
-        supplierAddressText.setVisible(false);
-        saveAddButton.setVisible(false);
-        saveEditButton.setVisible(false);
-        removeButton.setDisable(true);
-
-        disableAddressFields();
-        closeAnchorPanes();
-        populateTable();
-        configureSearchOption();
     }
 
     private void disableAddressFields() {
@@ -349,10 +374,16 @@ public class SupplierFragment extends Fragment {
     }
 
     private void getFieldsData() {
-        name = nameField.getCharacters().toString();
-        cnpj = stringCleaner(cnpjField.getCharacters().toString());
-        DDD = DDDField.getCharacters().toString();
-        telephone = telephoneField.getCharacters().toString();
+        name = nameField.getText();
+        cnpj = stringCleaner(cnpjField.getText());
+        DDD = DDDField.getText();
+        telephone = telephoneField.getText();
+        street = streetField.getText();
+        district = districtField.getText();
+        number = numberField.getText();
+        city = cityField.getText();
+        state = stateField.getText();
+        complement = complementField.getText();
     }
 
     private boolean notExistSameCNPJNumberInBD(String cnpj) {

@@ -128,5 +128,19 @@
             <Image url="@../img/search.png" />
          </image>
       </ImageView>
+      <AnchorPane fx:id="helpPane" layoutX="29.0" layoutY="590.0" prefHeight="47.0" prefWidth="120.0">
+         <children>
+            <Text fill="#325ddd" layoutX="51.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajuda" wrappingWidth="49.96240234375">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="38.0" fitWidth="33.0" layoutX="7.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/question.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

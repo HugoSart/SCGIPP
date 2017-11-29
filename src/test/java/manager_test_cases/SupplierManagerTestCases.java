@@ -36,24 +36,11 @@ public class SupplierManagerTestCases {
     }
 
     @Test
-    public void removeSupplierTest(){
-        Supplier supplier = new Supplier("Empresa 3", "000000333000", new ArrayList<>(), new ArrayList<>());
-        Integer idTest = SupplierManager.addSupplier("Empresa 3", "000000333000", null, null);
-
-        SupplierManager.removeSupplier(supplier);
-        supplier = SupplierManager.getSupplier(idTest.intValue());
-
-        Assert.assertNull(supplier);
-    }
-
-    @Test
     public void updateSupplierTest(){
         Supplier supplier = SupplierManager.getSupplier(1);
-        supplier.setName("Empresa Alterada");
 
-        SupplierManager.updateSupplier(supplier);
+        SupplierManager.updateSupplier(supplier, "Empresa Alterada", null, null);
 
         Assert.assertEquals(SupplierManager.getSupplier(1).getName(), "Empresa Alterada");
     }
-
 }

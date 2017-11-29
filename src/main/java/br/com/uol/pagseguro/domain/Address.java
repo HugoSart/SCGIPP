@@ -228,6 +228,11 @@ public class Address {
 
     @Override
     public String toString() {
-        return street + ", " + number + ". " + "Bairro " + district + ".\n" + city +" - " + state;
+        if (street.isEmpty()) {
+            return null;
+        }
+        else {
+            return street + ", " + number + ". " + "Bairro " + district + ".\n" + city +" - " + state;
+        }
     }
 }

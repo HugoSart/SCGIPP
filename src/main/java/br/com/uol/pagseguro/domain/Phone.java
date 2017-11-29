@@ -92,7 +92,12 @@ public class Phone {
      */
     @Override
     public String toString() {
-        return "(" + this.areaCode +")" + " " + this.number;
+        if (areaCode.isEmpty()) {
+            return null;
+        }
+        else {
+            return "(" + this.areaCode +")" + " " + this.number;
+        }
     }
 
     /**
