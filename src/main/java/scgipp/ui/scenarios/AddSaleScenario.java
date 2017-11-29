@@ -8,19 +8,24 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import scgipp.service.entities.Customer;
+import scgipp.service.entities.Product;
 import scgipp.service.managers.CustomerManager;
+import scgipp.service.managers.ProductManager;
 import scgipp.service.managers.UserManager;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableCustomer;
+import scgipp.ui.visible.ObservableProduct;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class AddSaleScenario extends FeedbackScenario {
 
     private UserManager userManager = UserManager.getInstance();
     private CustomerManager customerManager = CustomerManager.getInstance();
+    private ProductManager productManager = ProductManager.getInstance();
 
 
     @FXML
@@ -54,9 +59,26 @@ public class AddSaleScenario extends FeedbackScenario {
     private Label lbVendedorName;
 
     @FXML
-    private TextField tfCustomerAddress1;
+    private TextField tfSalesmanName;
+
     @FXML
     private Button btSelecionar;
+
+    @FXML
+    private TableView<ObservableProduct> tvItem;
+
+    @FXML
+    private TableColumn<ObservableProduct, String> tcItem;
+
+    @FXML
+    private TableColumn<ObservableProduct, Double> tcPrice;
+
+    @FXML
+    private Button btAdd;
+
+    @FXML private ObservableList<ObservableProduct> productObservableList;
+
+
 
     public AddSaleScenario() {
         super("fxml/scenario_add_sale.fxml");
@@ -73,7 +95,7 @@ public class AddSaleScenario extends FeedbackScenario {
         tfCNPJ_CPF.setDisable(true);
         tfCustomerAddress.setDisable(true);
         tfPhone.setDisable(true);
-        
+        tfSalesmanName.setDisable(true);
         List<Customer> customerList = customerManager.getAll();
         for (Customer customer : customerList) {
             System.out.println(customer);
@@ -82,6 +104,17 @@ public class AddSaleScenario extends FeedbackScenario {
         customerObservableList = FXCollections.observableList(ObservableCustomer.custumerListTAsObservableUserList(customerList));
         tcCustomerName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tvCustomer.setItems(customerObservableList);
+
+        List<Product> productList = productManager.listAll();
+        for (Product product : productList) {
+            System.out.println(product);
+        }
+
+        productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
+        tcItem.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+        tvItem.setItems(productObservableList);
+
 
         btSelecionar.setOnAction(event -> {
             ObservableCustomer customer = tvCustomer.getSelectionModel().getSelectedItem();
