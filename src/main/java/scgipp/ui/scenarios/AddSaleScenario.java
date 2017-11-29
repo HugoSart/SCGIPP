@@ -233,7 +233,8 @@ public class AddSaleScenario extends FeedbackScenario {
                 Product novoProduto = new Product(observableSaleProduct.getProduct().getName(),
                         observableSaleProduct.getProduct().getDescription(),
                         numberItens,
-                        observableSaleProduct.getProduct().getAmount());
+                        observableSaleProduct.getProduct().getAmount(),
+                        observableSaleProduct.getProduct().getWeight());
                 itensToSale.add(novoProduto);
                 productObservableSaleList.add(new ObservableProduct(novoProduto));
                 System.out.println(numberItens);

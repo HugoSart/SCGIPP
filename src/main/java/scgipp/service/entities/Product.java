@@ -17,11 +17,12 @@ public class Product extends BaseEntity<Integer> {
 
     protected Product() {}
 
-    public Product(String name, String description, Integer quantity, BigDecimal amount){
+    public Product(String name, String description, Integer quantity, BigDecimal amount, Long weight){
         item = new Item();
         setDescription(description);
         setQuantity(quantity);
         setAmount(amount);
+        setWeight(weight);
         this.name = name;
     }
 

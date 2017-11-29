@@ -2,8 +2,13 @@ package scgipp.ui.scenarios;
 
 import br.com.uol.pagseguro.domain.Address;
 import br.com.uol.pagseguro.domain.Phone;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,6 +26,7 @@ import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Scenario;
 
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.chrono.Chronology;
@@ -41,6 +47,7 @@ public class UpdateProductScenario extends FeedbackScenario {
     @FXML private TextField tfQuantity;
     @FXML private TextField tfPrice;
     @FXML private TextField tfDescription;
+    @FXML private TextField tfWeight;
     @FXML private Label lbProductAlreadyExists;
     @FXML private Label lbName;
     @FXML private Label lbQuantity;
@@ -58,6 +65,7 @@ public class UpdateProductScenario extends FeedbackScenario {
         tfDescription.setText(this.updateThisProduct.getDescription());
         tfPrice.setText(updateThisProduct.getAmount().toString());
         tfQuantity.setText(updateThisProduct.getQuantity().toString());
+        tfWeight.setText(updateThisProduct.getWeight().toString());
     }
 
     @Override
@@ -80,21 +88,16 @@ public class UpdateProductScenario extends FeedbackScenario {
             String description = tfDescription.getText();
             Integer quantity = Integer.parseInt(tfQuantity.getText());
             BigDecimal price = new BigDecimal(Float.parseFloat(tfPrice.getText()));
+            Long weight = Long.parseLong(tfWeight.getText());
 
-            boolean productAlreadyRegistered = false;
-            for (Product product : productManager.listAll()) {
-                if (product.getName().equals(name)) {
-                    productAlreadyRegistered = true;
-                    break;
-                }
-            }
 
-            if ((productAlreadyRegistered) && (name != null) /*&& (price != null) && (price.doubleValue() >= 0) && (quantity != null) && (quantity >= 0)*/) {
+            if ((name != null) /*&& (price != null) && (price.doubleValue() >= 0) && (quantity != null) && (quantity >= 0)*/) {
 
                 this.updateThisProduct.setName(name);
                 this.updateThisProduct.setDescription(description);
                 this.updateThisProduct.setAmount(price);
                 this.updateThisProduct.setQuantity(quantity);
+                this.updateThisProduct.setWeight(weight);
 
                 putFeedback(FEEDBACK_NEW_PRODUCT, this.updateThisProduct);
                 processFeedbackAndFinish();
