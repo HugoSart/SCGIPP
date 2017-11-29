@@ -180,8 +180,7 @@ public class AddSaleScenario extends FeedbackScenario {
         }));
 
         SpinnerValueFactory<Integer> valueFactory = //
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
-                        10, 1);
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100, 1);
 
         spQuantity.setValueFactory(valueFactory);
 
