@@ -20,6 +20,7 @@ import scgipp.ui.visible.ObservableCustomer;
 import scgipp.ui.visible.ObservableProduct;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddSaleScenario extends FeedbackScenario {
@@ -74,10 +75,41 @@ public class AddSaleScenario extends FeedbackScenario {
     @FXML
     private TableColumn<ObservableProduct, Double> tcPrice;
 
+    @FXML private ObservableList<ObservableProduct> productObservableList;
+
+    @FXML private ObservableList<ObservableProduct> productObservableItemList;
+
+    @FXML
+    private TableView<ObservableProduct> tvItemList;
+
+    @FXML
+    private TableColumn<ObservableProduct, String> tcItemListName;
+
+    @FXML
+    private TableColumn<ObservableProduct, Integer> tcItemListUnity;
+
+    @FXML
+    private TableColumn<ObservableProduct, Double > tcItemListPrice;
+
+    @FXML
+    private Button btRemove;
+
     @FXML
     private Button btAdd;
 
-    @FXML private ObservableList<ObservableProduct> productObservableList;
+    @FXML
+    private TextField tfPesquisar;
+
+    private List<Product> itensToSale;
+
+    @FXML
+    private Spinner<Integer> spQuantity;
+
+    @FXML
+    private Label lbQuantidade;
+
+    @FXML
+    private TextField tfPesquisarCliente;
 
 
 
@@ -93,11 +125,15 @@ public class AddSaleScenario extends FeedbackScenario {
 
     @Override
     protected void onConfigStage(Stage stage) {
+
+        if (itensToSale == null) itensToSale = new ArrayList<>();
+
         tfCNPJ_CPF.setDisable(true);
         tfCustomerAddress.setDisable(true);
         tfPhone.setDisable(true);
         tfSalesmanName.setDisable(true);
         tfSalesmanName.setText(userSession.getActiveUser().getLogin());
+
         List<Customer> customerList = customerManager.getAll();
         for (Customer customer : customerList) {
             System.out.println(customer);
@@ -127,6 +163,22 @@ public class AddSaleScenario extends FeedbackScenario {
                 tfCNPJ_CPF.setText(customer.getCustomer().getCpf_cnpj());
             }
         });
+
+        btAdd.setOnAction((event -> {
+            ObservableProduct observableProduct = tvItem.getSelectionModel().getSelectedItem();
+            Integer quantidadeCurrentItem = spQuantity.getValue();
+            /*
+             * Verificar compatibilidade com o estoque
+             */
+            //observableProduct.getProduct().setQuantity(quantidadeCurrentItem);
+            itensToSale.add(observableProduct.getProduct());
+            productObservableItemList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
+            tcItemListName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+            tcItemListPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+            tvItemList.refresh();
+        }));
+
+
 
 
     }

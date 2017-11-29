@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="587.0" prefWidth="804.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="308.0" prefWidth="406.0" style="-fx-background-color: #3F51B5;">
          <children>
@@ -31,8 +31,8 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></TextField>
-            <Label fx:id="lbCliente" layoutX="23.0" layoutY="18.0" text="Cliente" textFill="WHITE" />
-            <TableView fx:id="tvCustomer" layoutX="79.0" layoutY="14.0" prefHeight="138.0" prefWidth="311.0">
+            <Label fx:id="lbCliente" layoutX="24.0" layoutY="14.0" text="Cliente" textFill="WHITE" />
+            <TableView fx:id="tvCustomer" layoutX="79.0" layoutY="49.0" prefHeight="105.0" prefWidth="311.0">
               <columns>
                 <TableColumn fx:id="tcCustomerName" prefWidth="304.0" text="Nome" />
               </columns>
@@ -40,25 +40,37 @@
             <Button fx:id="btSelecionar" layoutX="319.0" layoutY="164.0" mnemonicParsing="false" text="Selecionar" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="432.0" layoutY="14.0" prefHeight="561.0" prefWidth="363.0" style="-fx-background-color: #3F51B5;">
+      <AnchorPane layoutX="432.0" layoutY="14.0" prefHeight="635.0" prefWidth="428.0" style="-fx-background-color: #3F51B5;">
          <children>
             <Label fx:id="lbVendedorName" layoutX="14.0" layoutY="14.0" text="Vendedor" textFill="WHITE" />
             <TextField fx:id="tfSalesmanName" layoutX="85.0" layoutY="10.0" prefHeight="25.0" prefWidth="258.0" style="-fx-background-color: #ffffff;">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></TextField>
+            <TableView fx:id="tvItemList" layoutX="9.0" layoutY="53.0" prefHeight="443.0" prefWidth="406.0">
+              <columns>
+                <TableColumn fx:id="tcItemListName" prefWidth="221.0" text="Nome" />
+                  <TableColumn fx:id="tcItemListUnity" prefWidth="98.0" text="Unidades" />
+                <TableColumn fx:id="tcItemListPrice" prefWidth="95.0" text="Preço" />
+              </columns>
+            </TableView>
+            <Button fx:id="btRemove" layoutX="9.0" layoutY="505.0" mnemonicParsing="false" text="Remover" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="327.0" prefHeight="244.0" prefWidth="406.0" style="-fx-background-color: #3F51B5;">
+      <AnchorPane layoutX="14.0" layoutY="327.0" prefHeight="323.0" prefWidth="406.0" style="-fx-background-color: #3F51B5;">
          <children>
-            <TableView fx:id="tvItem" layoutX="14.0" layoutY="14.0" prefHeight="138.0" prefWidth="384.0">
+            <TableView fx:id="tvItem" layoutX="11.0" layoutY="48.0" prefHeight="138.0" prefWidth="384.0">
                <columns>
                   <TableColumn fx:id="tcItem" prefWidth="278.0" text="Item" />
                   <TableColumn fx:id="tcPrice" prefWidth="105.0" text="Preço" />
                </columns>
             </TableView>
-            <Button fx:id="btAdd" layoutX="14.0" layoutY="161.0" mnemonicParsing="false" text="Adicionar" />
+            <Button fx:id="btAdd" layoutX="324.0" layoutY="203.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="71.0" text="Adicionar" />
+            <TextField fx:id="tfPesquisar" layoutX="11.0" layoutY="14.0" prefHeight="25.0" prefWidth="384.0" promptText="Pesquisar" />
+            <TextField fx:id="tfQuantityItem" layoutX="31.0" layoutY="222.0" prefHeight="25.0" prefWidth="64.0" />
+            <Label fx:id="lbQuantidade" layoutX="31.0" layoutY="195.0" prefHeight="17.0" prefWidth="71.0" text="Quantidade" textFill="WHITE" />
          </children>
       </AnchorPane>
+      <TextField fx:id="tfPesquisarCliente" layoutX="94.0" layoutY="24.0" prefHeight="25.0" prefWidth="311.0" promptText="Pesquisar" />
    </children>
 </AnchorPane>
