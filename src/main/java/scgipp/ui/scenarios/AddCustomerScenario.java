@@ -46,6 +46,17 @@ public class AddCustomerScenario extends FeedbackScenario{
     @FXML private Label lbEnderecoObrigatorio;
     @FXML private ChoiceBox<String> cbTipo;
     @FXML private Label lbDataObrigatorio;
+    @FXML
+    private TextField tfAddressNumber;
+
+    @FXML
+    private TextField tfBairro;
+
+    @FXML
+    private TextField tfCEP;
+
+    @FXML
+    private Label lbEndereçoMsg;
 
     @FXML private Label lbTipoObrigatorio;
 
@@ -73,9 +84,12 @@ public class AddCustomerScenario extends FeedbackScenario{
 
         btOk.setOnAction(event -> {
 
-            String name,  address , phone, cpf, tipo;
+            String name,  address , phone, cpf, tipo, addressnumber, addresscep, addressbairro;
             name = tfName.getText();
             address = tfAddress.getText();
+            addressbairro = tfBairro.getText();
+            addressnumber = tfAddressNumber.getText();
+            addresscep = tfCEP.getText();
             phone = tfPhone.getText();
             cpf = tfCPF.getText();
             tipo = cbTipo.getValue();
@@ -95,7 +109,7 @@ public class AddCustomerScenario extends FeedbackScenario{
             lbNomeObrigatorio.setVisible(name.isEmpty());
             lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
             lbTelefoneObrigatorio.setVisible(phone.isEmpty());
-            lbEnderecoObrigatorio.setVisible(address.isEmpty());
+            lbEnderecoObrigatorio.setVisible(address.isEmpty() || addressbairro.isEmpty() || addresscep.isEmpty() || addressnumber.isEmpty());
             lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
             lbTipoObrigatorio.setVisible(cbTipo.getSelectionModel().isEmpty());
 
@@ -116,9 +130,13 @@ public class AddCustomerScenario extends FeedbackScenario{
                     falseDocument = DocumentValidator.isValidCPNJ(cpf);
                 }
                 if (!falseDocument) lbFalseCpf.setVisible(true);
-                if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
+                if (falseDocument && !AlreadyOnSystem && !name.isEmpty() && !phone.isEmpty() && !addressbairro.isEmpty()
+                    && !addresscep.isEmpty() && !addressnumber.isEmpty() && !address.isEmpty() && date != null) {
                     Address newAddress = new Address();
                     newAddress.setStreet(address);
+                    newAddress.setPostalCode(addresscep);
+                    newAddress.setNumber(addressnumber);
+                    newAddress.setComplement(addressbairro);
                     Phone newPhone = new Phone();
                     newPhone.setNumber(phone);
                     Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);

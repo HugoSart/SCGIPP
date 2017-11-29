@@ -9,7 +9,16 @@ import java.util.List;
 
 public class SaleManager {
 
+    private static SaleManager instance = null;
+
     private static DBManager dbManager = DBConnection.manager();
+
+
+    public static SaleManager getInstance() {
+        if (instance == null && DBConnection.isActive()) instance = new SaleManager();
+        return instance;
+    }
+
 
     public void addSale(@NotNull Sale sale){dbManager.add(sale);}
 

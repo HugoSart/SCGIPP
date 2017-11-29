@@ -35,6 +35,7 @@ public class AddProductScenario extends FeedbackScenario {
     @FXML private TextField tfQuantity;
     @FXML private TextField tfPrice;
     @FXML private TextField tfDescription;
+    @FXML private TextField tfWeight;
     @FXML private Label lbProductAlreadyExists;
     @FXML private Label lbName;
     @FXML private Label lbQuantity;
@@ -63,12 +64,13 @@ public class AddProductScenario extends FeedbackScenario {
             String description = tfDescription.getText();
             Integer quantity = Integer.parseInt(tfQuantity.getText());
             BigDecimal price = new BigDecimal(Float.parseFloat(tfPrice.getText()));
-
-            lbPrice.setDisable(true);
-            lbQuantity.setDisable(true);
-            lbName.setDisable(true);
+            Long weight = Long.parseLong(tfWeight.getText());
 
             boolean productAlreadyRegistered = false;
+            //lbName.setVisible(productAlreadyRegistered);
+            //boolean invalidQuantity = (quantity == null) || !((quantity > 0) && (quantity < Integer.MAX_VALUE));
+            //boolean invalidPrice = (price == null) || !((price.doubleValue() > 0) && (price.doubleValue() < Double.MAX_VALUE));
+
             for (Product product : productManager.listAll()) {
                 if (product.getName().equals(name) || tfName.getText().isEmpty()) {
                     productAlreadyRegistered = true;
@@ -76,17 +78,13 @@ public class AddProductScenario extends FeedbackScenario {
                 }
             }
 
-            if(quantity == null || quantity < 0)
-                lbQuantity.setVisible(true);
-
-            if(price == null || price.doubleValue() < 0)
-                lbPrice.setVisible(true);
-
+            //lbQuantity.setVisible(invalidQuantity);
+            //lbPrice.setVisible(invalidPrice);
             lbName.setVisible(productAlreadyRegistered);
 
-            if (!productAlreadyRegistered) {
+            if ((!productAlreadyRegistered) && (name != null) && (price != null) && (price.doubleValue() >= 0) && (quantity != null) && (quantity >= 0) && (weight != null) && (weight >= 0)) {
 
-                Product product = new Product(name, description, quantity, price);
+                Product product = new Product(name, description, quantity, price, weight);
                 putFeedback(FEEDBACK_NEW_PRODUCT, product);
                 processFeedbackAndFinish();
             }

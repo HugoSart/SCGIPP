@@ -3,10 +3,17 @@ package scgipp.data.hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.annotations.Where;
+import org.reflections.Reflections;
 import scgipp.system.log.Log;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
+import static scgipp.data.hibernate.BaseEntity.DELETED;
+import static scgipp.data.hibernate.BaseEntity.NORMAL;
 
 /**
  * User: hugo__<br/>
@@ -36,17 +43,17 @@ public class DBManager {
      * @param baseEntity Entidade a ser persistida no banco de dados
      * @return Id da entidade persistida
      */
-    public Integer add(final BaseEntity baseEntity) {
+    public <T extends Serializable> T add(final BaseEntity<T> baseEntity) {
 
         Session session = null;
 
         Transaction transaction = null;
-        Integer id = null;
+        T id = null;
 
         try {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
-            id = (Integer)session.save(baseEntity);
+            id = (T)session.save(baseEntity);
             transaction.commit();
         } catch (HibernateException e) {
             standardExceptionCatch(e, transaction);
@@ -72,7 +79,7 @@ public class DBManager {
         try {
             session = dbConnection.openSession();
             transaction = session.beginTransaction();
-            baseEntity.state = BaseEntity.DELETED;
+            baseEntity.state = DELETED;
             session.update                                                                                                                                  (baseEntity);
             transaction.commit();
         } catch (HibernateException e) {
@@ -147,7 +154,7 @@ public class DBManager {
      * @param <> tipo das entidades a serem recuperadas
      * @return lista de objetos correspondente a todas as entidades recuperadas
      */
-    public <T extends BaseEntity> List<T> list(final Class<T> clazz) {
+    private <T extends BaseEntity> List<T> listFiltered(final Class<T> clazz, int state) {
 
         Session session = null;
 
@@ -167,7 +174,33 @@ public class DBManager {
             }
         }
 
-        return objects;
+        List<T> ret = new ArrayList<>();
+        for (T object : objects)
+            if (object.state == state)
+                ret.add(object);
+
+        return ret;
+
+    }
+
+    public <T extends BaseEntity> List<T> list(final Class<T> clazz) {
+        return listFiltered(clazz, NORMAL);
+    }
+
+    public <T extends BaseEntity> List<T> recovery(final Class<T> clazz) {
+        return listFiltered(clazz, DELETED);
+    }
+
+    public List<BaseEntity> recoveryAll() {
+
+        Reflections reflections = new Reflections("scgipp.service.entities");
+        Set<Class<? extends BaseEntity>> classes = reflections.getSubTypesOf(BaseEntity.class);
+
+        List<BaseEntity> entities = new ArrayList<>();
+        for (Class<? extends BaseEntity> aClass : classes)
+            entities.addAll(recovery(aClass));
+
+        return entities;
 
     }
 

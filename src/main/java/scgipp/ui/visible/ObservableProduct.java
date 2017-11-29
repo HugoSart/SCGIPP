@@ -29,6 +29,10 @@ public class ObservableProduct {
 
     public DoubleProperty priceProperty() { return new SimpleDoubleProperty(product.getAmount().doubleValue()); }
 
+    public StringProperty descriptionProperty() { return new SimpleStringProperty(product.getDescription());}
+
+    public LongProperty weightProperty() { return new SimpleLongProperty(product.getWeight());}
+
     public static List<ObservableProduct> productListTAsObservableProductList(List<Product> list) {
 
         List<ObservableProduct> observableProducts = new ArrayList<>();
@@ -37,5 +41,7 @@ public class ObservableProduct {
         return observableProducts;
 
     }
+
+    public DoubleProperty totalPriceProperty() { return new SimpleDoubleProperty(product.getAmount().doubleValue() * this.getProduct().getQuantity()); }
 
 }

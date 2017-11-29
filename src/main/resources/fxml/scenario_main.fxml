@@ -6,11 +6,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="rootPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -33,7 +37,7 @@
               <AnchorPane fx:id="pProduct" minHeight="0.0" minWidth="0.0" prefHeight="568.0" prefWidth="842.0" />
             </content>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="HEXAGON" size="32" style="-fx-rotate: 0;" />
+                  <MaterialDesignIconView fill="WHITE" glyphName="PACKAGE" size="32" style="-fx-rotate: 0;" />
                </graphic>
           </Tab>
             <Tab closable="false" text="Vendas">
@@ -61,7 +65,7 @@
                      </children></AnchorPane>
                </content>
                <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="HEXAGON" size="32" style="-fx-rotate: 0;" />
+                  <MaterialDesignIconView fill="WHITE" glyphName="CART" size="32" style="-fx-rotate: 0;" />
                </graphic>
             </Tab>
             <Tab closable="false" text="Clientes">
@@ -96,6 +100,39 @@
                  <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT" rotate="-75.4" size="32" style="-fx-rotate: 0;" />
               </graphic>
           </Tab>
+            <Tab closable="false" text="Exclusões">
+               <content>
+                  <AnchorPane fx:id="pRecovery" style="-fx-background-color: rgba(255,255,255,1);">
+                     <children>
+                        <AnchorPane fx:id="customTableView" layoutX="14.0" layoutY="14.0" prefHeight="558.0" prefWidth="1015.0">
+                           <children>
+                              <TextField fx:id="tfSearch" prefHeight="27.0" prefWidth="456.0" promptText="Procurar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" />
+                              <TableView fx:id="tvEntities" layoutX="83.0" layoutY="34.0" prefHeight="510.0" prefWidth="399.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="33.0">
+                                 <columns>
+                                    <TableColumn fx:id="tcId" prefWidth="116.0" text="Id" />
+                                    <TableColumn fx:id="tcClass" prefWidth="151.0" text="Classe" />
+                                    <TableColumn fx:id="tcInfo" prefWidth="823.0" text="Informação" />
+                                 </columns>
+                              </TableView>
+                              <VBox layoutY="34.0" prefHeight="510.0" prefWidth="72.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="34.0">
+                                 <children>
+                                    <Button fx:id="btRecovery" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" text="Restaurar">
+                                       <VBox.margin>
+                                          <Insets bottom="8.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                    <Button fx:id="btForget" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Esquecer" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+               <graphic>
+                  <MaterialDesignIconView fill="WHITE" glyphName="RECYCLE" rotate="-75.4" size="32" style="-fx-rotate: 0;" />
+               </graphic>
+            </Tab>
         </tabs>
       </TabPane>
       <AnchorPane prefHeight="133.0" prefWidth="217.0" style="-fx-background-color: #3F51B5;" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -115,22 +152,22 @@
                   <Insets left="4.0" />
                </padding>
             </Label>
-            <Button layoutX="159.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="58.0" style="-fx-background-color: transparent;" text="Sair">
-               <graphic>
-                  <MaterialDesignIconView fill="WHITE" glyphName="ARROW_LEFT" />
-               </graphic>
-            </Button>
          </children>
       </AnchorPane>
       <HBox fx:id="menuBar" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="29.0" style="-fx-background-color: rgba(0,0,0,0.1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label fx:id="lbSessionUser1" prefHeight="29.0" prefWidth="210.0" text="SCGIPP - Alpha 1.2" textFill="WHITE">
+                  <Label fx:id="lbSessionUser1" prefHeight="29.0" prefWidth="161.0" text="SCGIPP - Alpha 1.2" textFill="WHITE">
                      <padding>
                         <Insets left="8.0" />
                      </padding>
                   </Label>
+                  <Button fx:id="btLogout" mnemonicParsing="false" prefHeight="29.0" prefWidth="58.0" style="-fx-background-color: transparent;" text="Sair">
+                     <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="ARROW_LEFT" />
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
             <Button fx:id="btHide" contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="63.0" prefWidth="40.0" styleClass="image-button">
