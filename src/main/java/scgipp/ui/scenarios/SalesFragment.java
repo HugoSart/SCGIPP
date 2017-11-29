@@ -17,6 +17,7 @@ import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableTransactionSummary;
+import scgipp.ui.visible.ObservableUser;
 
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class SalesFragment extends Fragment {
     @FXML private Button btNew;
     @FXML private Button btStatus;
     @FXML private ProgressIndicator piProgress;
+
     @FXML
     private Button btNewSale;
 
@@ -102,7 +104,7 @@ public class SalesFragment extends Fragment {
             Spawner.startFeedbackScenario(addSaleScenario, 0, this, new FeedbackScenario.FeedbackListener() {
                 @Override
                 public void onFeedback(int requestCode, int resultCode, Map data) {
-
+                    System.out.println("ok");
                 }
             });
 

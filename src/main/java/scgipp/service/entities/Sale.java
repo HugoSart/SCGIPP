@@ -33,15 +33,17 @@ public class Sale extends BaseEntity<Integer> {
 
     public Sale(){}
 
-    public Sale(User user, Customer customer, String transactionCode, SaleBudget saleBudget) {
+    public Sale(User user, Customer customer, String transactionCode, List<Product> saleBudget) {
         this.user = user;
         this.customer = customer;
         this.transactionCode = transactionCode;
         this.date = LocalDate.now();
-        this.productsList = new ArrayList<Product>(saleBudget.getProducts());
-        for (Product p : saleBudget.getProducts()) {
+        this.productsList = new ArrayList<Product>(saleBudget);
+        /*
+        for (Product p : saleBudget) {
             this.totalPrice = totalPrice.add(p.getAmount());
         }
+        */
     }
 
     public BigDecimal getTotalPrice() {

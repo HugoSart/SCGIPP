@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="662.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="308.0" prefWidth="406.0" style="-fx-background-color: #3F51B5;">
+      <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="308.0" prefWidth="415.0" style="-fx-background-color: #3F51B5;">
          <children>
             <Label layoutX="17.0" layoutY="203.0" text="Endereço" textFill="WHITE" />
             <TextField fx:id="tfCustomerAddress" layoutX="79.0" layoutY="199.0" prefHeight="25.0" prefWidth="311.0" style="-fx-background-color: #ffffff;">
@@ -41,24 +41,44 @@
             <Button fx:id="btSelecionar" layoutX="319.0" layoutY="164.0" mnemonicParsing="false" text="Selecionar" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="432.0" layoutY="14.0" prefHeight="635.0" prefWidth="428.0" style="-fx-background-color: #3F51B5;">
+      <AnchorPane layoutX="449.0" layoutY="14.0" prefHeight="600.0" prefWidth="437.0" style="-fx-background-color: #3F51B5;">
          <children>
             <Label fx:id="lbVendedorName" layoutX="14.0" layoutY="14.0" text="Vendedor" textFill="WHITE" />
             <TextField fx:id="tfSalesmanName" layoutX="85.0" layoutY="10.0" prefHeight="25.0" prefWidth="258.0" style="-fx-background-color: #ffffff;">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></TextField>
-            <TableView fx:id="tvItemList" layoutX="9.0" layoutY="53.0" prefHeight="443.0" prefWidth="406.0">
+            <TableView fx:id="tvItemList" layoutX="9.0" layoutY="53.0" prefHeight="443.0" prefWidth="415.0">
               <columns>
                 <TableColumn fx:id="tcItemListName" prefWidth="221.0" text="Nome" />
                   <TableColumn fx:id="tcItemListUnity" prefWidth="98.0" text="Unidades" />
                 <TableColumn fx:id="tcItemListPrice" prefWidth="95.0" text="Preço" />
               </columns>
             </TableView>
-            <Button fx:id="btRemove" layoutX="9.0" layoutY="505.0" mnemonicParsing="false" text="Remover" />
+            <Button fx:id="btRemove" layoutX="324.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="99.0" text="Remover Item" textFill="RED" />
+            <Label fx:id="lbTotalMsg" layoutX="14.0" layoutY="566.0" text="TOTAL: R$" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lbtTotalPriceSale" layoutX="85.0" layoutY="546.0" prefHeight="45.0" prefWidth="147.0" text="213123" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="btFinishSale" layoutX="324.0" layoutY="550.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="99.0" text="Concluir" textFill="#067504">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="514.0" text="Selecione um cliente" textFill="RED" visible="false">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="14.0" layoutY="327.0" prefHeight="323.0" prefWidth="406.0" style="-fx-background-color: #3F51B5;">
+      <AnchorPane layoutX="14.0" layoutY="327.0" prefHeight="286.0" prefWidth="415.0" style="-fx-background-color: #3F51B5;">
          <children>
             <TableView fx:id="tvItem" layoutX="11.0" layoutY="48.0" prefHeight="138.0" prefWidth="384.0">
                <columns>
@@ -66,10 +86,10 @@
                   <TableColumn fx:id="tcPrice" prefWidth="105.0" text="Preço" />
                </columns>
             </TableView>
-            <Button fx:id="btAdd" layoutX="324.0" layoutY="203.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="71.0" text="Adicionar" />
+            <Button fx:id="btAdd" layoutX="324.0" layoutY="222.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="71.0" text="Adicionar" />
             <TextField fx:id="tfPesquisar" layoutX="11.0" layoutY="14.0" prefHeight="25.0" prefWidth="384.0" promptText="Pesquisar" />
-            <Label fx:id="lbQuantidade" layoutX="31.0" layoutY="195.0" prefHeight="17.0" prefWidth="71.0" text="Quantidade" textFill="WHITE" />
-            <Spinner fx:id="spQuantity" editable="true" layoutX="31.0" layoutY="222.0" prefHeight="26.0" prefWidth="71.0" />
+            <Label fx:id="lbQuantidade" layoutX="222.0" layoutY="195.0" prefHeight="17.0" prefWidth="71.0" text="Quantidade" textFill="WHITE" />
+            <Spinner fx:id="spQuantity" editable="true" layoutX="222.0" layoutY="228.0" prefHeight="26.0" prefWidth="71.0" />
          </children>
       </AnchorPane>
       <TextField fx:id="tfPesquisarCliente" layoutX="94.0" layoutY="24.0" prefHeight="25.0" prefWidth="311.0" promptText="Pesquisar" />

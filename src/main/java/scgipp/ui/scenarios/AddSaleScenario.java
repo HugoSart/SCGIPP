@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import scgipp.service.UserSession;
 import scgipp.service.entities.Customer;
 import scgipp.service.entities.Product;
+import scgipp.service.entities.Sale;
+import scgipp.service.entities.User;
 import scgipp.service.managers.CustomerManager;
 import scgipp.service.managers.ProductManager;
 import scgipp.service.managers.UserManager;
@@ -35,6 +37,8 @@ public class AddSaleScenario extends FeedbackScenario {
     private CustomerManager customerManager = CustomerManager.getInstance();
     private ProductManager productManager = ProductManager.getInstance();
     private UserSession userSession = UserSession.getSession();
+    public static final String FEEDBACK_NEW_SALE = "new_sale";
+
 
     @FXML
     private TextField tfCustomerAddress;
@@ -118,6 +122,23 @@ public class AddSaleScenario extends FeedbackScenario {
     private TextField tfPesquisarCliente;
 
 
+    @FXML
+    private Label lbTotalMsg;
+
+    @FXML
+    private Label lbtTotalPriceSale;
+
+    @FXML
+    private Button btFinishSale;
+
+    private Double totalAmount = 0.0;
+
+    private Customer clienteFinal;
+
+    @FXML
+    private Label lbClienteEmpty;
+
+
 
     public AddSaleScenario() {
         super("fxml/scenario_add_sale.fxml");
@@ -131,6 +152,7 @@ public class AddSaleScenario extends FeedbackScenario {
 
     @Override
     protected void onConfigStage(Stage stage) {
+
 
         if (itensToSale == null) itensToSale = new ArrayList<>();
 
@@ -160,6 +182,7 @@ public class AddSaleScenario extends FeedbackScenario {
                     tfPhone.setText(customer.getCustomer().getPhones().get(0).getNumber());
                     tfCustomerAddress.setText(customer.getCustomer().getAddresses().get(0).getStreet());
                     tfCNPJ_CPF.setText(customer.getCustomer().getCpf_cnpj());
+                    clienteFinal = customer.getCustomer();
                 }
             });
 
@@ -174,8 +197,21 @@ public class AddSaleScenario extends FeedbackScenario {
                 tcItemListPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
                 tvItemList.setItems(productObservableSaleList);
                 tvItemList.refresh();
+                totalAmount -= observableProduct.getProduct().getAmount().doubleValue() * observableProduct.getProduct().getQuantity();
+                lbtTotalPriceSale.setText(String.valueOf(totalAmount));
 
+            });
 
+            btFinishSale.setOnAction(event -> {
+
+                lbClienteEmpty.setVisible(clienteFinal == null);
+
+                if (clienteFinal != null)
+                {
+                    Sale newSale = new Sale(userSession.getActiveUser(), clienteFinal, "SALE", itensToSale);
+                    putFeedback(FEEDBACK_NEW_SALE, newSale);
+                    processFeedbackAndFinish();
+                }
             });
 
 
@@ -186,11 +222,12 @@ public class AddSaleScenario extends FeedbackScenario {
                         observableSaleProduct.getProduct().getDescription(),
                         numberItens,
                         observableSaleProduct.getProduct().getAmount());
-
                 itensToSale.add(novoProduto);
                 productObservableSaleList.add(new ObservableProduct(novoProduto));
                 System.out.println(numberItens);
                 tvItemList.refresh();
+                totalAmount += numberItens * novoProduto.getAmount().doubleValue();
+                lbtTotalPriceSale.setText(String.valueOf(totalAmount));
             }));
 
             FilteredList<ObservableCustomer> filteredData = new FilteredList<>(customerObservableList, p -> true);
