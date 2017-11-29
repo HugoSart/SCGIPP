@@ -70,7 +70,7 @@ public class ErrorsParser {
             error = new Error();
             Element errorElement = errorElements.get(i);
             error.setCode(XMLParserUtils.getTagValue("code", errorElement));
-            error.setMessage(XMLParserUtils.getTagValue("message", errorElement));
+            error.setMessage(XMLParserUtils.getTagValue("printableMessage", errorElement));
             errors.add(error);
         }
 

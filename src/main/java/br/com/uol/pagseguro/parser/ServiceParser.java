@@ -71,7 +71,7 @@ public class ServiceParser {
 
             Error error = new Error();
             error.setCode(XMLParserUtils.getTagValue("code", itElement));
-            error.setMessage(XMLParserUtils.getTagValue("message", itElement));
+            error.setMessage(XMLParserUtils.getTagValue("printableMessage", itElement));
 
             errors.add(error);
         }

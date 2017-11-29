@@ -1,5 +1,7 @@
 package scgipp.service.managers;
 
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.domain.Phone;
 import org.jetbrains.annotations.NotNull;
 import scgipp.data.hibernate.DBConnection;
 import scgipp.data.hibernate.DBManager;
@@ -17,7 +19,11 @@ public class SupplierManager {
 
     private static DBManager dbManager= DBConnection.manager();
 
-    public static Integer addSupplier(@NotNull Supplier supplier){
+    public static Integer addSupplier(@NotNull String name, String cnpj, Address address, Phone phone){
+        Supplier supplier = new Supplier(name, cnpj);
+        supplier.getAddresses().add(address);
+        supplier.getPhones().add(phone);
+
         Integer id = dbManager.add(supplier);
 
         if(supplier.getId() != null){
