@@ -22,8 +22,10 @@ import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableCustomer;
 import scgipp.ui.visible.ObservableProduct;
+import scgipp.ui.visible.ObservableSale;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -139,6 +141,14 @@ public class AddSaleScenario extends FeedbackScenario {
     private Label lbClienteEmpty;
 
 
+    @FXML
+    private Button btNewSale;
+
+    @FXML
+    private Button btRemoveSale;
+
+
+
 
     public AddSaleScenario() {
         super("fxml/scenario_add_sale.fxml");
@@ -180,7 +190,7 @@ public class AddSaleScenario extends FeedbackScenario {
                 ObservableCustomer customer = tvCustomer.getSelectionModel().getSelectedItem();
                 if (customer != null) {
                     tfPhone.setText(customer.getCustomer().getPhones().get(0).getNumber());
-                    tfCustomerAddress.setText(customer.getCustomer().getAddresses().get(0).getStreet());
+                    tfCustomerAddress.setText(customer.getCustomer().getAddresses().get(0).getStreet() + " n° " + customer.getCustomer().getAddresses().get(0).getNumber());
                     tfCNPJ_CPF.setText(customer.getCustomer().getCpf_cnpj());
                     clienteFinal = customer.getCustomer();
                 }
@@ -209,6 +219,8 @@ public class AddSaleScenario extends FeedbackScenario {
                 if (clienteFinal != null)
                 {
                     Sale newSale = new Sale(userSession.getActiveUser(), clienteFinal, "SALE", itensToSale);
+                    BigDecimal b = new BigDecimal(totalAmount, MathContext.DECIMAL64);
+                    newSale.setTotalPrice(b);
                     putFeedback(FEEDBACK_NEW_SALE, newSale);
                     processFeedbackAndFinish();
                 }
@@ -230,6 +242,7 @@ public class AddSaleScenario extends FeedbackScenario {
                 lbtTotalPriceSale.setText(String.valueOf(totalAmount));
             }));
 
+            lbClienteEmpty.setVisible(false);
             FilteredList<ObservableCustomer> filteredData = new FilteredList<>(customerObservableList, p -> true);
             tfPesquisarCliente.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
                 if (newValue == null || newValue.isEmpty()) return true;

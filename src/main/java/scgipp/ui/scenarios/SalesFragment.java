@@ -12,10 +12,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import scgipp.Main;
+import scgipp.service.entities.Sale;
+import scgipp.service.entities.User;
+import scgipp.service.managers.SaleManager;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.FXScenario.Scenario;
 import scgipp.ui.FXScenario.Spawner;
+import scgipp.ui.visible.ObservableSale;
 import scgipp.ui.visible.ObservableTransactionSummary;
 import scgipp.ui.visible.ObservableUser;
 
@@ -32,6 +36,8 @@ import java.util.Map;
  */
 public class SalesFragment extends Fragment {
 
+    private SaleManager saleManager = SaleManager.getInstance();
+
     @FXML private AnchorPane customTableView;
     @FXML private TextField tfSearch;
     @FXML private TableView<ObservableTransactionSummary> tvTransactions;
@@ -47,6 +53,26 @@ public class SalesFragment extends Fragment {
     @FXML private Button btNew;
     @FXML private Button btStatus;
     @FXML private ProgressIndicator piProgress;
+
+    @FXML private ObservableList<ObservableSale> saleObservableList;
+
+    @FXML
+    private TableView<ObservableSale> tvSales;
+
+    @FXML
+    private TableColumn<ObservableSale, String> tcCustomer;
+
+    @FXML
+    private TableColumn<ObservableSale, String> tcUser;
+
+    @FXML
+    private TableColumn<ObservableSale, String> tcSaleDate;
+
+    @FXML
+    private TableColumn<ObservableSale, Double> tcTotalSalePrice;
+
+    @FXML
+    private TableColumn<ObservableSale, Integer> tcSaleId;
 
     @FXML
     private Button btNewSale;
@@ -68,6 +94,7 @@ public class SalesFragment extends Fragment {
     }
 
     private void setUpPagSeguroTab() {
+
 
         btSearch.setOnAction(event -> searchPagSeguro());
         tcCode.setCellValueFactory(cellData -> cellData.getValue().codeProperty());
@@ -98,17 +125,25 @@ public class SalesFragment extends Fragment {
     }
 
     private void setUpLocalTab() {
+        List<Sale> saleList = saleManager.getAll();
+        saleObservableList = FXCollections.observableList(ObservableSale.saleListTAsObservableSaleList(saleList));
+        tcSaleId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        tcSaleDate.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
+        //tcCustomer.setCellValueFactory(cellData -> cellData.getValue().getCustomerNameProperty());
+        //tcTotalSalePrice.setCellValueFactory(cellData -> cellData.getValue().getTotalAmout().asObject());
+        //tcUser.setCellValueFactory(cellData -> cellData.getValue().getUserProperty());
+        tvSales.setItems(saleObservableList);
 
         btNewSale.setOnAction(event -> {
             FeedbackScenario addSaleScenario = new AddSaleScenario();
-            Spawner.startFeedbackScenario(addSaleScenario, 0, this, new FeedbackScenario.FeedbackListener() {
-                @Override
-                public void onFeedback(int requestCode, int resultCode, Map data) {
-                    System.out.println("ok");
-                }
+            Spawner.startFeedbackScenario(addSaleScenario, 0, this, (requestCode, resultCode, data) -> {
+                Sale user = (Sale)data.get(AddSaleScenario.FEEDBACK_NEW_SALE);
+                saleObservableList.add(new ObservableSale(user));
+                //tvSales.refresh();
             });
 
         });
+
 
     }
 
