@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import scgipp.Main;
+import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Fragment;
 import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableTransactionSummary;
@@ -20,6 +21,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: hugo_<br/>
@@ -41,6 +43,11 @@ public class SalesFragment extends Fragment {
     @FXML private DatePicker dpFinal;
     @FXML private Button btSearch;
     @FXML private ProgressIndicator piProgress;
+    @FXML
+    private Button btNewSale;
+
+    @FXML
+    private Button btRemoveSale;
 
     private ObservableList<ObservableTransactionSummary> observableTransactionSummaries;
 
@@ -52,7 +59,7 @@ public class SalesFragment extends Fragment {
     protected void onCreateView() {
         super.onCreateView();
         setUpPagSeguroTab();
-        setUpLocalTab();
+            setUpLocalTab();
     }
 
     private void setUpPagSeguroTab() {
@@ -81,6 +88,17 @@ public class SalesFragment extends Fragment {
     }
 
     private void setUpLocalTab() {
+
+        btNewSale.setOnAction(event -> {
+            FeedbackScenario addSaleScenario = new AddSaleScenario();
+            Spawner.startFeedbackScenario(addSaleScenario, 0, this, new FeedbackScenario.FeedbackListener() {
+                @Override
+                public void onFeedback(int requestCode, int resultCode, Map data) {
+
+                }
+            });
+
+        });
 
     }
 
