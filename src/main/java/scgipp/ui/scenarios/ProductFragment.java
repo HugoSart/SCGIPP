@@ -79,7 +79,7 @@ public class ProductFragment extends Fragment {
             descriptionInfoPane.setVisible(false);
         });
 
-            btUpdateProduct.setOnAction(event -> {
+        btUpdateProduct.setOnAction(event -> {
             ObservableProduct observableProduct = tvProduct.getSelectionModel().getSelectedItem();
             FeedbackScenario updateProductScenario = new UpdateProductScenario(observableProduct.getProduct());
             Spawner.startFeedbackScenario(updateProductScenario, 0, this, (requestCode, resultCode, data) -> {

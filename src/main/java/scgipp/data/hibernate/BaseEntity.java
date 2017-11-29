@@ -1,9 +1,12 @@
 package scgipp.data.hibernate;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import static scgipp.data.hibernate.BaseEntity.NORMAL;
 
 /**
  * User: hugo_<br/>
@@ -29,6 +32,10 @@ public abstract class BaseEntity<T extends Serializable> {
 
     public T getId() {
         return id;
+    }
+
+    public void recover() {
+        state = NORMAL;
     }
 
     @PrePersist
