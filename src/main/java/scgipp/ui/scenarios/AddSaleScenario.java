@@ -164,9 +164,18 @@ public class AddSaleScenario extends FeedbackScenario {
             });
 
             btRemove.setOnAction(event -> {
+                System.out.println(itensToSale.size());
                 ObservableProduct observableProduct = tvItemList.getSelectionModel().getSelectedItem();
                 itensToSale.remove(observableProduct.getProduct());
                 tvItemList.refresh();
+                System.out.println(itensToSale.size());
+                productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
+                tcItemListName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+                tcItemListPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+                tvItemList.setItems(productObservableSaleList);
+                tvItemList.refresh();
+
+
             });
 
 
@@ -196,8 +205,8 @@ public class AddSaleScenario extends FeedbackScenario {
             }));
             tvCustomer.setItems(filteredData);
 
-            productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
             productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
+            productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
 
             tcItem.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
             tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
