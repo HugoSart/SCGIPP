@@ -13,6 +13,7 @@ import scgipp.data.hibernate.DBConnection;
 import scgipp.data.hibernate.DBManager;
 import scgipp.service.UserSession;
 import scgipp.service.entities.*;
+import scgipp.service.managers.CartItemManager;
 import scgipp.service.managers.CustomerManager;
 import scgipp.service.managers.ProductManager;
 import scgipp.service.managers.UserManager;
@@ -36,10 +37,7 @@ import static javax.swing.UIManager.get;
 public class AddCartPagSeguro extends FeedbackScenario {
 
     private ProductManager productManager = ProductManager.getInstance();
-    private DBManager dbManager = new DBConnection().manager();
-
-    private List<SaleProduct> itensToSale;
-    private Double totalAmount = 0.0;
+    private CartItemManager cartItemManager = CartItemManager.getInstance();
 
     public static final String FEEDBACK_NEW_CART_PRODUCT = "new_cart_product";
 
@@ -73,17 +71,22 @@ public class AddCartPagSeguro extends FeedbackScenario {
                 if (numberItens <= observableProduct.getProduct().getQuantity())
                 {
 
-                    totalAmount += numberItens * observableProduct.getProduct().getAmount().doubleValue();
+                    Double totalAmount = numberItens * observableProduct.getProduct().getAmount().doubleValue();
                     Integer qtd = observableProduct.getProduct().getQuantity();
                     observableProduct.getProduct().setQuantity(qtd - numberItens);
                     productManager.updateProduct(observableProduct.getProduct());
-                    CartItem cartItem = new CartItem(observableProduct.getProduct(), numberItens, totalAmount);
 
-                    SpinnerValueFactory<Integer> valueFactory = //
-                            new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
-                                    1000,
-                                    1);
-                    spQuantity.setValueFactory(valueFactory);
+                    for(CartItem item: cartItemManager.listAll()){
+                        if(item.getProduct().getId() == observableProduct.getProduct().getId()){
+                            item.setQuantity(item.getQuantity() + numberItens);
+                            item.setPrice(item.getPrice() + totalAmount);
+                            cartItemManager.updateCartItem(item);
+                            putFeedback(FEEDBACK_NEW_CART_PRODUCT, item);
+                            processFeedbackAndFinish();
+                        }
+                    }
+
+                    CartItem cartItem = new CartItem(observableProduct.getProduct(), numberItens, totalAmount);
 
                     putFeedback(FEEDBACK_NEW_CART_PRODUCT, cartItem);
                     processFeedbackAndFinish();

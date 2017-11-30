@@ -23,7 +23,7 @@
                 <TextField fx:id="tfSearch" layoutX="11.0" layoutY="14.0" prefHeight="25.0" prefWidth="384.0" promptText="Pesquisar" />
                 <Label fx:id="lbQuantity" layoutX="222.0" layoutY="525.0" prefHeight="17.0" prefWidth="71.0" text="Quantidade" textFill="WHITE" />
                 <Spinner fx:id="spQuantity" editable="true" layoutX="222.0" layoutY="545.0" prefHeight="26.0" prefWidth="71.0" />
-            <Label fx:id="lbMaxStock" layoutX="18.0" layoutY="550.0" text="Quantidade máxima atingida" textFill="RED" />
+            <Label fx:id="lbMaxStock" layoutX="18.0" layoutY="550.0" text="Quantidade máxima atingida" textFill="RED" visible="false" />
             </children>
         </AnchorPane>
     </children>

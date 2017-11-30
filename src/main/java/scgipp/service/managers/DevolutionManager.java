@@ -15,7 +15,13 @@ import java.util.List;
 
 public class DevolutionManager {
 
+    private static DevolutionManager instance = null;
     private static DBManager dbManager = new DBConnection().manager();
+
+    public static DevolutionManager getInstance() {
+        if (instance == null && DBConnection.isActive()) instance = new DevolutionManager();
+        return instance;
+    }
 
     public static Integer addDevolution(@NotNull Devolution devolution){
         Integer id = dbManager.add(devolution);

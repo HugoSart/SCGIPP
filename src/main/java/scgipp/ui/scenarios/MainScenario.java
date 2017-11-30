@@ -38,6 +38,7 @@ public class MainScenario extends Scenario {
     @FXML private AnchorPane pSales;
     @FXML private AnchorPane pSupplier;
     @FXML private AnchorPane pProduct;
+    @FXML private AnchorPane pDevolution;
 
     @FXML private TextField tfSearch;
     @FXML private TableView<BaseEntity> tvEntities;
@@ -62,6 +63,7 @@ public class MainScenario extends Scenario {
         Spawner.startFragment(new SalesFragment(), this, pSales);
         Spawner.startFragment(new SupplierFragment(), this, pSupplier);
         Spawner.startFragment(new ProductFragment(), this, pProduct);
+        Spawner.startFragment(new DevolutionFragment(), this, pDevolution);
 
         btLogout.setOnAction(event -> {
             UserSession.getSession().closeSession();

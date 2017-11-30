@@ -2,13 +2,11 @@ package scgipp.service.entities;
 
 import javafx.beans.property.IntegerProperty;
 import scgipp.data.hibernate.BaseEntity;
-
 import javax.persistence.Column;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 public class CartItem extends BaseEntity<Integer> {
 
-    @ManyToMany
     private Product product;
 
     @Column(nullable = false)
