@@ -77,6 +77,7 @@ public class SupplierFragment extends Fragment {
     private String postalCode;
 
     private Alert alert = new Alert(Alert.AlertType.NONE);
+    private ThreadLocal<CepData> cepdData = ThreadLocal.withInitial(() -> CepData.get());
 
     SupplierFragment() {
         super("fxml/fragment_supplier.fxml");
@@ -244,15 +245,15 @@ public class SupplierFragment extends Fragment {
             try {
                 if (netIsAvailable()) {
                     if (newValue != null && newValue.length() >= 8) {
-                        if (CepData.getUF(newValue) == null) {
+                        if (CepData.get().getUF(newValue) == null) {
                             postalCodeField.clear();
                             throw new InvalidDataException("CEP");
                         }
                         else {
-                            streetField.setText(CepData.getRua(newValue));
-                            cityField.setText(CepData.getCidade(newValue));
-                            stateField.setText(CepData.getUF(newValue));
-                            districtField.setText(CepData.getBairro(newValue));
+                            streetField.setText(CepData.get().getRua(newValue));
+                            cityField.setText(CepData.get().getCidade(newValue));
+                            stateField.setText(CepData.get().getUF(newValue));
+                            districtField.setText(CepData.get().getBairro(newValue));
 
                             numberField.setDisable(false);
                             complementField.setDisable(false);

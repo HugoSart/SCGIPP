@@ -15,7 +15,19 @@ import org.jsoup.select.Elements;
 
 public class CepData {
 
-    public static String getRua(String CEP) throws IOException {
+    private static CepData cepData;
+
+    public static CepData get() {
+        if (cepData == null) {
+            cepData = new CepData();
+        }
+        return cepData;
+    }
+
+    private CepData() {
+    }
+
+    public String getRua(String CEP) throws IOException {
         try {
 
             Document doc = Jsoup
@@ -34,7 +46,7 @@ public class CepData {
         return null;
     }
 
-    public static String getBairro(String CEP) throws IOException {
+    public String getBairro(String CEP) throws IOException {
         try {
 
             Document doc = Jsoup
@@ -53,7 +65,7 @@ public class CepData {
         return null;
     }
 
-    public static String getCidade(String CEP) throws IOException {
+    public String getCidade(String CEP) throws IOException {
         try {
 
             Document doc = Jsoup
@@ -72,7 +84,7 @@ public class CepData {
         return null;
     }
 
-    public static String getUF(String CEP) throws IOException {
+    public String getUF(String CEP) throws IOException {
         try {
 
             Document doc = Jsoup
