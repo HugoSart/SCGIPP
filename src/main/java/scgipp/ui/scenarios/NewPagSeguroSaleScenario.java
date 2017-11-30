@@ -148,10 +148,10 @@ public class NewPagSeguroSaleScenario extends Scenario {
         tfCEP.textProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.length() == 8){
                 try {
-                    tfCity.setText(CepData.getCidade(newValue));
-                    tfState.setText(CepData.getUF(newValue));
-                    tfDistrict.setText(CepData.getBairro(newValue));
-                    tfStreet.setText(CepData.getRua(newValue));
+                    tfCity.setText(CepData.get().getCidade(newValue));
+                    tfState.setText(CepData.get().getUF(newValue));
+                    tfDistrict.setText(CepData.get().getBairro(newValue));
+                    tfStreet.setText(CepData.get().getRua(newValue));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
