@@ -34,7 +34,7 @@ import java.util.Map;
 
 import static javax.swing.UIManager.get;
 
-public class AddCartPagSeguro extends FeedbackScenario { //para o zé
+public class AddCartPagSeguro extends FeedbackScenario {
 
     private ProductManager productManager = ProductManager.getInstance();
     private CartItemManager cartItemManager = CartItemManager.getInstance();
