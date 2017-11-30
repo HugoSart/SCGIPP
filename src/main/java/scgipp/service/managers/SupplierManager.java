@@ -1,11 +1,14 @@
 package scgipp.service.managers;
 
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.domain.Phone;
 import org.jetbrains.annotations.NotNull;
 import scgipp.data.hibernate.DBConnection;
 import scgipp.data.hibernate.DBManager;
 import scgipp.service.entities.Supplier;
 import scgipp.system.log.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +20,22 @@ public class SupplierManager {
 
     private static DBManager dbManager= DBConnection.manager();
 
-    public static Integer addSupplier(@NotNull Supplier supplier){
+    public static Integer addSupplier(@NotNull String name, @NotNull String cnpj, Address address,  Phone phone){
+        List<Address> addressList = null;
+        List<Phone> phoneList = null;
+
+        if (address != null) {
+            addressList = new ArrayList<>();
+            addressList.add(address);
+        }
+
+        if (phone != null) {
+            phoneList = new ArrayList<>();
+            phoneList.add(phone);
+        }
+
+        Supplier supplier = new Supplier(name, cnpj, addressList, phoneList);
+
         Integer id = dbManager.add(supplier);
 
         if(supplier.getId() != null){
@@ -38,7 +56,15 @@ public class SupplierManager {
         }
     }
 
-    public static void updateSupplier(@NotNull Supplier supplier){
+    public static void updateSupplier(@NotNull Supplier supplier, String name, Address address, Phone phone){
+        supplier.setName(name);
+
+        supplier.getPhones().clear();
+        supplier.getPhones().clear();
+
+        supplier.getPhones().add(phone);
+        supplier.getAddresses().add(address);
+
         dbManager.update(supplier);
         Log.show("DATABASE", "Supplier", "The supplier has been removed.");
     }
