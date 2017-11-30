@@ -28,7 +28,9 @@ public class ObservableDevolution {
 
     public BooleanProperty restoredProperty() { return new SimpleBooleanProperty(devolution.getRestoreToStock()); }
 
-    public StringProperty devolutionDateProperty() { return new SimpleStringProperty(devolution.getDevolutionDate().toString()); }
+    public StringProperty devolutionDateProperty() { return new SimpleStringProperty(devolution.getDevolutionDate()); }
+
+    public IntegerProperty quantityProperty() { return new SimpleIntegerProperty(devolution.getQuantity()); }
 
     public static List<ObservableDevolution> devolutionListTAsObservableDevolutionList(List<Devolution> list) {
 

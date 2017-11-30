@@ -24,6 +24,7 @@ import java.util.List;
 
 public class DevolutionFragment extends Fragment {
 
+    private ProductManager productManager = ProductManager.getInstance();
     private DevolutionManager devolutionManager = DevolutionManager.getInstance();
 
     @FXML private TableView<ObservableDevolution> tvDevolution;
@@ -32,6 +33,7 @@ public class DevolutionFragment extends Fragment {
     @FXML private TableColumn<ObservableDevolution, String> tcProductName;
     @FXML private TableColumn<ObservableDevolution, String> tcDevolutionDate;
     @FXML private TableColumn<ObservableDevolution, Boolean> tcRestored;
+    @FXML private TableColumn<ObservableDevolution, Integer> tcQuantity;
 
     @FXML private TextField tfSearch;
     @FXML private Button btAddDevolution;
@@ -58,9 +60,10 @@ public class DevolutionFragment extends Fragment {
         tcProductName.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
         tcDevolutionDate.setCellValueFactory(cellData -> cellData.getValue().devolutionDateProperty());
         tcDevolutionDate.setCellValueFactory(cellData -> cellData.getValue().restoredProperty().asString());
+        tcQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
         tvDevolution.setItems(devolutionObservableList);
 
-        /*btAddDevolution.setOnAction(event -> {
+        btAddDevolution.setOnAction(event -> {
             FeedbackScenario addDevolutionScenario = new AddDevolutionScenario();
             Spawner.startFeedbackScenario(addDevolutionScenario, 0, this, (requestCode, resultCode, data) -> {
                 Devolution devolution = (Devolution)data.get(AddDevolutionScenario.FEEDBACK_NEW_DEVOLUTION);
@@ -69,24 +72,29 @@ public class DevolutionFragment extends Fragment {
                 tvDevolution.refresh();
 
             });
-        });*/
+        });
 
         btRemoveDevolution.setOnAction(event -> {
             ObservableDevolution observableDevolution = tvDevolution.getSelectionModel().getSelectedItem();
+            if(observableDevolution.getDevolution().getRestoreToStock()){
+                Product product = observableDevolution.getDevolution().getProduct();
+                product.setQuantity(product.getQuantity() + observableDevolution.getDevolution().getQuantity());
+            }
             DevolutionManager.removeDevolution(observableDevolution.getDevolution());
             devolutionObservableList.remove(observableDevolution);
             tvDevolution.refresh();
         });
 
-        /*btUpdateDevolution.setOnAction(event -> {
+        btUpdateDevolution.setOnAction(event -> {
             ObservableDevolution observableDevolution = tvDevolution.getSelectionModel().getSelectedItem();
-            FeedbackScenario updateDevolutionScenario = new UpdateDevolutionScenario(observableDevolution.getDevolution());
+            FeedbackScenario updateDevolutionScenario = new UpdateDevolutionScenario();
+            updateDevolutionScenario.putExtra("devolution", observableDevolution.getDevolution());
             Spawner.startFeedbackScenario(updateDevolutionScenario, 0, this, (requestCode, resultCode, data) -> {
-                Devolution devolutionUpdated = (Devolution)data.get(UpdateDevolutionScenario.FEEDBACK_NEW_SCENARIO);
+                Devolution devolutionUpdated = (Devolution)data.get(UpdateDevolutionScenario.FEEDBACK_NEW_DEVOLUTION);
                 devolutionManager.updateDevolution(devolutionUpdated);
                 tvDevolution.refresh();
             });
-        });*/
+        });
 
         tvDevolution.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {

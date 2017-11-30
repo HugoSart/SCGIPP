@@ -38,9 +38,9 @@ public class DevolutionManagerTestCases {
         productManager.addProduct(product1);
         productManager.addProduct(product2);
 
-        Devolution devolution1 = new Devolution(sale1, product1, new Date(), true);
-        Devolution devolution2 = new Devolution(sale1, product1, new Date(), true);
-        Devolution devolution3 = new Devolution(sale2, product2, new Date(), true);
+        Devolution devolution1 = new Devolution(sale1, product1, new Date().toString(), true, 4);
+        Devolution devolution2 = new Devolution(sale1, product1, new Date().toString(), true, 5);
+        Devolution devolution3 = new Devolution(sale2, product2, new Date().toString(), true, 1);
 
         int id1 = DevolutionManager.addDevolution(devolution1);
         int id2 = DevolutionManager.addDevolution(devolution2);
@@ -57,7 +57,7 @@ public class DevolutionManagerTestCases {
         SaleManager saleManager = new SaleManager();
         Sale sale = new Sale();
         Product product = new Product("name3", "description3", 4, new BigDecimal(5), Double.doubleToLongBits(4.4));
-        Devolution devolution = new Devolution(sale, product, new Date(), true);
+        Devolution devolution = new Devolution(sale, product, new Date().toString(), true, 1);
 
         saleManager.addSale(sale);
         productManager.addProduct(product);

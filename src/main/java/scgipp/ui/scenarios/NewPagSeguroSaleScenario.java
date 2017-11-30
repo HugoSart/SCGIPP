@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.hibernate.boot.jaxb.SourceType;
 import scgipp.Main;
 import scgipp.data.webservice.CorreiosServer;
 import scgipp.service.entities.CartItem;
@@ -25,6 +26,7 @@ import scgipp.service.entities.Sale;
 import scgipp.service.entities.SaleProduct;
 import scgipp.service.managers.ProductManager;
 import scgipp.service.managers.SaleManager;
+import scgipp.service.validators.CEP.CepData;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Scenario;
@@ -34,6 +36,7 @@ import scgipp.ui.visible.ObservableProduct;
 import scgipp.ui.visible.ObservableSale;
 import scgipp.ui.visible.ObservableTransactionSummary;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -56,7 +59,7 @@ public class NewPagSeguroSaleScenario extends Scenario {
     private Button btExit;
 
     @FXML
-    private ListView<CartItem> lvCartItens;
+    private ListView<ObservableCartItem> lvCartItens;
 
     @FXML
     private Button btAdd;
@@ -123,6 +126,7 @@ public class NewPagSeguroSaleScenario extends Scenario {
     @Override
     protected void onConfigStage(Stage stage) {
 
+        cartItemObservableList = FXCollections.observableArrayList();
         NodeCustomizer.setUpMenuBar(this, menuBar, btExit, null, null);
         setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
 
@@ -141,13 +145,26 @@ public class NewPagSeguroSaleScenario extends Scenario {
             finish();
         });
 
+        tfCEP.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.length() == 8){
+                try {
+                    tfCity.setText(CepData.getCidade(newValue));
+                    tfState.setText(CepData.getUF(newValue));
+                    tfDistrict.setText(CepData.getBairro(newValue));
+                    tfStreet.setText(CepData.getRua(newValue));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
         btAdd.setOnAction(event -> {
 
             FeedbackScenario addCartPagSeguro = new AddCartPagSeguro();
             Spawner.startFeedbackScenario(addCartPagSeguro, 0, this, ((requestCode, resultCode, data) -> {
                 CartItem cartItem = (CartItem) data.get(AddCartPagSeguro.FEEDBACK_NEW_CART_PRODUCT);
                 cartItemObservableList.add(new ObservableCartItem(cartItem));
-                lvCartItens.refresh();
+                lvCartItens.setItems(cartItemObservableList);
             }));
         });
 
@@ -170,16 +187,24 @@ public class NewPagSeguroSaleScenario extends Scenario {
 
             long weight = 0;
             BigDecimal value = new BigDecimal(0);
-            for (CartItem item : lvCartItens.getItems()) {
+            for (ObservableCartItem oItem : lvCartItens.getItems()) {
+                CartItem item = oItem.getCartItem();
                 weight += item.getQuantity() * item.getProduct().getWeight();
                 BigDecimal cartValue = new BigDecimal(item.getPrice());
                 value = value.add(cartValue);
             }
+            System.out.println("Weight: " + weight);
+            System.out.println("Value: " + value.doubleValue());
+            System.out.println("Cep: " + tfCEP.getText());
+            System.out.println("Code: " + serviceCode);
 
             CorreiosServer correiosServer = new CorreiosServer();
-            String ret = correiosServer.calcFreightSimulation(null, null, serviceCode, originCep, tfCEP.getText(),
-                    String.valueOf(weight), CorreiosServer.PackageType.BOX_PACKAGE, 100,100,100,100,
-                    false, value.doubleValue(), false).getProperty(CorreiosServer.PropertyTags.VALUE).replace(',', '.');
+            String ret = correiosServer.calcFreightSimulation(null, null,
+                    serviceCode, originCep, tfCEP.getText(),
+                    String.valueOf(weight), CorreiosServer.PackageType.BOX_PACKAGE,
+                    50,50,50,20,
+                    false, value.doubleValue(), false)
+                    .getProperty(CorreiosServer.PropertyTags.VALUE).replace(',', '.');
             return new BigDecimal(ret);
 
         }

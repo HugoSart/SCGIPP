@@ -51,5 +51,6 @@ public class ProductManager {
     public List<Product> listAll(){
         return dbManager.list(Product.class);
     }
+
 }
 
