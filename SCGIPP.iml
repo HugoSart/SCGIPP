@@ -47,5 +47,14 @@
     <orderEntry type="library" exported="" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" exported="" name="de.jensd:fontawesomefx:8.9" level="project" />
     <orderEntry type="library" name="org.reflections:reflections:0.9.11" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/jsoup-1.11.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

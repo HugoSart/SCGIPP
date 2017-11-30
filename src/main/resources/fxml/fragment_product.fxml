@@ -21,7 +21,7 @@
                                 <Insets left="28.0" />
                             </padding>
                         </TextField>
-                        <TableView fx:id="tvProduct" layoutX="101.0" layoutY="34.0" prefHeight="593.0" prefWidth="745.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="33.0">
+                        <TableView fx:id="tvProduct" layoutX="101.0" layoutY="34.0" prefHeight="593.0" prefWidth="759.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="33.0">
                             <columns>
                                 <TableColumn fx:id="tcId" minWidth="5.0" prefWidth="54.0" text="Id" />
                                 <TableColumn fx:id="tcName" prefWidth="176.0" text="Nome" />
