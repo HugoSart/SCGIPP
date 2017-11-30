@@ -273,7 +273,7 @@ public class AddSaleScenario extends FeedbackScenario {
                                     1);
                     spQuantity.setValueFactory(valueFactory);
                 }
-
+                lbItemEmpty.setVisible(itensToSale.isEmpty());
             }));
 
             lbClienteEmpty.setVisible(false);
