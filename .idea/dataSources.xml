@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="scgipp_db@localhost" uuid="236b9c04-8292-46fa-95f9-c3091ab54d20">
+    <data-source source="LOCAL" name="scgipp_db@localhost" uuid="1c6573b6-b68c-4015-9708-a77c821c197d">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>

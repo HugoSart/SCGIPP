@@ -76,6 +76,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label fx:id="lbItemEmpty" layoutX="178.0" layoutY="514.0" text="Selecione um Item" textFill="RED">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="327.0" prefHeight="286.0" prefWidth="415.0" style="-fx-background-color: #3F51B5;">

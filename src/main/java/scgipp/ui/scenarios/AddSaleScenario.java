@@ -153,6 +153,9 @@ public class AddSaleScenario extends FeedbackScenario {
     @FXML
     private Label lbEstoqueMax;
 
+    @FXML
+    private Label lbItemEmpty;
+
 
     public AddSaleScenario() {
         super("fxml/scenario_add_sale.fxml");
@@ -176,6 +179,7 @@ public class AddSaleScenario extends FeedbackScenario {
         tfSalesmanName.setDisable(true);
         tfSalesmanName.setText(userSession.getActiveUser().getLogin());
         lbEstoqueMax.setVisible(false);
+        lbItemEmpty.setVisible(false);
 
         List<Customer> customerList = customerManager.getAll();
         for (Customer customer : customerList) {
@@ -189,7 +193,7 @@ public class AddSaleScenario extends FeedbackScenario {
         List<Product> productList = productManager.listAll();
         for (Product product : productList) {
             System.out.println(product);
-
+        }
 
             btSelecionar.setOnAction(event -> {
                 ObservableCustomer customer = tvCustomer.getSelectionModel().getSelectedItem();
@@ -204,28 +208,31 @@ public class AddSaleScenario extends FeedbackScenario {
             btRemove.setOnAction(event -> {
                 System.out.println(itensToSale.size());
                 ObservableSaleProduct observableSaleProduct = tvItemList.getSelectionModel().getSelectedItem();
-                dbManager.remove(observableSaleProduct.getSaleProduct());
-                itensToSale.remove(observableSaleProduct.getSaleProduct());
-                System.out.println(itensToSale.size());
-                productObservableSaleList = FXCollections.observableList(ObservableSaleProduct.productListTAsObservableSaleProductList(itensToSale));
-                tcItemListName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
-                tcItemListPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
-                tvItemList.setItems(productObservableSaleList);
-                tvItemList.refresh();
-                totalAmount -= observableSaleProduct.getSaleProduct().getProduct().getAmount().doubleValue() * observableSaleProduct.getSaleProduct().getQuantity();
-                lbtTotalPriceSale.setText(String.valueOf(totalAmount));
-                Integer qtd = observableSaleProduct.getSaleProduct().getProduct().getQuantity();
-                observableSaleProduct.getSaleProduct().getProduct().setQuantity(qtd + observableSaleProduct.getSaleProduct().getQuantity());
-                productManager.updateProduct(observableSaleProduct.getSaleProduct().getProduct());
-                tvItemList.refresh();
-
+                if (observableSaleProduct != null)
+                {
+                    dbManager.remove(observableSaleProduct.getSaleProduct());
+                    itensToSale.remove(observableSaleProduct.getSaleProduct());
+                    System.out.println(itensToSale.size());
+                    productObservableSaleList = FXCollections.observableList(ObservableSaleProduct.productListTAsObservableSaleProductList(itensToSale));
+                    tcItemListName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+                    tcItemListPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+                    tvItemList.setItems(productObservableSaleList);
+                    tvItemList.refresh();
+                    totalAmount -= observableSaleProduct.getSaleProduct().getProduct().getAmount().doubleValue() * observableSaleProduct.getSaleProduct().getQuantity();
+                    lbtTotalPriceSale.setText(String.valueOf(totalAmount));
+                    Integer qtd = observableSaleProduct.getSaleProduct().getProduct().getQuantity();
+                    observableSaleProduct.getSaleProduct().getProduct().setQuantity(qtd + observableSaleProduct.getSaleProduct().getQuantity());
+                    productManager.updateProduct(observableSaleProduct.getSaleProduct().getProduct());
+                    tvItemList.refresh();
+                }
             });
 
             btFinishSale.setOnAction(event -> {
 
                 lbClienteEmpty.setVisible(clienteFinal == null);
+                lbItemEmpty.setVisible(itensToSale.isEmpty());
 
-                if (clienteFinal != null)
+                if (clienteFinal != null && !itensToSale.isEmpty())
                 {
                     Sale newSale = new Sale(userSession.getActiveUser(), clienteFinal, "SALE", itensToSale);
                     BigDecimal b = new BigDecimal(totalAmount, MathContext.DECIMAL64);
@@ -262,7 +269,7 @@ public class AddSaleScenario extends FeedbackScenario {
                     productManager.updateProduct(observableSaleProduct.getProduct());
                     SpinnerValueFactory<Integer> valueFactory = //
                             new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
-                                    1000,
+                                    1000000,
                                     1);
                     spQuantity.setValueFactory(valueFactory);
                 }
@@ -292,7 +299,7 @@ public class AddSaleScenario extends FeedbackScenario {
 
             SpinnerValueFactory<Integer> valueFactory = //
                     new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
-                            1000,
+                            1000000,
                             1);
             spQuantity.setValueFactory(valueFactory);
 
@@ -315,7 +322,7 @@ public class AddSaleScenario extends FeedbackScenario {
             tvItem.setItems(filteredDataProduct);
 
 
-        }
+
     }
 
 }

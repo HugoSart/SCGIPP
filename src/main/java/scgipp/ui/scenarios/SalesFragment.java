@@ -13,7 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import scgipp.Main;
 import scgipp.service.entities.Sale;
+import scgipp.service.entities.SaleProduct;
 import scgipp.service.entities.User;
+import scgipp.service.managers.ProductManager;
 import scgipp.service.managers.SaleManager;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.Fragment;
@@ -37,6 +39,8 @@ import java.util.Map;
 public class SalesFragment extends Fragment {
 
     private SaleManager saleManager = SaleManager.getInstance();
+    private ProductManager productManager = ProductManager.getInstance().getInstance();
+
 
     @FXML private AnchorPane customTableView;
     @FXML private TextField tfSearch;
@@ -147,6 +151,15 @@ public class SalesFragment extends Fragment {
 
         btRemoveSale.setOnAction(event -> {
             ObservableSale observableSale = tvSales.getSelectionModel().getSelectedItem();
+            Integer sale_qtd;
+            Integer current_qtd;
+            for(SaleProduct sp : observableSale.getSale().productsList)
+            {
+                sale_qtd = sp.getQuantity();
+                current_qtd = sp.getProduct().getQuantity();
+                sp.getProduct().setQuantity(sale_qtd + current_qtd);
+                productManager.updateProduct(sp.getProduct());
+            }
             saleManager.removeSale(observableSale.getSale());
             saleObservableList.remove(observableSale);
             tvSales.refresh();
