@@ -60,4 +60,8 @@ public class Sale extends BaseEntity<Integer> {
     public Customer getCustomer() { return customer; }
 
     public void setCustomer(Customer customer) { this.customer = customer; }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

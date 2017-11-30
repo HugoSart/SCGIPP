@@ -46,5 +46,6 @@
     <orderEntry type="library" exported="" name="mysql:mysql-connector-java:5.1.42" level="project" />
     <orderEntry type="library" exported="" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" exported="" name="de.jensd:fontawesomefx:8.9" level="project" />
+    <orderEntry type="library" name="jsoup-1.11.2 (4)" level="project" />
   </component>
 </module>
