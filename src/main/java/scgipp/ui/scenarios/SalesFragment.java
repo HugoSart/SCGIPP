@@ -145,6 +145,13 @@ public class SalesFragment extends Fragment {
 
         });
 
+        btRemoveSale.setOnAction(event -> {
+            ObservableSale observableSale = tvSales.getSelectionModel().getSelectedItem();
+            saleManager.removeSale(observableSale.getSale());
+            saleObservableList.remove(observableSale);
+            tvSales.refresh();
+        });
+
 
     }
 

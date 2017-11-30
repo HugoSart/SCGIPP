@@ -59,7 +59,7 @@
                                     <TableColumn fx:id="tcCustomer" prefWidth="63.0" text="Cliente" />
                                     <TableColumn fx:id="tcUser" prefWidth="229.0" text="Vendedor" />
                                     <TableColumn fx:id="tcSaleDate" prefWidth="94.0" text="Data" />
-                                    <TableColumn fx:id="tcTotalSalePrice" prefWidth="211.0" text="Total" />
+                                    <TableColumn fx:id="tcTotalSalePrice" prefWidth="211.0" text="Total (R$)" />
                                     <TableColumn fx:id="tcSaleId" prefWidth="108.0" text="ID" />
                                  </columns>
                                  <columnResizePolicy>

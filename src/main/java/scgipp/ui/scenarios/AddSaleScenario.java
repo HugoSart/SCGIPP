@@ -209,6 +209,9 @@ public class AddSaleScenario extends FeedbackScenario {
                 tvItemList.refresh();
                 totalAmount -= observableSaleProduct.getSaleProduct().getProduct().getAmount().doubleValue() * observableSaleProduct.getSaleProduct().getQuantity();
                 lbtTotalPriceSale.setText(String.valueOf(totalAmount));
+                Integer qtd = observableSaleProduct.getSaleProduct().getProduct().getQuantity();
+                observableSaleProduct.getSaleProduct().getProduct().setQuantity(qtd + observableSaleProduct.getSaleProduct().getQuantity());
+                productManager.updateProduct(observableSaleProduct.getSaleProduct().getProduct());
                 tvItemList.refresh();
 
             });
@@ -246,6 +249,9 @@ public class AddSaleScenario extends FeedbackScenario {
                 tvItemList.refresh();
                 totalAmount += numberItens * observableSaleProduct.getProduct().getAmount().doubleValue();
                 lbtTotalPriceSale.setText(String.valueOf(totalAmount));
+                Integer qtd = observableSaleProduct.getProduct().getQuantity();
+                observableSaleProduct.getProduct().setQuantity(qtd - nSP.getQuantity());
+                productManager.updateProduct(observableSaleProduct.getProduct());
                 SpinnerValueFactory<Integer> valueFactory = //
                         new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
                                 1000,
