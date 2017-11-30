@@ -25,11 +25,11 @@ public class SupplierManagerTestCases {
 
     @Test
     public void addSupplierTest(){
-        Supplier supplier1 = new Supplier("Empresa 1", "000000111000", null, null);
-        Supplier supplier2 = new Supplier("Empresa 2", "000000222000", null, null);
+        Supplier supplier1 = new Supplier("Empresa 1", "44479557000122", null, null);
+        Supplier supplier2 = new Supplier("Empresa 2", "24209266000107", null, null);
 
-        Integer idTest1 = SupplierManager.addSupplier("Empresa 1", "000000111000", null, null);
-        Integer idTest2 = SupplierManager.addSupplier("Empresa 2", "000000222000", null, null);
+        Integer idTest1 = SupplierManager.addSupplier("Empresa 1", "44479557000122", null, null);
+        Integer idTest2 = SupplierManager.addSupplier("Empresa 2", "24209266000107", null, null);
 
         Assert.assertEquals(idTest1, supplier1.getId());
         Assert.assertEquals(idTest2, supplier2.getId());
