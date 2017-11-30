@@ -20,6 +20,7 @@
         <!-- List of XML mapping files -->
         <mapping class="scgipp.service.entities.User"/>
         <mapping class="scgipp.service.entities.Product"/>
+        <mapping class="scgipp.service.entities.SaleProduct"/>
         <mapping class="scgipp.service.entities.Customer"/>
         <mapping class="scgipp.service.entities.StockProduct"/>
         <mapping class="scgipp.service.entities.Supplier"/>

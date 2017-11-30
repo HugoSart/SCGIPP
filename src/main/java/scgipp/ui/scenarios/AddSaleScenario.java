@@ -9,11 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import scgipp.data.hibernate.DBConnection;
+import scgipp.data.hibernate.DBManager;
 import scgipp.service.UserSession;
-import scgipp.service.entities.Customer;
-import scgipp.service.entities.Product;
-import scgipp.service.entities.Sale;
-import scgipp.service.entities.User;
+import scgipp.service.entities.*;
 import scgipp.service.managers.CustomerManager;
 import scgipp.service.managers.ProductManager;
 import scgipp.service.managers.UserManager;
@@ -23,6 +22,7 @@ import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableCustomer;
 import scgipp.ui.visible.ObservableProduct;
 import scgipp.ui.visible.ObservableSale;
+import scgipp.ui.visible.ObservableSaleProduct;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -39,6 +39,8 @@ public class AddSaleScenario extends FeedbackScenario {
     private CustomerManager customerManager = CustomerManager.getInstance();
     private ProductManager productManager = ProductManager.getInstance();
     private UserSession userSession = UserSession.getSession();
+    private DBManager dbManager = new DBConnection().manager();
+
     public static final String FEEDBACK_NEW_SALE = "new_sale";
 
 
@@ -89,19 +91,19 @@ public class AddSaleScenario extends FeedbackScenario {
 
     @FXML private ObservableList<ObservableProduct> productObservableList;
 
-    @FXML private ObservableList<ObservableProduct> productObservableSaleList;
+    @FXML private ObservableList<ObservableSaleProduct> productObservableSaleList;
 
     @FXML
-    private TableView<ObservableProduct> tvItemList;
+    private TableView<ObservableSaleProduct> tvItemList;
 
     @FXML
-    private TableColumn<ObservableProduct, String> tcItemListName;
+    private TableColumn<ObservableSaleProduct, String> tcItemListName;
 
     @FXML
-    private TableColumn<ObservableProduct, Integer> tcItemListUnity;
+    private TableColumn<ObservableSaleProduct, Integer> tcItemListUnity;
 
     @FXML
-    private TableColumn<ObservableProduct, Double > tcItemListPrice;
+    private TableColumn<ObservableSaleProduct, Double > tcItemListPrice;
 
     @FXML
     private Button btRemove;
@@ -112,7 +114,7 @@ public class AddSaleScenario extends FeedbackScenario {
     @FXML
     private TextField tfPesquisar;
 
-    private List<Product> itensToSale;
+    private List<SaleProduct> itensToSale;
 
     @FXML
     private Spinner<Integer> spQuantity;
@@ -146,8 +148,6 @@ public class AddSaleScenario extends FeedbackScenario {
 
     @FXML
     private Button btRemoveSale;
-
-
 
 
     public AddSaleScenario() {
@@ -198,17 +198,18 @@ public class AddSaleScenario extends FeedbackScenario {
 
             btRemove.setOnAction(event -> {
                 System.out.println(itensToSale.size());
-                ObservableProduct observableProduct = tvItemList.getSelectionModel().getSelectedItem();
-                itensToSale.remove(observableProduct.getProduct());
-                tvItemList.refresh();
+                ObservableSaleProduct observableSaleProduct = tvItemList.getSelectionModel().getSelectedItem();
+                dbManager.remove(observableSaleProduct.getSaleProduct());
+                itensToSale.remove(observableSaleProduct.getSaleProduct());
                 System.out.println(itensToSale.size());
-                productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
+                productObservableSaleList = FXCollections.observableList(ObservableSaleProduct.productListTAsObservableSaleProductList(itensToSale));
                 tcItemListName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
                 tcItemListPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
                 tvItemList.setItems(productObservableSaleList);
                 tvItemList.refresh();
-                totalAmount -= observableProduct.getProduct().getAmount().doubleValue() * observableProduct.getProduct().getQuantity();
+                totalAmount -= observableSaleProduct.getSaleProduct().getProduct().getAmount().doubleValue() * observableSaleProduct.getSaleProduct().getQuantity();
                 lbtTotalPriceSale.setText(String.valueOf(totalAmount));
+                tvItemList.refresh();
 
             });
 
@@ -230,17 +231,26 @@ public class AddSaleScenario extends FeedbackScenario {
             btAdd.setOnAction(((ActionEvent event) -> {
                 Integer numberItens = spQuantity.getValue();
                 ObservableProduct observableSaleProduct = tvItem.getSelectionModel().getSelectedItem();
+                /*
                 Product novoProduto = new Product(observableSaleProduct.getProduct().getName(),
                         observableSaleProduct.getProduct().getDescription(),
                         numberItens,
                         observableSaleProduct.getProduct().getAmount(),
                         observableSaleProduct.getProduct().getWeight());
-                itensToSale.add(novoProduto);
-                productObservableSaleList.add(new ObservableProduct(novoProduto));
+                */
+                SaleProduct nSP = new SaleProduct(numberItens, observableSaleProduct.getProduct());
+                itensToSale.add(nSP);
+                dbManager.add(nSP);
+                productObservableSaleList.add(new ObservableSaleProduct(nSP));
                 System.out.println(numberItens);
                 tvItemList.refresh();
-                totalAmount += numberItens * novoProduto.getAmount().doubleValue();
+                totalAmount += numberItens * observableSaleProduct.getProduct().getAmount().doubleValue();
                 lbtTotalPriceSale.setText(String.valueOf(totalAmount));
+                SpinnerValueFactory<Integer> valueFactory = //
+                        new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
+                                1000,
+                                1);
+                spQuantity.setValueFactory(valueFactory);
             }));
 
             lbClienteEmpty.setVisible(false);
@@ -257,7 +267,7 @@ public class AddSaleScenario extends FeedbackScenario {
             tvCustomer.setItems(filteredData);
 
             productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
-            productObservableSaleList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(itensToSale));
+            productObservableSaleList = FXCollections.observableList(ObservableSaleProduct.productListTAsObservableSaleProductList(itensToSale));
 
             tcItem.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
             tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());

@@ -52,7 +52,7 @@
               <columns>
                 <TableColumn fx:id="tcItemListName" prefWidth="221.0" text="Nome" />
                   <TableColumn fx:id="tcItemListUnity" prefWidth="98.0" text="Unidades" />
-                <TableColumn fx:id="tcItemListPrice" prefWidth="95.0" text="Preço" />
+                <TableColumn fx:id="tcItemListPrice" prefWidth="95.0" text="Preço (R$)" />
               </columns>
             </TableView>
             <Button fx:id="btRemove" layoutX="324.0" layoutY="500.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="99.0" text="Remover Item" textFill="RED" />
@@ -83,7 +83,7 @@
             <TableView fx:id="tvItem" layoutX="11.0" layoutY="48.0" prefHeight="138.0" prefWidth="384.0">
                <columns>
                   <TableColumn fx:id="tcItem" prefWidth="278.0" text="Item" />
-                  <TableColumn fx:id="tcPrice" prefWidth="105.0" text="Preço" />
+                  <TableColumn fx:id="tcPrice" prefWidth="105.0" text="Preço (R$)" />
                </columns>
             </TableView>
             <Button fx:id="btAdd" layoutX="324.0" layoutY="222.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="71.0" text="Adicionar" />

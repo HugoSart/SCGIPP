@@ -3,6 +3,7 @@ package scgipp.service.managers;
 import scgipp.service.entities.Customer;
 import scgipp.service.entities.Product;
 import scgipp.service.entities.Sale;
+import scgipp.service.entities.SaleProduct;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.math.BigDecimal;
@@ -23,7 +24,7 @@ public class ReportManager {
         SaleManager saleManager = new SaleManager();
         for (Sale sale : saleManager.getAll()){
             numberSales += 1;
-            for (Product product: sale.productsList){
+            for (SaleProduct product: sale.productsList){
                 numberItens += product.getQuantity();
             }
             grossProfit = getGrossProfit().add(sale.getTotalPrice());

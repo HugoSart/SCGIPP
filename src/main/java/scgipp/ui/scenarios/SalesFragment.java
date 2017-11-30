@@ -127,7 +127,7 @@ public class SalesFragment extends Fragment {
     private void setUpLocalTab() {
         List<Sale> saleList = saleManager.getAll();
         saleObservableList = FXCollections.observableList(ObservableSale.saleListTAsObservableSaleList(saleList));
-        //tcSaleId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
+        tcSaleId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcSaleDate.setCellValueFactory(cellData -> cellData.getValue().getDateProperty());
         tcCustomer.setCellValueFactory(cellData -> cellData.getValue().getCustomerNameProperty());
         tcTotalSalePrice.setCellValueFactory(cellData -> cellData.getValue().getTotalAmout().asObject());
@@ -137,8 +137,9 @@ public class SalesFragment extends Fragment {
         btNewSale.setOnAction(event -> {
             FeedbackScenario addSaleScenario = new AddSaleScenario();
             Spawner.startFeedbackScenario(addSaleScenario, 0, this, (requestCode, resultCode, data) -> {
-                Sale user = (Sale)data.get(AddSaleScenario.FEEDBACK_NEW_SALE);
-                saleObservableList.add(new ObservableSale(user));
+                Sale sale = (Sale)data.get(AddSaleScenario.FEEDBACK_NEW_SALE);
+                saleManager.addSale(sale);
+                saleObservableList.add(new ObservableSale(sale));
                 tvSales.refresh();
             });
 

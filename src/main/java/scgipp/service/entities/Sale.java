@@ -27,18 +27,18 @@ public class Sale extends BaseEntity<Integer> {
     private java.math.BigDecimal totalPrice;
 
     @OneToMany(fetch = FetchType.LAZY)
-    public List<Product> productsList;
+    public List<SaleProduct> productsList;
 
     private String transactionCode;
 
     public Sale(){}
 
-    public Sale(User user, Customer customer, String transactionCode, List<Product> saleBudget) {
+    public Sale(User user, Customer customer, String transactionCode, List<SaleProduct> saleBudget) {
         this.user = user;
         this.customer = customer;
         this.transactionCode = transactionCode;
         this.date = LocalDate.now();
-        this.productsList = new ArrayList<Product>(saleBudget);
+        this.productsList = new ArrayList<SaleProduct>(saleBudget);
 
         /*
         for (Product p : saleBudget) {
