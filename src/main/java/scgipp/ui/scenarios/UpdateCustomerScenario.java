@@ -89,6 +89,18 @@ public class UpdateCustomerScenario extends FeedbackScenario {
     private Label lbDataNascimento;
 
 
+    @FXML
+    private Label lbEnderecoMsg;
+
+    @FXML
+    private TextField tfAddressNumber;
+
+    @FXML
+    private TextField tfBairro;
+
+    @FXML
+    private TextField tfCEP;
+
 
 
     public UpdateCustomerScenario(Customer customer2Update){
@@ -113,6 +125,10 @@ public class UpdateCustomerScenario extends FeedbackScenario {
         dpDate.setValue(this.updateThisCustomer.getDate());
         tfAddress.setText(updateThisCustomer.getAddresses().get(0).getStreet());
         tfPhone.setText(updateThisCustomer.getPhones().get(0).getNumber());
+        tfAddressNumber.setText(updateThisCustomer.getAddresses().get(0).getNumber());
+        tfCEP.setText(updateThisCustomer.getAddresses().get(0).getPostalCode());
+        tfBairro.setText(updateThisCustomer.getAddresses().get(0).getComplement());
+
     }
 
 
@@ -133,12 +149,15 @@ public class UpdateCustomerScenario extends FeedbackScenario {
 
         btOk.setOnAction(event -> {
 
-            String name,  address , phone, cpf, tipo;
+            String name,  address , phone, cpf, tipo, addresscep, addressnumber, addressbairro;
             name = tfName.getText();
             address = tfAddress.getText();
             phone = tfPhone.getText();
             cpf = tfCPF.getText();
             tipo = cbTipo.getValue();
+            addresscep = tfCEP.getText();
+            addressbairro = tfBairro.getText();
+            addressnumber = tfAddressNumber.getText();
             LocalDate date = dpDate.getValue();
             Person.Type tipo_cadastrar = Person.Type.LEGAL;
             boolean falseDocument = true;
@@ -155,8 +174,8 @@ public class UpdateCustomerScenario extends FeedbackScenario {
 
             lbNomeObrigatorio.setVisible(name.isEmpty());
             lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
-            //lbTelefoneObrigatorio.setVisible(phone.isEmpty());
-            //lbEnderecoObrigatorio.setVisible(address.isEmpty());
+            lbTelefoneObrigatorio.setVisible(phone.isEmpty());
+            lbEnderecoObrigatorio.setVisible(address.isEmpty() || addresscep.isEmpty() || addressbairro.isEmpty() || addressnumber.isEmpty());
             //lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
             lbFalseCpf.setVisible(!falseDocument);
             lbDataObrigatorio.setVisible(date == null);
@@ -178,6 +197,9 @@ public class UpdateCustomerScenario extends FeedbackScenario {
                 if (falseDocument && !name.isEmpty() && !phone.isEmpty() && !address.isEmpty() && date != null) {
                     Address newAddress = new Address();
                     newAddress.setStreet(address);
+                    newAddress.setNumber(addressnumber);
+                    newAddress.setComplement(addressbairro);
+                    newAddress.setPostalCode(addresscep);
                     Phone newPhone = new Phone();
                     newPhone.setNumber(phone);
                     this.updateThisCustomer.setName(name);

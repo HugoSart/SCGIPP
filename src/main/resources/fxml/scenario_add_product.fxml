@@ -11,6 +11,7 @@
 
 <AnchorPane prefHeight="382.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
+      <TextField />
         <HBox fx:id="menuBar" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="1053.0" style="-fx-background-color: rgba(0,0,0,0.1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -35,12 +36,13 @@
         </HBox>
         <Button fx:id="btOk" defaultButton="true" layoutX="271.0" layoutY="167.0" mnemonicParsing="false" text="Concluir" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
         <Button fx:id="btCancel" layoutX="201.0" layoutY="179.0" mnemonicParsing="false" text="Cancelar" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="82.0" />
-        <TextField fx:id="tfName" layoutX="75.0" layoutY="70.0" prefHeight="27.0" prefWidth="210.0" promptText="Nome" />
-      <TextField fx:id="tfQuantity" layoutX="75.0" layoutY="122.0" prefHeight="27.0" prefWidth="210.0" promptText="Quantidade" />
-      <TextField fx:id="tfPrice" layoutX="75.0" layoutY="177.0" prefHeight="27.0" prefWidth="210.0" promptText="Preço" />
-      <TextField fx:id="tfDescription" layoutX="75.0" layoutY="251.0" prefHeight="66.0" prefWidth="210.0" promptText="Descrição" />
-      <Label fx:id="lbName" layoutX="76.0" layoutY="50.0" text="Nome já existente" textFill="RED" visible="false" />
+        <TextField fx:id="tfName" layoutX="75.0" layoutY="52.0" prefHeight="27.0" prefWidth="210.0" promptText="Nome" />
+      <TextField fx:id="tfQuantity" accessibleRole="TOOL_BAR" layoutX="75.0" layoutY="100.0" prefHeight="27.0" prefWidth="210.0" promptText="Quantidade" />
+      <TextField fx:id="tfPrice" layoutX="75.0" layoutY="147.0" prefHeight="27.0" prefWidth="210.0" promptText="Preço" />
+      <TextField fx:id="tfDescription" layoutX="75.0" layoutY="203.0" prefHeight="66.0" prefWidth="210.0" promptText="Descrição" />
+      <Label fx:id="lbName" layoutX="76.0" layoutY="50.0" text="Nome inválido" textFill="RED" visible="false" />
       <Label fx:id="lbQuantity" layoutX="76.0" layoutY="106.0" text="Quantidade inválida" textFill="RED" visible="false" />
       <Label fx:id="lbPrice" layoutX="76.0" layoutY="161.0" text="Preço inválido" textFill="RED" visible="false" />
+      <TextField fx:id="tfWeight" layoutX="75.0" layoutY="286.0" prefHeight="27.0" prefWidth="210.0" promptText="Peso" />
     </children>
 </AnchorPane>

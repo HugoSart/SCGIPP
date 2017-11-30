@@ -2,8 +2,13 @@ package scgipp.ui.scenarios;
 
 import br.com.uol.pagseguro.domain.Address;
 import br.com.uol.pagseguro.domain.Phone;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,6 +26,7 @@ import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Scenario;
 
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.chrono.Chronology;
@@ -41,6 +47,7 @@ public class UpdateProductScenario extends FeedbackScenario {
     @FXML private TextField tfQuantity;
     @FXML private TextField tfPrice;
     @FXML private TextField tfDescription;
+    @FXML private TextField tfWeight;
     @FXML private Label lbProductAlreadyExists;
     @FXML private Label lbName;
     @FXML private Label lbQuantity;
@@ -51,26 +58,15 @@ public class UpdateProductScenario extends FeedbackScenario {
         this.updateThisProduct = product2Update;
     }
 
-  /*  @FXML private void initialize()
+    @FXML private void initialize()
     {
 
-        cbTipo.setItems(personTypes);
-        tfName.setText(this.updateThisCustomer.getName());
-        tfCPF.setText(this.updateThisCustomer.getCpf_cnpj());
-        if(this.updateThisCustomer.getType() == Person.Type.PHYSICAL)
-        {
-            cbTipo.getSelectionModel().select(0);
-        }
-        else
-        {
-            cbTipo.getSelectionModel().select(1);
-        }
-        dpDate.setValue(this.updateThisCustomer.getDate());
-        tfAddress.setText(updateThisCustomer.getAddresses().get(0).getStreet());
-        tfPhone.setText(updateThisCustomer.getPhones().get(0).getNumber());
-    }*/
-
-
+        tfName.setText(this.updateThisProduct.getName());
+        tfDescription.setText(this.updateThisProduct.getDescription());
+        tfPrice.setText(updateThisProduct.getAmount().toString());
+        tfQuantity.setText(updateThisProduct.getQuantity().toString());
+        tfWeight.setText(updateThisProduct.getWeight().toString());
+    }
 
     @Override
     protected void onConfigScene(Scene scene) {
@@ -92,33 +88,16 @@ public class UpdateProductScenario extends FeedbackScenario {
             String description = tfDescription.getText();
             Integer quantity = Integer.parseInt(tfQuantity.getText());
             BigDecimal price = new BigDecimal(Float.parseFloat(tfPrice.getText()));
+            Long weight = Long.parseLong(tfWeight.getText());
 
-            lbPrice.setDisable(true);
-            lbQuantity.setDisable(true);
-            lbName.setDisable(true);
 
-            boolean productAlreadyRegistered = false;
-            for (Product product : productManager.listAll()) {
-                if (product.getName().equals(name) || tfName.getText().isEmpty()) {
-                    productAlreadyRegistered = true;
-                    break;
-                }
-            }
-
-            if(quantity == null || quantity < 0)
-                lbQuantity.setVisible(true);
-
-            if(price == null || price.doubleValue() < 0)
-                lbPrice.setVisible(true);
-
-            lbName.setVisible(productAlreadyRegistered);
-
-            if (productAlreadyRegistered && !description.isEmpty() && (quantity > 0) && price != null && (price.doubleValue() > 0)) {
+            if ((name != null) /*&& (price != null) && (price.doubleValue() >= 0) && (quantity != null) && (quantity >= 0)*/) {
 
                 this.updateThisProduct.setName(name);
                 this.updateThisProduct.setDescription(description);
                 this.updateThisProduct.setAmount(price);
                 this.updateThisProduct.setQuantity(quantity);
+                this.updateThisProduct.setWeight(weight);
 
                 putFeedback(FEEDBACK_NEW_PRODUCT, this.updateThisProduct);
                 processFeedbackAndFinish();

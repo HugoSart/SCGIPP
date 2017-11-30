@@ -22,18 +22,18 @@ public class ProductFragment extends Fragment {
 
     private ProductManager productManager = ProductManager.getInstance();
 
-    @FXML private AnchorPane descriptionInfoPane;
-
     @FXML private TableView<ObservableProduct> tvProduct;
     @FXML private TableColumn<ObservableProduct, Integer> tcId;
     @FXML private TableColumn<ObservableProduct, String> tcName;
     @FXML private TableColumn<ObservableProduct, Integer> tcQuantity;
     @FXML private TableColumn<ObservableProduct, Double> tcPrice;
+    @FXML private TableColumn<ObservableProduct, String> tcDescription;
+    @FXML private TableColumn<ObservableProduct, Long> tcWeight;
 
     @FXML private TextField tfSearch;
-    @FXML private TextField tfDescription;
     @FXML private Button btAddProduct;
     @FXML private Button btRemoveProduct;
+    @FXML private Button btUpdateProduct;
 
     @FXML private ObservableList<ObservableProduct> productObservableList;
 
@@ -49,13 +49,13 @@ public class ProductFragment extends Fragment {
             System.out.println(product);
         }
 
-        descriptionInfoPane.setVisible(false);
-
         productObservableList = FXCollections.observableList(ObservableProduct.productListTAsObservableProductList(productList));
         tcId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         tcQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
         tcPrice.setCellValueFactory(cellData -> cellData.getValue().priceProperty().asObject());
+        tcDescription.setCellValueFactory(cellData -> cellData.getValue().descriptionProperty());
+        tcWeight.setCellValueFactory(cellData -> cellData.getValue().weightProperty().asObject());
         tvProduct.setItems(productObservableList);
 
         btAddProduct.setOnAction(event -> {
@@ -65,6 +65,7 @@ public class ProductFragment extends Fragment {
                 if (productManager.addProduct(product) != -1)
                     productObservableList.add(new ObservableProduct(product));
                 tvProduct.refresh();
+
             });
         });
 
@@ -73,16 +74,21 @@ public class ProductFragment extends Fragment {
             ProductManager.removeProduct(observableProduct.getProduct());
             productObservableList.remove(observableProduct);
             tvProduct.refresh();
-            tfDescription.clear();
-            descriptionInfoPane.setVisible(false);
+        });
+
+        btUpdateProduct.setOnAction(event -> {
+            ObservableProduct observableProduct = tvProduct.getSelectionModel().getSelectedItem();
+            FeedbackScenario updateProductScenario = new UpdateProductScenario(observableProduct.getProduct());
+            Spawner.startFeedbackScenario(updateProductScenario, 0, this, (requestCode, resultCode, data) -> {
+                Product productUpdated = (Product)data.get(UpdateProductScenario.FEEDBACK_NEW_PRODUCT);
+                productManager.updateProduct(productUpdated);
+                tvProduct.refresh();
+            });
         });
 
         tvProduct.setOnMousePressed(event -> {
             if (event.isPrimaryButtonDown()) {
-                descriptionInfoPane.setVisible(true);
                 ObservableProduct observableProduct = tvProduct.getSelectionModel().getSelectedItem();
-                tfDescription.setText((observableProduct.getProduct().getDescription()));
-
             }
         });
 

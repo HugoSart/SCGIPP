@@ -38,7 +38,6 @@ public class ObservableCustomer {
         for (Customer m : list)
             observableCustomer.add(new ObservableCustomer(m));
         return observableCustomer;
-
     }
 
     public StringProperty cpfProperty()
@@ -49,7 +48,7 @@ public class ObservableCustomer {
     public StringProperty addressProperty() {
         if (customer.getAddresses().isEmpty())
             return new SimpleStringProperty("ERROR");
-        return new SimpleStringProperty(customer.getAddresses().get(0).getStreet());
+        return new SimpleStringProperty(customer.getAddresses().get(0).getStreet() + " nº " + customer.getAddresses().get(0).getNumber());
     }
     public StringProperty phoneProperty() {
         if (customer.getPhones().isEmpty())

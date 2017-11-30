@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="402.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="454.0" prefWidth="669.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox fx:id="menuBar" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="1053.0" style="-fx-background-color: rgba(0,0,0,0.1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -54,8 +54,8 @@
                 <Font size="10.0" />
             </font>
         </Label>
-      <TextField fx:id="tfPhone" layoutX="79.0" layoutY="356.0" promptText="Telefone*" />
-      <TextField fx:id="tfAddress" layoutX="79.0" layoutY="292.0" promptText="Endereço*" />
+      <TextField fx:id="tfPhone" layoutX="79.0" layoutY="400.0" promptText="Telefone*" />
+      <TextField fx:id="tfAddress" layoutX="79.0" layoutY="292.0" promptText="Rua*" />
       <Label fx:id="lbFalseCpf" layoutX="301.0" layoutY="171.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Documento Invalido" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
@@ -78,12 +78,12 @@
          </font>
       </Label>
       <TextField fx:id="tfCPF" layoutX="75.0" layoutY="166.0" prefHeight="25.0" prefWidth="210.0" promptText="CPF/CNPJ *" />
-      <Label fx:id="lbTelefoneObrigatorio" layoutX="84.0" layoutY="333.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+      <Label fx:id="lbTelefoneObrigatorio" layoutX="84.0" layoutY="379.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
       </Label>
-      <Label fx:id="lbEnderecoObrigatorio" layoutX="84.0" layoutY="264.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
+      <Label fx:id="lbEnderecoObrigatorio" layoutX="144.0" layoutY="263.0" prefHeight="15.0" prefWidth="119.0" styleClass="error-label" text="Campo obrigatorio" textFill="#ff6a6a">
          <font>
             <Font size="10.0" />
          </font>
@@ -95,5 +95,9 @@
          </font>
       </Label>
       <Label fx:id="lbDataNascimento" layoutX="84.0" layoutY="201.0" text="Data de Nascimento/Fundação" />
+      <Label fx:id="lbEnderecoMsg" layoutX="84.0" layoutY="262.0" text="Endereço" />
+      <TextField fx:id="tfAddressNumber" layoutX="260.0" layoutY="292.0" prefHeight="24.0" prefWidth="149.0" promptText="Número*" />
+      <TextField fx:id="tfBairro" layoutX="451.0" layoutY="292.0" promptText="Bairro*" />
+      <TextField fx:id="tfCEP" layoutX="79.0" layoutY="343.0" promptText="CEP*" />
     </children>
 </AnchorPane>

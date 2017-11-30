@@ -27,26 +27,32 @@ public class Sale extends BaseEntity<Integer> {
     private java.math.BigDecimal totalPrice;
 
     @OneToMany(fetch = FetchType.LAZY)
-    public List<Product> productsList;
+    public List<SaleProduct> productsList;
 
     private String transactionCode;
 
     public Sale(){}
 
-    public Sale(User user, Customer customer, String transactionCode, SaleBudget saleBudget) {
+    public Sale(User user, Customer customer, String transactionCode, List<SaleProduct> saleBudget) {
         this.user = user;
         this.customer = customer;
         this.transactionCode = transactionCode;
         this.date = LocalDate.now();
-        this.productsList = new ArrayList<Product>(saleBudget.getProducts());
-        for (Product p : saleBudget.getProducts()) {
+        this.productsList = new ArrayList<SaleProduct>(saleBudget);
+
+        /*
+        for (Product p : saleBudget) {
             this.totalPrice = totalPrice.add(p.getAmount());
         }
-
+        */
     }
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
+    }
+    public void setTotalPrice(BigDecimal t)
+    {
+        this.totalPrice = t;
     }
 
     public User getUser() {
@@ -55,6 +61,11 @@ public class Sale extends BaseEntity<Integer> {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDate getDate()
+    {
+        return this.date;
     }
 
     public Customer getCustomer() { return customer; }

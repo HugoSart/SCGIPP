@@ -3,7 +3,6 @@
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -22,12 +21,14 @@
                                 <Insets left="28.0" />
                             </padding>
                         </TextField>
-                        <TableView fx:id="tvProduct" layoutX="101.0" layoutY="34.0" prefHeight="593.0" prefWidth="440.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="33.0">
+                        <TableView fx:id="tvProduct" layoutX="101.0" layoutY="34.0" prefHeight="593.0" prefWidth="759.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="33.0">
                             <columns>
-                                <TableColumn fx:id="tcId" minWidth="5.0" prefWidth="78.0" text="Id" />
-                                <TableColumn fx:id="tcName" prefWidth="211.0" text="Nome" />
-                        <TableColumn fx:id="tcQuantity" minWidth="5.0" prefWidth="74.0" text="Qtde" />
-                        <TableColumn fx:id="tcPrice" minWidth="5.0" prefWidth="76.0" text="Preço" />
+                                <TableColumn fx:id="tcId" minWidth="5.0" prefWidth="54.0" text="Id" />
+                                <TableColumn fx:id="tcName" prefWidth="176.0" text="Nome" />
+                        <TableColumn fx:id="tcQuantity" minWidth="5.0" prefWidth="65.0" text="Qtde" />
+                        <TableColumn fx:id="tcPrice" minWidth="5.0" prefWidth="79.0" text="Preço" />
+                        <TableColumn fx:id="tcDescription" prefWidth="305.0" text="Descrição" />
+                        <TableColumn fx:id="tcWeight" text="Peso" />
                             </columns>
                         </TableView>
                         <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="34.0" prefHeight="595.0" prefWidth="89.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="34.0">
@@ -50,19 +51,30 @@
                                     <effect>
                                         <DropShadow blurType="ONE_PASS_BOX" height="2.2225" radius="0.055625000000000036" width="0.0" />
                                     </effect>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets bottom="8.0" />
+                           </VBox.margin>
                                 </Button>
+                        <Button fx:id="btUpdateProduct" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Atualizar" textAlignment="CENTER">
+                           <effect>
+                              <DropShadow blurType="ONE_PASS_BOX" height="2.2225" radius="0.055625000000000036" width="0.0" />
+                           </effect>
+                           <padding>
+                              <Insets bottom="1.0" />
+                           </padding>
+                        </Button>
                             </children>
+                     <padding>
+                        <Insets bottom="8.0" />
+                     </padding>
                         </VBox>
                         <MaterialDesignIconView fill="#5896ed" glyphName="MAGNIFY" layoutX="5.0" layoutY="20.0" size="18" text="" />
                     </children>
                 </AnchorPane>
             </children>
-        </AnchorPane>
-        <AnchorPane fx:id="descriptionInfoPane" layoutX="491.0" prefHeight="652.0" prefWidth="398.0" style="-fx-border-color: rgba(0,0,0,0);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="491.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <TextField fx:id="tfDescription" alignment="TOP_LEFT" layoutX="71.0" layoutY="83.0" prefHeight="168.0" prefWidth="297.0" />
-            <Label layoutX="79.0" layoutY="53.0" text="Descriçao" />
-         </children>
         </AnchorPane>
     </children>
 </AnchorPane>
