@@ -19,9 +19,19 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import scgipp.Main;
 import scgipp.data.webservice.CorreiosServer;
+import scgipp.service.entities.CartItem;
 import scgipp.service.entities.Product;
+import scgipp.service.entities.Sale;
+import scgipp.service.entities.SaleProduct;
+import scgipp.service.managers.ProductManager;
+import scgipp.service.managers.SaleManager;
+import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
 import scgipp.ui.FXScenario.Scenario;
+import scgipp.ui.FXScenario.Spawner;
+import scgipp.ui.visible.ObservableCartItem;
+import scgipp.ui.visible.ObservableProduct;
+import scgipp.ui.visible.ObservableSale;
 import scgipp.ui.visible.ObservableTransactionSummary;
 
 import java.math.BigDecimal;
@@ -37,6 +47,8 @@ import java.util.List;
  */
 public class NewPagSeguroSaleScenario extends Scenario {
 
+    private ProductManager productManager = ProductManager.getInstance();
+
     @FXML
     private HBox menuBar;
 
@@ -44,7 +56,7 @@ public class NewPagSeguroSaleScenario extends Scenario {
     private Button btExit;
 
     @FXML
-    private ListView<Product> lvProducts;
+    private ListView<CartItem> lvCartItens;
 
     @FXML
     private Button btAdd;
@@ -97,6 +109,8 @@ public class NewPagSeguroSaleScenario extends Scenario {
     @FXML
     private ProgressIndicator piProgress;
 
+    @FXML private ObservableList<ObservableCartItem> cartItemObservableList;
+
     public NewPagSeguroSaleScenario() {
         super("fxml/scenario_new_pagseguro.fxml");
     }
@@ -127,6 +141,15 @@ public class NewPagSeguroSaleScenario extends Scenario {
             finish();
         });
 
+        btAdd.setOnAction(event -> {
+
+            FeedbackScenario addCartPagSeguro = new AddCartPagSeguro();
+            Spawner.startFeedbackScenario(addCartPagSeguro, 0, this, ((requestCode, resultCode, data) -> {
+                CartItem cartItem = (CartItem) data.get(AddCartPagSeguro.FEEDBACK_NEW_CART_PRODUCT);
+                cartItemObservableList.add(new ObservableCartItem(cartItem));
+                lvCartItens.refresh();
+            }));
+        });
 
     }
 
@@ -147,9 +170,10 @@ public class NewPagSeguroSaleScenario extends Scenario {
 
             long weight = 0;
             BigDecimal value = new BigDecimal(0);
-            for (Product p : lvProducts.getItems()) {
-                weight += p.getWeight();
-                value = value.add(p.getAmount());
+            for (CartItem item : lvCartItens.getItems()) {
+                weight += item.getQuantity() * item.getProduct().getWeight();
+                BigDecimal cartValue = new BigDecimal(item.getPrice());
+                value = value.add(cartValue);
             }
 
             CorreiosServer correiosServer = new CorreiosServer();

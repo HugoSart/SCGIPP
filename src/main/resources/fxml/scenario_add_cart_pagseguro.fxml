@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="411.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane prefHeight="600.0" prefWidth="411.0" style="-fx-background-color: #3F51B5;">
+            <children>
+            <TableView fx:id="tvItem" layoutX="6.0" layoutY="46.0" prefHeight="450.0" prefWidth="401.0">
+               <columns>
+                  <TableColumn fx:id="tcItem" prefWidth="233.0" text="Item" />
+                  <TableColumn fx:id="tcQuantity" prefWidth="96.0" text="Quantidade" />
+                  <TableColumn fx:id="tcPrice" prefWidth="85.0" text="Preço" />
+               </columns>
+            </TableView>
+                <Button fx:id="btAdd" layoutX="324.0" layoutY="533.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="71.0" text="Adicionar" />
+                <TextField fx:id="tfSearch" layoutX="11.0" layoutY="14.0" prefHeight="25.0" prefWidth="384.0" promptText="Pesquisar" />
+                <Label fx:id="lbQuantity" layoutX="222.0" layoutY="525.0" prefHeight="17.0" prefWidth="71.0" text="Quantidade" textFill="WHITE" />
+                <Spinner fx:id="spQuantity" editable="true" layoutX="222.0" layoutY="545.0" prefHeight="26.0" prefWidth="71.0" />
+            <Label fx:id="lbMaxStock" layoutX="18.0" layoutY="550.0" text="Quantidade máxima atingida" textFill="RED" />
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

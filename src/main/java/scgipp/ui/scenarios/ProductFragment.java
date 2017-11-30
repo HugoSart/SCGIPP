@@ -16,6 +16,7 @@ import scgipp.ui.FXScenario.Spawner;
 import scgipp.ui.visible.ObservableProduct;
 import scgipp.ui.visible.ObservableUser;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductFragment extends Fragment {
