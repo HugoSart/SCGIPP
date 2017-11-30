@@ -97,7 +97,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lbTotal" layoutX="344.0" layoutY="317.0" text="R$999.99" textFill="#8f67ff">
+            <Label fx:id="lbTotal" layoutX="344.0" layoutY="317.0" textFill="#8f67ff">
                <font>
                   <Font size="24.0" />
                </font>

@@ -1,8 +1,8 @@
 package scgipp.ui.scenarios;
 
-import br.com.uol.pagseguro.domain.Shipping;
-import br.com.uol.pagseguro.domain.TransactionSearchResult;
-import br.com.uol.pagseguro.domain.TransactionSummary;
+import br.com.uol.pagseguro.domain.*;
+import br.com.uol.pagseguro.domain.Address;
+import br.com.uol.pagseguro.enums.Currency;
 import br.com.uol.pagseguro.enums.ShippingType;
 import br.com.uol.pagseguro.exception.PagSeguroServiceException;
 import br.com.uol.pagseguro.service.TransactionSearchService;
@@ -24,6 +24,7 @@ import scgipp.service.entities.CartItem;
 import scgipp.service.entities.Product;
 import scgipp.service.entities.Sale;
 import scgipp.service.entities.SaleProduct;
+import scgipp.service.managers.CartItemManager;
 import scgipp.service.managers.ProductManager;
 import scgipp.service.managers.SaleManager;
 import scgipp.service.validators.CEP.CepData;
@@ -35,13 +36,17 @@ import scgipp.ui.visible.ObservableCartItem;
 import scgipp.ui.visible.ObservableProduct;
 import scgipp.ui.visible.ObservableSale;
 import scgipp.ui.visible.ObservableTransactionSummary;
+import javax.mail.*;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import br.com.uol.pagseguro.PagSeguroTestSeller;
 
 /**
  * User: hugo_<br/>
@@ -118,6 +123,15 @@ public class NewPagSeguroSaleScenario extends Scenario {
         super("fxml/scenario_new_pagseguro.fxml");
     }
 
+    private void setTotal(){
+        Double total = 0.0;
+        for(ObservableCartItem o: cartItemObservableList){
+            total += o.getCartItem().getPrice();
+        }
+        total += Double.parseDouble(tfFreight.getText());
+        lbTotal.setText("R$" + total);
+    }
+
     @Override
     protected void onConfigScene(Scene scene) {
         scene.getStylesheets().add("css/Style.css");
@@ -139,9 +153,14 @@ public class NewPagSeguroSaleScenario extends Scenario {
                     tfStreet.getText().isEmpty() || tfNumber.getText().isEmpty() || tfCEP.getText().isEmpty())) {
                 new Thread(new CalculateFreightTask()).start();
             }
+            setTotal();
         });
 
         btCancel.setOnAction(event -> {
+            for(ObservableCartItem o: lvCartItens.getItems()){
+                o.getCartItem().getProduct().setQuantity(o.getCartItem().getProduct().getQuantity() + o.getCartItem().getQuantity());
+                productManager.updateProduct(o.getCartItem().getProduct());
+            }
             finish();
         });
 
@@ -162,10 +181,84 @@ public class NewPagSeguroSaleScenario extends Scenario {
 
             FeedbackScenario addCartPagSeguro = new AddCartPagSeguro();
             Spawner.startFeedbackScenario(addCartPagSeguro, 0, this, ((requestCode, resultCode, data) -> {
+                Boolean setItemCart = true;
                 CartItem cartItem = (CartItem) data.get(AddCartPagSeguro.FEEDBACK_NEW_CART_PRODUCT);
-                cartItemObservableList.add(new ObservableCartItem(cartItem));
+                for(ObservableCartItem Oitem: cartItemObservableList){
+                    CartItem item = Oitem.getCartItem();
+                    if(cartItem.getProduct().getName().equals(item.getProduct().getName())){
+                        item.setQuantity(item.getQuantity() + cartItem.getQuantity());
+                        item.setPrice(item.getPrice() + cartItem.getPrice());
+                        setItemCart = false;
+                        break;
+                    }
+                }
+                if(setItemCart){
+                    cartItemObservableList.add(new ObservableCartItem(cartItem));
+                }
                 lvCartItens.setItems(cartItemObservableList);
+                lvCartItens.refresh();
             }));
+        });
+
+        btConfirm.setOnAction(event -> {
+
+            PaymentRequest paymentRequest = new PaymentRequest();
+            paymentRequest.setCurrency(Currency.BRL);
+
+            Integer totalItens = 0;
+            BigDecimal frete = new BigDecimal(Double.parseDouble(tfFreight.getText()));
+
+            List<ObservableCartItem> cartItemList = lvCartItens.getItems();
+
+            for(ObservableCartItem o: cartItemList){
+                totalItens += o.getCartItem().getQuantity();
+            }
+
+            frete = new BigDecimal(frete.doubleValue()/totalItens).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("Frete: " + frete);
+
+            for(ObservableCartItem o: cartItemList){
+                CartItem cartItem = o.getCartItem();
+                paymentRequest.addItem(cartItem.getProduct().getId().toString(),
+                        cartItem.getProduct().getDescription(),
+                        cartItem.getQuantity(),
+                        cartItem.getProduct().getAmount(),
+                        cartItem.getProduct().getWeight(),
+                        frete);
+            }
+
+            Shipping shipping = new Shipping();
+            shipping.setType(cbShippingType.getSelectionModel().getSelectedItem());
+            shipping.setAddress(new Address(tfCountry.getText(), tfState.getText(),
+                    tfCity.getText(), tfDistrict.getText(),
+                    tfCEP.getText(), tfStreet.getText(), tfNumber.getText(),
+                    tfComplement.getText()));
+
+            paymentRequest.setShipping(shipping);
+
+            try{
+                URL paymentURL = new URL(paymentRequest.register(new AccountCredentials(
+                        PagSeguroTestSeller.email,
+                        PagSeguroTestSeller.productionToken,
+                        PagSeguroTestSeller.sandboxToken)));
+                System.out.println("paymentURL: " + paymentURL);
+            }
+            catch (MalformedURLException e){
+                e.printStackTrace();
+            } catch (PagSeguroServiceException e) {
+                e.printStackTrace();
+            }
+
+            finish();
+        });
+
+        btRemove.setOnAction(event -> {
+            ObservableCartItem observableCartItem = lvCartItens.getSelectionModel().getSelectedItem();
+            observableCartItem.getCartItem().getProduct().setQuantity(observableCartItem.getCartItem().getProduct().getQuantity() + observableCartItem.getCartItem().getQuantity());
+            productManager.updateProduct(observableCartItem.getCartItem().getProduct());
+            cartItemObservableList.remove(observableCartItem);
+            setTotal();
+            lvCartItens.refresh();
         });
 
     }
@@ -186,15 +279,14 @@ public class NewPagSeguroSaleScenario extends Scenario {
             final String originCep = "87200424";
 
             long weight = 0;
-            BigDecimal value = new BigDecimal(0);
+            double value = 0;
             for (ObservableCartItem oItem : lvCartItens.getItems()) {
                 CartItem item = oItem.getCartItem();
-                weight += item.getQuantity() * item.getProduct().getWeight();
-                BigDecimal cartValue = new BigDecimal(item.getPrice());
-                value = value.add(cartValue);
+                weight += (item.getQuantity() * item.getProduct().getWeight());
+                value += item.getPrice();
             }
             System.out.println("Weight: " + weight);
-            System.out.println("Value: " + value.doubleValue());
+            System.out.println("Value: " + value);
             System.out.println("Cep: " + tfCEP.getText());
             System.out.println("Code: " + serviceCode);
 
@@ -203,7 +295,7 @@ public class NewPagSeguroSaleScenario extends Scenario {
                     serviceCode, originCep, tfCEP.getText(),
                     String.valueOf(weight), CorreiosServer.PackageType.BOX_PACKAGE,
                     50,50,50,20,
-                    false, value.doubleValue(), false)
+                    false, value, false)
                     .getProperty(CorreiosServer.PropertyTags.VALUE).replace(',', '.');
             return new BigDecimal(ret);
 

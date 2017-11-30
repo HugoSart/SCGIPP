@@ -47,6 +47,7 @@
     <orderEntry type="library" exported="" name="junit:junit:4.12" level="project" />
     <orderEntry type="library" exported="" name="de.jensd:fontawesomefx:8.9" level="project" />
     <orderEntry type="library" exported="" name="org.reflections:reflections:0.9.11" level="project" />
-    <orderEntry type="library" exported="" name="jsoup-1.11.2" level="project" />
+    <orderEntry type="library" name="jsoup-1.11.2" level="project" />
+    <orderEntry type="library" name="javax.mail:javax.mail-api:1.6.0" level="project" />
   </component>
 </module>

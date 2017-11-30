@@ -63,6 +63,8 @@ public class ProductFragment extends Fragment {
             FeedbackScenario addProductScenario = new AddProductScenario();
             Spawner.startFeedbackScenario(addProductScenario, 0, this, (requestCode, resultCode, data) -> {
                 Product product = (Product)data.get(AddProductScenario.FEEDBACK_NEW_PRODUCT);
+                System.out.println("Product: " + product);
+                System.out.println("Product manager: " + productManager);
                 if (productManager.addProduct(product) != -1)
                     productObservableList.add(new ObservableProduct(product));
                 tvProduct.refresh();

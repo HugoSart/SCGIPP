@@ -67,7 +67,9 @@ public class UpdateDevolutionScenario extends FeedbackScenario {
             Boolean isRestored = Integer.parseInt(tfQuantity.getText()) <= 0;
             Integer quantity = Integer.parseInt(tfQuantity.getText());
 
-            if (devolutionDay != null && quantity != null & quantity >= 0) {
+            lbError.setVisible(!tfQuantity.getText().isEmpty() || quantity < 0);
+
+            if (devolutionDay != null && quantity >= 0) {
 
                 this.updateThisDevolution.setDevolutionDate(devolutionDay);
                 this.updateThisDevolution.setRestoreToStock(isRestored);

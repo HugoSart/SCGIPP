@@ -83,7 +83,10 @@ public class AddDevolutionScenario extends FeedbackScenario {
             }
 
             String devolutionDay = dpDevolutionDay.toString();
-            Boolean isRestored = Integer.parseInt(tfQuantity.getText()) <= 0;
+            Boolean isRestored = false;
+            if(Integer.parseInt(tfQuantity.getText()) > 0){
+                isRestored = true;
+            }
             Integer quantity = Integer.parseInt(tfQuantity.getText());
 
             boolean productAlreadyRegistered = false;

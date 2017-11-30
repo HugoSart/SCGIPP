@@ -12,7 +12,6 @@
 
 <AnchorPane prefHeight="382.0" prefWidth="590.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <TextField />
         <HBox fx:id="menuBar" alignment="CENTER_RIGHT" prefHeight="29.0" prefWidth="1053.0" style="-fx-background-color: rgba(0,0,0,0.1);" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
@@ -41,6 +40,6 @@
         <TextField fx:id="tfProductId" accessibleRole="TOOL_BAR" layoutX="75.0" layoutY="118.0" prefHeight="27.0" prefWidth="210.0" promptText="ID do produto" />
         <TextField fx:id="tfQuantity" layoutX="72.0" layoutY="191.0" prefHeight="27.0" prefWidth="279.0" promptText="Quantidade a ser reposta no inventário" />
       <DatePicker fx:id="dpDevolutionDay" layoutX="72.0" layoutY="276.0" promptText="Data da devolução" />
-      <Label fx:id="lbAlreadyRegistered" layoutX="75.0" layoutY="326.0" text="Devolução já cadastrada" textFill="RED" />
+      <Label fx:id="lbAlreadyRegistered" layoutX="75.0" layoutY="326.0" text="Devolução já cadastrada" textFill="RED" visible="false" />
     </children>
 </AnchorPane>

@@ -36,7 +36,7 @@ public class AddProductScenario extends FeedbackScenario {
     @FXML private TextField tfPrice;
     @FXML private TextField tfDescription;
     @FXML private TextField tfWeight;
-    @FXML private Label lbProductAlreadyExists;
+    @FXML private Label lbWeight;
     @FXML private Label lbName;
     @FXML private Label lbQuantity;
     @FXML private Label lbPrice;
@@ -67,9 +67,6 @@ public class AddProductScenario extends FeedbackScenario {
             Long weight = Long.parseLong(tfWeight.getText());
 
             boolean productAlreadyRegistered = false;
-            //lbName.setVisible(productAlreadyRegistered);
-            //boolean invalidQuantity = (quantity == null) || !((quantity > 0) && (quantity < Integer.MAX_VALUE));
-            //boolean invalidPrice = (price == null) || !((price.doubleValue() > 0) && (price.doubleValue() < Double.MAX_VALUE));
 
             for (Product product : productManager.listAll()) {
                 if (product.getName().equals(name) || tfName.getText().isEmpty()) {
@@ -78,11 +75,12 @@ public class AddProductScenario extends FeedbackScenario {
                 }
             }
 
-            //lbQuantity.setVisible(invalidQuantity);
-            //lbPrice.setVisible(invalidPrice);
             lbName.setVisible(productAlreadyRegistered);
+            lbQuantity.setVisible(tfQuantity.getText().isEmpty() || Integer.parseInt(tfQuantity.getText()) < 0);
+            lbPrice.setVisible(tfPrice.getText().isEmpty() || Double.parseDouble(tfPrice.getText()) < 0.0);
+            lbWeight.setVisible(tfWeight.getText().isEmpty() || Double.parseDouble(tfWeight.getText()) < 0.0);
 
-            if ((!productAlreadyRegistered) && (name != null) && (price != null) && (price.doubleValue() >= 0) && (quantity != null) && (quantity >= 0) && (weight != null) && (weight >= 0)) {
+            if ((!productAlreadyRegistered) && (name != null) && (price.doubleValue() >= 0) && (quantity >= 0) && (weight >= 0)) {
 
                 Product product = new Product(name, description, quantity, price, weight);
                 putFeedback(FEEDBACK_NEW_PRODUCT, product);

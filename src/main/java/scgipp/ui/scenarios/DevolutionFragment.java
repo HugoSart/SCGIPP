@@ -58,8 +58,7 @@ public class DevolutionFragment extends Fragment {
         tcId.setCellValueFactory(cellData -> cellData.getValue().idProperty().asObject());
         tcSaleId.setCellValueFactory(cellData -> cellData.getValue().saleIdProperty().asObject());
         tcProductName.setCellValueFactory(cellData -> cellData.getValue().productNameProperty());
-        tcDevolutionDate.setCellValueFactory(cellData -> cellData.getValue().devolutionDateProperty());
-        tcDevolutionDate.setCellValueFactory(cellData -> cellData.getValue().restoredProperty().asString());
+        tcRestored.setCellValueFactory(cellData -> cellData.getValue().restoredProperty());
         tcQuantity.setCellValueFactory(cellData -> cellData.getValue().quantityProperty().asObject());
         tvDevolution.setItems(devolutionObservableList);
 
