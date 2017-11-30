@@ -152,6 +152,18 @@ public class SalesFragment extends Fragment {
             tvSales.refresh();
         });
 
+        /*
+        FilteredList<ObservableSale> filteredData = new FilteredList<>(saleObservableList, p -> true);
+        tfSearch.textProperty().addListener((observable, oldValue, newValue) -> filteredData.setPredicate(myObject -> {
+            if (newValue == null || newValue.isEmpty()) return true;
+            String lowerCaseFilter = newValue.toLowerCase();
+            if (String.valueOf(myObject.getSale().getUser().getLogin()).toLowerCase().contains(lowerCaseFilter)) return true;
+            //else if (String.valueOf(myObject.getSale().getCustomer()).toLowerCase().contains(lowerCaseFilter)) return true;
+            //else if (String.valueOf(myObject.getSale().getDate()).toLowerCase().contains(lowerCaseFilter)) return true;
+            return false;
+        }));
+        tvSales.setItems(filteredData);
+        */
 
     }
 

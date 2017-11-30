@@ -38,7 +38,7 @@ public class ObservableSale {
     }
 
     public StringProperty getDateProperty() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd LLLL yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-LLLL-yyyy");
         String formattedString = sale.getDate().format(formatter);
         return new SimpleStringProperty(formattedString);
     }

@@ -150,6 +150,10 @@ public class AddSaleScenario extends FeedbackScenario {
     private Button btRemoveSale;
 
 
+    @FXML
+    private Label lbEstoqueMax;
+
+
     public AddSaleScenario() {
         super("fxml/scenario_add_sale.fxml");
     }
@@ -171,6 +175,7 @@ public class AddSaleScenario extends FeedbackScenario {
         tfPhone.setDisable(true);
         tfSalesmanName.setDisable(true);
         tfSalesmanName.setText(userSession.getActiveUser().getLogin());
+        lbEstoqueMax.setVisible(false);
 
         List<Customer> customerList = customerManager.getAll();
         for (Customer customer : customerList) {
@@ -241,22 +246,27 @@ public class AddSaleScenario extends FeedbackScenario {
                         observableSaleProduct.getProduct().getAmount(),
                         observableSaleProduct.getProduct().getWeight());
                 */
-                SaleProduct nSP = new SaleProduct(numberItens, observableSaleProduct.getProduct());
-                itensToSale.add(nSP);
-                dbManager.add(nSP);
-                productObservableSaleList.add(new ObservableSaleProduct(nSP));
-                System.out.println(numberItens);
-                tvItemList.refresh();
-                totalAmount += numberItens * observableSaleProduct.getProduct().getAmount().doubleValue();
-                lbtTotalPriceSale.setText(String.valueOf(totalAmount));
-                Integer qtd = observableSaleProduct.getProduct().getQuantity();
-                observableSaleProduct.getProduct().setQuantity(qtd - nSP.getQuantity());
-                productManager.updateProduct(observableSaleProduct.getProduct());
-                SpinnerValueFactory<Integer> valueFactory = //
-                        new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
-                                1000,
-                                1);
-                spQuantity.setValueFactory(valueFactory);
+                lbEstoqueMax.setVisible(numberItens > observableSaleProduct.getProduct().getQuantity());
+                if (numberItens <= observableSaleProduct.getProduct().getQuantity())
+                {
+                    SaleProduct nSP = new SaleProduct(numberItens, observableSaleProduct.getProduct());
+                    itensToSale.add(nSP);
+                    dbManager.add(nSP);
+                    productObservableSaleList.add(new ObservableSaleProduct(nSP));
+                    System.out.println(numberItens);
+                    tvItemList.refresh();
+                    totalAmount += numberItens * observableSaleProduct.getProduct().getAmount().doubleValue();
+                    lbtTotalPriceSale.setText(String.valueOf(totalAmount));
+                    Integer qtd = observableSaleProduct.getProduct().getQuantity();
+                    observableSaleProduct.getProduct().setQuantity(qtd - nSP.getQuantity());
+                    productManager.updateProduct(observableSaleProduct.getProduct());
+                    SpinnerValueFactory<Integer> valueFactory = //
+                            new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
+                                    1000,
+                                    1);
+                    spQuantity.setValueFactory(valueFactory);
+                }
+
             }));
 
             lbClienteEmpty.setVisible(false);
