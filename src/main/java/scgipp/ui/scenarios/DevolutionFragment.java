@@ -22,7 +22,7 @@ import scgipp.ui.visible.ObservableUser;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class DevolutionFragment extends Fragment {
+public class DevolutionFragment extends Fragment { //commit para o zé
 
     private ProductManager productManager = ProductManager.getInstance();
     private DevolutionManager devolutionManager = DevolutionManager.getInstance();
