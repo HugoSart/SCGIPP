@@ -77,7 +77,7 @@ public class SupplierFragment extends Fragment {
     private String postalCode;
 
     private Alert alert = new Alert(Alert.AlertType.NONE);
-    private ThreadLocal<CepData> cepdData = ThreadLocal.withInitial(() -> CepData.get());
+    private ThreadLocal<CepData> cepData = ThreadLocal.withInitial(() -> CepData.get());
 
     SupplierFragment() {
         super("fxml/fragment_supplier.fxml");
@@ -111,34 +111,34 @@ public class SupplierFragment extends Fragment {
         });
 
         saveAddButton.setOnAction(event -> {
-            getFieldsData();
+            getFieldsData(); // 1
 
             try {
-                if(name == null) {
-                    throw new NullFieldException("Nome");
+                if(name.length() == 0) { // 2
+                    throw new NullFieldException("Nome"); // 3
                 }
-                else {
-                    if (notExistSameNameInBD(name)) {
-                        if (DocumentValidator.isValidCPNJ(cnpj)) {
-                            if (notExistSameCNPJNumberInBD(cnpj)) {
-                                if (!city.isEmpty() && number.isEmpty()) {
-                                    throw new NullFieldException("número do endereço");
+                else { // 4
+                    if (notExistSameNameInBD(name)) { // 5
+                        if (DocumentValidator.isValidCPNJ(cnpj)) { // 6
+                            if (notExistSameCNPJNumberInBD(cnpj)) { // 7
+                                if (!city.isEmpty() && number.isEmpty()) { // 8
+                                    throw new NullFieldException("número do endereço"); // 9
                                 }
-                                else {
+                                else { // 10
                                     SupplierManager.addSupplier(name, cnpj, new Address("Brasil", state, city, district, postalCode, street, number, complement), new Phone(DDD, telephone));
                                     successInsertionAlert();
                                     afterSaveGUIState();
                                 }
-                            } else {
+                            } else { // 11
                                 cnpjField.clear();
                                 throw new SameDataException("Fornecedor", "CNPJ");
                             }
                         }
-                        else {
+                        else { // 12
                             throw new InvalidDataException("CNPJ");
                         }
                     }
-                    else {
+                    else { // 13
                         nameField.clear();
                         throw new SameDataException("Fornecedor", "Nome");
                     }
@@ -146,7 +146,7 @@ public class SupplierFragment extends Fragment {
             }catch (Exception e) {
                 e.getMessage();
             }finally {
-                populateTable();
+                populateTable(); // 14
             }
         });
 
@@ -245,15 +245,15 @@ public class SupplierFragment extends Fragment {
             try {
                 if (netIsAvailable()) {
                     if (newValue != null && newValue.length() >= 8) {
-                        if (CepData.get().getUF(newValue) == null) {
+                        if (cepData.get().getUF(newValue) == null) {
                             postalCodeField.clear();
                             throw new InvalidDataException("CEP");
                         }
                         else {
-                            streetField.setText(CepData.get().getRua(newValue));
-                            cityField.setText(CepData.get().getCidade(newValue));
-                            stateField.setText(CepData.get().getUF(newValue));
-                            districtField.setText(CepData.get().getBairro(newValue));
+                            streetField.setText(cepData.get().getRua(newValue));
+                            cityField.setText(cepData.get().getCidade(newValue));
+                            stateField.setText(cepData.get().getUF(newValue));
+                            districtField.setText(cepData.get().getBairro(newValue));
 
                             numberField.setDisable(false);
                             complementField.setDisable(false);
@@ -309,7 +309,6 @@ public class SupplierFragment extends Fragment {
         disableAddressFields();
         closeAnchorPanes();
         populateTable();
-        configureSearchOption();
     }
 
     private void afterSaveGUIState() {
@@ -407,10 +406,6 @@ public class SupplierFragment extends Fragment {
             }
         }
         return true;
-    }
-
-    private void configureSearchOption() {
-
     }
 
     private void populateTable(){

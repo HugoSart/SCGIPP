@@ -12,7 +12,7 @@ import scgipp.service.managers.SupplierManager;
 import java.util.ArrayList;
 
 /**
- * Created by: Dario
+ * Created by: Anderson Dario
  * On: 15/10/2017
  * */
 

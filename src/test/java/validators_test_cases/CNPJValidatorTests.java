@@ -4,24 +4,26 @@ import org.junit.Assert;
 import org.junit.Test;
 import scgipp.service.validators.DocumentValidator.DocumentValidator;
 
-public class CNPJValidatorTests {
+/**
+ * @author : Anderson Dario
+ */
 
-    DocumentValidator documentValidator = new DocumentValidator();
+public class CNPJValidatorTests {
 
     @Test
     public void validTest(){
-        Assert.assertTrue(documentValidator.isValidCPNJ("44479557000122"));
-        Assert.assertTrue(documentValidator.isValidCPNJ("24209266000107"));
-        Assert.assertTrue(documentValidator.isValidCPNJ("48951201000109"));
-        Assert.assertTrue(documentValidator.isValidCPNJ("26135640000100"));
+        Assert.assertTrue(DocumentValidator.isValidCPNJ("44479557000122"));
+        Assert.assertTrue(DocumentValidator.isValidCPNJ("24209266000107"));
+        Assert.assertTrue(DocumentValidator.isValidCPNJ("48951201000109"));
+        Assert.assertTrue(DocumentValidator.isValidCPNJ("26135640000100"));
     }
 
     @Test
     public void invalidTest(){
-        Assert.assertTrue(!documentValidator.isValidCPNJ("00000000000000"));
-        Assert.assertTrue(!documentValidator.isValidCPNJ("11111111111111"));
-        Assert.assertTrue(!documentValidator.isValidCPNJ("11111111111122"));
-        Assert.assertTrue(!documentValidator.isValidCPNJ("11116711111122"));
-        Assert.assertTrue(!documentValidator.isValidCPNJ("19116711131122"));
+        Assert.assertTrue(!DocumentValidator.isValidCPNJ("00000000000000"));
+        Assert.assertTrue(!DocumentValidator.isValidCPNJ("11111111111111"));
+        Assert.assertTrue(!DocumentValidator.isValidCPNJ("11111111111122"));
+        Assert.assertTrue(!DocumentValidator.isValidCPNJ("11116711111122"));
+        Assert.assertTrue(!DocumentValidator.isValidCPNJ("19116711131122"));
     }
 }

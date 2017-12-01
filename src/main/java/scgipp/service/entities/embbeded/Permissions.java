@@ -18,7 +18,7 @@ public class Permissions {
     public enum Permission {
         LOGIN,
         USER_ADD, USER_REMOVE, USER_UPDATE,
-        CLIENT_ADD, CLIENT_REMOVE, CLIENT_UPDATE
+        CLIENT_ADD, CLIENT_REMOVE, CLIENT_UPDATE, FORNECECEDOR_ADD, FORNECEDOR_REM, FORNECEDOR_UPDATE
     }
 
     public enum UserType {

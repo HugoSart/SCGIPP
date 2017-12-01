@@ -9,4 +9,9 @@ public class InvalidDataException extends PrintableException {
         printableMessage = invalidDataName + " inválido!";
         printExceptionMessage();
     }
+
+    public InvalidDataException(String invalidDataName, String tam) {
+        alert.setAlertType(Alert.AlertType.ERROR);
+        printableMessage = "O campo " + invalidDataName + " deve ter no máximo "+ tam +" caracteres.";
+    }
 }
