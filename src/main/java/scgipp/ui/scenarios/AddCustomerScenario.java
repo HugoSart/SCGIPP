@@ -136,7 +136,6 @@ public class AddCustomerScenario extends FeedbackScenario{
         });
 
         btOk.setOnAction(event -> {
-
             String name,  address , phone, cpf, tipo, addressnumber, addresscep, addressbairro, addresscity, addressstate;
             name = tfName.getText();
             address = tfAddress.getText();

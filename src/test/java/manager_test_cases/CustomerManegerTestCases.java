@@ -47,7 +47,6 @@ public class CustomerManegerTestCases {
 
     }
 
-
     @After
     public void tearDown() {
         //DBConnection.exit();
