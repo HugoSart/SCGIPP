@@ -51,13 +51,14 @@ public class Main extends Application {
     }
 
     private static void initTestUsers() {
+        /*
         DBManager dbManager = DBConnection.manager();
         dbManager.add(new User("admin", "admin", Permissions.UserType.ADM));
         dbManager.add(new User("hugovs", "hugovs", Permissions.UserType.ADM));
         dbManager.add(new User("amiguinho", "inteligega"));
         dbManager.add(new User("tskira", "tskira", Permissions.UserType.ADM));
         dbManager.add(new User("adario", "adario",Permissions.UserType.ADM));
-
+        */
     }
 
     public static AccountCredentials getCredentials() {

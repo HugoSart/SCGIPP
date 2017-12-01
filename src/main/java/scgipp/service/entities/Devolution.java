@@ -14,16 +14,18 @@ public class Devolution extends BaseEntity<Integer> {
     @ManyToOne
     private Product product;
 
-    Date devolutionDate;
+    String devolutionDate;
     Boolean restoreToStock;
+    Integer quantity;
 
     public Devolution(){}
 
-    public Devolution(Sale sale, Product product, Date devolutionDate, Boolean restoreToStock) {
+    public Devolution(Sale sale, Product product, String devolutionDate, Boolean restoreToStock, Integer quantity) {
         this.devolutionDate = devolutionDate;
         this.product = product;
         this.sale = sale;
         this.restoreToStock = restoreToStock;
+        this.quantity = quantity;
     }
 
     public Sale getSale() {
@@ -42,11 +44,11 @@ public class Devolution extends BaseEntity<Integer> {
         this.product = product;
     }
 
-    public void setDevolutionDate(Date devolutionDate) {
+    public void setDevolutionDate(String devolutionDate) {
         this.devolutionDate = devolutionDate;
     }
 
-    public Date getDevolutionDate() {
+    public String getDevolutionDate() {
         return devolutionDate;
     }
 
@@ -56,6 +58,14 @@ public class Devolution extends BaseEntity<Integer> {
 
     public void setRestoreToStock(Boolean restoreToStock) {
         this.restoreToStock = restoreToStock;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
     }
 }
 

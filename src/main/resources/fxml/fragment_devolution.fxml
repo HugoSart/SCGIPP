@@ -10,24 +10,24 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="652.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="652.0" prefWidth="903.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane layoutX="-1.0" minHeight="0.0" minWidth="0.0" prefHeight="621.0" prefWidth="492.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="0.0">
             <children>
-                <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="595.0" prefWidth="448.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="626.0" prefWidth="890.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                     <children>
                         <TextField fx:id="tfSearch" prefHeight="27.0" prefWidth="448.0" promptText="Procurar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                             <padding>
                                 <Insets left="28.0" />
                             </padding>
                         </TextField>
-                        <TableView fx:id="tvDevolution" layoutX="101.0" layoutY="34.0" prefHeight="593.0" prefWidth="759.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="33.0">
+                        <TableView fx:id="tvDevolution" layoutX="101.0" layoutY="34.0" prefHeight="593.0" prefWidth="789.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="101.0" AnchorPane.topAnchor="33.0">
                             <columns>
-                                <TableColumn fx:id="tcId" minWidth="5.0" prefWidth="54.0" text="Id" />
-                        <TableColumn fx:id="tcSaleId" minWidth="5.0" prefWidth="79.0" text="Venda ID" />
+                                <TableColumn fx:id="tcId" minWidth="5.0" prefWidth="83.0" text="Id" />
+                        <TableColumn fx:id="tcSaleId" minWidth="5.0" prefWidth="92.0" text="Venda ID" />
                                 <TableColumn fx:id="tcProductName" prefWidth="295.0" text="Nome do produto" />
-                                <TableColumn fx:id="tcDevolutionDate" minWidth="5.0" prefWidth="171.0" text="Data de devolução" />
-                                <TableColumn fx:id="tcRestored" minWidth="5.0" prefWidth="159.0" text="Reposto no Estoque" />
+                                <TableColumn fx:id="tcRestored" minWidth="5.0" prefWidth="173.0" text="Reposto no Estoque" />
+                        <TableColumn fx:id="tcQuantity" minWidth="5.0" prefWidth="145.0" text="Quantidade" />
                             </columns>
                         </TableView>
                         <VBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="34.0" prefHeight="595.0" prefWidth="89.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="34.0">
@@ -57,7 +57,7 @@
                                         <Insets bottom="8.0" />
                                     </VBox.margin>
                                 </Button>
-                                <Button fx:id="btUpdateDevolution" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Atualizar" textAlignment="CENTER">
+                                <Button fx:id="btUpdateDevolution" disable="true" mnemonicParsing="false" prefHeight="26.0" prefWidth="89.0" text="Atualizar" textAlignment="CENTER" visible="false">
                                     <effect>
                                         <DropShadow blurType="ONE_PASS_BOX" height="2.2225" radius="0.055625000000000036" width="0.0" />
                                     </effect>

@@ -48,7 +48,7 @@ public class UpdateProductScenario extends FeedbackScenario {
     @FXML private TextField tfPrice;
     @FXML private TextField tfDescription;
     @FXML private TextField tfWeight;
-    @FXML private Label lbProductAlreadyExists;
+    @FXML private Label lbWeight;
     @FXML private Label lbName;
     @FXML private Label lbQuantity;
     @FXML private Label lbPrice;
@@ -84,14 +84,30 @@ public class UpdateProductScenario extends FeedbackScenario {
 
         btOk.setOnAction(event -> {
 
+            Boolean productAlreadyExists = false;
+            String oldName = this.updateThisProduct.getName();
+
             String name = tfName.getText();
             String description = tfDescription.getText();
             Integer quantity = Integer.parseInt(tfQuantity.getText());
             BigDecimal price = new BigDecimal(Float.parseFloat(tfPrice.getText()));
             Long weight = Long.parseLong(tfWeight.getText());
 
+            for(Product p: productManager.listAll()){
+                if(p.getName().equals(oldName)){
+                }
+                else if(p.getName().equals(name)) {
+                    productAlreadyExists = true;
+                    break;
+                }
+            }
 
-            if ((name != null) /*&& (price != null) && (price.doubleValue() >= 0) && (quantity != null) && (quantity >= 0)*/) {
+            lbName.setVisible(productAlreadyExists);
+            lbQuantity.setVisible(tfQuantity.getText().isEmpty() || Integer.parseInt(tfQuantity.getText()) < 0);
+            lbPrice.setVisible(tfPrice.getText().isEmpty() || Double.parseDouble(tfPrice.getText()) < 0.0);
+            lbWeight.setVisible(tfWeight.getText().isEmpty() || Double.parseDouble(tfWeight.getText()) < 0.0);
+
+            if ((name != null) && !productAlreadyExists && (price.doubleValue() >= 0) && (quantity >= 0) && (quantity.doubleValue() >= 0)) {
 
                 this.updateThisProduct.setName(name);
                 this.updateThisProduct.setDescription(description);

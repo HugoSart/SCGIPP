@@ -39,4 +39,9 @@ public class ObservableCartItem {
             observableCartItems.add(new ObservableCartItem(cartItem));
         return observableCartItems;
     }
+
+    @Override
+    public String toString() {
+        return getCartItem().getQuantity() + " " + getCartItem().getProduct().getName();
+    }
 }

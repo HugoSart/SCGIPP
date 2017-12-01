@@ -14,10 +14,17 @@ import javafx.stage.StageStyle;
 import scgipp.service.entities.Customer;
 import scgipp.service.entities.superclass.Person;
 import scgipp.service.managers.CustomerManager;
+import scgipp.service.validators.CEP.CepData;
 import scgipp.service.validators.DocumentValidator.DocumentValidator;
 import scgipp.ui.FXScenario.FeedbackScenario;
 import scgipp.ui.FXScenario.NodeCustomizer;
+import scgipp.ui.exceptions.InvalidDataException;
+import scgipp.ui.exceptions.NoInternetConnection;
+
+import java.io.IOException;
 import java.time.LocalDate;
+
+import static scgipp.service.validators.Connection.InternetConnetion.netIsAvailable;
 
 public class AddCustomerScenario extends FeedbackScenario{
 
@@ -65,6 +72,12 @@ public class AddCustomerScenario extends FeedbackScenario{
         cbTipo.setItems(personTypes);
     }
 
+    @FXML
+    private TextField tfCity;
+
+    @FXML
+    private TextField tfState;
+
 
     public AddCustomerScenario(){super("fxml/scenario_add_customer.fxml"); }
 
@@ -82,14 +95,55 @@ public class AddCustomerScenario extends FeedbackScenario{
 
         stage.initStyle(StageStyle.UNDECORATED);
 
-        btOk.setOnAction(event -> {
+        tfCEP.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                if (netIsAvailable()) {
+                    if (newValue != null && newValue.length() >= 8) {
+                        if (CepData.get().getUF(newValue) == null) {
+                            tfCEP.clear();
+                            lbEnderecoObrigatorio.setVisible(true);
+                            throw new InvalidDataException("CEP");
+                        }
+                        else {
+                            tfAddress.setText(CepData.get().getRua(newValue));
+                            tfCity.setText(CepData.get().getCidade(newValue));
+                            tfState.setText(CepData.get().getUF(newValue));
+                            tfBairro.setText(CepData.get().getBairro(newValue));
 
-            String name,  address , phone, cpf, tipo, addressnumber, addresscep, addressbairro;
+                            //tf.setDisable(false);
+                            //complementField.setDisable(false);
+                        }
+                    }
+                    else {
+                        tfAddress.clear();
+                        tfCity.clear();
+                        tfState.clear();
+                        tfBairro.clear();
+
+                        //numberField.setDisable(true);
+                        //complementField.setDisable(true);
+                    }
+                }
+                else {
+                    tfCEP.clear();
+                    throw new NoInternetConnection();
+                }
+            } catch (IOException e) {
+                e.getMessage();
+            } catch (NoInternetConnection | InvalidDataException noInternetConnection) {
+
+            }
+        });
+
+        btOk.setOnAction(event -> {
+            String name,  address , phone, cpf, tipo, addressnumber, addresscep, addressbairro, addresscity, addressstate;
             name = tfName.getText();
             address = tfAddress.getText();
             addressbairro = tfBairro.getText();
             addressnumber = tfAddressNumber.getText();
             addresscep = tfCEP.getText();
+            addresscity = tfCity.getText();
+            addressstate = tfState.getText();
             phone = tfPhone.getText();
             cpf = tfCPF.getText();
             tipo = cbTipo.getValue();
@@ -106,16 +160,16 @@ public class AddCustomerScenario extends FeedbackScenario{
                 }
             }
 
+
             lbNomeObrigatorio.setVisible(name.isEmpty());
             lbDocumentoObrigatorio.setVisible(cpf.isEmpty());
             lbTelefoneObrigatorio.setVisible(phone.isEmpty());
             lbEnderecoObrigatorio.setVisible(address.isEmpty() || addressbairro.isEmpty() || addresscep.isEmpty() || addressnumber.isEmpty());
             lbAlreadyOnSystem.setVisible(AlreadyOnSystem);
             lbTipoObrigatorio.setVisible(cbTipo.getSelectionModel().isEmpty());
-
-
             lbFalseCpf.setVisible(!falseDocument);
             lbDataObrigatorio.setVisible(date == null);
+
 
             if (!tipo.isEmpty())
             {
@@ -137,6 +191,8 @@ public class AddCustomerScenario extends FeedbackScenario{
                     newAddress.setPostalCode(addresscep);
                     newAddress.setNumber(addressnumber);
                     newAddress.setComplement(addressbairro);
+                    newAddress.setCity(addresscity);
+                    newAddress.setState(addressstate);
                     Phone newPhone = new Phone();
                     newPhone.setNumber(phone);
                     Customer newCustomer = new Customer(tipo_cadastrar, name, cpf, date);
@@ -146,9 +202,12 @@ public class AddCustomerScenario extends FeedbackScenario{
                     processFeedbackAndFinish();
                 }
             }
+
         });
 
         btCancel.setOnAction(event -> finish());
+
+
 
         setUpScenarioStyle(ScenarioStyle.BETTER_UNDECORATED);
 

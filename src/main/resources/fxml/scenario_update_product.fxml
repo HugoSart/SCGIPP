@@ -15,7 +15,7 @@
             <children>
                 <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                     <children>
-                        <Label fx:id="lbSessionProduct" prefHeight="29.0" prefWidth="210.0" text="Novo Produto" textFill="WHITE">
+                        <Label fx:id="lbSessionProduct" prefHeight="29.0" prefWidth="210.0" text="Atualizar Produto" textFill="WHITE">
                             <padding>
                                 <Insets left="8.0" />
                             </padding>
@@ -39,9 +39,10 @@
         <TextField fx:id="tfQuantity" layoutX="75.0" layoutY="114.0" prefHeight="27.0" prefWidth="210.0" promptText="Quantidade" />
         <TextField fx:id="tfPrice" layoutX="75.0" layoutY="164.0" prefHeight="27.0" prefWidth="210.0" promptText="Preço" />
         <TextField fx:id="tfDescription" layoutX="75.0" layoutY="210.0" prefHeight="66.0" prefWidth="210.0" promptText="Descrição" />
-        <Label fx:id="lbName" layoutX="76.0" layoutY="50.0" text="Nome já existente" textFill="RED" visible="false" />
-        <Label fx:id="lbQuantity" layoutX="76.0" layoutY="106.0" text="Quantidade inválida" textFill="RED" visible="false" />
-        <Label fx:id="lbPrice" layoutX="76.0" layoutY="161.0" text="Preço inválido" textFill="RED" visible="false" />
       <TextField fx:id="tfWeight" layoutX="75.0" layoutY="294.0" prefHeight="27.0" prefWidth="210.0" promptText="Peso" />
+      <Label fx:id="lbName" layoutX="314.0" layoutY="72.0" text="Nome já existente" textFill="RED" visible="false" />
+      <Label fx:id="lbQuantity" layoutX="314.0" layoutY="120.0" text="Quantidade inválida" textFill="RED" visible="false" />
+      <Label fx:id="lbPrice" layoutX="314.0" layoutY="170.0" text="Preço inválido" textFill="RED" visible="false" />
+      <Label fx:id="lbWeight" layoutX="314.0" layoutY="300.0" text="Peso inválido" textFill="RED" visible="false" />
     </children>
 </AnchorPane>

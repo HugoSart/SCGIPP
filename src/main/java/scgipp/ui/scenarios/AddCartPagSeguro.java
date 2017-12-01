@@ -61,6 +61,7 @@ public class AddCartPagSeguro extends FeedbackScenario {
     protected void onConfigStage(Stage stage) {
 
             List<Product> productList = productManager.listAll();
+            List<CartItem> cartItemList = new ArrayList<>();
 
             btAdd.setOnAction(((ActionEvent event) -> {
 
@@ -76,18 +77,13 @@ public class AddCartPagSeguro extends FeedbackScenario {
                     observableProduct.getProduct().setQuantity(qtd - numberItens);
                     productManager.updateProduct(observableProduct.getProduct());
 
-                    for(CartItem item: cartItemManager.listAll()){
-                        if(item.getProduct().getId() == observableProduct.getProduct().getId()){
-                            item.setQuantity(item.getQuantity() + numberItens);
-                            item.setPrice(item.getPrice() + totalAmount);
-                            cartItemManager.updateCartItem(item);
-                            putFeedback(FEEDBACK_NEW_CART_PRODUCT, item);
-                            processFeedbackAndFinish();
-                        }
-                    }
+                    SpinnerValueFactory<Integer> valueFactory = //
+                            new SpinnerValueFactory.IntegerSpinnerValueFactory(1,
+                                    1000,
+                                    1);
+                    spQuantity.setValueFactory(valueFactory);
 
                     CartItem cartItem = new CartItem(observableProduct.getProduct(), numberItens, totalAmount);
-
                     putFeedback(FEEDBACK_NEW_CART_PRODUCT, cartItem);
                     processFeedbackAndFinish();
                 }

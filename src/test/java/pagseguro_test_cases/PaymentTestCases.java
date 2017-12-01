@@ -47,7 +47,7 @@ public class PaymentTestCases {
         paymentRequest.setItems(items);
 
         Shipping shipping = new Shipping();
-        shipping.setAddress(new Address("BRA", "SP", "Sao Paulo",
+        shipping.setAddress(new Address("Brasil", "Sao Paulo", "Sao Paulo",
                 "Jardim Paulistano", "01452002",
                 "Av. Brig. Faria Lima", "1384",
                 "5o andar"));

@@ -108,5 +108,4 @@ public class Product extends BaseEntity<Integer> {
         item.setShippingCost(shippingCost);
     }
 
-
 }

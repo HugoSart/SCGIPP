@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="439.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="439.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="390.0" prefWidth="787.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -46,7 +45,7 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <ListView fx:id="lvProducts" layoutX="14.0" layoutY="73.0" prefHeight="348.0" prefWidth="247.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="73.0" />
+            <ListView fx:id="lvCartItens" layoutX="14.0" layoutY="73.0" prefHeight="348.0" prefWidth="247.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="73.0" />
             <Button fx:id="btAdd" layoutX="233.0" layoutY="44.0" mnemonicParsing="false">
                <graphic>
                   <MaterialDesignIconView fill="WHITE" glyphName="PLUS" />
@@ -98,7 +97,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lbTotal" layoutX="344.0" layoutY="317.0" text="R$999.99" textFill="#8f67ff">
+            <Label fx:id="lbTotal" layoutX="344.0" layoutY="317.0" textFill="#8f67ff">
                <font>
                   <Font size="24.0" />
                </font>
